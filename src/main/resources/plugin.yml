@@ -1,0 +1,5 @@
+name: CraftPrison
+main: cz.wake.craftprison.Main
+authors: [MrWakeCZ]
+depends: [CraftCore]
+version: 1.0
