@@ -1,0 +1,45 @@
+package cz.wake.craftprison.listener;
+
+import cz.wake.craftprison.armorstands.ArmorStandManager;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+
+public class ArmorStandInteract implements Listener {
+
+    @EventHandler
+    public void manipulate(PlayerArmorStandManipulateEvent e) {
+        if(ArmorStandManager.armorstands.equals(e.getRightClicked())){
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onRightClick(PlayerInteractAtEntityEvent e) {
+        Player p = e.getPlayer();
+        if (e.getRightClicked() instanceof ArmorStand) {
+            if (e.getRightClicked().hasMetadata("?")) {
+
+            }
+        }
+        e.setCancelled(true);
+
+    }
+
+    @EventHandler
+    public void onLeftClick(EntityDamageByEntityEvent e){
+        if (e.getDamager() instanceof Player){
+            if(e.getEntity() instanceof ArmorStand){
+                Player p = (Player)e.getDamager();
+                if (e.getEntity().hasMetadata("?")) {
+
+                }
+            }
+
+        }
+    }
+}
