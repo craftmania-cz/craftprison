@@ -54,6 +54,13 @@
             <version>1.12.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>net.minecraft</groupId>
+            <artifactId>minecraft-server-1-12-2</artifactId>
+            <version>1.12.2</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/lib/spigot-1.12.2-R0.1-SNAPSHOT-b1468.jar</systemPath>
+        </dependency>
         <!-- CraftMania.cz Core -->
         <dependency>
             <groupId>com.github.craftmania-cz</groupId>
