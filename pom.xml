@@ -62,11 +62,11 @@
             <systemPath>${pom.basedir}/lib/spigot-1.12.2-R0.1-SNAPSHOT-b1468.jar</systemPath>
         </dependency>
         <!-- CraftMania.cz Core -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.github.craftmania-cz</groupId>
             <artifactId>CraftCore</artifactId>
             <version>v0.1-alpha</version>
-        </dependency>
+        </dependency> -->
 
     </dependencies>
 

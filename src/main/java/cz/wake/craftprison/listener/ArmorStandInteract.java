@@ -22,8 +22,8 @@ public class ArmorStandInteract implements Listener {
     public void onRightClick(PlayerInteractAtEntityEvent e) {
         Player p = e.getPlayer();
         if (e.getRightClicked() instanceof ArmorStand) {
-            if (e.getRightClicked().hasMetadata("?")) {
-
+            if (e.getRightClicked().hasMetadata("MineA")) {
+                p.performCommand("sellall A");
             }
         }
         e.setCancelled(true);
@@ -35,11 +35,11 @@ public class ArmorStandInteract implements Listener {
         if (e.getDamager() instanceof Player){
             if(e.getEntity() instanceof ArmorStand){
                 Player p = (Player)e.getDamager();
-                if (e.getEntity().hasMetadata("?")) {
-
+                if (e.getEntity().hasMetadata("MineA")) {
+                    p.performCommand("prices A");
                 }
+                e.setCancelled(true);
             }
-
         }
     }
 }
