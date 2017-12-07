@@ -2,6 +2,8 @@ package cz.wake.craftprison;
 
 import cz.wake.craftprison.armorstands.ArmorStandManager;
 import cz.wake.craftprison.listener.ArmorStandInteract;
+import cz.wake.craftprison.listener.MiningListener;
+import cz.wake.craftprison.listener.WGExtendedListener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -40,6 +42,8 @@ public class Main extends JavaPlugin {
     private void loadListeners() {
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new ArmorStandInteract(), this);
+        pm.registerEvents(new MiningListener(), this);
+        pm.registerEvents(new WGExtendedListener(), this);
     }
 
     private void loadCommands() {
