@@ -2,15 +2,25 @@ package cz.wake.craftprison.objects;
 
 public enum Rank {
 
-    STARTER("Starter",0),
-    OCTOPUS("Octopus",3000);
+    STARTER(1,"Starter",0),
+    TUTORIAL_A(2,"A",1000),
+    TUTORIAL_B(3,"B",3000),
+    TUTORIAL_C(4,"C",8000),
+    OCTOPUS(5,"Octopus",15000),
+    VILLAGER(6,"Villager",30000);
 
+    private int weight;
     private String name;
     private int price;
 
-    Rank(String name, int price) {
+    Rank(int weight, String name, int price) {
         this.name = name;
         this.price = price;
+        this.weight = weight;
+    }
+
+    Rank(int weight){
+        this.weight = weight;
     }
 
     public String getName() {
@@ -19,5 +29,43 @@ public enum Rank {
 
     public int getPrice() {
         return price;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public String toString() {
+        return name().charAt(0) + name().substring(1).toLowerCase();
+    }
+
+    public Rank getByName(String name){
+        for (Rank r : getTypes()){
+            if(r.getName().equalsIgnoreCase(name)){
+                return r;
+            }
+        }
+        return null;
+    }
+
+    public Rank getByWeight(int weight){
+        for(Rank r : getTypes()){
+            if(r.getWeight() == weight){
+                return r;
+            }
+        }
+        return null;
+    }
+
+    public boolean isAtLeast(Rank other) {
+        return getWeight() >= other.getWeight();
+    }
+
+    public static Rank[] getTypes() {
+        return new Rank[]{STARTER, TUTORIAL_A, TUTORIAL_B, TUTORIAL_C, OCTOPUS, VILLAGER};
+    }
+
+    public Rank getNext(){
+        return this.ordinal() < Rank.values().length - 1 ? Rank.values()[this.ordinal() + 1] : null;
     }
 }
