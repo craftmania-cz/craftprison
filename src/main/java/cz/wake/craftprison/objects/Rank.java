@@ -2,10 +2,10 @@ package cz.wake.craftprison.objects;
 
 public enum Rank {
 
-    STARTER(1,"Starter",0),
-    TUTORIAL_A(2,"A",1000),
-    TUTORIAL_B(3,"B",3000),
-    TUTORIAL_C(4,"C",8000),
+    TUTORIAL_A(1,"A",0),
+    TUTORIAL_B(2,"B",1000),
+    TUTORIAL_C(3,"C",3000),
+    TUTORIAL_D(4,"D",8000),
     OCTOPUS(5,"Octopus",15000),
     VILLAGER(6,"Villager",30000);
 
@@ -62,7 +62,7 @@ public enum Rank {
     }
 
     public static Rank[] getTypes() {
-        return new Rank[]{STARTER, TUTORIAL_A, TUTORIAL_B, TUTORIAL_C, OCTOPUS, VILLAGER};
+        return new Rank[]{TUTORIAL_A, TUTORIAL_B, TUTORIAL_C, TUTORIAL_D, OCTOPUS, VILLAGER};
     }
 
     public Rank getNext(){

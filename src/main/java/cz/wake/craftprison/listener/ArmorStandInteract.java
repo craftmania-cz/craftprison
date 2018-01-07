@@ -4,6 +4,7 @@ import cz.wake.craftprison.armorstands.ArmorStandManager;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
@@ -18,7 +19,7 @@ public class ArmorStandInteract implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onRightClick(PlayerInteractAtEntityEvent e) {
         Player p = e.getPlayer();
         if (e.getRightClicked() instanceof ArmorStand) {
@@ -30,7 +31,7 @@ public class ArmorStandInteract implements Listener {
 
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onLeftClick(EntityDamageByEntityEvent e){
         if (e.getDamager() instanceof Player){
             if(e.getEntity() instanceof ArmorStand){

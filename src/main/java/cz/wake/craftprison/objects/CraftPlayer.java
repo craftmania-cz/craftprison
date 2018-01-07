@@ -8,17 +8,15 @@ public class CraftPlayer implements IMiner {
     private Rank rank;
     private int minedBlocks;
     private int prisCoins;
-    private boolean isAT;
 
     public CraftPlayer(Player p) {
         this.p = p;
         this.rank = rank; // z SQL
         this.minedBlocks = minedBlocks; // z SQL
         this.prisCoins = prisCoins; // z SQL
-        this.isAT = isAT; // z SQL
     }
 
-    public void eloadToCache() {
+    public void loadToCache() {
         //TODO: PrisonManager list
     }
 
@@ -40,10 +38,5 @@ public class CraftPlayer implements IMiner {
     @Override
     public int getMinedBlocks() {
         return this.minedBlocks;
-    }
-
-    @Override
-    public boolean isAT() {
-        return this.isAT;
     }
 }

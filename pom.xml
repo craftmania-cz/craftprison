@@ -61,6 +61,7 @@
             <scope>system</scope>
             <systemPath>${pom.basedir}/lib/spigot-1.12.2-R0.1-SNAPSHOT-b1468.jar</systemPath>
         </dependency>
+        <!-- WorldGuard API -->
         <dependency>
             <groupId>com.sk89q.worldguard</groupId>
             <artifactId>worldguard-legacy</artifactId>

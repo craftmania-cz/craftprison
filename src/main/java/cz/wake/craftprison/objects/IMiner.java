@@ -11,8 +11,4 @@ public interface IMiner {
     int getPrisCoins();
 
     int getMinedBlocks();
-
-    boolean isAT();
-
-
 }
