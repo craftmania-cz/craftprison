@@ -28,6 +28,8 @@ public class ArmorStandManager {
         }
     }
 
+    //todo: prevence proti despawnu armorstandu (unloadchunks?)
+
     public void setMetadata(ArmorStand as, String paramString, Object paramObject, Main paramMain) {
         as.setMetadata(paramString, new FixedMetadataValue(paramMain, paramObject));
     }

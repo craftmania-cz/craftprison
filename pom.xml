@@ -44,6 +44,10 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>vault-repo</id>
+            <url>http://nexus.hc.to/content/repositories/pub_releases</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -74,6 +78,13 @@
             <groupId>com.github.craftmania-cz</groupId>
             <artifactId>CraftCore</artifactId>
             <version>v0.2-alpha</version>
+        </dependency>
+        <!-- Vault API -->
+        <dependency>
+            <groupId>net.milkbowl.vault</groupId>
+            <artifactId>VaultAPI</artifactId>
+            <version>1.6</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>

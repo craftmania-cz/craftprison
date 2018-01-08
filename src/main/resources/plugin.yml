@@ -1,5 +1,11 @@
 name: CraftPrison
 main: cz.wake.craftprison.Main
 authors: [MrWakeCZ]
-depend: [Multiverse-Core,WorldGuard,CraftCore]
+depend: [Multiverse-Core,WorldGuard,CraftCore,Vault]
 version: 1.0
+
+commands:
+    rank:
+      description: Zakladni prikaz
+    rankup:
+      description: No..

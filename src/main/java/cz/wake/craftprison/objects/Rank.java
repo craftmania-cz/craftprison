@@ -28,7 +28,7 @@ public enum Rank {
     }
 
     public int getPrice() {
-        return price;
+        return this.price;
     }
 
     public int getWeight() {
@@ -39,7 +39,7 @@ public enum Rank {
         return name().charAt(0) + name().substring(1).toLowerCase();
     }
 
-    public Rank getByName(String name){
+    public static Rank getByName(String name){
         for (Rank r : getTypes()){
             if(r.getName().equalsIgnoreCase(name)){
                 return r;
@@ -48,13 +48,21 @@ public enum Rank {
         return null;
     }
 
-    public Rank getByWeight(int weight){
+    public static Rank getByWeight(int weight){
         for(Rank r : getTypes()){
             if(r.getWeight() == weight){
                 return r;
             }
         }
         return null;
+    }
+
+    public String getPermission(){
+        return "craftprison.rank." + this.getName().toLowerCase(); // craftprison.rank.?
+    }
+
+    public String getPermission(Rank r){
+        return "craftprison.rank." + r.getName().toLowerCase(); // craftprison.rank.octopus
     }
 
     public boolean isAtLeast(Rank other) {
