@@ -126,7 +126,7 @@ public class Main extends JavaPlugin {
         return Main.active != null && !Main.active.isEmpty() && Main.active.containsKey(name);
     }
 
-    public int getAlertAmount(final String name) {
+    public int getAlertAmount(final String name ) {
         if (this.isAlerted(name)) {
             return Main.active.get(name);
         }
