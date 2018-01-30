@@ -12,12 +12,10 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        //blocksBreak.put((CraftPlayer)event.getPlayer(), 1);
     }
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
-        //deaths.put((CraftPlayer)event.getEntity().getPlayer(), 1);
     }
 
 }

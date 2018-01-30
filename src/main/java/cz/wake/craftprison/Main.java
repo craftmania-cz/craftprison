@@ -6,6 +6,7 @@ import cz.wake.craftprison.commands.RankUpCommand;
 import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
 import cz.wake.craftprison.sql.SQLManager;
+import cz.wake.craftprison.statistics.Statistics;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -29,6 +30,7 @@ public class Main extends JavaPlugin {
     private final List<Material> ignored;
     private SQLManager sql;
     private boolean fixArmorstands = false;
+    private Statistics statistics;
 
     static {
         Main.active = new HashMap<>();
@@ -67,6 +69,7 @@ public class Main extends JavaPlugin {
 
         // Config hodnoty
         fixArmorstands = getConfig().getBoolean("fix-armorstands");
+        statistics = new Statistics();
 
         // ArmorStandy
         ArmorStandManager.init();
