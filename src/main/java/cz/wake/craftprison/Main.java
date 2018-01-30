@@ -182,4 +182,8 @@ public class Main extends JavaPlugin {
     private void initDatabase() {
         sql = new SQLManager(this);
     }
+
+    public Statistics getStatistics() {
+        return statistics;
+    }
 }
