@@ -2,7 +2,9 @@ package cz.wake.craftprison.armorstands;
 
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.armorstands.ranks.RankA;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.ArrayList;
@@ -17,14 +19,14 @@ public class ArmorStandManager {
     }
 
     public static void spawn() {
-        for (IArmorstand i : armorstands) {
-            i.spawn();
-        }
+        armorstands.forEach(IArmorstand::spawn);
     }
 
-    public static void despawn() {
-        for (IArmorstand i : armorstands) {
-            i.remove();
+    public static void despawn(boolean fixAll) {
+        armorstands.forEach(IArmorstand::remove);
+        if(fixAll){
+            Bukkit.getWorld("prison_spawn").getEntities().forEach(Entity::remove);
+            Bukkit.getWorld("doly").getEntities().forEach(Entity::remove);
         }
     }
 

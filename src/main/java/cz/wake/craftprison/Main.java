@@ -28,6 +28,7 @@ public class Main extends JavaPlugin {
     private final List<Material> tools;
     private final List<Material> ignored;
     private SQLManager sql;
+    private boolean fixArmorstands = false;
 
     static {
         Main.active = new HashMap<>();
@@ -64,6 +65,9 @@ public class Main extends JavaPlugin {
             this.backpack = new VKBackPackHook();
         }
 
+        // Config hodnoty
+        fixArmorstands = getConfig().getBoolean("fix-armorstands");
+
         // ArmorStandy
         ArmorStandManager.init();
         ArmorStandManager.spawn();
@@ -73,7 +77,7 @@ public class Main extends JavaPlugin {
     public void onDisable(){
 
         // Despawn armorstandu
-        ArmorStandManager.despawn();
+        ArmorStandManager.despawn(fixArmorstands);
 
         // Deaktivace MySQL
         sql.onDisable();
