@@ -15,23 +15,22 @@ public class Statistics {
     private HashMap<Player, Integer> blocksBroken;
     private HashMap<Player, Integer> deaths;
     private HashMap<Player, Integer> kills;
-    private HashMap<Player, Integer> blocksPlaced;
 
+    public Statistics(Main main) {
+        this.main = main;
 
-    public Statistics() {
         blocksBroken = new HashMap<>();
         deaths = new HashMap<>();
         kills = new HashMap<>();
-        blocksPlaced = new HashMap<>();
 
-        playerListener = new PlayerListener();
-        Bukkit.getServer().getPluginManager().registerEvents(new PlayerListener(), main);
+        playerListener = new PlayerListener(main);
+        Bukkit.getServer().getPluginManager().registerEvents(new PlayerListener(main), main);
     }
 
     /*
         Blocks broken
      */
-    public Integer getBlocksBroken(Player player) {
+    public int getBlocksBroken(Player player) {
         if (blocksBroken.containsKey(player)) {
             return blocksBroken.get(player);
         }
@@ -45,7 +44,7 @@ public class Statistics {
     /*
         Deaths
      */
-    public Integer getDeaths(Player player) {
+    public int getDeaths(Player player) {
         if (deaths.containsKey(player)) {
             return deaths.get(player);
         }
@@ -56,10 +55,10 @@ public class Statistics {
         deaths.put(player, value);
     }
 
-     /*
-        Kills
-     */
-    public Integer getKills(Player player) {
+    /*
+       Kills
+    */
+    public int getKills(Player player) {
         if (kills.containsKey(player)) {
             return kills.get(player);
         }
@@ -68,20 +67,6 @@ public class Statistics {
 
     public void setKills(Player player, int value) {
         kills.put(player, value);
-    }
-
-    /*
-        Blocks placed
-     */
-    public Integer getBlocksPlaced(Player player) {
-        if (blocksPlaced.containsKey(player)) {
-            return blocksPlaced.get(player);
-        }
-        return 0;
-    }
-
-    public void setBlocksPlaced(Player player, int value) {
-        blocksPlaced.put(player, value);
     }
 }
 

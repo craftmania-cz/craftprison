@@ -1,5 +1,7 @@
 package cz.wake.craftprison;
 
+import com.wasteofplastic.askyblock.ASkyBlock;
+import com.wasteofplastic.askyblock.ASkyBlockAPI;
 import cz.wake.craftprison.armorstands.ArmorStandManager;
 import cz.wake.craftprison.commands.RankCommand;
 import cz.wake.craftprison.commands.RankUpCommand;
@@ -31,6 +33,7 @@ public class Main extends JavaPlugin {
     private SQLManager sql;
     private boolean fixArmorstands = false;
     private Statistics statistics;
+    private ASkyBlockAPI aSkyBlockAPI;
 
     static {
         Main.active = new HashMap<>();
@@ -69,11 +72,15 @@ public class Main extends JavaPlugin {
 
         // Config hodnoty
         fixArmorstands = getConfig().getBoolean("fix-armorstands");
-        statistics = new Statistics();
+        statistics = new Statistics(this);
 
         // ArmorStandy
         ArmorStandManager.init();
         ArmorStandManager.spawn();
+
+        aSkyBlockAPI = (ASkyBlockAPI) Bukkit.getPluginManager().getPlugin("aSkyBlock");
+
+        statistics = new Statistics(this);
     }
 
     @Override
@@ -185,5 +192,9 @@ public class Main extends JavaPlugin {
 
     public Statistics getStatistics() {
         return statistics;
+    }
+
+    public ASkyBlockAPI getSkyBlockAPI() {
+        return aSkyBlockAPI;
     }
 }
