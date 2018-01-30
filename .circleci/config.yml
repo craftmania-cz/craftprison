@@ -37,6 +37,10 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      # Test package!
-      - run: mvn package -Dmaven.javadoc.skip=true -V -B
+      # run tests!
+      - run: mvn package
 
+notify:
+  webhooks:
+    # A list of hook hashes, containing the URL field
+    - url: https://skyhook.glitch.me/api/webhooks/407981627398946816/rM33_QiTbvHUH4WYVT1SCTmYhvxE4IJYMmAM_hWIQvDYU20RDEODRqxSCn9-Fsc73EhT/circleci
