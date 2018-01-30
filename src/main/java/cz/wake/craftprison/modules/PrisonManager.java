@@ -39,7 +39,6 @@ public class PrisonManager {
                 set.close();
             } catch (Exception e) {
                 e.printStackTrace();
-                return; // Must stop...
             }
         }
 
