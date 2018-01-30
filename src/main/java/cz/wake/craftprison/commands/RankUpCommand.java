@@ -1,7 +1,7 @@
 package cz.wake.craftprison.commands;
 
 import cz.wake.craftprison.exceptions.PlayerNotInCacheException;
-import cz.wake.craftprison.modules.RankManager;
+import cz.wake.craftprison.modules.PrisonManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class RankUpCommand implements CommandExecutor {
 
-    RankManager rm = new RankManager();
+    PrisonManager pm = new PrisonManager();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
@@ -18,7 +18,7 @@ public class RankUpCommand implements CommandExecutor {
             Player player = (Player) sender;
             if ((command.getName().equalsIgnoreCase("rankup"))) {
                 try {
-                    rm.rankUp(player);
+                    pm.rankUp(player);
                 } catch (PlayerNotInCacheException e) {
                     e.printStackTrace();
                 }

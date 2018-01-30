@@ -5,6 +5,7 @@ import cz.wake.craftprison.commands.RankCommand;
 import cz.wake.craftprison.commands.RankUpCommand;
 import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
+import cz.wake.craftprison.sql.SQLManager;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -26,6 +27,7 @@ public class Main extends JavaPlugin {
     private VKBackPackHook backpack;
     private final List<Material> tools;
     private final List<Material> ignored;
+    private SQLManager sql;
 
     static {
         Main.active = new HashMap<>();
@@ -44,15 +46,20 @@ public class Main extends JavaPlugin {
         instance = this;
 
         // Config
-        //getConfig().options().copyDefaults(true);
-        //saveDefaultConfig();
+        getConfig().options().copyDefaults(true);
+        saveDefaultConfig();
 
+        // HikariCP
+        initDatabase();
+
+        // Vault Economy
         this.setupEconomy();
 
         // Listeners
         loadListeners();
         loadCommands();
 
+        // Dodatecne pluginy
         if (Bukkit.getPluginManager().isPluginEnabled("VKBackPack")) {
             this.backpack = new VKBackPackHook();
         }
@@ -65,7 +72,11 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable(){
 
+        // Despawn armorstandu
         ArmorStandManager.despawn();
+
+        // Deaktivace MySQL
+        sql.onDisable();
 
         instance = null;
     }
@@ -155,5 +166,13 @@ public class Main extends JavaPlugin {
                 }
             }
         }, 20L * 5);
+    }
+
+    public SQLManager getMySQL() {
+        return sql;
+    }
+
+    private void initDatabase() {
+        sql = new SQLManager(this);
     }
 }
