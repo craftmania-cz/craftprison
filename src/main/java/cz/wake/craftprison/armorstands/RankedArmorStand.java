@@ -82,7 +82,7 @@ public class RankedArmorStand {
         this.mainArmorStand.setItemInHand(item);
 
         // Metadata
-        Main.getInstance().getArmorStandManager().setMetadata(this.mainArmorStand, this.name, this.name, Main.getInstance());
+        Main.getInstance().getArmorStandManager().setMetadata(this.mainArmorStand, "rank" , this.name, Main.getInstance());
 
         // Nazvy
         this.hologramTexts.forEach(text -> {
@@ -105,6 +105,10 @@ public class RankedArmorStand {
         this.hologramArmorStands.forEach(Entity::remove);
         this.mainArmorStand.remove();
         ArmorStandManager.armorstands.remove(this);
+    }
+
+    public ArmorStand getMainArmorStand(){
+        return this.mainArmorStand;
     }
 
 

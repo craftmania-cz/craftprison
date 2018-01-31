@@ -23,8 +23,17 @@ public class ArmorStandManager {
         }
     }
 
-    public void setMetadata(ArmorStand as, String paramString, Object paramObject, Main paramMain) {
-        as.setMetadata(paramString, new FixedMetadataValue(paramMain, paramObject));
+    public void setMetadata(ArmorStand as, String type, Object rank, Main paramMain) {
+        as.setMetadata(type, new FixedMetadataValue(paramMain, rank));
+    }
+
+    public static boolean isRankedArmorStand(ArmorStand as){
+        for(RankedArmorStand rm : armorstands){
+            if(rm.getMainArmorStand() == as){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void initArmorStands(){
