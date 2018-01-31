@@ -69,15 +69,14 @@ public class Main extends JavaPlugin {
         fixArmorstands = getConfig().getBoolean("fix-armorstands");
 
         // ArmorStandy
-        ArmorStandManager.init();
-        ArmorStandManager.spawn();
+        ArmorStandManager.initArmorStands();
     }
 
     @Override
     public void onDisable(){
 
         // Despawn armorstandu
-        ArmorStandManager.despawn(fixArmorstands);
+        ArmorStandManager.removeArmorStands(fixArmorstands);
 
         // Deaktivace MySQL
         sql.onDisable();
