@@ -7,11 +7,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-public class PlayerListener implements Listener {
+public class PlayerStatsListener implements Listener {
 
     private Main main;
 
-    public PlayerListener(Main main) {
+    public PlayerStatsListener(Main main) {
         this.main = main;
     }
 

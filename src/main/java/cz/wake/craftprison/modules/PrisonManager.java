@@ -24,14 +24,14 @@ public class PrisonManager {
         if(!Main.getInstance().getMySQL().hasData(p)){
             // Vytvoreni default dat
             Main.getInstance().getMySQL().insertDefaultData(p);
-            cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0);
+            cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0, 0, 0);
         } else {
             try {
                 ResultSet set = Main.getInstance().getMySQL().getPool().getConnection().createStatement().executeQuery("SELECT * FROM players_data WHERE nick = '" + p.getName() + "';");
                 while (set.next()) {
                     try {
                         // Nacteni z SQL
-                        cp = new CraftPlayer(p, Rank.getByName(set.getString("rank")), set.getInt("priscoins"), set.getInt("minedblocks"));
+                        cp = new CraftPlayer(p, Rank.getByName(set.getString("rank")), set.getInt("priscoins"), set.getInt("minedblocks"), set.getInt("kills"), set.getInt("deaths"));
                     } catch (NullPointerException e) {
                         e.printStackTrace();
                     }
@@ -44,7 +44,7 @@ public class PrisonManager {
 
         // Prevence proti NPE
         if(cp == null){
-            cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0);
+            cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0, 0, 0);
         }
 
         players.put(p, cp);

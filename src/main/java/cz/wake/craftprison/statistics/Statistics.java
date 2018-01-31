@@ -1,15 +1,14 @@
 package cz.wake.craftprison.statistics;
 
 import cz.wake.craftprison.Main;
-import cz.wake.craftprison.statistics.listeners.PlayerListener;
-import org.bukkit.Bukkit;
+import cz.wake.craftprison.statistics.listeners.PlayerStatsListener;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 
 public class Statistics {
 
-    private PlayerListener playerListener;
+    private PlayerStatsListener playerStatsListener;
     private Main main;
 
     private HashMap<Player, Integer> blocksBroken;
@@ -22,9 +21,6 @@ public class Statistics {
         blocksBroken = new HashMap<>();
         deaths = new HashMap<>();
         kills = new HashMap<>();
-
-        playerListener = new PlayerListener(main);
-        Bukkit.getServer().getPluginManager().registerEvents(new PlayerListener(main), main);
     }
 
     /*
@@ -38,7 +34,7 @@ public class Statistics {
     }
 
     public void setBlocksBroken(Player player, int value) {
-        blocksBroken.put(player, value);
+        blocksBroken.put(player, main.getStatistics().getBlocksBroken(player) + value);
     }
 
     /*
@@ -52,7 +48,7 @@ public class Statistics {
     }
 
     public void setDeaths(Player player, int value) {
-        deaths.put(player, value);
+        deaths.put(player, main.getStatistics().getDeaths(player) + value);
     }
 
     /*
@@ -66,7 +62,13 @@ public class Statistics {
     }
 
     public void setKills(Player player, int value) {
-        kills.put(player, value);
+        kills.put(player, main.getStatistics().getKills(player) + value);
+    }
+
+    public void clearAllMaps() {
+        blocksBroken.clear();
+        kills.clear();
+        blocksBroken.clear();
     }
 }
 

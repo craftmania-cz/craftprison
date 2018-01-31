@@ -2,11 +2,14 @@ package cz.wake.craftprison.sql;
 
 import com.zaxxer.hikari.HikariDataSource;
 import cz.wake.craftprison.Main;
+import cz.wake.craftprison.modules.PrisonManager;
+import cz.wake.craftprison.objects.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class SQLManager {
 
@@ -64,7 +67,63 @@ public class SQLManager {
         }.runTaskAsynchronously(Main.getInstance());
     }
 
+    public void setMinedBlocksFromCache(Player player) {
+        PrisonManager prisonManager = new PrisonManager();
+        CraftPlayer craftPlayer = prisonManager.getCraftPlayer(player);
 
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            conn = pool.getConnection();
+            preparedStatement = conn.prepareStatement("UPDATE players_data SET minedblocks = ? WHERE nick=?;");
+            preparedStatement.setInt(1, craftPlayer.getMinedBlocks() + plugin.getStatistics().getBlocksBroken(player));
+            preparedStatement.setString(2, player.getName());
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, preparedStatement, null);
+        }
+
+    }
+
+    public void setDeathsFromCache(Player player) {
+        PrisonManager prisonManager = new PrisonManager();
+        CraftPlayer craftPlayer = prisonManager.getCraftPlayer(player);
+
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            conn = pool.getConnection();
+            preparedStatement = conn.prepareStatement("UPDATE players_data SET deaths = ? WHERE nick=?;");
+            preparedStatement.setInt(1, craftPlayer.getDeaths() + plugin.getStatistics().getDeaths(player));
+            preparedStatement.setString(2, player.getName());
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, preparedStatement, null);
+        }
+    }
+
+    public void setKillsFromCache(Player player) {
+        PrisonManager prisonManager = new PrisonManager();
+        CraftPlayer craftPlayer = prisonManager.getCraftPlayer(player);
+
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            conn = pool.getConnection();
+            preparedStatement = conn.prepareStatement("UPDATE players_data SET kills = ? WHERE nick=?;");
+            preparedStatement.setInt(1, craftPlayer.getKills() + plugin.getStatistics().getKills(player));
+            preparedStatement.setString(2, player.getName());
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, preparedStatement, null);
+        }
+    }
 
 
 }

@@ -7,8 +7,10 @@ import cz.wake.craftprison.commands.RankCommand;
 import cz.wake.craftprison.commands.RankUpCommand;
 import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
+import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.sql.SQLManager;
 import cz.wake.craftprison.statistics.Statistics;
+import cz.wake.craftprison.statistics.listeners.PlayerStatsListener;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -34,6 +36,7 @@ public class Main extends JavaPlugin {
     private boolean fixArmorstands = false;
     private Statistics statistics;
     private ASkyBlockAPI aSkyBlockAPI;
+    private PlayerStatsListener playerStatsListener;
 
     static {
         Main.active = new HashMap<>();
@@ -78,9 +81,13 @@ public class Main extends JavaPlugin {
         ArmorStandManager.init();
         ArmorStandManager.spawn();
 
+        //ASkyBlock hook
         aSkyBlockAPI = (ASkyBlockAPI) Bukkit.getPluginManager().getPlugin("aSkyBlock");
 
+        //Statistiky
         statistics = new Statistics(this);
+        playerStatsListener = new PlayerStatsListener(this);
+        Bukkit.getServer().getPluginManager().registerEvents(new PlayerStatsListener(this), this);
     }
 
     @Override
@@ -92,6 +99,8 @@ public class Main extends JavaPlugin {
         // Deaktivace MySQL
         sql.onDisable();
 
+        statistics.clearAllMaps();
+
         instance = null;
     }
 
@@ -100,7 +109,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new ArmorStandInteract(), this);
         pm.registerEvents(new MiningListener(), this);
         pm.registerEvents(new WGExtendedListener(), this);
-        pm.registerEvents(new PlayerListener(), this);
+        pm.registerEvents(new PlayerListener(this), this);
         pm.registerEvents(new InventoryFullListener(), this);
 
         if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {

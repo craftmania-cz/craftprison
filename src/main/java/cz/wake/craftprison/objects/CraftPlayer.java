@@ -8,6 +8,8 @@ public class CraftPlayer implements IMiner {
     private Rank rank;
     private int minedBlocks;
     private int prisCoins;
+    private int kills;
+    private int deaths;
 
     public CraftPlayer() {};
 
@@ -15,11 +17,13 @@ public class CraftPlayer implements IMiner {
         this.p = p;
     }
 
-    public CraftPlayer(Player p, Rank r, int minedBlocks, int prisCoins){
+    public CraftPlayer(Player p, Rank r, int prisCoins, int minedBlocks, int kills, int deaths){
         this.p = p;
         this.rank = r;
         this.minedBlocks = minedBlocks;
         this.prisCoins = prisCoins;
+        this.deaths = deaths;
+        this.kills = kills;
     }
 
     @Override
@@ -40,6 +44,14 @@ public class CraftPlayer implements IMiner {
     @Override
     public int getMinedBlocks() {
         return this.minedBlocks;
+    }
+
+    public int getKills() {
+        return this.kills;
+    }
+
+    public int getDeaths() {
+        return this.deaths;
     }
 
     public void setRank(Rank rank) {
