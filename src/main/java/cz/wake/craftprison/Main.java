@@ -95,10 +95,9 @@ public class Main extends JavaPlugin {
             public void run() {
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     Main.getInstance().getMySQL().setAllFromCache(player);
-                    System.out.println("From cache to DB!");
                 }
             }
-        }, 1,  300);
+        }, 1,  20 * 60 * 2);
     }
 
     @Override
