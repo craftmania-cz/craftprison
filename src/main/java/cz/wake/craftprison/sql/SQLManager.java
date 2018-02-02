@@ -170,4 +170,39 @@ public class SQLManager {
             pool.close(connection, preparedStatement, null);
         }
     }
+
+    public int getPrisCoins(String p){
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SELECT priscoins FROM players_data WHERE nick = ?;");
+            ps.setString(1, p);
+            ps.executeQuery();
+            if (ps.getResultSet().next()) {
+                return ps.getResultSet().getInt("priscoins");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+        return 0;
+    }
+
+    public void setPrisCoins(String p, int value){
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("UPDATE players_data SET priscoins = ? WHERE nick = ?");
+            ps.setInt(1, value);
+            ps.setString(2, p);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+    }
 }

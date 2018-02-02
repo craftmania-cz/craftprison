@@ -2,6 +2,7 @@ package cz.wake.craftprison;
 
 import com.wasteofplastic.askyblock.ASkyBlockAPI;
 import cz.wake.craftprison.armorstands.ArmorStandManager;
+import cz.wake.craftprison.commands.PCoinsCommand;
 import cz.wake.craftprison.commands.RankCommand;
 import cz.wake.craftprison.commands.RankUpCommand;
 import cz.wake.craftprison.commands.StatsCommand;
@@ -132,6 +133,7 @@ public class Main extends JavaPlugin {
         getCommand("rank").setExecutor(new RankCommand());
         getCommand("rankup").setExecutor(new RankUpCommand());
         getCommand("stats").setExecutor(new StatsCommand());
+        getCommand("pcoins").setExecutor(new PCoinsCommand());
     }
 
     public static Main getInstance() {
