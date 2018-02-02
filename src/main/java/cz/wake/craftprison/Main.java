@@ -1,14 +1,20 @@
 package cz.wake.craftprison;
 
+import com.wasteofplastic.askyblock.ASkyBlockAPI;
 import cz.wake.craftprison.armorstands.ArmorStandManager;
 import cz.wake.craftprison.commands.RankCommand;
 import cz.wake.craftprison.commands.RankUpCommand;
+import cz.wake.craftprison.commands.StatsCommand;
 import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
 import cz.wake.craftprison.sql.SQLManager;
+import cz.wake.craftprison.statistics.Statistics;
+import cz.wake.craftprison.listener.PlayerStatsListener;
+import cz.wake.craftprison.statistics.menu.StatisticsMenu;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,6 +35,9 @@ public class Main extends JavaPlugin {
     private final List<Material> ignored;
     private SQLManager sql;
     private boolean fixArmorstands = false;
+    private Statistics statistics;
+    private ASkyBlockAPI aSkyBlockAPI;
+    private PlayerStatsListener playerStatsListener;
 
     static {
         Main.active = new HashMap<>();
@@ -67,10 +76,28 @@ public class Main extends JavaPlugin {
 
         // Config hodnoty
         fixArmorstands = getConfig().getBoolean("fix-armorstands");
+        statistics = new Statistics(this);
 
         // ArmorStandy
         ArmorStandManager.init();
         ArmorStandManager.spawn();
+
+        //ASkyBlock hook
+        aSkyBlockAPI = (ASkyBlockAPI) Bukkit.getPluginManager().getPlugin("aSkyBlock");
+
+        //Statistiky
+        statistics = new Statistics(this);
+        playerStatsListener = new PlayerStatsListener(this);
+        Bukkit.getServer().getPluginManager().registerEvents(new PlayerStatsListener(this), this);
+
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, new Runnable(){
+            @Override
+            public void run() {
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    Main.getInstance().getMySQL().setAllFromCache(player);
+                }
+            }
+        }, 1,  2400);
     }
 
     @Override
@@ -90,8 +117,9 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new ArmorStandInteract(), this);
         pm.registerEvents(new MiningListener(), this);
         pm.registerEvents(new WGExtendedListener(), this);
-        pm.registerEvents(new PlayerListener(), this);
+        pm.registerEvents(new PlayerListener(this), this);
         pm.registerEvents(new InventoryFullListener(), this);
+        pm.registerEvents(new StatisticsMenu(), this);
 
         if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
             Bukkit.getServer().getPluginManager().registerEvents(new AutoSellListener(this), this);
@@ -103,6 +131,7 @@ public class Main extends JavaPlugin {
     private void loadCommands() {
         getCommand("rank").setExecutor(new RankCommand());
         getCommand("rankup").setExecutor(new RankUpCommand());
+        getCommand("stats").setExecutor(new StatsCommand());
     }
 
     public static Main getInstance() {
@@ -178,5 +207,13 @@ public class Main extends JavaPlugin {
 
     private void initDatabase() {
         sql = new SQLManager(this);
+    }
+
+    public Statistics getStatistics() {
+        return statistics;
+    }
+
+    public ASkyBlockAPI getSkyBlockAPI() {
+        return aSkyBlockAPI;
     }
 }

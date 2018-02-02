@@ -10,3 +10,5 @@ commands:
       description: Zakladni prikaz
     rankup:
       description: No..
+    stats:
+      description: Statistiky
