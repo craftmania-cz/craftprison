@@ -12,3 +12,5 @@ commands:
       description: No..
     stats:
       description: Statistiky
+    pcoins:
+      description: PrisCoiny
