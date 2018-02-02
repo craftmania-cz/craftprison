@@ -15,3 +15,6 @@ settings:
 
 # Trvale smazani entit (ArmorStandu ve svetech)
 fix-armorstands: false
+
+# Player counter
+player-count: 0

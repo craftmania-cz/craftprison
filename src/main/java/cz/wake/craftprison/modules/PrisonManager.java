@@ -5,6 +5,7 @@ import cz.wake.craftprison.exceptions.PlayerNotInCacheException;
 import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
 import cz.wake.craftprison.utils.PlayerUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -16,7 +17,7 @@ public class PrisonManager {
     /*
         Pouzivat pouze pri nacitani dat z SQL!
      */
-    public static void loadPlayer(final Player p){
+    public static void loadPlayer(final Player p) {
 
         CraftPlayer cp = null;
 
@@ -24,6 +25,12 @@ public class PrisonManager {
             // Vytvoreni default dat
             Main.getInstance().getMySQL().insertDefaultData(p);
             cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0, 0, 0);
+
+            //Player counter
+            int count = Main.getInstance().getConfig().getInt("player-counter") + 1;
+            Bukkit.getOnlinePlayers().forEach(op -> op.sendMessage("§e" + p.getName() + " §7se pripojil na Prison (#" + count + ")"));
+            Main.getInstance().getConfig().set("player-counter", count);
+            Main.getInstance().saveConfig();
         } else {
             cp = Main.getInstance().getMySQL().getCraftPlayerFromSQL(p);
         }
@@ -40,40 +47,40 @@ public class PrisonManager {
         return players;
     }
 
-    public CraftPlayer getCraftPlayer(Player p){
-        for(CraftPlayer cp : players.values()){
-            if(cp.getPlayer() == p){
+    public CraftPlayer getCraftPlayer(Player p) {
+        for (CraftPlayer cp : players.values()) {
+            if (cp.getPlayer() == p) {
                 return cp;
             }
         }
         return null;
     }
 
-    public Rank getPlayerRank(Player p){
+    public Rank getPlayerRank(Player p) {
         return players.get(p).getRank();
     }
 
-    public Rank getPlayerNextRank(Player p){
+    public Rank getPlayerNextRank(Player p) {
         return getPlayerRank(p).getNext();
     }
 
-    public int getNextRankPrice(Player p){
+    public int getNextRankPrice(Player p) {
         return getPlayerNextRank(p).getPrice();
     }
 
-    public int getActualRankPrice(Player p){
+    public int getActualRankPrice(Player p) {
         return getPlayerRank(p).getPrice();
     }
 
     public void rankUp(final Player p) throws PlayerNotInCacheException {
-        if(players.containsKey(p)){
+        if (players.containsKey(p)) {
             CraftPlayer cp = players.get(p);
             double playerMoney = Main.getEconomy().getBalance(p);
             Rank actualRank = getPlayerRank(p);
-            if(!(actualRank == Rank.OCTOPUS)){ // POSLEDNI RANK (ZATIM)
+            if (!(actualRank == Rank.OCTOPUS)) { // POSLEDNI RANK (ZATIM)
                 Rank nextRank = actualRank.getNext();
-                if(nextRank.getPrice() <= playerMoney){
-                    if(!(actualRank == Rank.TUTORIAL_A)){ // V zakladu hrac nema zadny rank pravo
+                if (nextRank.getPrice() <= playerMoney) {
+                    if (!(actualRank == Rank.TUTORIAL_A)) { // V zakladu hrac nema zadny rank pravo
                         PlayerUtils.removePermission(p, actualRank.getPermission());
                     }
                     PlayerUtils.addPermission(p, nextRank.getPermission());
@@ -88,7 +95,7 @@ public class PrisonManager {
                 p.sendMessage("§cNo dal to nejde! Zkus /reset a zacni odznova!");
             }
         } else {
-            throw(new PlayerNotInCacheException("Hrac neni v cache!")); // Jenom pro efekt!
+            throw (new PlayerNotInCacheException("Hrac neni v cache!")); // Jenom pro efekt!
         }
     }
 
