@@ -97,7 +97,7 @@ public class Main extends JavaPlugin {
                     Main.getInstance().getMySQL().setAllFromCache(player);
                 }
             }
-        }, 1,  20 * 60 * 2);
+        }, 1,  2400);
     }
 
     @Override
