@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
+import cz.wake.craftprison.objects.Rank;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -45,6 +46,29 @@ public class SQLManager {
         } finally {
             pool.close(conn, ps, null);
         }
+    }
+
+    public final CraftPlayer getCraftPlayerFromSQL(final Player p) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ?;");
+            ps.setString(1, p.getName());
+            ps.executeQuery();
+            if (ps.getResultSet().next()) {
+                return new CraftPlayer(p, Rank.getByName(ps.getResultSet().getString("rank")),
+                        ps.getResultSet().getInt("priscoins"),
+                        ps.getResultSet().getInt("minedblocks"),
+                        ps.getResultSet().getInt("kills"),
+                        ps.getResultSet().getInt("deaths"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+        return null;
     }
 
     public final void insertDefaultData(final Player p) {

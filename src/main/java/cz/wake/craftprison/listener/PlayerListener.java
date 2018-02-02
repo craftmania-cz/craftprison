@@ -32,6 +32,8 @@ public class PlayerListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onQuit(PlayerQuitEvent event) {
+
+        //TODO: Zjednodusit
         Main.getInstance().getMySQL().setMinedBlocksFromCache(event.getPlayer());
         Main.getInstance().getMySQL().setKillsFromCache(event.getPlayer());
         Main.getInstance().getMySQL().setDeathsFromCache(event.getPlayer());
@@ -39,6 +41,8 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onKick(PlayerKickEvent event) {
+
+        //TODO: Zjednodusit
         Main.getInstance().getMySQL().setMinedBlocksFromCache(event.getPlayer());
         Main.getInstance().getMySQL().setKillsFromCache(event.getPlayer());
         Main.getInstance().getMySQL().setDeathsFromCache(event.getPlayer());    }
