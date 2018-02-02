@@ -2,8 +2,6 @@ package cz.wake.craftprison.listener;
 
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.PrisonManager;
-import cz.wake.craftprison.objects.CraftPlayer;
-import net.minecraft.server.v1_12_R1.PlayerList;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,28 +20,18 @@ public class PlayerListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onJoin(PlayerJoinEvent e){
         Player p = e.getPlayer();
+
         // Nacteni dat z SQL
         PrisonManager.loadPlayer(p);
-
-        PrisonManager prisonManager = new PrisonManager();
-        CraftPlayer craftPlayer = prisonManager.getCraftPlayer(e.getPlayer());
-        System.out.println(craftPlayer.getMinedBlocks());
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onQuit(PlayerQuitEvent event) {
-
-        //TODO: Zjednodusit
-        Main.getInstance().getMySQL().setMinedBlocksFromCache(event.getPlayer());
-        Main.getInstance().getMySQL().setKillsFromCache(event.getPlayer());
-        Main.getInstance().getMySQL().setDeathsFromCache(event.getPlayer());
+        Main.getInstance().getMySQL().setAllFromCache(event.getPlayer());
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onKick(PlayerKickEvent event) {
-
-        //TODO: Zjednodusit
-        Main.getInstance().getMySQL().setMinedBlocksFromCache(event.getPlayer());
-        Main.getInstance().getMySQL().setKillsFromCache(event.getPlayer());
-        Main.getInstance().getMySQL().setDeathsFromCache(event.getPlayer());    }
+        Main.getInstance().getMySQL().setAllFromCache(event.getPlayer());
+    }
 }

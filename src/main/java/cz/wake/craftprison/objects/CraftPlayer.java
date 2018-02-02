@@ -62,7 +62,28 @@ public class CraftPlayer implements IMiner {
         this.minedBlocks = minedBlocks;
     }
 
+    public void setKills(int kills) {
+        this.kills = kills;
+    }
+
+    public void setDeaths(int deaths) {
+        this.deaths = deaths;
+    }
+
     public void setPrisCoins(int prisCoins) {
         this.prisCoins = prisCoins;
     }
+
+    public void addMinedBlock() {
+        this.minedBlocks += 1;
+    }
+
+    public void addKill() {
+        this.kills += 1;
+    }
+
+    public void addDeath() {
+        this.deaths += 1;
+    }
+
 }

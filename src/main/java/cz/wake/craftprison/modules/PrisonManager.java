@@ -7,7 +7,6 @@ import cz.wake.craftprison.objects.Rank;
 import cz.wake.craftprison.utils.PlayerUtils;
 import org.bukkit.entity.Player;
 
-import java.sql.ResultSet;
 import java.util.HashMap;
 
 public class PrisonManager {
@@ -21,7 +20,7 @@ public class PrisonManager {
 
         CraftPlayer cp = null;
 
-        if(!Main.getInstance().getMySQL().hasData(p)){
+        if(!Main.getInstance().getMySQL().hasData(p.getName())){
             // Vytvoreni default dat
             Main.getInstance().getMySQL().insertDefaultData(p);
             cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0, 0, 0);

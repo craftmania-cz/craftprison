@@ -5,11 +5,13 @@ import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SQLManager {
@@ -31,13 +33,13 @@ public class SQLManager {
         return pool;
     }
 
-    public final boolean hasData(final Player p) {
+    public final boolean hasData(final String p) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
             ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ?;");
-            ps.setString(1, p.getName());
+            ps.setString(1, p);
             ps.executeQuery();
             return ps.getResultSet().next();
         } catch (Exception e) {
@@ -71,6 +73,63 @@ public class SQLManager {
         return null;
     }
 
+    public int getMinedBlocks(String player) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SELECT minedblocks FROM players_data WHERE nick = ?;");
+            ps.setString(1, player);
+            ResultSet result = ps.executeQuery();
+            if (result.next()) {
+                return ps.getResultSet().getInt("minedblocks");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+        return 0;
+    }
+
+    public int getKills(String player) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SELECT kills FROM players_data WHERE nick = ?;");
+            ps.setString(1, player);
+            ps.executeQuery();
+            if (ps.getResultSet().next()) {
+                return ps.getResultSet().getInt("kills");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+        return 0;
+    }
+
+    public int getDeaths(String player) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SELECT deaths FROM players_data WHERE nick = ?;");
+            ps.setString(1, player);
+            ps.executeQuery();
+            if (ps.getResultSet().next()) {
+                return ps.getResultSet().getInt("deaths");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+        return 0;
+    }
+
     public final void insertDefaultData(final Player p) {
         new BukkitRunnable() {
             @Override
@@ -91,63 +150,24 @@ public class SQLManager {
         }.runTaskAsynchronously(Main.getInstance());
     }
 
-    public void setMinedBlocksFromCache(Player player) {
+    public void setAllFromCache(Player player) {
         PrisonManager prisonManager = new PrisonManager();
         CraftPlayer craftPlayer = prisonManager.getCraftPlayer(player);
 
-        Connection conn = null;
+        Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
-            conn = pool.getConnection();
-            preparedStatement = conn.prepareStatement("UPDATE players_data SET minedblocks = ? WHERE nick=?;");
-            preparedStatement.setInt(1, craftPlayer.getMinedBlocks() + plugin.getStatistics().getBlocksBroken(player));
-            preparedStatement.setString(2, player.getName());
+            connection = pool.getConnection();
+            preparedStatement = connection.prepareStatement("UPDATE players_data SET minedblocks = ?, deaths = ?, kills = ? WHERE nick = ?;");
+            preparedStatement.setInt(1, craftPlayer.getMinedBlocks());
+            preparedStatement.setInt(2, craftPlayer.getDeaths());
+            preparedStatement.setInt(3, craftPlayer.getKills());
+            preparedStatement.setString(4, player.getName());
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            pool.close(conn, preparedStatement, null);
-        }
-
-    }
-
-    public void setDeathsFromCache(Player player) {
-        PrisonManager prisonManager = new PrisonManager();
-        CraftPlayer craftPlayer = prisonManager.getCraftPlayer(player);
-
-        Connection conn = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            conn = pool.getConnection();
-            preparedStatement = conn.prepareStatement("UPDATE players_data SET deaths = ? WHERE nick=?;");
-            preparedStatement.setInt(1, craftPlayer.getDeaths() + plugin.getStatistics().getDeaths(player));
-            preparedStatement.setString(2, player.getName());
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            pool.close(conn, preparedStatement, null);
+            pool.close(connection, preparedStatement, null);
         }
     }
-
-    public void setKillsFromCache(Player player) {
-        PrisonManager prisonManager = new PrisonManager();
-        CraftPlayer craftPlayer = prisonManager.getCraftPlayer(player);
-
-        Connection conn = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            conn = pool.getConnection();
-            preparedStatement = conn.prepareStatement("UPDATE players_data SET kills = ? WHERE nick=?;");
-            preparedStatement.setInt(1, craftPlayer.getKills() + plugin.getStatistics().getKills(player));
-            preparedStatement.setString(2, player.getName());
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            pool.close(conn, preparedStatement, null);
-        }
-    }
-
-
 }
