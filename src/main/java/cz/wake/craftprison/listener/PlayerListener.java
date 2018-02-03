@@ -1,6 +1,7 @@
 package cz.wake.craftprison.listener;
 
 import cz.wake.craftprison.Main;
+import cz.wake.craftprison.modules.Board;
 import cz.wake.craftprison.modules.PrisonManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,15 +24,31 @@ public class PlayerListener implements Listener {
 
         // Nacteni dat z SQL
         PrisonManager.loadPlayer(p);
+
+        new Board(p);
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onQuit(PlayerQuitEvent event) {
-        Main.getInstance().getMySQL().setAllFromCache(event.getPlayer());
+        Player p = event.getPlayer();
+        Main.getInstance().getMySQL().setAllFromCache(p);
+
+        if (Board.boards.containsKey(p)) {
+            Board b = Board.boards.get(p);
+            b.unregister();
+            Board.boards.remove(p);
+        }
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onKick(PlayerKickEvent event) {
-        Main.getInstance().getMySQL().setAllFromCache(event.getPlayer());
+        Player p = event.getPlayer();
+        Main.getInstance().getMySQL().setAllFromCache(p);
+
+        if (Board.boards.containsKey(p)) {
+            Board b = Board.boards.get(p);
+            b.unregister();
+            Board.boards.remove(p);
+        }
     }
 }

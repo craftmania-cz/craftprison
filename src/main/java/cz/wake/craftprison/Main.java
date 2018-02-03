@@ -8,6 +8,7 @@ import cz.wake.craftprison.commands.RankUpCommand;
 import cz.wake.craftprison.commands.StatsCommand;
 import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
+import cz.wake.craftprison.modules.Board;
 import cz.wake.craftprison.sql.SQLManager;
 import cz.wake.craftprison.statistics.Statistics;
 import cz.wake.craftprison.listener.PlayerStatsListener;
@@ -51,7 +52,7 @@ public class Main extends JavaPlugin {
     }
 
     @Override
-    public void onEnable(){
+    public void onEnable() {
 
         // Instance
         instance = this;
@@ -91,18 +92,20 @@ public class Main extends JavaPlugin {
         playerStatsListener = new PlayerStatsListener(this);
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerStatsListener(this), this);
 
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, new Runnable(){
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, new Runnable() {
             @Override
             public void run() {
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     Main.getInstance().getMySQL().setAllFromCache(player);
                 }
             }
-        }, 1,  2400);
+        }, 1, 2400);
+
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, Board::updateAll, 1L, 100L);
     }
 
     @Override
-    public void onDisable(){
+    public void onDisable() {
 
         // Despawn armorstandu
         ArmorStandManager.despawn(fixArmorstands);
@@ -144,12 +147,12 @@ public class Main extends JavaPlugin {
         return asm;
     }
 
-    public static Economy getEconomy(){
+    public static Economy getEconomy() {
         return economy;
     }
 
     private boolean setupEconomy() {
-        final RegisteredServiceProvider<Economy> economyProvider = (RegisteredServiceProvider<Economy>)this.getServer().getServicesManager().getRegistration((Class)Economy.class);
+        final RegisteredServiceProvider<Economy> economyProvider = (RegisteredServiceProvider<Economy>) this.getServer().getServicesManager().getRegistration((Class) Economy.class);
         if (economyProvider != null) {
             economy = economyProvider.getProvider();
         }
@@ -172,7 +175,7 @@ public class Main extends JavaPlugin {
         return Main.active != null && !Main.active.isEmpty() && Main.active.containsKey(name);
     }
 
-    public int getAlertAmount(final String name ) {
+    public int getAlertAmount(final String name) {
         if (this.isAlerted(name)) {
             return Main.active.get(name);
         }
@@ -195,8 +198,7 @@ public class Main extends JavaPlugin {
                 final int c = Main.active.get(name);
                 if (c == 1) {
                     Main.active.remove(name);
-                }
-                else {
+                } else {
                     Main.active.put(name, c - 1);
                 }
             }
