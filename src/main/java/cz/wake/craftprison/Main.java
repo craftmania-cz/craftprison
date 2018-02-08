@@ -5,6 +5,7 @@ import cz.wake.craftprison.commands.RankCommand;
 import cz.wake.craftprison.commands.RankUpCommand;
 import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
+import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.sql.SQLManager;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -70,6 +71,9 @@ public class Main extends JavaPlugin {
 
         // ArmorStandy
         ArmorStandManager.initArmorStands();
+
+        // Doly
+        PrisonManager.registerWgMines();
     }
 
     @Override

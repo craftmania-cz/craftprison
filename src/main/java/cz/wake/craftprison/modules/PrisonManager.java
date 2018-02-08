@@ -10,10 +10,12 @@ import org.bukkit.entity.Player;
 
 import java.sql.ResultSet;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class PrisonManager {
 
     public static HashMap<Player, CraftPlayer> players = new HashMap<>();
+    public static HashSet<String> wgRegions = new HashSet<>();
 
     /*
         Pouzivat pouze pri nacitani dat z SQL!
@@ -113,5 +115,17 @@ public class PrisonManager {
         }
     }
 
+    public static HashSet<String> getWgRegions() {
+        return wgRegions;
+    }
 
+    public static void addWorldGuardRegion(String region) {
+        wgRegions.add(region);
+    }
+
+    public static void registerWgMines(){
+        for(Rank r : Rank.getTypes()){
+            wgRegions.add(r.getName().toLowerCase());
+        }
+    }
 }
