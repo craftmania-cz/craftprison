@@ -16,11 +16,11 @@ public class ArmorStandManager {
     public static List<RankedArmorStand> armorstands = new ArrayList<>();
 
     public static void removeArmorStands(boolean fixAll) {
-        armorstands.forEach(RankedArmorStand::remove);
         if(fixAll){
             Bukkit.getWorld("prison_spawn").getEntities().forEach(Entity::remove);
             Bukkit.getWorld("doly").getEntities().forEach(Entity::remove);
         }
+        //armorstands.forEach(RankedArmorStand::remove);
     }
 
     public void setMetadata(ArmorStand as, String type, Object rank, Main paramMain) {
