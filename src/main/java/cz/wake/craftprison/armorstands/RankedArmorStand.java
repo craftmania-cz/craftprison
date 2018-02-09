@@ -10,8 +10,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 
 public class RankedArmorStand {
 
@@ -20,8 +20,8 @@ public class RankedArmorStand {
     private Location location;
     private String uuidHead;
     private String textureDataHead;
-    private HashSet<String> hologramTexts;
-    private HashSet<ArmorStand> hologramArmorStands;
+    private ArrayList<String> hologramTexts;
+    private ArrayList<ArmorStand> hologramArmorStands;
     private Material itemInHand;
     private int red, green, blue;
     private ArmorStand mainArmorStand;
@@ -30,8 +30,8 @@ public class RankedArmorStand {
         this.name = name;
         this.world = world;
         this.location = location;
-        this.hologramTexts = new HashSet<>();
-        this.hologramArmorStands = new HashSet<>();
+        this.hologramTexts = new ArrayList<>();
+        this.hologramArmorStands = new ArrayList<>();
     }
 
     public RankedArmorStand setHead(String uuid, String texture) {
@@ -82,7 +82,7 @@ public class RankedArmorStand {
         this.mainArmorStand.setItemInHand(item);
 
         // Metadata
-        Main.getInstance().getArmorStandManager().setMetadata(this.mainArmorStand, "rank" , this.name, Main.getInstance());
+        Main.getInstance().getArmorStandManager().setMetadata(this.mainArmorStand, "rank", this.name, Main.getInstance());
 
         // Nazvy
         this.hologramTexts.forEach(text -> {
@@ -95,6 +95,7 @@ public class RankedArmorStand {
             as.setCustomNameVisible(true);
             as.setCustomName(text);
             this.hologramArmorStands.add(as);
+            System.out.println(text);
         });
 
         // Pridani do seznamu
@@ -107,7 +108,7 @@ public class RankedArmorStand {
         ArmorStandManager.armorstands.remove(this);
     }
 
-    public ArmorStand getMainArmorStand(){
+    public ArmorStand getMainArmorStand() {
         return this.mainArmorStand;
     }
 
