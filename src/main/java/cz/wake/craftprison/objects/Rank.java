@@ -4,10 +4,9 @@ public enum Rank {
 
     TUTORIAL_A(1,"A",0),
     TUTORIAL_B(2,"B",1000),
-    TUTORIAL_C(3,"C",3000),
-    TUTORIAL_D(4,"D",8000),
-    OCTOPUS(5,"Octopus",15000),
-    VILLAGER(6,"Villager",30000);
+    TUTORIAL_C(3,"C",4000),
+    TUTORIAL_D(4,"D",10000),
+    GOOFY(5,"Goofy",20000);
 
     private int weight;
     private String name;
@@ -70,7 +69,7 @@ public enum Rank {
     }
 
     public static Rank[] getTypes() {
-        return new Rank[]{TUTORIAL_A, TUTORIAL_B, TUTORIAL_C, TUTORIAL_D, OCTOPUS, VILLAGER};
+        return new Rank[]{TUTORIAL_A, TUTORIAL_B, TUTORIAL_C, TUTORIAL_D, GOOFY};
     }
 
     public Rank getNext(){

@@ -3,6 +3,7 @@ package cz.wake.craftprison;
 import cz.wake.craftprison.armorstands.ArmorStandManager;
 import cz.wake.craftprison.commands.RankCommand;
 import cz.wake.craftprison.commands.RankUpCommand;
+import cz.wake.craftprison.commands.TestCommand;
 import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
 import cz.wake.craftprison.modules.PrisonManager;
@@ -106,6 +107,7 @@ public class Main extends JavaPlugin {
     private void loadCommands() {
         getCommand("rank").setExecutor(new RankCommand());
         getCommand("rankup").setExecutor(new RankUpCommand());
+        getCommand("test").setExecutor(new TestCommand());
     }
 
     public static Main getInstance() {

@@ -93,7 +93,7 @@ public class PrisonManager {
             CraftPlayer cp = players.get(p);
             double playerMoney = Main.getEconomy().getBalance(p);
             Rank actualRank = getPlayerRank(p);
-            if (!(actualRank == Rank.OCTOPUS)) { // POSLEDNI RANK (ZATIM)
+            if (!(actualRank == Rank.GOOFY)) { // POSLEDNI RANK (ZATIM)
                 Rank nextRank = actualRank.getNext();
                 if (nextRank.getPrice() <= playerMoney) {
                     if (!(actualRank == Rank.TUTORIAL_A)) { // V zakladu hrac nema zadny rank pravo

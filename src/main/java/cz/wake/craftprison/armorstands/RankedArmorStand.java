@@ -59,6 +59,9 @@ public class RankedArmorStand {
 
     public void spawn() {
 
+        // Nacteni chunku
+        Bukkit.getWorld(this.world).loadChunk(this.location.getChunk());
+
         // Priprava ArmorStandu
         this.mainArmorStand = (ArmorStand) Bukkit.getWorld(this.world).spawnEntity(this.location, EntityType.ARMOR_STAND);
         this.mainArmorStand.setGravity(false);
@@ -95,7 +98,6 @@ public class RankedArmorStand {
             as.setCustomNameVisible(true);
             as.setCustomName(text);
             this.hologramArmorStands.add(as);
-            System.out.println(text);
         });
 
         // Pridani do seznamu
