@@ -6,6 +6,7 @@ import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
 import cz.wake.craftprison.utils.PlayerUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.sql.ResultSet;
@@ -125,7 +126,11 @@ public class PrisonManager {
 
     public static void registerWgMines(){
         for(Rank r : Rank.getTypes()){
+            // Register
             wgRegions.add(r.getName().toLowerCase());
+
+            // Info
+            Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "[CraftPrison] " + ChatColor.WHITE + " Dul: " + r.getName() + " byl registrovan jako dul.");
         }
     }
 }

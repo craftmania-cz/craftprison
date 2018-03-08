@@ -3,6 +3,7 @@ package cz.wake.craftprison.armorstands;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.utils.ItemFactory;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
@@ -102,6 +103,9 @@ public class RankedArmorStand {
 
         // Pridani do seznamu
         ArmorStandManager.armorstands.add(this);
+
+        // Info
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "[CraftPrison] " + ChatColor.WHITE + " Armorstand " + name + " byl spawnut.");
     }
 
     public void remove() {
