@@ -71,7 +71,7 @@ public class ArmorStandManager {
         rankD.spawn();
 
         // Rank Goofy
-        RankedArmorStand goofy = new RankedArmorStand("Goofy", "world", new Location(Bukkit.getWorld("world"), 192.5, 64, 242.5, 54, 0));
+        RankedArmorStand goofy = new RankedArmorStand("Goofy", "doly", new Location(Bukkit.getWorld("doly"), -533.5, 109, 3243.5, -66, 0));
         goofy.setColor(41, 36, 33);
         goofy.setHead("9d59f402-196e-491c-8eef-b5b7c0efd782", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjVlMDQ0NDQyYmZkNTk1NmUzNTQxZTIzM2YyNTFhOGE3NTIyYmFmNjE4M2ZlNTZjZGI3NzNhMzViMWZhODYwIn19fQ==");
         goofy.setHologramTexts("§7Zde prodej bloky!", "§a§lGoofy Mine");
