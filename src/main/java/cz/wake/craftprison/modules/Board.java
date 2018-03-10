@@ -80,14 +80,14 @@ public class Board {
 
     private String formatMoney(double d) {
         DecimalFormat df = new DecimalFormat("#.##");
-        if (d >= Math.pow(10, 18)) {
-            return df.format(d / Math.pow(10, 18)) + "Q";
+        if (d >= 1.0E18) {
+            return df.format(d / 1.0E18) + "Q";
         }
-        if (d >= Math.pow(10, 15)) {
-            return df.format(d / Math.pow(10, 15)) + "T";
+        if (d >= 1.0E15) {
+            return df.format(d / 1.0E15) + "T";
         }
-        if (d >= Math.pow(10, 12)) {
-            return df.format(d / Math.pow(10, 12)) + "B";
+        if (d >= 1.0E12) {
+            return df.format(d / 1.0E12) + "B";
         }
         if (d >= 1000000000) {
             return df.format(d / 1000000000) + "G";
@@ -98,6 +98,7 @@ public class Board {
         if (d >= 1000) {
             return df.format(d / 1000) + "k";
         }
+
         return df.format(d);
     }
 
