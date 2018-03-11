@@ -14,3 +14,6 @@ commands:
       description: Statistiky
     pcoins:
       description: PrisCoiny
+    pickaxe:
+      description: Pickaxe upgrade system
+      aliases: [krumpac, krump]

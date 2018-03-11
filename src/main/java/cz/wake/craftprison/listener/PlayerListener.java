@@ -3,6 +3,7 @@ package cz.wake.craftprison.listener;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.Board;
 import cz.wake.craftprison.modules.PrisonManager;
+import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
