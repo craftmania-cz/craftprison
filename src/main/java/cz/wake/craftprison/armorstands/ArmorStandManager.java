@@ -77,5 +77,20 @@ public class ArmorStandManager {
         goofy.setHologramTexts("§7Zde prodej bloky!", "§a§lGoofy Mine");
         goofy.setItemInHand(Material.IRON_INGOT);
         goofy.spawn();
+
+        // Rank Bender
+        RankedArmorStand bender = new RankedArmorStand("Bender", "doly", new Location(Bukkit.getWorld("doly"), -1085.5, 104, 1749.5, -100, 0));
+        bender.setColor(173, 216, 230);
+        bender.setHead("e5f8b552-18cf-4e19-837d-0ebfc17e7ad3", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjE1ZmUyNDdkOWM2MWE2YzEzNzU0NGRlN2U2MjIwZjg0NzU5ZTMzMzM1YjBiNTUxODMyZmExZjhhMjYyYzIzYSJ9fX0=");
+        bender.setHologramTexts("§7Zde prodej bloky!", "§8§lBender Mine");
+        bender.setItemInHand(Material.FLINT);
+        bender.spawn();
+
+        // Rank Test
+        RankedArmorStand tester = new RankedArmorStand("Test", "doly", new Location(Bukkit.getWorld("doly"), -1085.5, 104, 1753.5, -100, 0));
+        tester.setHead("e5f8b552-18cf-4e19-837d-0ebfc17e7ad3", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjE1ZmUyNDdkOWM2MWE2YzEzNzU0NGRlN2U2MjIwZjg0NzU5ZTMzMzM1YjBiNTUxODMyZmExZjhhMjYyYzIzYSJ9fX0=");
+        tester.setHologramTexts("§7Zde prodej bloky!", "§8§lBender Mine");
+        tester.setItemInHand(Material.FLINT);
+        tester.spawn();
     }
 }

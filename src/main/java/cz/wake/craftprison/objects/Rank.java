@@ -6,7 +6,8 @@ public enum Rank {
     TUTORIAL_B(2,"B",1000),
     TUTORIAL_C(3,"C",4000),
     TUTORIAL_D(4,"D",10000),
-    GOOFY(5,"Goofy",20000);
+    GOOFY(5,"Goofy",20000),
+    BENDER(6, "Bender", 40000);
 
     private int weight;
     private String name;
@@ -68,8 +69,8 @@ public enum Rank {
         return getWeight() >= other.getWeight();
     }
 
-    public static Rank[] getTypes() {
-        return new Rank[]{TUTORIAL_A, TUTORIAL_B, TUTORIAL_C, TUTORIAL_D, GOOFY};
+    public static Rank[] getTypes() { //TODO: Automaticky?
+        return new Rank[]{TUTORIAL_A, TUTORIAL_B, TUTORIAL_C, TUTORIAL_D, GOOFY, BENDER};
     }
 
     public Rank getNext(){
