@@ -1,18 +1,19 @@
 package cz.wake.craftprison.modules.pickaxe;
 
 import cz.wake.craftcore.utils.items.ItemBuilder;
-import cz.wake.craftprison.utils.Utils;
-import org.bukkit.Bukkit;
+import cz.wake.craftprison.modules.PrisCoins;
+import cz.wake.craftprison.modules.PrisonManager;
+import cz.wake.craftprison.objects.CraftPlayer;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffectType;
 
-import java.util.List;
+import java.util.logging.Logger;
 
 public class PickaxeUpgradeListener implements Listener {
 
@@ -45,30 +46,56 @@ public class PickaxeUpgradeListener implements Listener {
             return;
         }
         ItemStack pickaxe = e.getInventory().getItem(13);
+        CustomPickaxe cpick = new CustomPickaxe(pickaxe);
+
         for (CustomEnchantment ce : CustomEnchantment.values()) {
             if (item.getItemMeta().getDisplayName().equals(ce.getColoredName())) {
                 //TODO Kontrola penez
-                //p.sendMessage(ce.getName());
-                if (ce.getEnchantment() != null) {
-                    e.getInventory().setItem(13, new ItemBuilder(pickaxe).addEnchant(ce.getEnchantment(), pickaxe.getEnchantmentLevel(ce.getEnchantment()) + 1).build());
+                PrisonManager pm = new PrisonManager();
+                CraftPlayer cp = pm.getCraftPlayer(p);
 
-                } else {
-                    List<String> lore = pickaxe.getItemMeta().getLore();
-                    for (int i = 0; i < lore.size(); i++) {
-                        if (lore.get(i).contains(ce.getName())) {
-                            String item_level = lore.get(i).replace("§7" + ce.getName(), "").trim();
-                            int l = Utils.convertRomanToInt(item_level);
-                            String finalName = "§7" + ce.getName() + " " + Utils.convertIntToRoman(l + 1);
-                            p.sendMessage("§7" + ce.getName() + " " + Utils.convertIntToRoman(l + 1));
-                            e.getInventory().setItem(13, new ItemBuilder(pickaxe).removeLoreLine(i).addLoreLine(finalName, i).build());
-                        }
+                int level = (ce.getEffect() instanceof Enchantment ? pickaxe.getEnchantmentLevel((Enchantment) ce.getEffect()) : cpick.getCustomEnchantLevel(ce.getName())) + 1;
+                if (level > ce.getMaxLevel()) {
+                    p.closeInventory();
+                    p.sendMessage("§cVetsi level uz nejde");
+                    return;
+                }
+
+                int price = ce.getPrice() * (ce.getEffect() instanceof Enchantment ?
+                        pickaxe.getEnchantmentLevel((Enchantment) ce.getEffect()) : cpick.getCustomEnchantLevel(ce.getName()));
+                price = price == 0 ? ce.getPrice() : price;
+                if (cp.getPrisCoins() < price) {
+                    p.closeInventory();
+                    p.sendMessage("§cNemas dostatek PrisCoinu §7(" + price + ")");
+                    return;
+                }
+
+                if (ce.getEffect() instanceof Enchantment) {
+                    if (ce == CustomEnchantment.UNBREAKING) {
+                        e.getInventory().setItem(13, new ItemBuilder(pickaxe).addEnchant(Enchantment.DURABILITY, 3).build());
+                    } else {
+                        e.getInventory().setItem(13, new ItemBuilder(pickaxe).addEnchant((Enchantment) ce.getEffect(), level).build());
                     }
+                } else if (ce == CustomEnchantment.SOULBOUND) {
+                    cpick.setSoulbound(p.getName());
+                } else {
+                    try {
+                        cpick.addEnchantment(ce, level);
+                    } catch (IllegalArgumentException ex) {
+                        p.closeInventory();
+                        p.sendMessage(ex.getMessage());
+                        return;
+                    }
+
+                    e.getInventory().setItem(13, cpick.getPickaxe());
                 }
                 p.updateInventory();
                 p.closeInventory();
-                p.sendMessage("§aUpgradoval jsi svuj krumpac");
+                PrisCoins.takeCoins(p, price);
+                p.sendMessage("§aUpgradoval jsi svuj krumpac za §c" + price + " §aPrisCoinu");
             }
         }
+
     }
 
     @EventHandler
@@ -88,5 +115,4 @@ public class PickaxeUpgradeListener implements Listener {
         Player p = (Player) e.getPlayer();
         p.getInventory().addItem(e.getInventory().getItem(13));
     }
-
 }

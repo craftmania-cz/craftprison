@@ -6,6 +6,7 @@ import cz.wake.craftprison.commands.*;
 import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
 import cz.wake.craftprison.modules.Board;
+import cz.wake.craftprison.modules.pickaxe.EnchantmentListener;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgradeListener;
 import cz.wake.craftprison.sql.SQLManager;
@@ -124,6 +125,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new InventoryFullListener(), this);
         pm.registerEvents(new StatisticsMenu(), this);
         pm.registerEvents(new PickaxeUpgradeListener(), this);
+        pm.registerEvents(new EnchantmentListener(), this);
 
         if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
             Bukkit.getServer().getPluginManager().registerEvents(new AutoSellListener(this), this);

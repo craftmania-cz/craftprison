@@ -1,9 +1,7 @@
 package cz.wake.craftprison.commands;
 
+import cz.wake.craftprison.modules.pickaxe.CustomPickaxe;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
-import cz.wake.craftprison.utils.PlayerUtils;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,7 +24,7 @@ public class PickaxeCommand implements CommandExecutor {
             }
         }
 
-        if (!isPickaxe(p.getInventory().getItemInMainHand().getType())) {
+        if (!CustomPickaxe.isPickaxe(p.getInventory().getItemInMainHand().getType())) {
             p.sendMessage("§cMusis drzet v ruce krumpac!");
             return true;
         }
@@ -34,10 +32,5 @@ public class PickaxeCommand implements CommandExecutor {
         new PickaxeUpgrade(p, p.getInventory().getItemInMainHand());
 
         return false;
-    }
-
-
-    private boolean isPickaxe(Material m) {
-        return m.toString().endsWith("_PICKAXE");
     }
 }
