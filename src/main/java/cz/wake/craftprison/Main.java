@@ -8,6 +8,7 @@ import cz.wake.craftprison.commands.RankUpCommand;
 import cz.wake.craftprison.commands.StatsCommand;
 import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
+import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.Board;
 import cz.wake.craftprison.sql.SQLManager;
 import cz.wake.craftprison.statistics.Statistics;
@@ -102,6 +103,7 @@ public class Main extends JavaPlugin {
         }, 1, 2400);
 
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, Board::updateAll, 1L, 100L);
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, ActionBarProgress::send, 1L, 40L);
     }
 
     @Override
