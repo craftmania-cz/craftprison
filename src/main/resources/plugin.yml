@@ -10,5 +10,7 @@ commands:
       description: Zakladni prikaz
     rankup:
       description: No..
-    test:
-      description: Na testy
+    stats:
+      description: Statistiky
+    pcoins:
+      description: PrisCoiny

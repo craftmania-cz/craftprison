@@ -9,7 +9,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -25,10 +24,10 @@ public class PrisonManager {
 
         CraftPlayer cp = null;
 
-        if (!Main.getInstance().getMySQL().hasData(p)) {
+        if(!Main.getInstance().getMySQL().hasData(p.getName())){
             // Vytvoreni default dat
             Main.getInstance().getMySQL().insertDefaultData(p);
-            cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0);
+            cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0, 0, 0);
 
             //Player counter
             int count = Main.getInstance().getConfig().getInt("player-counter") + 1;
@@ -36,25 +35,12 @@ public class PrisonManager {
             Main.getInstance().getConfig().set("player-counter", count);
             Main.getInstance().saveConfig();
         } else {
-            try {
-                ResultSet set = Main.getInstance().getMySQL().getPool().getConnection().createStatement().executeQuery("SELECT * FROM players_data WHERE nick = '" + p.getName() + "';");
-                while (set.next()) {
-                    try {
-                        // Nacteni z SQL
-                        cp = new CraftPlayer(p, Rank.getByName(set.getString("rank")), set.getInt("priscoins"), set.getInt("minedblocks"));
-                    } catch (NullPointerException e) {
-                        e.printStackTrace();
-                    }
-                }
-                set.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            cp = Main.getInstance().getMySQL().getCraftPlayerFromSQL(p);
         }
 
-        // Prevence proti NPE
-        if (cp == null) {
-            cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0);
+        // Prevence proti NPE z SQL
+        if(cp == null){
+            cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0, 0, 0);
         }
 
         players.put(p, cp);
@@ -70,7 +56,7 @@ public class PrisonManager {
                 return cp;
             }
         }
-        return null; //TODO Ochrana proti NPE (i kdyz to je blbost kvuli loadPlayer())
+        return null;
     }
 
     public Rank getPlayerRank(Player p) {
