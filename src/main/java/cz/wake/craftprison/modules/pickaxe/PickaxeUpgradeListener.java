@@ -4,13 +4,22 @@ import cz.wake.craftcore.utils.items.ItemBuilder;
 import cz.wake.craftprison.modules.PrisCoins;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
+import cz.wake.craftprison.utils.AnvilContainer;
+import net.minecraft.server.v1_12_R1.EntityPlayer;
+import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.inventory.AnvilInventory;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.logging.Logger;
@@ -42,7 +51,7 @@ public class PickaxeUpgradeListener implements Listener {
 
         ItemStack item = e.getCurrentItem();
         if (e.getSlot() == 16) {
-            p.sendMessage("§cAnvil click");
+            AnvilContainer.openAnvil(p, e.getInventory().getItem(13));
             return;
         }
         ItemStack pickaxe = e.getInventory().getItem(13);
@@ -115,4 +124,57 @@ public class PickaxeUpgradeListener implements Listener {
         Player p = (Player) e.getPlayer();
         p.getInventory().addItem(e.getInventory().getItem(13));
     }
+
+
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
+    public void closeAnvil(InventoryCloseEvent e){
+        HumanEntity p = e.getPlayer();
+        Inventory inv = e.getInventory();
+        if (inv instanceof AnvilInventory) {
+            EntityPlayer entityPlayer = ((org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer) p).getHandle();
+            if ((!entityPlayer.activeContainer.checkReachable)) {
+                ItemStack pick = inv.getItem(0);
+
+                pick = new ItemBuilder(pick).setName(ChatColor.translateAlternateColorCodes('&', pick.getItemMeta().getDisplayName())).build();
+                p.getInventory().addItem(pick);
+                inv.clear();
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onInventoryClick(InventoryClickEvent e) {
+        HumanEntity entity = e.getWhoClicked();
+        if ((entity instanceof Player)) {
+            Player player = (Player) entity;
+            Inventory inv = e.getInventory();
+            if (inv instanceof AnvilInventory) {
+                InventoryView inventoryView = e.getView();
+                net.minecraft.server.v1_12_R1.EntityPlayer localEntityPlayer = ((org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer) player).getHandle();
+                if ((!localEntityPlayer.activeContainer.checkReachable)) {
+                    int i = e.getRawSlot();
+                    if ((e.getClickedInventory() != null) &&
+                            (e.getClickedInventory().equals(player.getInventory()))) {
+                        return;
+                    }
+                    e.setCancelled(true);
+                    if ((i == inventoryView.convertSlot(i)) && (i == 2)) {
+                        ItemStack currentItem = e.getCurrentItem();
+                        if (currentItem != null) {
+                            ItemMeta itemMeta = currentItem.getItemMeta();
+                            if ((itemMeta != null) && (itemMeta.hasDisplayName())) {
+                                String name = ChatColor.translateAlternateColorCodes('&', itemMeta.getDisplayName());
+                                player.sendMessage("§aUspesne jsi prejmenoval svuj krumpac");
+                                ItemStack newPick = new ItemBuilder(currentItem).setName(name).build();
+                                inv.setItem(2, newPick);
+                                inv.setItem(0, newPick);
+                                player.closeInventory();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
