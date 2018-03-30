@@ -41,7 +41,6 @@ public class CustomPickaxe {
         for (String s : pickaxe.getItemMeta().getLore()) {
             if (s.contains(enchant.getName())) {
                 String level = s.replace("§7" + enchant.getName(), "").trim();
-                System.out.println(enchant.getName() + ":" + level);
                 return Utils.convertRomanToInt(level);
             }
         }
