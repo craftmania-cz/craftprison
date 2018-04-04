@@ -81,8 +81,7 @@ public class Main extends JavaPlugin {
         statistics = new Statistics(this);
 
         // ArmorStandy
-        ArmorStandManager.init();
-        ArmorStandManager.spawn();
+        ArmorStandManager.initArmorStands();
 
         //ASkyBlock hook
         aSkyBlockAPI = (ASkyBlockAPI) Bukkit.getPluginManager().getPlugin("aSkyBlock");

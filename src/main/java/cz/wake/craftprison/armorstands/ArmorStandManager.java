@@ -9,18 +9,20 @@ import org.bukkit.entity.Entity;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class ArmorStandManager {
 
-    public static List<RankedArmorStand> armorstands = new ArrayList<>();
+    public static HashSet<RankedArmorStand> armorstands = new HashSet<>();
 
     public static void removeArmorStands(boolean fixAll) {
         if(fixAll){
             Bukkit.getWorld("prison_spawn").getEntities().forEach(Entity::remove);
             Bukkit.getWorld("doly").getEntities().forEach(Entity::remove);
         }
-        //armorstands.forEach(RankedArmorStand::remove);
+        armorstands.forEach(RankedArmorStand::remove);
     }
 
     public void setMetadata(ArmorStand as, String type, Object rank, Main paramMain) {
@@ -86,11 +88,22 @@ public class ArmorStandManager {
         bender.setItemInHand(Material.FLINT);
         bender.spawn();
 
-        // Rank Test
-        RankedArmorStand tester = new RankedArmorStand("Test", "doly", new Location(Bukkit.getWorld("doly"), -1085.5, 104, 1753.5, -100, 0));
-        tester.setHead("e5f8b552-18cf-4e19-837d-0ebfc17e7ad3", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjE1ZmUyNDdkOWM2MWE2YzEzNzU0NGRlN2U2MjIwZjg0NzU5ZTMzMzM1YjBiNTUxODMyZmExZjhhMjYyYzIzYSJ9fX0=");
-        tester.setHologramTexts("§7Zde prodej bloky!", "§8§lBender Mine");
-        tester.setItemInHand(Material.FLINT);
-        tester.spawn();
+        // Rank Magikarp
+        RankedArmorStand magikarp = new RankedArmorStand("Magikarp", "doly", new Location(Bukkit.getWorld("doly"), -1474.5, 98, 638.5, 158, 0));
+        magikarp.setColor(255,69,0);
+        magikarp.setHead("41dac880-eb6f-422e-9dc0-f7dec0e12933", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmY1OGZiN2NiZjlmOGRjZmMzYmM5ZDYxYzdjYjViMjI5YmY0OWRiMTEwMTMzNmZmZGMyZDA4N2MwYjk0MTYyIn19fQ==");
+        magikarp.setHologramTexts("§7Zde prodej bloky!", "§c§lMagikarp Mine");
+        magikarp.setItemInHand(Material.RED_ROSE);
+        magikarp.spawn();
+
+        // Rank Zoidberg
+        RankedArmorStand zoidberg = new RankedArmorStand("Zoidberg", "doly", new Location(Bukkit.getWorld("doly"), -1477.5, 160, 226.5, 25, 0));
+        zoidberg.setColor(220,20,60);
+        zoidberg.setHead("9e052b46-699a-40ed-9444-cb312ca2b1d3", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODIzOGMxMTRiMjdjYTlmZmQ2ZTc3NTRmZWM1ODJjN2UzNjk5MjgyODNiMmQ3ZmNlMTQ5ZWFhMzEyYmQyIn19fQ==");
+        zoidberg.setHologramTexts("§7Zde prodej bloky!", "§4§lZoidberg Mine");
+        zoidberg.setItemInHand(Material.RAW_FISH);
+        zoidberg.spawn();
+
+        armorstands.forEach(ar -> System.out.println(ar.getName()));
     }
 }

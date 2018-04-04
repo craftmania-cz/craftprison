@@ -118,5 +118,7 @@ public class RankedArmorStand {
         return this.mainArmorStand;
     }
 
-
+    public String getName() {
+        return name;
+    }
 }

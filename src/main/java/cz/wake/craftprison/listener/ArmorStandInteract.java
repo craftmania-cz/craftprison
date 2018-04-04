@@ -3,6 +3,7 @@ package cz.wake.craftprison.listener;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.armorstands.ArmorStandManager;
 import cz.wake.craftprison.armorstands.RankedArmorStand;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
