@@ -9,6 +9,7 @@ import cz.wake.craftprison.commands.StatsCommand;
 import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
 import cz.wake.craftprison.modules.Board;
+import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.sql.SQLManager;
 import cz.wake.craftprison.statistics.Statistics;
 import cz.wake.craftprison.listener.PlayerStatsListener;
@@ -83,6 +84,9 @@ public class Main extends JavaPlugin {
         // ArmorStandy
         ArmorStandManager.initArmorStands();
 
+        // WG regions
+        PrisonManager.registerWgMines();
+
         //ASkyBlock hook
         aSkyBlockAPI = (ASkyBlockAPI) Bukkit.getPluginManager().getPlugin("aSkyBlock");
 
@@ -91,6 +95,7 @@ public class Main extends JavaPlugin {
         playerStatsListener = new PlayerStatsListener(this);
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerStatsListener(this), this);
 
+        // Update statistik
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, new Runnable() {
             @Override
             public void run() {
@@ -100,6 +105,7 @@ public class Main extends JavaPlugin {
             }
         }, 1, 2400);
 
+        // Scoreboard
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, Board::updateAll, 1L, 100L);
     }
 

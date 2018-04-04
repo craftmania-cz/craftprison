@@ -17,8 +17,6 @@ public class WGExtendedListener implements Listener {
     public void onRegionEnter(RegionEnterEvent e){
         Player p = e.getPlayer();
 
-        System.out.println(Arrays.toString(PrisonManager.getWgRegions().toArray()));
-
         if(PrisonManager.getWgRegions().contains(e.getRegion().getId().toLowerCase())){
             if(p.hasPermission("craftprison.mine.fly")){
                 p.setAllowFlight(true);
