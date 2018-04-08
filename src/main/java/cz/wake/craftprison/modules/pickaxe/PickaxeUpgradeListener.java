@@ -20,9 +20,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.PotionEffectType;
-
-import java.util.logging.Logger;
 
 public class PickaxeUpgradeListener implements Listener {
 
@@ -127,7 +124,7 @@ public class PickaxeUpgradeListener implements Listener {
 
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
-    public void closeAnvil(InventoryCloseEvent e){
+    public void closeAnvil(InventoryCloseEvent e) {
         HumanEntity p = e.getPlayer();
         Inventory inv = e.getInventory();
         if (inv instanceof AnvilInventory) {

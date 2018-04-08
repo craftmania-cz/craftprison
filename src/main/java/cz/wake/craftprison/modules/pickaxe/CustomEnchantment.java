@@ -14,7 +14,8 @@ public enum CustomEnchantment {
     SOULBOUND("Soulbound", "§7Soulbound", Material.SOUL_SAND, null, true, "§7Podepise tvuj krumpac", 10, 1),
     SPEED("Speed", "§bSpeed", Material.POTION, PotionEffectType.SPEED, false, "§7...", 10, 2),
     NIGHT("Night Vision", "§8Night Vision", Material.GLOWSTONE_DUST, PotionEffectType.NIGHT_VISION, false, "§7...", 10, 1),
-    LASER("Laser", "§cLaser", Material.GLASS, null, false, "§7...", 10, 3);
+    //LASER("Laser", "§cLaser", Material.GLASS, null, false, "§7...", 10, 3),
+    EXPLOSIVE("Explosive", "§4Explosive", Material.TNT, null, false, "§7Je sance, ze to udela *bum*", 10, 1);
 
     private String name;
     private String coloredName;
