@@ -2,6 +2,7 @@ package cz.wake.craftprison.modules;
 
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.exceptions.PlayerNotInCacheException;
+import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
 import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
 import cz.wake.craftprison.utils.PlayerUtils;
@@ -34,6 +35,9 @@ public class PrisonManager {
             Bukkit.getOnlinePlayers().forEach(op -> op.sendMessage("§e" + p.getName() + " §7se pripojil na Prison (#" + count + ")"));
             Main.getInstance().getConfig().set("player-counter", count);
             Main.getInstance().saveConfig();
+
+            //Krumpac
+            p.getInventory().addItem(PickaxeUpgrade.getFirstPickaxe(p.getName()));
         } else {
             cp = Main.getInstance().getMySQL().getCraftPlayerFromSQL(p);
         }

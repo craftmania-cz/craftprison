@@ -2,14 +2,14 @@ package cz.wake.craftprison;
 
 import com.wasteofplastic.askyblock.ASkyBlockAPI;
 import cz.wake.craftprison.armorstands.ArmorStandManager;
-import cz.wake.craftprison.commands.PCoinsCommand;
-import cz.wake.craftprison.commands.RankCommand;
-import cz.wake.craftprison.commands.RankUpCommand;
-import cz.wake.craftprison.commands.StatsCommand;
+import cz.wake.craftprison.commands.*;
 import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
 import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.Board;
+import cz.wake.craftprison.modules.pickaxe.EnchantmentListener;
+import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
+import cz.wake.craftprison.modules.pickaxe.PickaxeUpgradeListener;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.sql.SQLManager;
 import cz.wake.craftprison.statistics.Statistics;
@@ -139,6 +139,8 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new PlayerListener(this), this);
         pm.registerEvents(new InventoryFullListener(), this);
         pm.registerEvents(new StatisticsMenu(), this);
+        pm.registerEvents(new PickaxeUpgradeListener(), this);
+        pm.registerEvents(new EnchantmentListener(), this);
         pm.registerEvents(new BlockGlitchFixListeners(this), this);
 
         if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
@@ -153,6 +155,7 @@ public class Main extends JavaPlugin {
         getCommand("rankup").setExecutor(new RankUpCommand());
         getCommand("stats").setExecutor(new StatsCommand());
         getCommand("pcoins").setExecutor(new PCoinsCommand());
+        getCommand("pickaxe").setExecutor(new PickaxeCommand());
     }
 
     public static Main getInstance() {
