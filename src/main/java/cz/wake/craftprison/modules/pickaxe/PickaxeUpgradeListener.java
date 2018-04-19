@@ -31,7 +31,7 @@ public class PickaxeUpgradeListener implements Listener {
         if (e.getInventory().getName() == null) {
             return;
         }
-        if (!e.getInventory().getName().equals("§3§lPickaxe upgrade")) {
+        if (!e.getInventory().getName().equals("Pickaxe upgrade")) {
             return;
         }
         if (!(e.getWhoClicked() instanceof Player)) {
@@ -63,7 +63,7 @@ public class PickaxeUpgradeListener implements Listener {
                 int level = (ce.getEffect() instanceof Enchantment ? pickaxe.getEnchantmentLevel((Enchantment) ce.getEffect()) : cpick.getCustomEnchantLevel(ce.getName())) + 1;
                 if (level > ce.getMaxLevel()) {
                     p.closeInventory();
-                    p.sendMessage("§cVetsi level uz nejde");
+                    p.sendMessage("§c§l(!) §cMaximalni uroven enchantu byla dosazena!");
                     return;
                 }
 
@@ -72,7 +72,7 @@ public class PickaxeUpgradeListener implements Listener {
                 price = price == 0 ? ce.getPrice() : price;
                 if (cp.getPrisCoins() < price) {
                     p.closeInventory();
-                    p.sendMessage("§cNemas dostatek PrisCoinu §7(" + price + ")");
+                    p.sendMessage("§c§l(!) §cNemas dostatek PrisCoinu §7(" + price + ")");
                     return;
                 }
 
@@ -112,7 +112,7 @@ public class PickaxeUpgradeListener implements Listener {
         if (e.getInventory().getName() == null) {
             return;
         }
-        if (!e.getInventory().getName().equals("§3§lPickaxe upgrade")) {
+        if (!e.getInventory().getName().equals("Pickaxe upgrade")) {
             return;
         }
         if (!(e.getPlayer() instanceof Player)) {

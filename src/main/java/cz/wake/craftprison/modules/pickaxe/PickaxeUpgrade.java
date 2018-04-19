@@ -26,9 +26,9 @@ public class PickaxeUpgrade implements Listener {
     }
 
     private void openMenu() {
-        Inventory inv = Bukkit.createInventory(null, 54, "§3§lPickaxe upgrade");
+        Inventory inv = Bukkit.createInventory(null, 54, "Pickaxe upgrade");
 
-        ItemStack glass = new ItemBuilder(Material.STAINED_GLASS, (byte) 5).setName("§0").hideAllFlags().setGlowing().build();
+        ItemStack glass = new ItemBuilder(Material.STAINED_GLASS_PANE, (byte) 5).setName("§0").hideAllFlags().build();
         inv.setItem(3, glass);
         inv.setItem(4, glass);
         inv.setItem(5, glass);
@@ -44,7 +44,7 @@ public class PickaxeUpgrade implements Listener {
         ItemStack anvil = new ItemBuilder(Material.ANVIL).setName("§a§lPrejmenovat").setLore("", "§7Klikni pro prejmenovani").hideAllFlags().build();
         inv.setItem(16, anvil);
 
-        ItemStack barrier = new ItemBuilder(Material.BARRIER).setName("§0").setGlowing().hideAllFlags().build();
+        ItemStack barrier = new ItemBuilder(Material.BARRIER).setName("§0").hideAllFlags().build();
         for (int i = 27; i <= 44; i++) {
             inv.setItem(i, barrier);
         }
