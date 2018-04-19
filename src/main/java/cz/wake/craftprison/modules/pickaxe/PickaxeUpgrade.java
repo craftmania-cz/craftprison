@@ -8,6 +8,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
 public class PickaxeUpgrade implements Listener {
@@ -74,8 +75,9 @@ public class PickaxeUpgrade implements Listener {
     }
 
     public static ItemStack getFirstPickaxe(String name) {
-        return new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§b§lKrumpac").addLore("§0", "§7Patri hraci §b" + name)
-                .addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 2).addEnchant(Enchantment.DURABILITY, 3).build();
+        return new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§b§lKrumpac").addLore("§0", "§7Patri hraci §6" + name)
+                .addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 2)
+                .addEnchant(Enchantment.DURABILITY, 3).addItemFlag(ItemFlag.HIDE_ATTRIBUTES).build();
     }
 
     private boolean isSoulbound() {
