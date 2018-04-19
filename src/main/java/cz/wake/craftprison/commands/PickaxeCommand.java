@@ -16,16 +16,19 @@ public class PickaxeCommand implements CommandExecutor {
             return true;
         }
         Player p = (Player) sender;
-        //Pro test
         if (args.length != 0) {
             if (args[0].equalsIgnoreCase("get")) {
+                if (!p.hasPermission("craftprison.pickaxe.get")){
+                    p.sendMessage("§c§l(!) §cNa toto nemas dostatecna prava!");
+                    return false;
+                }
                 p.getInventory().addItem(PickaxeUpgrade.getFirstPickaxe(p.getName()));
                 return true;
             }
         }
 
         if (!CustomPickaxe.isPickaxe(p.getInventory().getItemInMainHand().getType())) {
-            p.sendMessage("§cMusis drzet v ruce krumpac!");
+            p.sendMessage("§c§l(!) §cMusis drzet v ruce krumpac!");
             return true;
         }
 
