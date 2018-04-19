@@ -15,7 +15,6 @@ public class InventoryFullListener implements Listener {
         if (p == null || e.getItem() == null) {
             return;
         }
-        final String type = e.getItem().getType().name();
 
         // Chat message
         p.sendMessage("§cMas plny inventar! Ztracis bloky!");

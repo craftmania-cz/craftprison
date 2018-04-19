@@ -104,17 +104,16 @@ public class Main extends JavaPlugin {
         Bukkit.getServer().getPluginManager().registerEvents(new PlayerStatsListener(this), this);
 
         // Update statistik
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, new Runnable() {
-            @Override
-            public void run() {
-                for (Player player : Bukkit.getOnlinePlayers()) {
-                    Main.getInstance().getMySQL().setAllFromCache(player);
-                }
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, () -> {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                Main.getInstance().getMySQL().setAllFromCache(player);
             }
         }, 1, 2400);
 
         // Scoreboard
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, Board::updateAll, 1L, 100L);
+
+        // Tasks
         Bukkit.getScheduler().runTaskTimerAsynchronously(this, new BlockUpdater(), 1L, fixData.UPDATE_INTERVAL);
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, ActionBarProgress::send, 1L, 40L);
     }
