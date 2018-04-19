@@ -6,13 +6,16 @@ import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
 import cz.wake.craftprison.utils.PlayerUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class PrisonManager {
 
     public static HashMap<Player, CraftPlayer> players = new HashMap<>();
+    public static HashSet<String> wgRegions = new HashSet<>();
 
     /*
         Pouzivat pouze pri nacitani dat z SQL!
@@ -77,7 +80,7 @@ public class PrisonManager {
             CraftPlayer cp = players.get(p);
             double playerMoney = Main.getEconomy().getBalance(p);
             Rank actualRank = getPlayerRank(p);
-            if (!(actualRank == Rank.OCTOPUS)) { // POSLEDNI RANK (ZATIM)
+            if (!(actualRank == Rank.GOOFY)) { // POSLEDNI RANK (ZATIM)
                 Rank nextRank = actualRank.getNext();
                 if (nextRank.getPrice() <= playerMoney) {
                     if (!(actualRank == Rank.TUTORIAL_A)) { // V zakladu hrac nema zadny rank pravo
@@ -99,5 +102,21 @@ public class PrisonManager {
         }
     }
 
+    public static HashSet<String> getWgRegions() {
+        return wgRegions;
+    }
 
+    public static void addWorldGuardRegion(String region) {
+        wgRegions.add(region);
+    }
+
+    public static void registerWgMines(){
+        for(Rank r : Rank.getTypes()){
+            // Register
+            wgRegions.add(r.getName().toLowerCase());
+
+            // Info
+            Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "[CraftPrison] " + ChatColor.WHITE + " Dul: " + r.getName() + " byl registrovan jako dul.");
+        }
+    }
 }
