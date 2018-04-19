@@ -8,6 +8,7 @@ import cz.wake.craftprison.commands.RankUpCommand;
 import cz.wake.craftprison.commands.StatsCommand;
 import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
+import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.Board;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.sql.SQLManager;
@@ -114,7 +115,8 @@ public class Main extends JavaPlugin {
 
         // Scoreboard
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, Board::updateAll, 1L, 100L);
-        getServer().getScheduler().runTaskTimerAsynchronously(this, new BlockUpdater(), 1L, fixData.UPDATE_INTERVAL);
+        Bukkit.getScheduler().runTaskTimerAsynchronously(this, new BlockUpdater(), 1L, fixData.UPDATE_INTERVAL);
+        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, ActionBarProgress::send, 1L, 40L);
     }
 
     @Override
