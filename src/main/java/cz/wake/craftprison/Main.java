@@ -15,8 +15,6 @@ import cz.wake.craftprison.sql.SQLManager;
 import cz.wake.craftprison.statistics.Statistics;
 import cz.wake.craftprison.listener.PlayerStatsListener;
 import cz.wake.craftprison.statistics.menu.StatisticsMenu;
-import cz.wake.craftprison.tasks.BlockUpdater;
-import cz.wake.craftprison.utils.fixes.BlockFixData;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -44,8 +42,6 @@ public class Main extends JavaPlugin {
     private Statistics statistics;
     private ASkyBlockAPI aSkyBlockAPI;
     private PlayerStatsListener playerStatsListener;
-    public BlockFixData fixData;
-    public BlockUpdater fixDataApp;
 
     static {
         Main.active = new HashMap<>();
@@ -86,9 +82,6 @@ public class Main extends JavaPlugin {
         fixArmorstands = getConfig().getBoolean("fix-armorstands");
         statistics = new Statistics(this);
 
-        // Fix blocks
-        this.fixData = new BlockFixData();
-
         // ArmorStandy
         ArmorStandManager.initArmorStands();
 
@@ -112,9 +105,7 @@ public class Main extends JavaPlugin {
 
         // Scoreboard
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, Board::updateAll, 1L, 100L);
-
         // Tasks
-        Bukkit.getScheduler().runTaskTimerAsynchronously(this, new BlockUpdater(), 1L, fixData.UPDATE_INTERVAL);
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, ActionBarProgress::send, 1L, 40L);
     }
 
@@ -138,8 +129,6 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new PlayerListener(this), this);
         pm.registerEvents(new InventoryFullListener(), this);
         pm.registerEvents(new StatisticsMenu(), this);
-        pm.registerEvents(new PickaxeUpgradeListener(), this);
-        pm.registerEvents(new EnchantmentListener(), this);
         pm.registerEvents(new BlockGlitchFixListeners(this), this);
 
         if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
@@ -237,13 +226,5 @@ public class Main extends JavaPlugin {
 
     public ASkyBlockAPI getSkyBlockAPI() {
         return aSkyBlockAPI;
-    }
-
-    public BlockFixData getFixData() {
-        return fixData;
-    }
-
-    public BlockUpdater getFixDataApp() {
-        return fixDataApp;
     }
 }

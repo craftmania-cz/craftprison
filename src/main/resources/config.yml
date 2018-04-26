@@ -18,10 +18,3 @@ fix-armorstands: false
 
 # Player counter
 player-count: 0
-
-# Block fix data
-block-fix:
- cooldown-checker: 50
- cooldown-checker-removal: 1250
- update-interval: 5
- radius: 4
