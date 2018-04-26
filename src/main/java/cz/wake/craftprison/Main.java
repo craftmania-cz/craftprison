@@ -129,7 +129,6 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new PlayerListener(this), this);
         pm.registerEvents(new InventoryFullListener(), this);
         pm.registerEvents(new StatisticsMenu(), this);
-        pm.registerEvents(new BlockGlitchFixListeners(this), this);
 
         if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
             Bukkit.getServer().getPluginManager().registerEvents(new AutoSellListener(this), this);
