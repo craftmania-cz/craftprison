@@ -89,7 +89,11 @@ public class Main extends JavaPlugin {
         PrisonManager.registerWgMines();
 
         //ASkyBlock hook
-        aSkyBlockAPI = (ASkyBlockAPI) Bukkit.getPluginManager().getPlugin("aSkyBlock");
+        if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
+            this.aSkyBlockAPI = (ASkyBlockAPI) Bukkit.getPluginManager().getPlugin("aSkyBlock");
+        } else {
+            this.aSkyBlockAPI = null;
+        }
 
         //Statistiky
         statistics = new Statistics(this);
