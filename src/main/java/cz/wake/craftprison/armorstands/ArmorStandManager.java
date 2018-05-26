@@ -31,11 +31,21 @@ public class ArmorStandManager {
 
     public static boolean isRankedArmorStand(ArmorStand as){
         for(RankedArmorStand rm : armorstands){
-            if(rm.getMainArmorStand() == as){
+            if(rm.getMainArmorStand().equals(as) || rm.getName().equalsIgnoreCase(as.getName())
+                    || rm.getMainArmorStand().hasMetadata("rank")){
                 return true;
             }
         }
         return false;
+    }
+
+    public static RankedArmorStand getArmorStandByLocation(Location location){
+        for(RankedArmorStand r : armorstands){
+            if(r.getMainArmorStand().getLocation().equals(location)){
+                return r;
+            }
+        }
+        return null;
     }
 
     public static void initArmorStands(){

@@ -27,36 +27,36 @@ public class ArmorStandInteract implements Listener {
         }
     }
 
-    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.HIGH)
     public void onRightClick(PlayerInteractAtEntityEvent e) {
         Player p = e.getPlayer();
         if (e.getRightClicked() instanceof ArmorStand) {
             ArmorStand clickedAs = (ArmorStand) e.getRightClicked();
             if(ArmorStandManager.isRankedArmorStand(clickedAs)){
-                if(clickedAs.hasMetadata("rank")){
+                e.setCancelled(true);
+                if(clickedAs.hasMetadata("rank") || clickedAs.getLocation().equals(ArmorStandManager.getArmorStandByLocation(clickedAs.getLocation()))){
                     Object obj = getMetadata(clickedAs,"rank", Main.getInstance());
                     String rank = (String)obj;
                     p.performCommand("sellall " + rank);
                 }
-                e.setCancelled(true);
             }
         }
 
     }
 
-    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.HIGH)
     public void onLeftClick(EntityDamageByEntityEvent e){
         if (e.getDamager() instanceof Player){
             Player p = (Player)e.getDamager();
             if(e.getEntity() instanceof ArmorStand){
                 ArmorStand clickedAs = (ArmorStand) e.getEntity();
                 if(ArmorStandManager.isRankedArmorStand(clickedAs)){
-                    if(clickedAs.hasMetadata("rank")){
+                    e.setCancelled(true);
+                    if(clickedAs.hasMetadata("rank") || clickedAs.getLocation().equals(ArmorStandManager.getArmorStandByLocation(clickedAs.getLocation()))){
                         Object obj = getMetadata(clickedAs,"rank", Main.getInstance());
                         String rank = (String)obj;
                         p.performCommand("prices " + rank);
                     }
-                    e.setCancelled(true);
                 }
             }
 
