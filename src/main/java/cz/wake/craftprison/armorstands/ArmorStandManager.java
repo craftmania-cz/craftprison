@@ -22,7 +22,7 @@ public class ArmorStandManager {
             Bukkit.getWorld("prison_spawn").getEntities().forEach(Entity::remove);
             Bukkit.getWorld("doly").getEntities().forEach(Entity::remove);
         }
-        armorstands.forEach(RankedArmorStand::remove);
+        //armorstands.forEach(RankedArmorStand::remove);
     }
 
     public void setMetadata(ArmorStand as, String type, Object rank, Main paramMain) {

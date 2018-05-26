@@ -18,6 +18,9 @@ import cz.wake.craftprison.statistics.menu.StatisticsMenu;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -87,6 +90,11 @@ public class Main extends JavaPlugin {
         // Config hodnoty
         fixArmorstands = getConfig().getBoolean("fix-armorstands");
         statistics = new Statistics(this);
+
+        // Preventivni smazani armorstandu
+        if(fixArmorstands){
+            Bukkit.getWorlds().stream().filter(w -> w.getName().equalsIgnoreCase("doly") || w.getName().equalsIgnoreCase("spawn")).flatMap(w -> w.getEntities().stream()).filter(e -> e instanceof ArmorStand).forEach(Entity::remove);
+        }
 
         // ArmorStandy
         ArmorStandManager.initArmorStands();
