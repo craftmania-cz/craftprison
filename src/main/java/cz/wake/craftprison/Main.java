@@ -113,7 +113,6 @@ public class Main extends JavaPlugin {
         //Statistiky
         statistics = new Statistics(this);
         playerStatsListener = new PlayerStatsListener(this);
-        Bukkit.getServer().getPluginManager().registerEvents(new PlayerStatsListener(this), this);
 
         // Update statistik
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, () -> {
@@ -124,6 +123,7 @@ public class Main extends JavaPlugin {
 
         // Scoreboard
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, Board::updateAll, 1L, 100L);
+
         // Tasks
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, ActionBarProgress::send, 1L, 40L);
     }
@@ -148,6 +148,9 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new PlayerListener(this), this);
         pm.registerEvents(new InventoryFullListener(), this);
         pm.registerEvents(new StatisticsMenu(), this);
+        pm.registerEvents(new PlayerStatsListener(this), this);
+        pm.registerEvents(new PickaxeUpgradeListener(), this);
+        pm.registerEvents(new EnchantmentListener(), this);
 
         if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
             Bukkit.getServer().getPluginManager().registerEvents(new AutoSellListener(this), this);
