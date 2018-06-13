@@ -71,8 +71,9 @@ public enum Rank {
         return getWeight() >= other.getWeight();
     }
 
-    public static Rank[] getTypes() { //TODO: Automaticky?
-        return new Rank[]{TUTORIAL_A, TUTORIAL_B, TUTORIAL_C, TUTORIAL_D, GOOFY, BENDER, MAGIKARP, ZOIDBERG};
+    public static Rank[] getTypes() {
+        return Rank.values();
+
     }
 
     public Rank getNext(){
