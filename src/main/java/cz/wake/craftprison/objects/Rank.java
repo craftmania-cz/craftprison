@@ -9,7 +9,9 @@ public enum Rank {
     GOOFY(5,"Goofy",20000),
     BENDER(6, "Bender", 40000),
     MAGIKARP(7, "Magikarp", 80000),
-    ZOIDBERG(8, "Zoidberg", 150000);
+    ZOIDBERG(8, "Zoidberg", 150000),
+    MAXWELL(9, "Maxwell", 300000),
+    STRANGE(10, "Strange", 500000);
 
     private int weight;
     private String name;

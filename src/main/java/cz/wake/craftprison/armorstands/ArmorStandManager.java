@@ -114,6 +114,19 @@ public class ArmorStandManager {
         zoidberg.setItemInHand(Material.RAW_FISH);
         zoidberg.spawn();
 
-        armorstands.forEach(ar -> System.out.println(ar.getName()));
+        // Rank Maxwell
+        RankedArmorStand maxwell = new RankedArmorStand("Maxwell", "doly", new Location(Bukkit.getWorld("doly"), -244.5, 137, 1860.5, -70, 0));
+        maxwell.setColor(231, 99, 34);
+        maxwell.setHead("1335bd82-9c2f-471c-aa00-26c78d9a78e2", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjg1NjJjM2FhMzRmNzdmZDBiZTUxOWJmOWM5NjAzZTliZTVhYjg4N2VmODMxZDlmOGQ1YjNkMzk3Y2I3Yjg4In19fQ==");
+        maxwell.setHologramTexts("§7Zde prodavej bloky!", "§c§lMaxwell Mine");
+        maxwell.setItemInHand(Material.BOOK_AND_QUILL);
+        maxwell.spawn();
+
+        // Rank Dr.Strange
+        RankedArmorStand strange = new RankedArmorStand("Strange", "doly", new Location(Bukkit.getWorld("doly"), -236.5, 151, 2223.5, 75, 0));
+        strange.setColor(17, 43, 111);
+        strange.setHead("524f8ddd-5019-4202-9868-27011e05cfbd", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTY2MTlmYjcwYTdmOGJhYWJiMzQ0ZDE3MjgzNWI2OTdmM2VlMTQ3YmI3MTA5OWY1YWJkMDE2NTI3YjIifX19");
+        strange.setHologramTexts("§7Zde prodavej bloky!", "§9§lDr.Strange Mine");
+        strange.spawn();
     }
 }
