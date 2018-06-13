@@ -82,8 +82,10 @@ public class RankedArmorStand {
         this.mainArmorStand.setLeggings(leggins);
         ItemStack boots = ItemFactory.createColouredLeather(Material.LEATHER_BOOTS, this.red, this.green, this.blue);
         this.mainArmorStand.setBoots(boots);
-        ItemStack item = new ItemStack(this.itemInHand);
-        this.mainArmorStand.setItemInHand(item);
+        if (this.itemInHand != null) {
+            ItemStack item = new ItemStack(this.itemInHand);
+            this.mainArmorStand.setItemInHand(item);
+        }
 
         // Metadata
         Main.getInstance().getArmorStandManager().setMetadata(this.mainArmorStand, "rank", this.name, Main.getInstance());
