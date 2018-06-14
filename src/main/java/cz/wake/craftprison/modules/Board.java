@@ -2,6 +2,7 @@ package cz.wake.craftprison.modules;
 
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.objects.CraftPlayer;
+import cz.wake.craftprison.utils.PlayerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
@@ -47,11 +48,13 @@ public class Board {
         t2.setPrefix("§7Penize: ");
         t3.setPrefix("§7PrisCoiny: ");
 
-        obj.getScore("§r").setScore(5);
-        obj.getScore("§7Nick: §f" + p.getName()).setScore(4);
-        obj.getScore("§1").setScore(3);
-        obj.getScore("§2").setScore(2);
-        obj.getScore("§3").setScore(1);
+        obj.getScore(" ").setScore(7);
+        obj.getScore("§7Nick: §f" + p.getName()).setScore(6);
+        obj.getScore("§1").setScore(5);
+        obj.getScore("§2").setScore(4);
+        obj.getScore("§3").setScore(3);
+        obj.getScore("§r").setScore(2);
+        obj.getScore("§8mc.craftmania.cz").setScore(1);
 
         this.update();
 
@@ -61,7 +64,7 @@ public class Board {
     private void update() {
         t1.setSuffix("§f" + cp.getRank().getName());
 
-        t2.setSuffix("§f" + this.formatMoney(Main.getEconomy().getBalance(p)) + "§a$");
+        t2.setSuffix("§f" + PlayerUtils.formatMoney(Main.getEconomy().getBalance(p)) + "§a$");
 
         t3.setSuffix("§f" + cp.getPrisCoins());
     }
@@ -75,30 +78,6 @@ public class Board {
         sb.getObjectives().forEach(Objective::unregister);
 
         sb = null;
-    }
-
-    private String formatMoney(double d) {
-        DecimalFormat df = new DecimalFormat("#.##");
-        if (d >= 1.0E18) {
-            return df.format(d / 1.0E18) + "Q";
-        }
-        if (d >= 1.0E15) {
-            return df.format(d / 1.0E15) + "T";
-        }
-        if (d >= 1.0E12) {
-            return df.format(d / 1.0E12) + "B";
-        }
-        if (d >= 1000000000) {
-            return df.format(d / 1000000000) + "G";
-        }
-        if (d >= 1000000) {
-            return df.format(d / 1000000) + "M";
-        }
-        if (d >= 1000) {
-            return df.format(d / 1000) + "k";
-        }
-
-        return df.format(d);
     }
 
 }
