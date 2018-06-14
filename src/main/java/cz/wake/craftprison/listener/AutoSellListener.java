@@ -75,8 +75,7 @@ public class AutoSellListener implements Listener {
                 return;
             }
             this.plugin.setAlertAmount(name, current + 1);
-        }
-        else {
+        } else {
             this.plugin.setAlertAmount(name, 1);
         }
         this.plugin.decreaseAlertAmount(name);

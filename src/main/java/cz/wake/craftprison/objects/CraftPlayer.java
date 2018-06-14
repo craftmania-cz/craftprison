@@ -11,13 +11,16 @@ public class CraftPlayer implements IMiner {
     private int kills;
     private int deaths;
 
-    public CraftPlayer() {};
+    public CraftPlayer() {
+    }
+
+    ;
 
     public CraftPlayer(Player p) {
         this.p = p;
     }
 
-    public CraftPlayer(Player p, Rank r, int prisCoins, int minedBlocks, int kills, int deaths){
+    public CraftPlayer(Player p, Rank r, int prisCoins, int minedBlocks, int kills, int deaths) {
         this.p = p;
         this.rank = r;
         this.minedBlocks = minedBlocks;

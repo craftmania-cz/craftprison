@@ -14,7 +14,7 @@ public class RankUpCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
-        if(sender instanceof Player){
+        if (sender instanceof Player) {
             Player player = (Player) sender;
             if ((command.getName().equalsIgnoreCase("rankup"))) {
                 try {

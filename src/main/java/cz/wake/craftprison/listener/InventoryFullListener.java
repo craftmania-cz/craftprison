@@ -20,7 +20,7 @@ public class InventoryFullListener implements Listener {
         p.sendMessage("§cMas plny inventar! Ztracis bloky!");
 
         // Title warning
-        new Title("","§cMas plny inventar!", 0, 30, 5).send(p);
+        new Title("", "§cMas plny inventar!", 0, 30, 5).send(p);
 
         // Sound waring
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 10.0f, 1.0f);

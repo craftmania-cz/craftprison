@@ -25,7 +25,7 @@ public class PrisonManager {
 
         CraftPlayer cp = null;
 
-        if(!Main.getInstance().getMySQL().hasData(p.getName())){
+        if (!Main.getInstance().getMySQL().hasData(p.getName())) {
             // Vytvoreni default dat
             Main.getInstance().getMySQL().insertDefaultData(p);
             cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0, 0, 0);
@@ -43,7 +43,7 @@ public class PrisonManager {
         }
 
         // Prevence proti NPE z SQL
-        if(cp == null){
+        if (cp == null) {
             cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0, 0, 0);
         }
 
@@ -114,8 +114,8 @@ public class PrisonManager {
         wgRegions.add(region);
     }
 
-    public static void registerWgMines(){
-        for(Rank r : Rank.getTypes()){
+    public static void registerWgMines() {
+        for (Rank r : Rank.getTypes()) {
             // Register
             wgRegions.add(r.getName().toLowerCase());
 

@@ -17,7 +17,7 @@ public class PrisCoins {
         CraftPlayer cp = pm.getCraftPlayer(p);
 
         int finalValue = cp.getPrisCoins() + value;
-        if(finalValue < 0){
+        if (finalValue < 0) {
             finalValue = 0;
         }
         cp.setPrisCoins(finalValue);

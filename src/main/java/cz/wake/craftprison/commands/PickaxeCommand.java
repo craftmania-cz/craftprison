@@ -18,7 +18,7 @@ public class PickaxeCommand implements CommandExecutor {
         Player p = (Player) sender;
         if (args.length != 0) {
             if (args[0].equalsIgnoreCase("get")) {
-                if (!p.hasPermission("craftprison.pickaxe.get")){
+                if (!p.hasPermission("craftprison.pickaxe.get")) {
                     p.sendMessage("§c§l(!) §cNa toto nemas dostatecna prava!");
                     return false;
                 }

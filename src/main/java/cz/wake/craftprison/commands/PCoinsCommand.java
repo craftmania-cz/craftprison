@@ -1,6 +1,5 @@
 package cz.wake.craftprison.commands;
 
-import com.comphenix.protocol.PacketType;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.PrisCoins;
 import org.bukkit.Bukkit;

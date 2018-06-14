@@ -5,14 +5,12 @@ import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class SQLManager {
 
@@ -171,7 +169,7 @@ public class SQLManager {
         }
     }
 
-    public int getPrisCoins(String p){
+    public int getPrisCoins(String p) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -190,7 +188,7 @@ public class SQLManager {
         return 0;
     }
 
-    public void setPrisCoins(String p, int value){
+    public void setPrisCoins(String p, int value) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {

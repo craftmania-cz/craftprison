@@ -1,8 +1,6 @@
 package cz.wake.craftprison.commands;
 
 import cz.wake.craftprison.statistics.menu.StatisticsMenu;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

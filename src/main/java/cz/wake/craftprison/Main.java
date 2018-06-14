@@ -7,18 +7,15 @@ import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
 import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.Board;
-import cz.wake.craftprison.modules.pickaxe.EnchantmentListener;
-import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
-import cz.wake.craftprison.modules.pickaxe.PickaxeUpgradeListener;
 import cz.wake.craftprison.modules.PrisonManager;
+import cz.wake.craftprison.modules.pickaxe.EnchantmentListener;
+import cz.wake.craftprison.modules.pickaxe.PickaxeUpgradeListener;
 import cz.wake.craftprison.sql.SQLManager;
 import cz.wake.craftprison.statistics.Statistics;
-import cz.wake.craftprison.listener.PlayerStatsListener;
 import cz.wake.craftprison.statistics.menu.StatisticsMenu;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -93,7 +90,7 @@ public class Main extends JavaPlugin {
         statistics = new Statistics(this);
 
         // Preventivni smazani armorstandu
-        if(fixArmorstands){
+        if (fixArmorstands) {
             Bukkit.getWorlds().stream().filter(w -> w.getName().equalsIgnoreCase("doly") || w.getName().equalsIgnoreCase("spawn")).flatMap(w -> w.getEntities().stream()).filter(e -> e instanceof ArmorStand).forEach(Entity::remove);
         }
 

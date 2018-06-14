@@ -8,17 +8,14 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.metadata.FixedMetadataValue;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
 public class ArmorStandManager {
 
     public static HashSet<RankedArmorStand> armorstands = new HashSet<>();
 
     public static void removeArmorStands(boolean fixAll) {
-        if(fixAll){
+        if (fixAll) {
             Bukkit.getWorld("prison_spawn").getEntities().forEach(Entity::remove);
             Bukkit.getWorld("doly").getEntities().forEach(Entity::remove);
         }
@@ -29,26 +26,26 @@ public class ArmorStandManager {
         as.setMetadata(type, new FixedMetadataValue(paramMain, rank));
     }
 
-    public static boolean isRankedArmorStand(ArmorStand as){
-        for(RankedArmorStand rm : armorstands){
-            if(rm.getMainArmorStand().equals(as) || rm.getName().equalsIgnoreCase(as.getName())
-                    || rm.getMainArmorStand().hasMetadata("rank")){
+    public static boolean isRankedArmorStand(ArmorStand as) {
+        for (RankedArmorStand rm : armorstands) {
+            if (rm.getMainArmorStand().equals(as) || rm.getName().equalsIgnoreCase(as.getName())
+                    || rm.getMainArmorStand().hasMetadata("rank")) {
                 return true;
             }
         }
         return false;
     }
 
-    public static RankedArmorStand getArmorStandByLocation(Location location){
-        for(RankedArmorStand r : armorstands){
-            if(r.getMainArmorStand().getLocation().equals(location)){
+    public static RankedArmorStand getArmorStandByLocation(Location location) {
+        for (RankedArmorStand r : armorstands) {
+            if (r.getMainArmorStand().getLocation().equals(location)) {
                 return r;
             }
         }
         return null;
     }
 
-    public static void initArmorStands(){
+    public static void initArmorStands() {
 
         // Rank A
         RankedArmorStand rankA = new RankedArmorStand("A", "prison_spawn", new Location(Bukkit.getWorld("prison_spawn"), -1184.5, 48, -465.5, -158, 0));
@@ -100,7 +97,7 @@ public class ArmorStandManager {
 
         // Rank Magikarp
         RankedArmorStand magikarp = new RankedArmorStand("Magikarp", "doly", new Location(Bukkit.getWorld("doly"), -1474.5, 98, 638.5, 158, 0));
-        magikarp.setColor(255,69,0);
+        magikarp.setColor(255, 69, 0);
         magikarp.setHead("41dac880-eb6f-422e-9dc0-f7dec0e12933", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmY1OGZiN2NiZjlmOGRjZmMzYmM5ZDYxYzdjYjViMjI5YmY0OWRiMTEwMTMzNmZmZGMyZDA4N2MwYjk0MTYyIn19fQ==");
         magikarp.setHologramTexts("§7Zde prodej bloky!", "§c§lMagikarp Mine");
         magikarp.setItemInHand(Material.RED_ROSE);
@@ -108,7 +105,7 @@ public class ArmorStandManager {
 
         // Rank Zoidberg
         RankedArmorStand zoidberg = new RankedArmorStand("Zoidberg", "doly", new Location(Bukkit.getWorld("doly"), -1477.5, 160, 226.5, 25, 0));
-        zoidberg.setColor(220,20,60);
+        zoidberg.setColor(220, 20, 60);
         zoidberg.setHead("9e052b46-699a-40ed-9444-cb312ca2b1d3", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODIzOGMxMTRiMjdjYTlmZmQ2ZTc3NTRmZWM1ODJjN2UzNjk5MjgyODNiMmQ3ZmNlMTQ5ZWFhMzEyYmQyIn19fQ==");
         zoidberg.setHologramTexts("§7Zde prodej bloky!", "§4§lZoidberg Mine");
         zoidberg.setItemInHand(Material.RAW_FISH);

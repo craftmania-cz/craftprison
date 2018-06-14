@@ -6,7 +6,6 @@ import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,9 +13,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class StatisticsMenu implements Listener{
+public class StatisticsMenu implements Listener {
 
-    public static void open(Player p){
+    public static void open(Player p) {
         Inventory inv = Bukkit.createInventory(null, 27, "§0Statistiky");
 
         PrisonManager pm = new PrisonManager();
@@ -44,28 +43,28 @@ public class StatisticsMenu implements Listener{
             return;
         }
 
-            Inventory inv = Bukkit.createInventory(null, 27, "§0Statistiky (" + offlinePlayer + ")");
+        Inventory inv = Bukkit.createInventory(null, 27, "§0Statistiky (" + offlinePlayer + ")");
 
-            ItemStack blocksBroken = new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§eZnicene blocky").addLore("§7" + Main.getInstance().getMySQL().getMinedBlocks(offlinePlayer)).
-                    hideAllFlags().build();
+        ItemStack blocksBroken = new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§eZnicene blocky").addLore("§7" + Main.getInstance().getMySQL().getMinedBlocks(offlinePlayer)).
+                hideAllFlags().build();
 
-            ItemStack deaths = new ItemBuilder(Material.SKULL_ITEM).setName("§eSmrti").addLore("§7" + Main.getInstance().getMySQL().getDeaths(offlinePlayer)).
-                    hideAllFlags().build();
+        ItemStack deaths = new ItemBuilder(Material.SKULL_ITEM).setName("§eSmrti").addLore("§7" + Main.getInstance().getMySQL().getDeaths(offlinePlayer)).
+                hideAllFlags().build();
 
-            ItemStack kills = new ItemBuilder(Material.WOOD_SWORD).setName("§eZabiti").addLore("§7" + Main.getInstance().getMySQL().getKills(offlinePlayer)).
-                    hideAllFlags().build();
+        ItemStack kills = new ItemBuilder(Material.WOOD_SWORD).setName("§eZabiti").addLore("§7" + Main.getInstance().getMySQL().getKills(offlinePlayer)).
+                hideAllFlags().build();
 
-            inv.setItem(12, blocksBroken);
-            inv.setItem(13, deaths);
-            inv.setItem(14, kills);
+        inv.setItem(12, blocksBroken);
+        inv.setItem(13, deaths);
+        inv.setItem(14, kills);
 
-            player.openInventory(inv);
+        player.openInventory(inv);
 
     }
 
     @EventHandler
-    public void onClick(InventoryClickEvent e){
-        if(!e.getInventory().getTitle().equals("§0Statistiky")){
+    public void onClick(InventoryClickEvent e) {
+        if (!e.getInventory().getTitle().equals("§0Statistiky")) {
             return;
         }
         e.setCancelled(true);

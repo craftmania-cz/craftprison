@@ -2,8 +2,6 @@ package cz.wake.craftprison.listener;
 
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.armorstands.ArmorStandManager;
-import cz.wake.craftprison.armorstands.RankedArmorStand;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -22,7 +20,7 @@ public class ArmorStandInteract implements Listener {
 
     @EventHandler
     public void manipulate(PlayerArmorStandManipulateEvent e) {
-        if(ArmorStandManager.armorstands.equals(e.getRightClicked())){
+        if (ArmorStandManager.armorstands.equals(e.getRightClicked())) {
             e.setCancelled(true);
         }
     }
@@ -32,11 +30,11 @@ public class ArmorStandInteract implements Listener {
         Player p = e.getPlayer();
         if (e.getRightClicked() instanceof ArmorStand) {
             ArmorStand clickedAs = (ArmorStand) e.getRightClicked();
-            if(ArmorStandManager.isRankedArmorStand(clickedAs)){
+            if (ArmorStandManager.isRankedArmorStand(clickedAs)) {
                 e.setCancelled(true);
-                if(clickedAs.hasMetadata("rank") || clickedAs.getLocation().equals(ArmorStandManager.getArmorStandByLocation(clickedAs.getLocation()))){
-                    Object obj = getMetadata(clickedAs,"rank", Main.getInstance());
-                    String rank = (String)obj;
+                if (clickedAs.hasMetadata("rank") || clickedAs.getLocation().equals(ArmorStandManager.getArmorStandByLocation(clickedAs.getLocation()))) {
+                    Object obj = getMetadata(clickedAs, "rank", Main.getInstance());
+                    String rank = (String) obj;
                     p.performCommand("sellall " + rank);
                 }
             }
@@ -45,16 +43,16 @@ public class ArmorStandInteract implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onLeftClick(EntityDamageByEntityEvent e){
-        if (e.getDamager() instanceof Player){
-            Player p = (Player)e.getDamager();
-            if(e.getEntity() instanceof ArmorStand){
+    public void onLeftClick(EntityDamageByEntityEvent e) {
+        if (e.getDamager() instanceof Player) {
+            Player p = (Player) e.getDamager();
+            if (e.getEntity() instanceof ArmorStand) {
                 ArmorStand clickedAs = (ArmorStand) e.getEntity();
-                if(ArmorStandManager.isRankedArmorStand(clickedAs)){
+                if (ArmorStandManager.isRankedArmorStand(clickedAs)) {
                     e.setCancelled(true);
-                    if(clickedAs.hasMetadata("rank") || clickedAs.getLocation().equals(ArmorStandManager.getArmorStandByLocation(clickedAs.getLocation()))){
-                        Object obj = getMetadata(clickedAs,"rank", Main.getInstance());
-                        String rank = (String)obj;
+                    if (clickedAs.hasMetadata("rank") || clickedAs.getLocation().equals(ArmorStandManager.getArmorStandByLocation(clickedAs.getLocation()))) {
+                        Object obj = getMetadata(clickedAs, "rank", Main.getInstance());
+                        String rank = (String) obj;
                         p.performCommand("prices " + rank);
                     }
                 }
