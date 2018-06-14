@@ -3,8 +3,6 @@ package cz.wake.craftprison.listener;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.Board;
 import cz.wake.craftprison.modules.PrisonManager;
-import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
-import cz.wake.craftprison.objects.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,8 +19,11 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler(ignoreCancelled = true)
-    public void onJoin(PlayerJoinEvent e){
+    public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
+
+        // Preventivni vypnuti join zprav
+        e.setJoinMessage(null);
 
         // Nacteni dat z SQL
         PrisonManager.loadPlayer(p);
@@ -31,9 +32,12 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler(ignoreCancelled = true)
-    public void onQuit(PlayerQuitEvent event) {
-        Player p = event.getPlayer();
+    public void onQuit(PlayerQuitEvent e) {
+        Player p = e.getPlayer();
         Main.getInstance().getMySQL().setAllFromCache(p);
+
+        // Preventivni vypnuti leave zprav
+        e.setQuitMessage(null);
 
         if (Board.boards.containsKey(p)) {
             Board b = Board.boards.get(p);
@@ -43,9 +47,12 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler(ignoreCancelled = true)
-    public void onKick(PlayerKickEvent event) {
-        Player p = event.getPlayer();
+    public void onKick(PlayerKickEvent e) {
+        Player p = e.getPlayer();
         Main.getInstance().getMySQL().setAllFromCache(p);
+
+        // Preventivni vypnuti leave zprav
+        e.setLeaveMessage(null);
 
         if (Board.boards.containsKey(p)) {
             Board b = Board.boards.get(p);
