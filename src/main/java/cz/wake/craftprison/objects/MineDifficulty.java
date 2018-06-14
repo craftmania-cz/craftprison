@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 public enum MineDifficulty {
 
     TUTORIAL(ChatColor.GREEN),
-    STANDARD(ChatColor.YELLOW),
+    STANDARD(ChatColor.AQUA),
     HARD(ChatColor.RED);
 
     private ChatColor color;
