@@ -1,5 +1,12 @@
 package cz.wake.craftprison.modules;
 
+import cz.wake.craftcore.inventory.ClickableItem;
+import cz.wake.craftcore.inventory.SmartInventory;
+import cz.wake.craftcore.inventory.content.InventoryContents;
+import cz.wake.craftcore.inventory.content.InventoryProvider;
+import cz.wake.craftcore.messages.Advancement;
+import cz.wake.craftcore.messages.handler.AdvancementManager;
+import cz.wake.craftcore.utils.items.ItemBuilder;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.exceptions.PlayerNotInCacheException;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
@@ -8,6 +15,8 @@ import cz.wake.craftprison.objects.Rank;
 import cz.wake.craftprison.utils.PlayerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -88,34 +97,6 @@ public class PrisonManager {
         return getPlayerRank(p).getPrice();
     }
 
-    public void rankUp(final Player p) throws PlayerNotInCacheException {
-        if (players.containsKey(p)) {
-            CraftPlayer cp = players.get(p);
-            double playerMoney = Main.getEconomy().getBalance(p);
-            Rank actualRank = getPlayerRank(p);
-            if (!(actualRank == Rank.getLast())) {
-                Rank nextRank = actualRank.getNext();
-                if (nextRank.getPrice() <= playerMoney) {
-                    if (!(actualRank == Rank.TUTORIAL_A)) { // V zakladu hrac nema zadny rank pravo
-                        PlayerUtils.removePermission(p, actualRank.getPermission());
-                    }
-                    PlayerUtils.addPermission(p, nextRank.getPermission());
-                    PlayerUtils.sendRankUpMessage(p, nextRank);
-                    cp.setRank(nextRank);
-                    //todo: sql
-                    //todo: efekty, menu overovani
-                    //todo: advancements
-                } else {
-                    p.sendMessage("§c§l(!) §cNemas dostatek penez na rankup!");
-                }
-            } else {
-                p.sendMessage("§c§l(!) §cNo dal to nejde! Zkus /reset a zacni odznova!");
-            }
-        } else {
-            throw (new PlayerNotInCacheException("Hrac neni v cache!")); // Jenom pro efekt!
-        }
-    }
-
     public static HashSet<String> getWgRegions() {
         return wgRegions;
     }
@@ -136,5 +117,55 @@ public class PrisonManager {
 
     public Rank getRankObject() {
         return rank;
+    }
+
+    public static class RankupVerifyMenu implements InventoryProvider {
+
+        PrisonManager pm = new PrisonManager();
+
+        public static final SmartInventory RANKUP = SmartInventory.builder()
+                .id("rankup").provider(new RankupVerifyMenu())
+                .size(3,9).title("[?] Opravdu chces rankup?").build();
+
+
+        @Override
+        public void init(Player p, InventoryContents contents) {
+
+            contents.set(1,2, ClickableItem.of(
+                    new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)5).setName("§a§lANO")
+                    .addLore("§7Kliknutim provedes rankup", "§7na rank: " + pm.getColoredNextPlayerRank(p), "", "§cTato akce je nevratna!").build(), e -> {
+                        Rank actualRank = pm.getPlayerRank(p);
+                        if (!(actualRank == Rank.TUTORIAL_A)) { // V zakladu hrac nema zadny rank pravo
+                            PlayerUtils.removePermission(p, actualRank.getPermission());
+                        }
+                        Rank nextRank = actualRank.getNext();
+                        PlayerUtils.addPermission(p, nextRank.getPermission());
+                        PlayerUtils.sendRankUpMessage(p, nextRank);
+                        CraftPlayer cp = pm.getPlayers().get(p);
+                        cp.setRank(nextRank);
+                        PlayerUtils.randomFireworks(p.getLocation());
+                        Advancement.builder(new NamespacedKey(Main.getInstance(), "craftprison"))
+                                .title("Novy rank: " + pm.getColoredPlayerRank(p)).description("_").icon("minecraft:diamond")
+                                .announce(false).hidden(false).toast(true).frame(AdvancementManager.FrameType.GOAL).build()
+                                .show(Main.getInstance(), p);
+                        p.closeInventory();
+                    }
+            ));
+
+            contents.set(1, 6, ClickableItem.of(
+                    new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)14).setName("§c§lNE")
+                    .addLore("§7Kliknutim zrusis rankup.").build(), e -> p.closeInventory()
+            ));
+
+        }
+
+        @Override
+        public void update(Player player, InventoryContents contents) {
+        }
+
+    }
+
+    public HashMap<Player, CraftPlayer> getPlayers() {
+        return players;
     }
 }
