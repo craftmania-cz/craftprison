@@ -12,7 +12,7 @@ public class ActionBarProgress {
 
     public static void send() {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            if (p.getLocation().getWorld().getName().equals("doly") || p.getLocation().getWorld().getName().equals("spawn")) {
+            if (p.getLocation().getWorld().getName().equals("doly") || p.getLocation().getWorld().getName().equals("prison_spawn")) {
                 CraftPlayer cp = pm.getCraftPlayer(p);
                 new ActionBar(getText(Main.getEconomy().getBalance(p), cp.getRank().getNext().getPrice()), -1).send(p);
             }
