@@ -3,6 +3,7 @@ package cz.wake.craftprison.modules;
 import cz.wake.craftcore.messages.ActionBar;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.objects.CraftPlayer;
+import cz.wake.craftprison.objects.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -14,7 +15,9 @@ public class ActionBarProgress {
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (p.getLocation().getWorld().getName().equals("doly") || p.getLocation().getWorld().getName().equals("prison_spawn")) {
                 CraftPlayer cp = pm.getCraftPlayer(p);
-                new ActionBar(getText(Main.getEconomy().getBalance(p), cp.getRank().getNext().getPrice()), -1).send(p);
+                if (cp.getRank() != Rank.getLast()) {
+                    new ActionBar(getText(Main.getEconomy().getBalance(p), cp.getRank().getNext().getPrice()), -1).send(p);
+                }
             }
         }
     }
