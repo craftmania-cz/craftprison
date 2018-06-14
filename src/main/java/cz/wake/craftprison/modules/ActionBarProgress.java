@@ -19,7 +19,7 @@ public class ActionBarProgress {
         }
     }
 
-    private static double getPercent(double currentMoney, double neededMoney) {
+    public static double getPercent(double currentMoney, double neededMoney) {
         double percent = Math.round(currentMoney / neededMoney * 10000.0) / 100.0;
         return percent > 100.0 ? 100.0 : percent;
     }

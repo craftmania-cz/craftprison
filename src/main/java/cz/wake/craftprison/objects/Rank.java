@@ -2,25 +2,27 @@ package cz.wake.craftprison.objects;
 
 public enum Rank {
 
-    TUTORIAL_A(1, "A", 0),
-    TUTORIAL_B(2, "B", 1000),
-    TUTORIAL_C(3, "C", 4000),
-    TUTORIAL_D(4, "D", 10000),
-    GOOFY(5, "Goofy", 20000),
-    BENDER(6, "Bender", 40000),
-    MAGIKARP(7, "Magikarp", 80000),
-    ZOIDBERG(8, "Zoidberg", 150000),
-    MAXWELL(9, "Maxwell", 300000),
-    STRANGE(10, "Strange", 500000);
+    TUTORIAL_A(1, "A", 0, MineDifficulty.TUTORIAL),
+    TUTORIAL_B(2, "B", 1000, MineDifficulty.TUTORIAL),
+    TUTORIAL_C(3, "C", 4000, MineDifficulty.TUTORIAL),
+    TUTORIAL_D(4, "D", 10000, MineDifficulty.TUTORIAL),
+    GOOFY(5, "Goofy", 20000, MineDifficulty.STANDARD),
+    BENDER(6, "Bender", 40000, MineDifficulty.STANDARD),
+    MAGIKARP(7, "Magikarp", 80000, MineDifficulty.STANDARD),
+    ZOIDBERG(8, "Zoidberg", 150000, MineDifficulty.STANDARD),
+    MAXWELL(9, "Maxwell", 300000, MineDifficulty.STANDARD),
+    STRANGE(10, "Strange", 500000, MineDifficulty.STANDARD);
 
     private int weight;
     private String name;
     private int price;
+    private MineDifficulty difficulty;
 
-    Rank(int weight, String name, int price) {
+    Rank(int weight, String name, int price, MineDifficulty difficulty) {
         this.name = name;
         this.price = price;
         this.weight = weight;
+        this.difficulty = difficulty;
     }
 
     Rank(int weight) {
@@ -61,6 +63,10 @@ public enum Rank {
         return null;
     }
 
+    public MineDifficulty getDifficulty() {
+        return difficulty;
+    }
+
     public String getPermission() {
         return "craftprison.rank." + this.getName().toLowerCase(); // craftprison.rank.?
     }
@@ -75,10 +81,13 @@ public enum Rank {
 
     public static Rank[] getTypes() {
         return Rank.values();
-
     }
 
     public Rank getNext() {
         return this.ordinal() < Rank.values().length - 1 ? Rank.values()[this.ordinal() + 1] : null;
+    }
+
+    public static Rank getLast() {
+        return Rank.values()[getTypes().length - 1];
     }
 }

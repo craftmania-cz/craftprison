@@ -17,6 +17,7 @@ public class PrisonManager {
 
     public static HashMap<Player, CraftPlayer> players = new HashMap<>();
     public static HashSet<String> wgRegions = new HashSet<>();
+    private static Rank rank;
 
     /*
         Pouzivat pouze pri nacitani dat z SQL!
@@ -67,6 +68,14 @@ public class PrisonManager {
         return players.get(p).getRank();
     }
 
+    public String getColoredPlayerRank(Player p) {
+        return getPlayerRank(p).getDifficulty().getColor().toString() + getPlayerRank(p).getName();
+    }
+
+    public String getColoredNextPlayerRank(Player p) {
+        return getPlayerNextRank(p).getDifficulty().getColor().toString() + getPlayerNextRank(p).getName();
+    }
+
     public Rank getPlayerNextRank(Player p) {
         return getPlayerRank(p).getNext();
     }
@@ -84,7 +93,7 @@ public class PrisonManager {
             CraftPlayer cp = players.get(p);
             double playerMoney = Main.getEconomy().getBalance(p);
             Rank actualRank = getPlayerRank(p);
-            if (!(actualRank == Rank.GOOFY)) { // POSLEDNI RANK (ZATIM)
+            if (!(actualRank == Rank.getLast())) {
                 Rank nextRank = actualRank.getNext();
                 if (nextRank.getPrice() <= playerMoney) {
                     if (!(actualRank == Rank.TUTORIAL_A)) { // V zakladu hrac nema zadny rank pravo
@@ -95,11 +104,12 @@ public class PrisonManager {
                     cp.setRank(nextRank);
                     //todo: sql
                     //todo: efekty, menu overovani
+                    //todo: advancements
                 } else {
-                    p.sendMessage("§cNemas dostatek penez na rankup!");
+                    p.sendMessage("§c§l(!) §cNemas dostatek penez na rankup!");
                 }
             } else {
-                p.sendMessage("§cNo dal to nejde! Zkus /reset a zacni odznova!");
+                p.sendMessage("§c§l(!) §cNo dal to nejde! Zkus /reset a zacni odznova!");
             }
         } else {
             throw (new PlayerNotInCacheException("Hrac neni v cache!")); // Jenom pro efekt!
@@ -122,5 +132,9 @@ public class PrisonManager {
             // Info
             Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "[CraftPrison] " + ChatColor.WHITE + " Dul: " + r.getName() + " byl registrovan jako dul.");
         }
+    }
+
+    public Rank getRankObject() {
+        return rank;
     }
 }
