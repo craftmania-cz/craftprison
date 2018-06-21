@@ -111,6 +111,7 @@ public class RankedArmorStand {
     }
 
     public void remove() {
+        Bukkit.getWorld(this.world).loadChunk(this.location.getChunk());
         this.hologramArmorStands.forEach(Entity::remove);
         this.mainArmorStand.remove();
         ArmorStandManager.armorstands.remove(this);
