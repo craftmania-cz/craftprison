@@ -94,12 +94,12 @@ public class EnchantmentListener implements Listener {
                         continue;
                     }*/
 
-                    if (!getChance(75)) continue;
+                    if (!getChance(35)) continue;
 
                     //TODO Presunuti itemu do inventara + kontrola plneho inventare
 
                     loc.getBlock().setType(Material.AIR);
-                    loc.getWorld().playSound(loc, Sound.ENTITY_GENERIC_EXPLODE, 2.0F, 2.0F);
+                    loc.getWorld().playSound(loc, Sound.ENTITY_GENERIC_EXPLODE, 0.5F, 0.5F);
                     ParticleEffect.LAVA.display(1.0f, 1.0f, 1.0f, 0.1f, 2, loc, p);
                 }
             }
