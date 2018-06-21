@@ -11,7 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
-public class PickaxeUpgrade implements Listener {
+public class PickaxeUpgrade {
 
     Player p;
     ItemStack pickaxe;
