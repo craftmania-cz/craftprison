@@ -31,7 +31,24 @@ public class SQLManager {
         return pool;
     }
 
-    public final boolean hasData(final String p) {
+    public final boolean hasData(final Player p) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SELECT * FROM players_data WHERE uuid = ?;");
+            ps.setString(1, p.getUniqueId().toString());
+            ps.executeQuery();
+            return ps.getResultSet().next();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            pool.close(conn, ps, null);
+        }
+    }
+
+    public final boolean hasDataByName(final String p) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -53,8 +70,8 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ?;");
-            ps.setString(1, p.getName());
+            ps = conn.prepareStatement("SELECT * FROM players_data WHERE uuid = ?;");
+            ps.setString(1, p.getUniqueId().toString());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
                 return new CraftPlayer(p, Rank.getByName(ps.getResultSet().getString("rank")),
@@ -71,13 +88,13 @@ public class SQLManager {
         return null;
     }
 
-    //TODO: Rewrite
-    public int getMinedBlocks(String player) {
+    //TODO: Rewrite + podpora UUID
+    public int getMinedBlocks(final String player) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SELECT minedblocks FROM players_data WHERE nick = ?;");
+            ps = conn.prepareStatement("SELECT minedblocks FROM players_data WHERE uuid = ?;");
             ps.setString(1, player);
             ResultSet result = ps.executeQuery();
             if (result.next()) {
@@ -91,7 +108,7 @@ public class SQLManager {
         return 0;
     }
 
-    public int getKills(String player) {
+    public int getKills(final String player) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -110,7 +127,7 @@ public class SQLManager {
         return 0;
     }
 
-    public int getDeaths(String player) {
+    public int getDeaths(final String player) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -137,8 +154,9 @@ public class SQLManager {
                 PreparedStatement ps = null;
                 try {
                     conn = pool.getConnection();
-                    ps = conn.prepareStatement("INSERT INTO players_data (nick) VALUES (?);");
-                    ps.setString(1, p.getName());
+                    ps = conn.prepareStatement("INSERT INTO players_data (uuid,nick) VALUES (?,?);");
+                    ps.setString(1, p.getUniqueId().toString());
+                    ps.setString(2, p.getName());
                     ps.executeUpdate();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -157,11 +175,11 @@ public class SQLManager {
         PreparedStatement preparedStatement = null;
         try {
             connection = pool.getConnection();
-            preparedStatement = connection.prepareStatement("UPDATE players_data SET minedblocks = ?, deaths = ?, kills = ? WHERE nick = ?;");
+            preparedStatement = connection.prepareStatement("UPDATE players_data SET minedblocks = ?, deaths = ?, kills = ? WHERE uuid = ?;");
             preparedStatement.setInt(1, craftPlayer.getMinedBlocks());
             preparedStatement.setInt(2, craftPlayer.getDeaths());
             preparedStatement.setInt(3, craftPlayer.getKills());
-            preparedStatement.setString(4, player.getName());
+            preparedStatement.setString(4, player.getUniqueId().toString());
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -170,13 +188,13 @@ public class SQLManager {
         }
     }
 
-    public int getPrisCoins(String p) {
+    public int getPrisCoins(final Player p) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SELECT priscoins FROM players_data WHERE nick = ?;");
-            ps.setString(1, p);
+            ps = conn.prepareStatement("SELECT priscoins FROM players_data WHERE uuid = ?;");
+            ps.setString(1, p.getUniqueId().toString());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
                 return ps.getResultSet().getInt("priscoins");
@@ -189,14 +207,14 @@ public class SQLManager {
         return 0;
     }
 
-    public void setPrisCoins(String p, int value) {
+    public void setPrisCoins(final Player p, final int value) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("UPDATE players_data SET priscoins = ? WHERE nick = ?");
+            ps = conn.prepareStatement("UPDATE players_data SET priscoins = ? WHERE uuid = ?");
             ps.setInt(1, value);
-            ps.setString(2, p);
+            ps.setString(2, p.getUniqueId().toString());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -205,14 +223,14 @@ public class SQLManager {
         }
     }
 
-    public void rankupPlayerSQL(final String p, final Rank rank) {
+    public void rankupPlayerSQL(final Player p, final Rank rank) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("UPDATE players_data SET rank = ? WHERE nick = ?");
+            ps = conn.prepareStatement("UPDATE players_data SET rank = ? WHERE uuid = ?");
             ps.setString(1, rank.getName());
-            ps.setString(2, p);
+            ps.setString(2, p.getUniqueId().toString());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

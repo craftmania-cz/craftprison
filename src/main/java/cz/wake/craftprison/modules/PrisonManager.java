@@ -9,7 +9,6 @@ import cz.wake.craftcore.messages.Advancement;
 import cz.wake.craftcore.messages.handler.AdvancementManager;
 import cz.wake.craftcore.utils.items.ItemBuilder;
 import cz.wake.craftprison.Main;
-import cz.wake.craftprison.exceptions.PlayerNotInCacheException;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
 import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
@@ -36,7 +35,7 @@ public class PrisonManager {
 
         CraftPlayer cp = null;
 
-        if (!Main.getInstance().getMySQL().hasData(p.getName())) {
+        if (!Main.getInstance().getMySQL().hasData(p)) {
             // Vytvoreni default dat
             Main.getInstance().getMySQL().insertDefaultData(p);
             cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0, 0, 0);
@@ -144,7 +143,7 @@ public class PrisonManager {
                         PlayerUtils.sendRankUpMessage(p, actualRank);
                         CraftPlayer cp = pm.getPlayers().get(p);
                         Main.getEconomy().withdrawPlayer(p, (double)nextRank.getPrice());
-                        Main.getInstance().getMySQL().rankupPlayerSQL(p.getName(), nextRank);
+                        Main.getInstance().getMySQL().rankupPlayerSQL(p, nextRank);
                         cp.setRank(nextRank);
                         PlayerUtils.randomFireworks(p.getLocation());
                         Advancement.builder(new NamespacedKey(Main.getInstance(), "craftprison"))

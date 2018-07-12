@@ -66,7 +66,7 @@ public class PCoinsCommand implements CommandExecutor {
                     break;
                 }
                 try {
-                    if (!Main.getInstance().getMySQL().hasData(args[1])) {
+                    if (!Main.getInstance().getMySQL().hasDataByName(args[1])) {
                         p.sendMessage("§cTento hrac neexistuje");
                         break;
                     }

@@ -6,6 +6,7 @@ import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -37,8 +38,9 @@ public class StatisticsMenu implements Listener {
         p.openInventory(inv);
     }
 
+    //TODO: Podpora offline UUID
     public static void openOffline(Player player, String offlinePlayer) {
-        if (!Main.getInstance().getMySQL().hasData(offlinePlayer)) {
+        if (!Main.getInstance().getMySQL().hasDataByName(offlinePlayer)) {
             player.sendMessage("Není u nás veden tento účet! blázne ...");
             return;
         }

@@ -21,7 +21,7 @@ public class PrisCoins {
             finalValue = 0;
         }
         cp.setPrisCoins(finalValue);
-        Main.getInstance().getMySQL().setPrisCoins(p.getName(), finalValue);
+        Main.getInstance().getMySQL().setPrisCoins(p, finalValue);
     }
 
     public static void takeCoins(Player p, int value) {
@@ -32,6 +32,6 @@ public class PrisCoins {
         CraftPlayer cp = pm.getCraftPlayer(p);
 
         cp.setPrisCoins(value);
-        Main.getInstance().getMySQL().setPrisCoins(p.getName(), value);
+        Main.getInstance().getMySQL().setPrisCoins(p, value);
     }
 }
