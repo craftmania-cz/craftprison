@@ -144,6 +144,7 @@ public class PrisonManager {
                         PlayerUtils.sendRankUpMessage(p, actualRank);
                         CraftPlayer cp = pm.getPlayers().get(p);
                         Main.getEconomy().withdrawPlayer(p, (double)nextRank.getPrice());
+                        Main.getInstance().getMySQL().rankupPlayerSQL(p.getName(), nextRank);
                         cp.setRank(nextRank);
                         PlayerUtils.randomFireworks(p.getLocation());
                         Advancement.builder(new NamespacedKey(Main.getInstance(), "craftprison"))

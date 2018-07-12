@@ -71,6 +71,7 @@ public class SQLManager {
         return null;
     }
 
+    //TODO: Rewrite
     public int getMinedBlocks(String player) {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -195,6 +196,22 @@ public class SQLManager {
             conn = pool.getConnection();
             ps = conn.prepareStatement("UPDATE players_data SET priscoins = ? WHERE nick = ?");
             ps.setInt(1, value);
+            ps.setString(2, p);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+    }
+
+    public void rankupPlayerSQL(final String p, final Rank rank) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("UPDATE players_data SET rank = ? WHERE nick = ?");
+            ps.setString(1, rank.getName());
             ps.setString(2, p);
             ps.executeUpdate();
         } catch (Exception e) {
