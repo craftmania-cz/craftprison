@@ -4,6 +4,7 @@ import cz.wake.craftcore.inventory.ClickableItem;
 import cz.wake.craftcore.inventory.SmartInventory;
 import cz.wake.craftcore.inventory.content.InventoryContents;
 import cz.wake.craftcore.inventory.content.InventoryProvider;
+import cz.wake.craftcore.inventory.content.Pagination;
 import cz.wake.craftcore.messages.Advancement;
 import cz.wake.craftcore.messages.handler.AdvancementManager;
 import cz.wake.craftcore.utils.items.ItemBuilder;
@@ -85,7 +86,7 @@ public class PrisonManager {
         return getPlayerNextRank(p).getDifficulty().getColor().toString() + getPlayerNextRank(p).getName();
     }
 
-    public Rank getPlayerNextRank(Player p) {
+    public Rank getPlayerNextRank(Player p) throws NullPointerException {
         return getPlayerRank(p).getNext();
     }
 
@@ -162,6 +163,27 @@ public class PrisonManager {
         @Override
         public void update(Player player, InventoryContents contents) {
         }
+
+    }
+
+    public static class RanksMenu implements InventoryProvider {
+
+        PrisonManager pm = new PrisonManager();
+
+        public static final SmartInventory RANKS = SmartInventory.builder()
+                .id("ranks").provider(new RanksMenu())
+                .size(6,9).title("Prehled ranku").build();
+
+        @Override
+        public void init(Player p, InventoryContents contents) {
+
+            Pagination pagination = contents.pagination();
+            //contents.newIterator()
+
+        }
+
+        @Override
+        public void update(Player player, InventoryContents contents){}
 
     }
 

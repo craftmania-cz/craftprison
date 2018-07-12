@@ -11,7 +11,9 @@ public enum Rank {
     MAGIKARP(7, "Magikarp", 80000, MineDifficulty.STANDARD),
     ZOIDBERG(8, "Zoidberg", 150000, MineDifficulty.STANDARD),
     MAXWELL(9, "Maxwell", 300000, MineDifficulty.STANDARD),
-    STRANGE(10, "Strange", 500000, MineDifficulty.STANDARD);
+    STRANGE(10, "Strange", 500000, MineDifficulty.STANDARD),
+    SHREK(11, "Shrek", 800000, MineDifficulty.STANDARD),
+    FIONA(12, "Fiona", 1200000, MineDifficulty.STANDARD);
 
     private int weight;
     private String name;

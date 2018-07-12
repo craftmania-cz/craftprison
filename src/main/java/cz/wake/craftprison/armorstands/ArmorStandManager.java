@@ -126,5 +126,19 @@ public class ArmorStandManager {
         strange.setHead("524f8ddd-5019-4202-9868-27011e05cfbd", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTY2MTlmYjcwYTdmOGJhYWJiMzQ0ZDE3MjgzNWI2OTdmM2VlMTQ3YmI3MTA5OWY1YWJkMDE2NTI3YjIifX19");
         strange.setHologramTexts("§7Zde prodavej bloky!", "§9§lDr.Strange Mine");
         strange.spawn();
+
+        // Rank Shrek
+        RankedArmorStand shrek = new RankedArmorStand("Shrek", new Location(Bukkit.getWorld("doly"), -220.5, 120, 1583.5, 22, 0));
+        shrek.setColor(179, 238, 58);
+        shrek.setHead("b2ded8ad-ec80-4341-adc4-ace71123a815", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDg2OGRkNTBiY2I3M2M0N2M0YWFlZTc1YzdlYjNjNzA5Nzg4NWQ0YTlkZDM0YTU3YzhjYTQ4ZGUzYjc2NTk4YSJ9fX0=");
+        shrek.setHologramTexts("§7Zde prodavej bloky!", "§a§lShrek Mine");
+        shrek.spawn();
+
+        // Rank Fiona
+        RankedArmorStand fiona = new RankedArmorStand("Fiona", new Location(Bukkit.getWorld("doly"), -219.5, 116, 1300.5, 80, 0));
+        fiona.setHead("477710f7-98af-4759-8fa7-a16eeafc2454", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmI1NTRjNjgwYzc4ZTM1ZTJkMjc1MmYzY2UwMTFlYzg1NTQxZDQxNTY1MGNlNjJlZGQxYTFkMWRjMzVlNGM1In19fQ==");
+        shrek.setColor(179, 238, 58);
+        fiona.setHologramTexts("§7Zde prodavej bloky!", "§a§lFiona Mine", "§6§l?");
+        fiona.spawn();
     }
 }
