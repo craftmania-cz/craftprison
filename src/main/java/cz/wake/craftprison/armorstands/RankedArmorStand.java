@@ -27,9 +27,9 @@ public class RankedArmorStand {
     private int red, green, blue;
     private ArmorStand mainArmorStand;
 
-    public RankedArmorStand(String name, String world, Location location) {
+    public RankedArmorStand(String name, Location location) {
         this.name = name;
-        this.world = world;
+        this.world = location.getWorld().getName();
         this.location = location;
         this.hologramTexts = new ArrayList<>();
         this.hologramArmorStands = new ArrayList<>();
@@ -62,6 +62,7 @@ public class RankedArmorStand {
 
         // Nacteni chunku
         Bukkit.getWorld(this.world).loadChunk(this.location.getChunk());
+        deleteNearbyEntities();
 
         // Priprava ArmorStandu
         this.mainArmorStand = (ArmorStand) Bukkit.getWorld(this.world).spawnEntity(this.location, EntityType.ARMOR_STAND);
@@ -124,4 +125,13 @@ public class RankedArmorStand {
     public String getName() {
         return name;
     }
+
+    private void deleteNearbyEntities() {
+        for (Entity ent : this.location.getWorld().getEntities()) {
+            if (ent.getLocation().distance(this.location) <= 10.0) {
+                ent.remove();
+            }
+        }
+    }
+
 }
