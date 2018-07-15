@@ -37,6 +37,22 @@ public class ArmorStandInteract implements Listener {
                     String rank = (String) obj;
                     p.performCommand("sellall " + rank);
                 }
+            } else if (ArmorStandManager.isStandartArmorStand(clickedAs)) {
+                System.out.println("kek-1");
+                e.setCancelled(true);
+                if (clickedAs.hasMetadata("standart") || clickedAs.getLocation().equals(ArmorStandManager.getStandartArmorStandByLocation(clickedAs.getLocation()))) {
+                    System.out.println("kek-2");
+                    Object obj = getMetadata(clickedAs, "standart", Main.getInstance());
+                    String name = (String) obj;
+                    System.out.println("kek-name: " + name);
+                    if(name == null) {
+                        return;
+                    }
+                    if(name.equalsIgnoreCase("Tutorial")) {
+                        System.out.println("kek-final");
+                        p.sendMessage("§b§lSMRDIS");
+                    }
+                }
             }
         }
 

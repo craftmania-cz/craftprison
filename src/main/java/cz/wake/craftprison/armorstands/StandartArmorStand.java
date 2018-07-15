@@ -10,24 +10,25 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.EulerAngle;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class RankedArmorStand {
+public class StandartArmorStand {
 
     private String name;
     private String world;
     private Location location;
     private String uuidHead;
     private String textureDataHead;
-    private ArrayList<String> hologramTexts;
-    private ArrayList<ArmorStand> hologramArmorStands;
     private Material itemInHand;
     private int red, green, blue;
+    private ArrayList<String> hologramTexts;
+    private ArrayList<ArmorStand> hologramArmorStands;
     private ArmorStand mainArmorStand;
 
-    public RankedArmorStand(String name, Location location) {
+    public StandartArmorStand(String name, Location location) {
         this.name = name;
         this.world = location.getWorld().getName();
         this.location = location;
@@ -35,26 +36,56 @@ public class RankedArmorStand {
         this.hologramArmorStands = new ArrayList<>();
     }
 
-    public RankedArmorStand setHead(String uuid, String texture) {
+    public StandartArmorStand setHead(String uuid, String texture) {
         this.uuidHead = uuid;
         this.textureDataHead = texture;
         return this;
     }
 
-    public RankedArmorStand setHologramTexts(String... lines) {
+    public StandartArmorStand setColor(int red, int green, int blue) {
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        return this;
+    }
+
+    public StandartArmorStand setHologramTexts(String... lines) {
         Collections.addAll(this.hologramTexts, lines);
         return this;
     }
 
-    public RankedArmorStand setItemInHand(Material item) {
+    public StandartArmorStand setItemInHand(Material item) {
         this.itemInHand = item;
         return this;
     }
 
-    public RankedArmorStand setColor(int red, int green, int blue) {
-        this.red = red;
-        this.green = green;
-        this.blue = blue;
+    public StandartArmorStand setHeadPosition(EulerAngle ea){
+        this.mainArmorStand.setHeadPose(ea);
+        return this;
+    }
+
+    public StandartArmorStand setBodyPosition(EulerAngle ea) {
+        this.mainArmorStand.setBodyPose(ea);
+        return this;
+    }
+
+    public StandartArmorStand setRightLegPosition(EulerAngle ea) {
+        this.mainArmorStand.setRightLegPose(ea);
+        return this;
+    }
+
+    public StandartArmorStand setLeftLegPosition(EulerAngle ea) {
+        this.mainArmorStand.setLeftLegPose(ea);
+        return this;
+    }
+
+    public StandartArmorStand setRightArmPosition(EulerAngle ea) {
+        this.mainArmorStand.setRightArmPose(ea);
+        return this;
+    }
+
+    public StandartArmorStand setLeftArmPosition(EulerAngle ea) {
+        this.mainArmorStand.setLeftLegPose(ea);
         return this;
     }
 
@@ -88,9 +119,6 @@ public class RankedArmorStand {
             this.mainArmorStand.setItemInHand(item);
         }
 
-        // Metadata
-        Main.getInstance().getArmorStandManager().setMetadata(this.mainArmorStand, "rank", this.name, Main.getInstance());
-
         // Nazvy
         this.hologramTexts.forEach(text -> {
             this.location.add(0, 0.3, 0);
@@ -104,26 +132,14 @@ public class RankedArmorStand {
             this.hologramArmorStands.add(as);
         });
 
+        // Metadata
+        Main.getInstance().getArmorStandManager().setMetadata(this.mainArmorStand, "standart", this.name, Main.getInstance());
+
         // Pridani do seznamu
-        ArmorStandManager.armorstands.add(this);
+        ArmorStandManager.standartArmorstands.add(this);
 
         // Info
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "[CraftPrison] " + ChatColor.WHITE + " Armorstand " + name + " byl spawnut.");
-    }
-
-    public void remove() {
-        Bukkit.getWorld(this.world).loadChunk(this.location.getChunk());
-        this.hologramArmorStands.forEach(Entity::remove);
-        this.mainArmorStand.remove();
-        ArmorStandManager.armorstands.remove(this);
-    }
-
-    public ArmorStand getMainArmorStand() {
-        return this.mainArmorStand;
-    }
-
-    public String getName() {
-        return name;
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "[CraftPrison] " + ChatColor.WHITE + " Armorstand (standart) " + name + " byl spawnut.");
     }
 
     private void deleteNearbyEntities() {
@@ -134,4 +150,17 @@ public class RankedArmorStand {
         }
     }
 
+    public void remove() {
+        this.mainArmorStand.remove();
+        this.hologramArmorStands.forEach(Entity::remove);
+        ArmorStandManager.standartArmorstands.remove(this);
+    }
+
+    public ArmorStand getMainArmorStand() {
+        return this.mainArmorStand;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

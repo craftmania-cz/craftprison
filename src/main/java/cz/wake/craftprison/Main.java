@@ -95,7 +95,8 @@ public class Main extends JavaPlugin {
         }
 
         // ArmorStandy
-        ArmorStandManager.initArmorStands();
+        ArmorStandManager.initRankedArmorStands();
+        ArmorStandManager.initStandartArmorStand();
 
         // WG regions
         PrisonManager.registerWgMines();

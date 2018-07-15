@@ -13,6 +13,7 @@ import java.util.HashSet;
 public class ArmorStandManager {
 
     public static HashSet<RankedArmorStand> armorstands = new HashSet<>();
+    public static HashSet<StandartArmorStand> standartArmorstands = new HashSet<>();
 
     public static void removeArmorStands(boolean fixAll) {
         if (fixAll) {
@@ -20,6 +21,7 @@ public class ArmorStandManager {
             Bukkit.getWorld("doly").getEntities().forEach(Entity::remove);
         }
         armorstands.forEach(RankedArmorStand::remove);
+        standartArmorstands.forEach(StandartArmorStand::remove);
     }
 
     public void setMetadata(ArmorStand as, String type, Object rank, Main paramMain) {
@@ -45,11 +47,29 @@ public class ArmorStandManager {
         return null;
     }
 
-    public static void initArmorStands() {
+    public static boolean isStandartArmorStand(ArmorStand as) {
+        for (StandartArmorStand rm : standartArmorstands) {
+            if (rm.getMainArmorStand().equals(as) || rm.getName().equalsIgnoreCase(as.getName())
+                    || rm.getMainArmorStand().hasMetadata("standart")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static StandartArmorStand getStandartArmorStandByLocation(Location location) {
+        for (StandartArmorStand r : standartArmorstands) {
+            if (r.getMainArmorStand().getLocation().equals(location)) {
+                return r;
+            }
+        }
+        return null;
+    }
+
+    public static void initRankedArmorStands() {
 
         // Rank A
         RankedArmorStand rankA = new RankedArmorStand("A", new Location(Bukkit.getWorld("prison_spawn"), -1184.5, 48, -465.5, -158, 0));
-
         rankA.setColor(67, 67, 108);
         rankA.setHead("bafc75ac-236f-46d3-8eda-8ea20db4319e", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUyNTc1ZmRlZWMxY2JjZjVjZmU3ZjZhMTkzOGRkYTM4YTZiOWFmMmE0MDVkNWYyNTQxNDk5N2I5MTY4MzEifX19");
         rankA.setHologramTexts("§8Pravym - prodej | Levym - ceny", "§7Zde prodej bloky!", "§e§lMine Tutorial (A)");
@@ -60,7 +80,7 @@ public class ArmorStandManager {
         RankedArmorStand rankB = new RankedArmorStand("B", new Location(Bukkit.getWorld("prison_spawn"), -1105.5, 48, -401.5, -70, 0));
         rankB.setColor(176, 23, 31);
         rankB.setHead("c22ccc77-09b1-4c59-985b-fd76e056262b", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjFlNDY1ZjNiYjk4NWQwYjdjOTc1ODIzN2YzYWVjZjJlNTE4OTgwNGU4OTU1ODUzYTVkNjQyOTQ0M2VkNyJ9fX0=");
-        rankB.setHologramTexts("§8Pravym - prodej | Levym - ceny", "§7Zde prodej bloky!", "§c§lMine Tutorial (B)");
+        rankB.setHologramTexts("§7Zde prodej bloky!", "§c§lMine Tutorial (B)");
         rankB.setItemInHand(Material.IRON_PICKAXE);
         rankB.spawn();
 
@@ -137,8 +157,60 @@ public class ArmorStandManager {
         // Rank Fiona
         RankedArmorStand fiona = new RankedArmorStand("Fiona", new Location(Bukkit.getWorld("doly"), -219.5, 116, 1300.5, 80, 0));
         fiona.setHead("477710f7-98af-4759-8fa7-a16eeafc2454", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmI1NTRjNjgwYzc4ZTM1ZTJkMjc1MmYzY2UwMTFlYzg1NTQxZDQxNTY1MGNlNjJlZGQxYTFkMWRjMzVlNGM1In19fQ==");
-        shrek.setColor(179, 238, 58);
+        fiona.setColor(179, 238, 58);
         fiona.setHologramTexts("§7Zde prodavej bloky!", "§a§lFiona Mine", "§6§l?");
         fiona.spawn();
+
+        // Rank Deadpool
+        RankedArmorStand deadpool = new RankedArmorStand("Deadpool", new Location(Bukkit.getWorld("doly"), -262.5, 117, 1010.5, -105, 0));
+        deadpool.setHead("a2abdd8a-6c9b-47ca-8bb7-b5dab6c681ee", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTk5NTk5NTIxNGEzN2FiYjE3NDhjODFiNmE3Mzc3ZDEyMzUyNDhhODJhNTY4ZWY1N2IyNzUzNGFlZTkyZTdkMyJ9fX0=");
+        deadpool.setColor(205, 85, 85);
+        deadpool.setHologramTexts("§7Zde prodavej bloky!", "§c§lDeadpool Mine");
+        deadpool.spawn();
+
+        // Rank Gandalf
+        RankedArmorStand gandalf = new RankedArmorStand("Gandalf", new Location(Bukkit.getWorld("doly"), -230, 114, 634.5, -160, 0));
+        gandalf.setHead("68d3e81a-11ff-46e9-a1a1-378e59b8db6c", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGVmMmM2ZDI4NWUwNTBmYjcyYTU2ODk5MjU4YTFkMTMzZjJhYzI3ODcwNDNlYWJiNDY5ZDU2ZTkzZTBkZDU1In19fQ==");
+        gandalf.setColor(255, 240, 255);
+        gandalf.setHologramTexts("§7Zde prodavej bloky!", "§f§lGandalf Mine");
+        gandalf.spawn();
+
+        // Rank Astronaut
+        RankedArmorStand astronaut = new RankedArmorStand("Astronaut", new Location(Bukkit.getWorld("doly"), -207.5, 110, 290.5, -100, 0));
+        astronaut.setHead("89534842-85d7-44a2-a2f8-0650e455ab58", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWNmOGZiZDc2NTg2OTIwYzUyNzM1MTk5Mjc4NjJmZGMxMTE3MDVhMTg1MWQ0ZDFhYWM0NTBiY2ZkMmIzYSJ9fX0=");
+        astronaut.setColor(248, 248, 255);
+        astronaut.setHologramTexts("§7Zde prodavej bloky!", "§f§lAstronaut Mine");
+        astronaut.spawn();
+
+        // Rank Mummy
+        RankedArmorStand mummy = new RankedArmorStand("Mummy", new Location(Bukkit.getWorld("doly"), -191.5, 108, 20.5, 35, 0));
+        mummy.setHead("8f7c0c5b-720f-4944-8481-b0f7931f303f", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2U5MWU5NTgyMmZlOThjYzVhNTY1OGU4MjRiMWI4Y2YxNGQ0ZGU5MmYwZTFhZjI0ODE1MzcyNDM1YzllYWI2In19fQ==");
+        mummy.setColor(205, 200, 177);
+        mummy.setHologramTexts("§7Zde prodavej bloky!", "§e§lMummy Mine");
+        mummy.spawn();
+
+        // Rank Crash
+        RankedArmorStand crash = new RankedArmorStand("Crash", new Location(Bukkit.getWorld("doly"), -297.5, 114, -385.5, -100, 0));
+        crash.setHead("4d770916-c2cd-47ac-962f-afc86a505a18", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTdiMjExZjNkZGJlYWZhNWQzOGU1N2I0MWQzZTI3ZDQ4YmI2MWRmMzI3Mjc1MDcwYzY3ZGZiNDRjNWMzNWRmIn19fQ==");
+        crash.setColor(255, 185, 15);
+        crash.setHologramTexts("§7Zde prodavej bloky!", "§6§lCrash Bandicoot Mine");
+        crash.spawn();
+
+        // Rank Obelix
+        RankedArmorStand obelix = new RankedArmorStand("Obelix", new Location(Bukkit.getWorld("doly"), 262.5, 115, -393.5, 80, 0));
+        obelix.setHead("8f2f43a8-2c2c-4a65-81a9-f7b5a49d876f", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWRjMTQ0M2QyYmI1MzU2YjliYjFkZjkyM2U2YTM5ZjJmNDQ2ZmU4OGU5NmQ0OGJlNTlhMGQ4ZDkxMzRjOWIyOSJ9fX0=");
+        obelix.setColor(135, 206, 255);
+        obelix.setHologramTexts("§7Zde prodavej bloky!", "§b§lObelix Mine");
+        obelix.spawn();
+    }
+
+    public static void initStandartArmorStand(){
+
+        // Tutorial
+        StandartArmorStand tutorial = new StandartArmorStand("Tutorial", new Location(Bukkit.getWorld("prison_spawn"), -1181.5, 52, -388.5, -135, 0));
+        tutorial.setHead("bea9ae4a-9e16-4ed1-b8ac-bec02556b473", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGJlMmJhZjQwZmQ4NWViNTczZmU1YjJlNWI2Yzg4MTdjZjUwZjg4M2Q5NTc2OTQxNTgwN2FiMDcyODhhNDdjZCJ9fX0=");
+        tutorial.setColor(80, 90, 100);
+        tutorial.setHologramTexts("§9§lTutorial");
+        tutorial.spawn();
     }
 }
