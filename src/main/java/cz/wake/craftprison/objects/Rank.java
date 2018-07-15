@@ -2,29 +2,41 @@ package cz.wake.craftprison.objects;
 
 public enum Rank {
 
-    TUTORIAL_A(1, "A", 0, MineDifficulty.TUTORIAL),
-    TUTORIAL_B(2, "B", 1000, MineDifficulty.TUTORIAL),
-    TUTORIAL_C(3, "C", 4000, MineDifficulty.TUTORIAL),
-    TUTORIAL_D(4, "D", 10000, MineDifficulty.TUTORIAL),
-    GOOFY(5, "Goofy", 20000, MineDifficulty.STANDARD),
-    BENDER(6, "Bender", 40000, MineDifficulty.STANDARD),
-    MAGIKARP(7, "Magikarp", 80000, MineDifficulty.STANDARD),
-    ZOIDBERG(8, "Zoidberg", 150000, MineDifficulty.STANDARD),
-    MAXWELL(9, "Maxwell", 300000, MineDifficulty.STANDARD),
-    STRANGE(10, "Strange", 500000, MineDifficulty.STANDARD),
-    SHREK(11, "Shrek", 800000, MineDifficulty.STANDARD),
-    FIONA(12, "Fiona", 1200000, MineDifficulty.STANDARD);
+    TUTORIAL_A(1, "A", 0, MineDifficulty.TUTORIAL, 0, "", ""),
+    TUTORIAL_B(2, "B", 1000, MineDifficulty.TUTORIAL, 1, "NightVision v dolech", "craftprison.mine.nightvision"),
+    TUTORIAL_C(3, "C", 4000, MineDifficulty.TUTORIAL, 1, "", ""),
+    TUTORIAL_D(4, "D", 10000, MineDifficulty.TUTORIAL, 1, "Odemknuti vytvareni ostrova /is", "askyblock.island.create"),
+    GOOFY(5, "Goofy", 20000, MineDifficulty.STANDARD, 1, "Odemknuti pouzivani Aukce /au (Max 1 aukce)", ""), //TODO: Aukce
+    BENDER(6, "Bender", 40000, MineDifficulty.STANDARD, 1, "", ""),
+    MAGIKARP(7, "Magikarp", 80000, MineDifficulty.STANDARD, 1, "Odemknuti /shop + sekce Blocks", ""), //TODO: Shop
+    ZOIDBERG(8, "Zoidberg", 150000, MineDifficulty.STANDARD, 1, "", ""),
+    MAXWELL(9, "Maxwell", 300000, MineDifficulty.STANDARD, 1, "Odemknuti prikazu /heads", ""),
+    STRANGE(10, "Strange", 500000, MineDifficulty.STANDARD, 1, "", ""),
+    SHREK(11, "Shrek", 800000, MineDifficulty.STANDARD, 2, "Moznost pridat 3 hrace na ostrov (+1)", "askyblock.team.maxsize.3"),
+    FIONA(12, "Fiona", 1200000, MineDifficulty.STANDARD, 2, "", ""),
+    DEADPOOL(13, "Deadpool", 1500000, MineDifficulty.STANDARD, 2, "Odemknuti prikazu /pvp", ""), //TODO: Pvp
+    GANDALF(14, "Gandalf", 2000000, MineDifficulty.STANDARD, 2, "", ""),
+    ASTRONAUT(15, "Astronaut", 3000000, MineDifficulty.STANDARD, 2, "Automaticky FLY v dolech", "craftprison.mine.fly"),
+    MUMMY(16, "Mummy", 5000000, MineDifficulty.STANDARD, 2, "", ""),
+    CRASH(17, "Crash", 10000000, MineDifficulty.STANDARD, 2, "Odemknuti sekce Decorations v /shop", ""), //TODO: Shop
+    OBELIX(18, "Obelix", 20000000, MineDifficulty.STANDARD, 2, "", "");
 
     private int weight;
     private String name;
     private int price;
     private MineDifficulty difficulty;
+    private int prisCoins;
+    private String reward;
+    private String[] array;
 
-    Rank(int weight, String name, int price, MineDifficulty difficulty) {
+    Rank(int weight, String name, int price, MineDifficulty difficulty, int prisCoins, String reward, String... array) {
         this.name = name;
         this.price = price;
         this.weight = weight;
         this.difficulty = difficulty;
+        this.prisCoins = prisCoins;
+        this.reward = reward;
+        this.array = array;
     }
 
     Rank(int weight) {
@@ -91,5 +103,17 @@ public enum Rank {
 
     public static Rank getLast() {
         return Rank.values()[getTypes().length - 1];
+    }
+
+    public int getPrisCoins() {
+        return prisCoins;
+    }
+
+    public String getReward() {
+        return reward;
+    }
+
+    public String[] getCommands() {
+        return array;
     }
 }

@@ -19,11 +19,11 @@ import java.util.Random;
 public class PlayerUtils {
 
     public static void addPermission(final Player p, String permission) {
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set " + permission);
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set " + permission + " prison");
     }
 
     public static void removePermission(final Player p, String permission) {
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission unset " + permission);
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission unset " + permission + " prison");
     }
 
     public static void sendRankMessage(final Player p) {
@@ -44,7 +44,7 @@ public class PlayerUtils {
         p.sendMessage("§7Dokonceni ranku: §f" + ActionBarProgress.getPercent(Main.getEconomy().getBalance(p), pm.getPlayerRank(p).getNext().getPrice()) + "% §8| §7Rankup castka: §f" + formatMoney(pm.getPlayerRank(p).getNext().getPrice()) +"§a$");
         p.sendMessage("§7Celkove dokonceni: §f" + String.valueOf(ActionBarProgress.getPercent(pm.getPlayerRank(p).getWeight(), Rank.getLast().getWeight())) + "% §8| §7Obtiznost: §eEasy");
         p.sendMessage("");
-        p.sendMessage("§7Pri rankupu obdrzis: §fNighVision v dolech, 1x PrisCoin");
+        p.sendMessage("§7Pri rankupu obdrzis: \n§f - " + pm.getPlayerNextRank(p).getPrisCoins() + " PrisCoins\n - " + pm.getPlayerNextRank(p).getReward());
         p.sendMessage("");
         p.sendMessage("§6\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac");
     }

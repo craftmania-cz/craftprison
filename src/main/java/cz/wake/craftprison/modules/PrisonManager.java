@@ -140,7 +140,7 @@ public class PrisonManager {
                         }
                         Rank nextRank = actualRank.getNext();
                         PlayerUtils.addPermission(p, nextRank.getPermission());
-                        PlayerUtils.sendRankUpMessage(p, actualRank);
+                        PlayerUtils.sendRankUpMessage(p, nextRank);
                         CraftPlayer cp = pm.getPlayers().get(p);
                         Main.getEconomy().withdrawPlayer(p, (double)nextRank.getPrice());
                         Main.getInstance().getMySQL().rankupPlayerSQL(p, nextRank);
@@ -150,6 +150,11 @@ public class PrisonManager {
                                 .title("Novy rank: " + pm.getColoredPlayerRank(p)).description("_").icon("minecraft:diamond")
                                 .announce(false).hidden(false).toast(true).frame(AdvancementManager.FrameType.GOAL).build()
                                 .show(Main.getInstance(), p);
+                        for(String perm : nextRank.getCommands()) {
+                            if(perm.length() > 1) {
+                                PlayerUtils.addPermission(p, perm);
+                            }
+                        }
                         p.closeInventory();
                     }
             ));
