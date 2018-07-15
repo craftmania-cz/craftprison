@@ -32,8 +32,10 @@ public class WGExtendedListener implements Listener {
 
         if (PrisonManager.getWgRegions().contains(e.getRegion().getId().toLowerCase())) {
             if (p.hasPermission("craftprison.mine.fly")) {
-                p.setFlying(false);
-                p.setAllowFlight(false);
+                if(!p.hasPermission("essentials.fly")){
+                    p.setFlying(false);
+                    p.setAllowFlight(false);
+                }
             }
             if (p.hasPermission("craftprison.mine.nightvision")) {
                 p.removePotionEffect(PotionEffectType.NIGHT_VISION);
