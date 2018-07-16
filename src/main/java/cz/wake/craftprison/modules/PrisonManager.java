@@ -140,6 +140,7 @@ public class PrisonManager {
                         }
                         Rank nextRank = actualRank.getNext();
                         PlayerUtils.addPermission(p, nextRank.getPermission());
+                        PlayerUtils.addPermission(p, "quicksell.shop." + nextRank.getName());
                         PlayerUtils.sendRankUpMessage(p, nextRank);
                         CraftPlayer cp = pm.getPlayers().get(p);
                         Main.getEconomy().withdrawPlayer(p, (double)nextRank.getPrice());
