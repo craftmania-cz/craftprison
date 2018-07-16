@@ -6,27 +6,27 @@ import org.bukkit.potion.PotionEffectType;
 
 public enum CustomEnchantment {
 
-    EFFICIENCY("Efficiency", "§eEfficiency", Material.FEATHER, Enchantment.DIG_SPEED, false, "§7Kopej rychleji", 10, 100),
-    UNBREAKING("Unbreaking", "§cUnbreaking", Material.BEDROCK, Enchantment.DURABILITY, true, "§7...", 10, 3),
-    HASTE("Haste", "§aHaste", Material.BEACON, PotionEffectType.FAST_DIGGING, false, "§7...", 10, 2),
-    FORTUNE("Fortune", "§dFortune", Material.DIAMOND, Enchantment.LOOT_BONUS_BLOCKS, false, "§7...", 10, 100),
-    JUMP("Jump", "§fJump", Material.DIAMOND_BOOTS, PotionEffectType.JUMP, false, "§7...", 10, 2),
-    SOULBOUND("Soulbound", "§7Soulbound", Material.SOUL_SAND, null, true, "§7Podepise tvuj krumpac", 10, 1),
-    SPEED("Speed", "§bSpeed", Material.POTION, PotionEffectType.SPEED, false, "§7...", 10, 2),
-    NIGHT("Night Vision", "§8Night Vision", Material.GLOWSTONE_DUST, PotionEffectType.NIGHT_VISION, false, "§7...", 10, 1),
+    EFFICIENCY("Efficiency", "§eEfficiency", Material.FEATHER, Enchantment.DIG_SPEED, false, 5, 20, "§7Kopej jako blesk", "§7protoze cim rychlejsi", "§7kopani, tim lepsi Prison."),
+    UNBREAKING("Unbreaking", "§cUnbreaking", Material.BEDROCK, Enchantment.DURABILITY, true, 4, 3, "§7Neznicitelny krumpac", "§7je zaklad kazdeho kopani."),
+    HASTE("Haste", "§aHaste", Material.BEACON, PotionEffectType.FAST_DIGGING, false, 10, 2, "§7Rychlejsi nez blesk", "§7tak to budes ty."),
+    FORTUNE("Fortune", "§dFortune", Material.DIAMOND, Enchantment.LOOT_BONUS_BLOCKS, false, 12, 30, "§7S kazdou urovni dostanes", "§7vic a vic itemu", "§7z vykopanych bloku."),
+    JUMP("Jump", "§fJump", Material.DIAMOND_BOOTS, PotionEffectType.JUMP, false, 10, 2, "§7Skakej jako kralik.", "§7Hlavne nepreskoc doly."),
+    SOULBOUND("Soulbound", "§7Soulbound", Material.SOUL_SAND, null, true, 7, 1, "§7Podepise krumpac tvym jmenem,", "§7a kazdy pak zjisti, jak jsi super."),
+    SPEED("Speed", "§bSpeed", Material.POTION, PotionEffectType.SPEED, false, 20, 2, "§7Rychle a zbesile", "§7na Prisonu."),
+    NIGHT("Night Vision", "§8Night Vision", Material.GLOWSTONE_DUST, PotionEffectType.NIGHT_VISION, false, 20, 1, "§7Nevidis v noci?", "§7Co si rozsvitit?"),
     //LASER("Laser", "§cLaser", Material.GLASS, null, false, "§7...", 10, 3),
-    EXPLOSIVE("Explosive", "§4Explosive", Material.TNT, null, false, "§7Je sance, ze to udela *bum*", 10, 1);
+    EXPLOSIVE("Explosive", "§4Explosive", Material.TNT, null, false, 100, 1, "§7Efekt, se kterym ti", "§7bude krumpac explodovat.", "", "§cPouze kosmeticky efekt!");
 
     private String name;
     private String coloredName;
     private Material material;
-    private String lore;
+    private String[] lore;
     private Object effect;
     private boolean soulbound;
     private int price;
     private int maxLevel;
 
-    CustomEnchantment(String name, String coloredName, Material material, Object effect, boolean soulbound, String lore, int price, int maxLevel) {
+    CustomEnchantment(String name, String coloredName, Material material, Object effect, boolean soulbound, int price, int maxLevel, String... lore) {
         this.name = name;
         this.coloredName = coloredName;
         this.material = material;
@@ -57,7 +57,7 @@ public enum CustomEnchantment {
         return effect;
     }
 
-    public String getLore() {
+    public String[] getLore() {
         return lore;
     }
 

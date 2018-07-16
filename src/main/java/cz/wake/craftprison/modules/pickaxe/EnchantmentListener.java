@@ -69,7 +69,7 @@ public class EnchantmentListener implements Listener {
             return;
         }
 
-        if (!getChance(30)) {
+        if (!getChance(20)) {
             return;
         }
 

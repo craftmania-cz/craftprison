@@ -48,7 +48,8 @@ public class PickaxeUpgradeListener implements Listener {
 
         ItemStack item = e.getCurrentItem();
         if (e.getSlot() == 16) {
-            AnvilContainer.openAnvil(p, e.getInventory().getItem(13));
+            //AnvilContainer.openAnvil(p, e.getInventory().getItem(13));
+            p.sendMessage("§c§l(!) §cTato funkce je kvuli kriticke chybe zjistenou pred spustenim vypnuta.");
             return;
         }
         ItemStack pickaxe = e.getInventory().getItem(13);

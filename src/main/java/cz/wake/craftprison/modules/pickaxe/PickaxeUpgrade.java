@@ -41,10 +41,11 @@ public class PickaxeUpgrade {
         inv.setItem(22, glass);
         inv.setItem(23, glass);
 
-        ItemStack anvil = new ItemBuilder(Material.ANVIL).setName("§a§lPrejmenovat").setLore("", "§7Klikni pro prejmenovani").hideAllFlags().build();
+        //ItemStack anvil = new ItemBuilder(Material.ANVIL).setName("§a§lPrejmenovat").setLore("", "§7Klikni pro prejmenovani").hideAllFlags().build();
+        ItemStack anvil = new ItemBuilder(Material.BARRIER).setName("§cNedostupne").setLore("§7Kvuli kriticke chybe docasne off.").hideAllFlags().build();
         inv.setItem(16, anvil);
 
-        ItemStack barrier = new ItemBuilder(Material.BARRIER).setName("§0").hideAllFlags().build();
+        ItemStack barrier = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)14).setName("§0").hideAllFlags().build();
         for (int i = 27; i <= 44; i++) {
             inv.setItem(i, barrier);
         }
@@ -61,11 +62,9 @@ public class PickaxeUpgrade {
             int price = ce.getPrice() * (ce.getEffect() instanceof Enchantment ?
                     pickaxe.getEnchantmentLevel((Enchantment) ce.getEffect()) : cp.getCustomEnchantLevel(ce.getName()));
             int level = ce.getEffect() instanceof Enchantment ? pickaxe.getEnchantmentLevel((Enchantment) ce.getEffect()) : cp.getCustomEnchantLevel(ce.getName());
-            inv.setItem(slot, new ItemBuilder(ce.getMaterial()).setName(ce.getColoredName()).setLore(ce.getLore(), "",
-                    "§7Aktualni level: §a" + level,
-                    "§7Maximalni level: §c" + ce.getMaxLevel(),
-                    level >= ce.getMaxLevel() ? "§cDosahl jsi maximalniho levelu" :
-                            "§7Cena upgradu: §e" + (price == 0 ? ce.getPrice() : price)).build());
+            inv.setItem(slot, new ItemBuilder(ce.getMaterial()).setName(ce.getColoredName()).setLore(ce.getLore()).addLoreLine("").addLoreLine("§7Aktualni level: §a" + level)
+                    .addLoreLine("§7Maximalni level: §c" + ce.getMaxLevel()).addLoreLine(level >= ce.getMaxLevel() ? "§cDosahl jsi maximalniho levelu" :
+                                    "§7Cena upgradu: §e" + (price == 0 ? ce.getPrice() : price)).hideAllFlags().build());
         }
 
         ItemStack sign = new ItemBuilder(Material.SIGN).setName("§b§lPocet PrisCoinu: §7" + new PrisonManager().getCraftPlayer(p).getPrisCoins()).hideAllFlags().build();
