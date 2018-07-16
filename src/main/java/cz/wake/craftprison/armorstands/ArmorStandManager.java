@@ -200,8 +200,43 @@ public class ArmorStandManager {
         RankedArmorStand obelix = new RankedArmorStand("Obelix", new Location(Bukkit.getWorld("doly"), 262.5, 115, -393.5, 80, 0));
         obelix.setHead("8f2f43a8-2c2c-4a65-81a9-f7b5a49d876f", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWRjMTQ0M2QyYmI1MzU2YjliYjFkZjkyM2U2YTM5ZjJmNDQ2ZmU4OGU5NmQ0OGJlNTlhMGQ4ZDkxMzRjOWIyOSJ9fX0=");
         obelix.setColor(135, 206, 255);
-        obelix.setHologramTexts("§7Zde prodavej bloky!", "§b§lObelix Mine");
+        obelix.setHologramTexts("§7Zde prodavej bloky!", "§3§lObelix Mine");
         obelix.spawn();
+
+        // Rank Elsa
+        RankedArmorStand elsa = new RankedArmorStand("Elsa", new Location(Bukkit.getWorld("doly"), 237.5, 107, -703.5, -12, 0));
+        elsa.setHead("6abe277f-30ea-42e5-a591-8bbb92bbd569", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDgyOWVmMTlmMWY5ZThiZjY4MjQ0ZGNlZjk0Njc1ZDBmMjExMTgyNzA2YTk3YjVhZGMyY2U1ZGQ5OSJ9fX0=");
+        elsa.setColor(99, 184, 255);
+        elsa.setHologramTexts("§7Zde prodavej bloky!", "§b§lElsa Mine");
+        elsa.spawn();
+
+        // Rank Angel
+        RankedArmorStand angel = new RankedArmorStand("Angel", new Location(Bukkit.getWorld("doly"), 273.5, 112, -1029.5, 20, 0));
+        angel.setHead("b0e9b61c-2f33-4e40-b31e-80980dbe86f3", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTVjOGEyYzA3ODNlOTY1NzE4NmFkYmFkYTk5OTBhY2U1MGU0ZGQyYWY1MWIzYzJkY2U1Mzg4NGVmZjY2MyJ9fX0=");
+        angel.setColor(255, 255, 255);
+        angel.setHologramTexts("§7Zde prodavej bloky!", "§f§lAngel Mine");
+        angel.spawn();
+
+        // Rank Carl The Cupcake
+        RankedArmorStand carl = new RankedArmorStand("Carl", new Location(Bukkit.getWorld("doly"), 616.5, 121, -913.5, -60, 0));
+        carl.setHead("af9eb78c-af8d-40ca-b8ae-06f4fb02a080", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjc1ZmM5NmY5NjdkMzU1MDIwMGI3ZjgyZmEyYzM0NTRjZGFmZGFjNzZjNTVlNTE1ZWUyYWFiNDI3ZjYzIn19fQ==");
+        carl.setColor(238, 0, 238);
+        carl.setHologramTexts("§7Zde prodavej bloky!", "§d§lCarl The Cupcake Mine");
+        carl.spawn();
+
+        // Rank Thanos
+        RankedArmorStand thanos = new RankedArmorStand("Thanos", new Location(Bukkit.getWorld("doly"), 994.5, 105, -920.5, -100, 0));
+        thanos.setHead("7055d982-299a-4315-9f01-f4d830506fe5", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWYzNDQ2ZTgzMGQzOTUzN2UyYjIyM2VhZmYyZjFjZWQ5NTc4OTY0MTEzYzQ3ODI0YzgwZDJjZTU5YmYyMTI4In19fQ==");
+        thanos.setColor(25, 25, 112);
+        thanos.setHologramTexts("§7Zde prodavej bloky!", "§9§lThanos Mine");
+        thanos.spawn();
+
+        // Rank Groot
+        RankedArmorStand groot = new RankedArmorStand("Groot", new Location(Bukkit.getWorld("doly"), 1359.5, 111, -909, 111, 0));
+        groot.setHead("c7a7be8d-950a-43dc-9c53-ab9f5d13d4a1", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTZlODVlMzJiNzVlOTcyZTEwYjI1NmQ1NDk2NGUxOWYxYThiMzk0MDk1YWQ5ZjMzMWI4ODg0MDlkZTIifX19");
+        groot.setColor(139, 90, 0);
+        groot.setHologramTexts("§7Zde prodavej bloky!", "§6§lGroot Mine");
+        groot.spawn();
     }
 
     public static void initStandartArmorStand(){
@@ -209,7 +244,7 @@ public class ArmorStandManager {
         // Tutorial
         StandartArmorStand tutorial = new StandartArmorStand("Tutorial", new Location(Bukkit.getWorld("prison_spawn"), -1181.5, 52, -388.5, -135, 0));
         tutorial.setHead("bea9ae4a-9e16-4ed1-b8ac-bec02556b473", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGJlMmJhZjQwZmQ4NWViNTczZmU1YjJlNWI2Yzg4MTdjZjUwZjg4M2Q5NTc2OTQxNTgwN2FiMDcyODhhNDdjZCJ9fX0=");
-        tutorial.setColor(80, 90, 100);
+        tutorial.setColor(61, 89, 171);
         tutorial.setHologramTexts("§9§lTutorial");
         tutorial.spawn();
     }

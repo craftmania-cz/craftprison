@@ -19,7 +19,12 @@ public enum Rank {
     ASTRONAUT(15, "Astronaut", 3000000, MineDifficulty.STANDARD, 2, "Automaticky FLY v dolech", "craftprison.mine.fly"),
     MUMMY(16, "Mummy", 5000000, MineDifficulty.STANDARD, 2, "", ""),
     CRASH(17, "Crash", 10000000, MineDifficulty.STANDARD, 2, "Odemknuti sekce Decorations v /shop", ""), //TODO: Shop
-    OBELIX(18, "Obelix", 20000000, MineDifficulty.STANDARD, 2, "", "");
+    OBELIX(18, "Obelix", 20000000, MineDifficulty.STANDARD, 2, "", ""),
+    ELSA(19, "Elsa", 30000000, MineDifficulty.STANDARD, 2, "Odemknuti sekce Redstone v /shop", ""),
+    ANGEL(20, "Angel", 50000000, MineDifficulty.STANDARD, 2, "", ""),
+    CARL(21, "Carl", 100000000, MineDifficulty.STANDARD, 2, "", ""),
+    THANOS(22, "Thanos", 250000000, MineDifficulty.STANDARD, 2, "", ""),
+    GROOT(21, "Groot", 500000000, MineDifficulty.STANDARD, 2, "", "");
 
     private int weight;
     private String name;
