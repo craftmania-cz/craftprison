@@ -1,7 +1,10 @@
 package cz.wake.craftprison.listener;
 
+import cz.wake.craftcore.utils.books.UtilBook;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.armorstands.ArmorStandManager;
+import cz.wake.craftprison.modules.PrisonManager;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.metadata.Metadatable;
 import org.bukkit.plugin.Plugin;
@@ -37,20 +41,24 @@ public class ArmorStandInteract implements Listener {
                     String rank = (String) obj;
                     p.performCommand("sellall " + rank);
                 }
-            } else if (ArmorStandManager.isStandartArmorStand(clickedAs)) {
-                System.out.println("kek-1");
+            }
+            if (ArmorStandManager.isStandartArmorStand(clickedAs)) {
                 e.setCancelled(true);
                 if (clickedAs.hasMetadata("standart") || clickedAs.getLocation().equals(ArmorStandManager.getStandartArmorStandByLocation(clickedAs.getLocation()))) {
-                    System.out.println("kek-2");
                     Object obj = getMetadata(clickedAs, "standart", Main.getInstance());
                     String name = (String) obj;
-                    System.out.println("kek-name: " + name);
                     if(name == null) {
                         return;
                     }
                     if(name.equalsIgnoreCase("Tutorial")) {
-                        System.out.println("kek-final");
-                        p.sendMessage("§b§lSMRDIS");
+                        PrisonManager.TutorialMenu.TUTORIAL.open(p);
+                    }
+                    if(name.equalsIgnoreCase("pvp")){
+                        if(Bukkit.getOnlinePlayers().size() < 10) {
+                            p.sendMessage("§c§l(!) §cNelze prodavat pokud je na serveru mene jak 10 hracu.");
+                            return;
+                        }
+                        p.performCommand("sellall pvp");
                     }
                 }
             }
@@ -70,6 +78,23 @@ public class ArmorStandInteract implements Listener {
                         Object obj = getMetadata(clickedAs, "rank", Main.getInstance());
                         String rank = (String) obj;
                         p.performCommand("prices " + rank);
+                    }
+                }
+                if (ArmorStandManager.isStandartArmorStand(clickedAs)) {
+                    e.setCancelled(true);
+                    if (clickedAs.hasMetadata("standart") || clickedAs.getLocation().equals(ArmorStandManager.getStandartArmorStandByLocation(clickedAs.getLocation()))) {
+                        Object obj = getMetadata(clickedAs, "standart", Main.getInstance());
+                        String name = (String) obj;
+                        if(name == null) {
+                            return;
+                        }
+                        if(name.equalsIgnoreCase("pvp")){
+                            if(Bukkit.getOnlinePlayers().size() < 10) {
+                                p.sendMessage("§c§l(!) §cNelze prodavat pokud je na serveru mene jak 10 hracu.");
+                                return;
+                            }
+                            p.performCommand("prices pvp");
+                        }
                     }
                 }
             }

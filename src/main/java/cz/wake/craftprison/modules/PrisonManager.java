@@ -5,6 +5,7 @@ import cz.wake.craftcore.inventory.SmartInventory;
 import cz.wake.craftcore.inventory.content.InventoryContents;
 import cz.wake.craftcore.inventory.content.InventoryProvider;
 import cz.wake.craftcore.inventory.content.Pagination;
+import cz.wake.craftcore.inventory.opener.InventoryOpener;
 import cz.wake.craftcore.messages.Advancement;
 import cz.wake.craftcore.messages.handler.AdvancementManager;
 import cz.wake.craftcore.utils.items.ItemBuilder;
@@ -18,6 +19,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -141,6 +144,7 @@ public class PrisonManager {
                         Rank nextRank = actualRank.getNext();
                         PlayerUtils.addPermission(p, nextRank.getPermission());
                         PlayerUtils.addPermission(p, "quicksell.shop." + nextRank.getName());
+                        PlayerUtils.addPermission(p, "deluxetags.tag." + nextRank.getName().toLowerCase());
                         PlayerUtils.sendRankUpMessage(p, nextRank);
                         CraftPlayer cp = pm.getPlayers().get(p);
                         Main.getEconomy().withdrawPlayer(p, (double)nextRank.getPrice());
@@ -192,6 +196,43 @@ public class PrisonManager {
         @Override
         public void update(Player player, InventoryContents contents){}
 
+    }
+
+    public static class TutorialMenu implements InventoryProvider {
+
+        public static final SmartInventory TUTORIAL = SmartInventory.builder()
+                .id("tutorial").provider(new TutorialMenu())
+                .size(6,9).title("Tutorial").build();
+
+        @Override
+        public void init(Player p, InventoryContents contents) {
+            contents.set(0, 4, ClickableItem.of(new ItemBuilder(Material.OBSIDIAN).setName("§9Jak na Prison 2.0")
+                .setLore("§7Seznam kratkych tutorialu", "§7se kterymi ziskas prehled", "§7na nasem Prisonu.").build(), e -> {}));
+
+            contents.set(2, 2, ClickableItem.of(new ItemBuilder(Material.EMERALD_ORE).setName("§aDoly")
+                .setLore("§7Na nasem prisonu najdes", "§7mnoho dolu, pojmenovanych po", "§7pohadkovych postavach.",
+                        "§7S kazdym dolem, ziskas i", "§7specialni tag s nazvem dolu.","", "§eSeznam dolu: §b/ranks").build(), e -> {}));
+
+            contents.set(2, 4, ClickableItem.of(new ItemBuilder(Material.LADDER).setName("§cRanky a Prestige?")
+                .setLore("§7Kazdy jeden dul = jeden rank.", "§7Kazdy hrac u nas zacina", "§7s obtiznosti §eEasy§7.", "",
+                        "§7Po dokonceni zakladniho Prisonu", "§7se ti odemkne prikaz §f/obtiznost", "§7Se kterym si muzes cely",
+                        "§7svuj proces vyresetovat", "§7a dat si tezsi obtiznost!","", "§eZobrazeni ranku: §b/rank", "§eRankup na dalsi uroven: §b/rankup").build(), e -> {}));
+
+            contents.set(2, 6, ClickableItem.of(new ItemBuilder(Material.IRON_SWORD).setName("§dPvP Mine")
+                .setLore("§7PvP se zde take nachazi,", "§7ale ve specialni podobe dolu.", "§7Kde muzes ziskat vetsi",
+                        "§7obnos penez za cenu smrti.", "", "§cOdemknuti od ranku: §fBender", "", "§eTeleport: §b/pvp").hideAllFlags().build(), e -> {}));
+
+
+            contents.set(4, 2, ClickableItem.of(new ItemBuilder(Material.LOG).setName("§bOstrovy")
+                .setLore("§7Kazdy hrac si muze vytvorit", "§71x vlastni ostrov o", "§7rozloze 400x400 blocku.",
+                        "", "§cOdemknuti od ranku: §fD", "", "§eVytvoreni ostrova: §b/is").build(), e -> {}));
+
+
+
+        }
+
+        @Override
+        public void update(Player player, InventoryContents contents){}
     }
 
     public HashMap<Player, CraftPlayer> getPlayers() {

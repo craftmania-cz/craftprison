@@ -239,7 +239,7 @@ public class ArmorStandManager {
         groot.spawn();
     }
 
-    public static void initStandartArmorStand(){
+    public static void initStandartArmorStand() {
 
         // Tutorial
         StandartArmorStand tutorial = new StandartArmorStand("Tutorial", new Location(Bukkit.getWorld("prison_spawn"), -1181.5, 52, -388.5, -135, 0));
@@ -247,5 +247,12 @@ public class ArmorStandManager {
         tutorial.setColor(61, 89, 171);
         tutorial.setHologramTexts("§9§lTutorial");
         tutorial.spawn();
+
+        // Pvp
+        StandartArmorStand pvp = new StandartArmorStand("PVP", new Location(Bukkit.getWorld("doly"), -1078.5, 118, 1378, -108, 0));
+        pvp.setHead("c781ca84-ee4a-41f9-9fbe-40b8239473b8", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzk5ZDE1OGI2ODVlNzJlMjQ1NzJjOWU3YTA2YWE1NmY0Yzk4ZWNmMzIyNDUzYzVlYmQxMzAxY2QyZDQ2ZDk0YSJ9fX0=");
+        pvp.setColor(0, 201, 87);
+        pvp.setHologramTexts("§7Prodej obsidian bloku", "§a§lPvP Mine");
+        pvp.spawn();
     }
 }

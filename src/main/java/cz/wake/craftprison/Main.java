@@ -163,6 +163,8 @@ public class Main extends JavaPlugin {
         getCommand("stats").setExecutor(new StatsCommand());
         getCommand("pcoins").setExecutor(new PCoinsCommand());
         getCommand("pickaxe").setExecutor(new PickaxeCommand());
+        getCommand("tutorial").setExecutor(new TutorialCommand());
+        getCommand("pvp").setExecutor(new PVPCommand());
     }
 
     public static Main getInstance() {

@@ -18,3 +18,7 @@ commands:
     pickaxe:
       description: Pickaxe upgrade system
       aliases: [krumpac, krump]
+    tutorial:
+      description: Napoveda k Prisonu
+    pvp:
+      description: Teleport do pvp
