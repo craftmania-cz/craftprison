@@ -22,3 +22,5 @@ commands:
       description: Napoveda k Prisonu
     pvp:
       description: Teleport do pvp
+    mine:
+      description: Prikaz na primy teleport do dolu

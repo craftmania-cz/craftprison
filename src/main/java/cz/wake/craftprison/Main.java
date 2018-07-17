@@ -165,6 +165,7 @@ public class Main extends JavaPlugin {
         getCommand("pickaxe").setExecutor(new PickaxeCommand());
         getCommand("tutorial").setExecutor(new TutorialCommand());
         getCommand("pvp").setExecutor(new PVPCommand());
+        getCommand("mine").setExecutor(new MineCommand());
     }
 
     public static Main getInstance() {
