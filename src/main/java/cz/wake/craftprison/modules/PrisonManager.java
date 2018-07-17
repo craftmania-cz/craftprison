@@ -5,7 +5,6 @@ import cz.wake.craftcore.inventory.SmartInventory;
 import cz.wake.craftcore.inventory.content.InventoryContents;
 import cz.wake.craftcore.inventory.content.InventoryProvider;
 import cz.wake.craftcore.inventory.content.Pagination;
-import cz.wake.craftcore.inventory.opener.InventoryOpener;
 import cz.wake.craftcore.messages.Advancement;
 import cz.wake.craftcore.messages.handler.AdvancementManager;
 import cz.wake.craftcore.utils.items.ItemBuilder;
@@ -19,8 +18,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BookMeta;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -50,7 +47,7 @@ public class PrisonManager {
             Main.getInstance().saveConfig();
 
             //Krumpac
-            p.getInventory().addItem(PickaxeUpgrade.getFirstPickaxe(p.getName()));
+            p.getInventory().addItem(PickaxeUpgrade.getDefaultPickaxe(p.getName()));
         } else {
             cp = Main.getInstance().getMySQL().getCraftPlayerFromSQL(p);
         }

@@ -1,13 +1,21 @@
 package cz.wake.craftprison.commands;
 
+import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.pickaxe.CustomPickaxe;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.HashMap;
 
 public class PickaxeCommand implements CommandExecutor {
+
+    private HashMap<Player, Double> _time = new HashMap<>();
+    private HashMap<Player, BukkitRunnable> _cdRunnable = new HashMap<>();
+
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -18,12 +26,32 @@ public class PickaxeCommand implements CommandExecutor {
         Player p = (Player) sender;
         if (args.length != 0) {
             if (args[0].equalsIgnoreCase("get")) {
-                if (!p.hasPermission("craftprison.pickaxe.get")) {
-                    p.sendMessage("§c§l(!) §cNa toto nemas dostatecna prava!");
+                if (this._time.containsKey(p)) {
+                    p.sendMessage("§c§l(!) §cMusis pockat jeste " + String.valueOf(arrondi(this._time.get(p), 1)) + " vterin.");
                     return false;
                 }
-                p.getInventory().addItem(PickaxeUpgrade.getFirstPickaxe(p.getName()));
+                this._time.put(p, 600D + 0.1D);
+                p.getInventory().addItem(PickaxeUpgrade.getDefaultPickaxe(p.getName()));
+                this._cdRunnable.put(p, new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        PickaxeCommand.this._time.put(p, Double.valueOf((PickaxeCommand.this._time.get(p)).doubleValue() - 0.1D));
+                        if ((PickaxeCommand.this._time.get(p)).doubleValue() < 0.01D) {
+                            PickaxeCommand.this._time.remove(p);
+                            PickaxeCommand.this._cdRunnable.remove(p);
+                            cancel();
+                        }
+
+                    }
+                });
+                (this._cdRunnable.get(p)).runTaskTimer(Main.getInstance(), 2L, 2L);
                 return true;
+            }
+            if (args[0].equalsIgnoreCase("debug")) {
+                if (p.hasPermission("craftprison.admin.pickaxe")) {
+                    p.getInventory().addItem(PickaxeUpgrade.getDebugPickaxe(p.getName()));
+                    return true;
+                }
             }
         }
 
@@ -36,4 +64,9 @@ public class PickaxeCommand implements CommandExecutor {
 
         return false;
     }
+
+    private static double arrondi(double A, int B) {
+        return (int) (A * Math.pow(10.0D, B) + 0.5D) / Math.pow(10.0D, B);
+    }
+
 }

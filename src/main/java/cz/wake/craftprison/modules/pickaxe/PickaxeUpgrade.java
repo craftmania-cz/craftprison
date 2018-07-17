@@ -73,10 +73,16 @@ public class PickaxeUpgrade {
         p.openInventory(inv);
     }
 
-    public static ItemStack getFirstPickaxe(String name) {
+    public static ItemStack getDefaultPickaxe(String name) {
         return new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§b§lKrumpac").addLore("§0", "§7Patri hraci §6" + name)
-                .addEnchant(Enchantment.DIG_SPEED, 5).addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 2)
+                .addEnchant(Enchantment.DIG_SPEED, 6).addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 2)
                 .addEnchant(Enchantment.DURABILITY, 3).addItemFlag(ItemFlag.HIDE_ATTRIBUTES).build();
+    }
+
+    public static ItemStack getDebugPickaxe(String name) {
+        return new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§c§lDEBUG KRUMPAC").addLore("§0", "§7Patri hraci §6" + name)
+                .addEnchant(Enchantment.DIG_SPEED, 10).addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 10)
+                .addEnchant(Enchantment.DURABILITY, 10).addItemFlag(ItemFlag.HIDE_ATTRIBUTES).build();
     }
 
     private boolean isSoulbound() {
