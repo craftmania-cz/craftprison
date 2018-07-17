@@ -7,7 +7,7 @@ public enum Rank {
     TUTORIAL_C(3, "C", 4000, MineDifficulty.TUTORIAL, 1, "", ""),
     TUTORIAL_D(4, "D", 10000, MineDifficulty.TUTORIAL, 1, "Odemknuti vytvareni ostrova /is", "askyblock.island.create"),
     GOOFY(5, "Goofy", 20000, MineDifficulty.STANDARD, 1, "Odemknuti pouzivani Aukce /au (Max 1 aukce)", "auctionguiplus.auction", "auctionguiplus.auction.bid", "auctionguiplus.auction.start", "auctionguiplus.auction.bid"),
-    BENDER(6, "Bender", 40000, MineDifficulty.STANDARD, 1, "Odemknuti prikazu /pvp", "craftprison.pvp"),
+    BENDER(6, "Bender", 40000, MineDifficulty.STANDARD, 1, "Odemknuti prikazu /pvp", "craftprison.pvp", "quicksell.shop.pvp"),
     MAGIKARP(7, "Magikarp", 80000, MineDifficulty.STANDARD, 1, "Odemknuti /shop + sekce Blocks", "shopguiplus.shop", "shopguiplus.shops.blocks"),
     ZOIDBERG(8, "Zoidberg", 150000, MineDifficulty.STANDARD, 1, "", ""),
     MAXWELL(9, "Maxwell", 300000, MineDifficulty.STANDARD, 1, "Odemknuti prikazu /heads", "headdb.allow.buy", "headdb.category.*", "headdb.open"),
