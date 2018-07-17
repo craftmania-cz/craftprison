@@ -142,13 +142,13 @@ public class PrisonManager {
                         PlayerUtils.addPermission(p, nextRank.getPermission());
                         PlayerUtils.addPermission(p, "quicksell.shop." + nextRank.getName());
                         PlayerUtils.addPermission(p, "deluxetags.tag." + nextRank.getName().toLowerCase());
-                        PlayerUtils.sendRankUpMessage(p, nextRank);
                         CraftPlayer cp = pm.getPlayers().get(p);
                         Main.getEconomy().withdrawPlayer(p, (double)nextRank.getPrice());
                         Main.getInstance().getMySQL().rankupPlayerSQL(p, nextRank);
                         PrisCoins.giveCoins(p, nextRank.getPrisCoins());
                         cp.setRank(nextRank);
                         PlayerUtils.randomFireworks(p.getLocation());
+                        PlayerUtils.sendRankUpMessage(p);
                         Advancement.builder(new NamespacedKey(Main.getInstance(), "craftprison"))
                                 .title("Novy rank: " + pm.getColoredPlayerRank(p)).description("_").icon("minecraft:diamond")
                                 .announce(false).hidden(false).toast(true).frame(AdvancementManager.FrameType.GOAL).build()
