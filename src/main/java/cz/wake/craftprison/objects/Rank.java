@@ -24,7 +24,7 @@ public enum Rank {
     ANGEL(20, "Angel", 50000000, MineDifficulty.STANDARD, 2, "", ""),
     CARL(21, "Carl", 100000000, MineDifficulty.STANDARD, 2, "Moznost menit biom na ostrove", ""),
     THANOS(22, "Thanos", 250000000, MineDifficulty.STANDARD, 2, "", ""),
-    GROOT(21, "Groot", 500000000, MineDifficulty.STANDARD, 2, "Moznost pridat 4 hrace na ostrov (+2)", "askyblock.team.maxsize.4");
+    GROOT(23, "Groot", 500000000, MineDifficulty.STANDARD, 2, "Moznost pridat 4 hrace na ostrov (+2)", "askyblock.team.maxsize.4");
 
     private int weight;
     private String name;
