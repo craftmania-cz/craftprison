@@ -142,6 +142,7 @@ public class PrisonManager {
                         PlayerUtils.addPermission(p, nextRank.getPermission());
                         PlayerUtils.addPermission(p, "quicksell.shop." + nextRank.getName());
                         PlayerUtils.addPermission(p, "deluxetags.tag." + nextRank.getName().toLowerCase());
+                        PlayerUtils.addPermission(p, "essentials.warps." + nextRank.getName().toLowerCase());
                         CraftPlayer cp = pm.getPlayers().get(p);
                         Main.getEconomy().withdrawPlayer(p, (double)nextRank.getPrice());
                         Main.getInstance().getMySQL().rankupPlayerSQL(p, nextRank);

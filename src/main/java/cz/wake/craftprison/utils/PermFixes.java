@@ -19,5 +19,15 @@ public class PermFixes {
         if(pm.getPlayerRank(p) != Rank.TUTORIAL_A && !p.hasPermission("craftprison.mine.nightvision")) {
             PlayerUtils.addPermission(p, "craftprison.mine.nightvision");
         }
+
+        // Oprava pristupu na doly # 18.7.2018
+        for (Rank r : Rank.values()){
+            if(r.getWeight() <= pm.getPlayerRank(p).getWeight()){ // A - 1, Zoidberg - 5
+                if(!p.hasPermission("essentials.warps." + r.getName().toLowerCase())){
+                    PlayerUtils.addPermission(p, "essentials.warps." + r.getName().toLowerCase());
+                }
+            }
+        }
+
     }
 }
