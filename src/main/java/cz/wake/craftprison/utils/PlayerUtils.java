@@ -40,7 +40,7 @@ public class PlayerUtils {
         }
         p.sendMessage("§6\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac");
         p.sendMessage("");
-        p.sendMessage("§7Aktualni rank: " + pm.getColoredPlayerRank(p) + " §8| §7Dalsi rank: " + pm.getColoredNextPlayerRank(p));
+        p.sendMessage("§7Aktualni rank: " + pm.getColoredPlayerRank(p) + " (" + pm.getPlayerRank(p).getWeight() + ") " + "§8| §7Dalsi rank: " + pm.getColoredNextPlayerRank(p) + " (" + pm.getPlayerNextRank(p).getWeight() + ") ");
         p.sendMessage("§7Dokonceni ranku: §f" + ActionBarProgress.getPercent(Main.getEconomy().getBalance(p), pm.getPlayerRank(p).getNext().getPrice()) + "% §8| §7Rankup castka: §f" + formatMoney(pm.getPlayerRank(p).getNext().getPrice()) +"§a$");
         p.sendMessage("§7Celkove dokonceni: §f" + String.valueOf(ActionBarProgress.getPercent(pm.getPlayerRank(p).getWeight(), Rank.getLast().getWeight())) + "% §8| §7Obtiznost: §eEasy");
         p.sendMessage("");
