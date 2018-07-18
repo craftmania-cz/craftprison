@@ -3,6 +3,7 @@ package cz.wake.craftprison;
 import com.wasteofplastic.askyblock.ASkyBlockAPI;
 import cz.wake.craftprison.armorstands.ArmorStandManager;
 import cz.wake.craftprison.commands.*;
+import cz.wake.craftprison.hooks.PlaceholderRegister;
 import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
 import cz.wake.craftprison.modules.ActionBarProgress;
@@ -124,6 +125,10 @@ public class Main extends JavaPlugin {
 
         // Tasks
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, ActionBarProgress::send, 1L, 40L);
+
+        // Placeholders
+        PlaceholderRegister pr = new PlaceholderRegister(this);
+        pr.registerPlaceholders();
     }
 
     @Override

@@ -2,7 +2,7 @@ name: CraftPrison
 main: cz.wake.craftprison.Main
 authors: [MrWakeCZ]
 depend: [Multiverse-Core,CraftCore,Vault]
-softdepend: [AutoSell, VKBackPack]
+softdepend: [AutoSell,VKBackPack,MVdWPlaceholderAPI]
 version: 1.0
 
 commands:
