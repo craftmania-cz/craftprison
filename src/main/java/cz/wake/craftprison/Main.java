@@ -96,14 +96,14 @@ public class Main extends JavaPlugin {
         }
 
         // ArmorStandy
-        ArmorStandManager.initRankedArmorStands();
-        ArmorStandManager.initStandartArmorStand();
+        //ArmorStandManager.initRankedArmorStands();
+        //ArmorStandManager.initStandartArmorStand();
 
         // WG regions
         PrisonManager.registerWgMines();
 
         //ASkyBlock hook
-        if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
+        if (Bukkit.getPluginManager().isPluginEnabled("aSkyBlock")) {
             this.aSkyBlockAPI = (ASkyBlockAPI) Bukkit.getPluginManager().getPlugin("aSkyBlock");
         } else {
             this.aSkyBlockAPI = null;
@@ -171,6 +171,7 @@ public class Main extends JavaPlugin {
         getCommand("tutorial").setExecutor(new TutorialCommand());
         getCommand("pvp").setExecutor(new PVPCommand());
         getCommand("mine").setExecutor(new MineCommand());
+        getCommand("ranks").setExecutor(new RanksCommand());
     }
 
     public static Main getInstance() {

@@ -5,6 +5,7 @@ import cz.wake.craftcore.inventory.SmartInventory;
 import cz.wake.craftcore.inventory.content.InventoryContents;
 import cz.wake.craftcore.inventory.content.InventoryProvider;
 import cz.wake.craftcore.inventory.content.Pagination;
+import cz.wake.craftcore.inventory.content.SlotIterator;
 import cz.wake.craftcore.messages.Advancement;
 import cz.wake.craftcore.messages.handler.AdvancementManager;
 import cz.wake.craftcore.utils.items.ItemBuilder;
@@ -18,7 +19,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -182,13 +185,69 @@ public class PrisonManager {
 
         public static final SmartInventory RANKS = SmartInventory.builder()
                 .id("ranks").provider(new RanksMenu())
-                .size(6,9).title("Prehled ranku").build();
+                .size(4,9).title("Prehled ranku").build();
 
         @Override
         public void init(Player p, InventoryContents contents) {
 
-            Pagination pagination = contents.pagination();
-            //contents.newIterator()
+           int row = 0;
+           int columm = 0;
+
+           for(Rank rank : Rank.values()){
+               if(pm.getPlayerRank(p).isAtLeast(rank)){
+
+                   ArrayList<String> lore = new ArrayList<>();
+                   lore.add("§7Rank dokoncen.");
+                   lore.add("");
+                   lore.add("§bZpristupneno:");
+                   if(!rank.getReward().equals("")){
+                       lore.add(" §f- " + rank.getReward());
+                   }
+                   if(rank.getPrisCoins() != 0){
+                       lore.add(" §f- " + rank.getPrisCoins() + " PrisCoins");
+                   } else {
+                       lore.add(" §f- Nic..."); // Rank A
+                   }
+                   lore.add("");
+                   lore.add("§eKliknutim te portnu na dul");
+
+                   contents.set(row, columm, ClickableItem.of(new ItemBuilder(rank.getItem()).setName("§a" + rank.getName())
+                           .setLore(lore).build(), e -> {
+                       p.performCommand("warp " + rank.getName().toLowerCase());
+                       p.closeInventory();
+                   }));
+               } else {
+                   if(pm.getPlayerRank(p).getNext() == rank){
+
+                       ArrayList<String> lore = new ArrayList<>();
+                       lore.add("§7Cena: §f" + PlayerUtils.formatMoney((double)rank.getPrice()) + "§a$");
+                       lore.add("§7Dokonceno: §f" + ActionBarProgress.getPercent(Main.getEconomy().getBalance(p), (double)rank.getPrice()) + "%");
+                       lore.add("");
+                       lore.add("§bZiskas:");
+                       if(!rank.getReward().equals("")){
+                           lore.add(" §f- " + rank.getReward());
+                       }
+                       if(rank.getPrisCoins() != 0){
+                           lore.add(" §f- " + rank.getPrisCoins() + " PrisCoins");
+                       } else {
+                           lore.add(" §f- Nic..."); // Rank A
+                       }
+
+                       contents.set(row, columm, ClickableItem.of(new ItemBuilder(Material.STAINED_GLASS_PANE)
+                               .setDurability((short)4).setName("§e" + rank.getName()).setLore(lore).build(), e -> {}));
+                   } else {
+                       contents.set(row, columm, ClickableItem.of(new ItemBuilder(Material.STAINED_GLASS_PANE)
+                               .setDurability((short)15).setName("§8§k" + rank.getName())
+                               .setLore("§7Musis dokoncit rank","§7pred timto k odemknuti.").build(), e -> {}));
+                   }
+               }
+               columm++;
+               if(columm == 9){
+                   row++;
+                   columm = 0;
+               }
+           }
+
 
         }
 
