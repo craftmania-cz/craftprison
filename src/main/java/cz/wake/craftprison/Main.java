@@ -64,13 +64,6 @@ public class Main extends JavaPlugin {
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
 
-        // Kontrola CraftCore, kdyz neni vypne se server
-        //if (Bukkit.getPluginManager().isPluginEnabled("CraftCore")) {
-        //    System.out.println("Neni detekovan CraftCore! CraftPrison se vypne!");
-        //    Bukkit.getPluginManager().disablePlugin(this); // Vypnuti CraftPrisonu
-        //    Bukkit.shutdown(); // Vypnuti serveru
-        //}
-
         // HikariCP
         initDatabase();
 

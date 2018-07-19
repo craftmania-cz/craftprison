@@ -6,28 +6,28 @@ import org.bukkit.inventory.ItemStack;
 public enum Rank {
 
     TUTORIAL_A(1, "A", 0, MineDifficulty.TUTORIAL, 0, new ItemStack(Material.COBBLESTONE), "", ""),
-    TUTORIAL_B(2, "B", 1000, MineDifficulty.TUTORIAL, 1, new ItemStack(Material.STONE,1,(short)4), "NightVision v dolech", "craftprison.mine.nightvision"),
-    TUTORIAL_C(3, "C", 4000, MineDifficulty.TUTORIAL, 1, new ItemStack(Material.STONE,1,(short)1), "", ""),
+    TUTORIAL_B(2, "B", 1000, MineDifficulty.TUTORIAL, 1, new ItemStack(Material.STONE, 1, (short) 4), "NightVision v dolech", "craftprison.mine.nightvision"),
+    TUTORIAL_C(3, "C", 4000, MineDifficulty.TUTORIAL, 1, new ItemStack(Material.STONE, 1, (short) 1), "", ""),
     TUTORIAL_D(4, "D", 10000, MineDifficulty.TUTORIAL, 1, new ItemStack(Material.LAPIS_ORE), "Odemknuti vytvareni ostrova /is", "askyblock.island.create"),
-    GOOFY(5, "Goofy", 20000, MineDifficulty.STANDARD, 1, new ItemStack(Material.STONE,1,(short)2), "Odemknuti pouzivani Aukce /au (Max 1 aukce)", "auctionguiplus.auction", "auctionguiplus.auction.bid", "auctionguiplus.auction.start", "auctionguiplus.auction.bid"),
+    GOOFY(5, "Goofy", 20000, MineDifficulty.STANDARD, 1, new ItemStack(Material.STONE, 1, (short) 2), "Odemknuti pouzivani Aukce /au (Max 1 aukce)", "auctionguiplus.auction", "auctionguiplus.auction.bid", "auctionguiplus.auction.start", "auctionguiplus.auction.bid"),
     BENDER(6, "Bender", 40000, MineDifficulty.STANDARD, 1, new ItemStack(Material.COAL_ORE), "Odemknuti prikazu /pvp", "craftprison.pvp", "quicksell.shop.pvp"),
-    MAGIKARP(7, "Magikarp", 80000, MineDifficulty.STANDARD, 1, new ItemStack(Material.STONE, 1,(short)6), "Odemknuti /shop + sekce Blocks", "shopguiplus.shop", "shopguiplus.shops.blocks"),
-    ZOIDBERG(8, "Zoidberg", 150000, MineDifficulty.STANDARD, 1, new ItemStack(Material.MOSSY_COBBLESTONE, 1,(short)1), "", ""),
+    MAGIKARP(7, "Magikarp", 80000, MineDifficulty.STANDARD, 1, new ItemStack(Material.STONE, 1, (short) 6), "Odemknuti /shop + sekce Blocks", "shopguiplus.shop", "shopguiplus.shops.blocks"),
+    ZOIDBERG(8, "Zoidberg", 150000, MineDifficulty.STANDARD, 1, new ItemStack(Material.MOSSY_COBBLESTONE, 1, (short) 1), "", ""),
     MAXWELL(9, "Maxwell", 300000, MineDifficulty.STANDARD, 1, new ItemStack(Material.SANDSTONE), "Odemknuti prikazu /heads", "headdb.allow.buy", "headdb.category.*", "headdb.open"),
-    STRANGE(10, "Strange", 500000, MineDifficulty.STANDARD, 1, new ItemStack(Material.PRISMARINE, 1,(short)2), "", ""),
-    SHREK(11, "Shrek", 800000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STAINED_CLAY, 1,(short)5), "Moznost pridat 3 hrace na ostrov (+1)", "askyblock.team.maxsize.3"),
-    FIONA(12, "Fiona", 1200000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STAINED_CLAY, 1,(short)11), "", ""),
+    STRANGE(10, "Strange", 500000, MineDifficulty.STANDARD, 1, new ItemStack(Material.PRISMARINE, 1, (short) 2), "", ""),
+    SHREK(11, "Shrek", 800000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STAINED_CLAY, 1, (short) 5), "Moznost pridat 3 hrace na ostrov (+1)", "askyblock.team.maxsize.3"),
+    FIONA(12, "Fiona", 1200000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STAINED_CLAY, 1, (short) 11), "", ""),
     DEADPOOL(13, "Deadpool", 1500000, MineDifficulty.STANDARD, 2, new ItemStack(Material.IRON_BLOCK), "Odemknuti sekce Decorations & Foods v /shop", "shopguiplus.shops.food", "shopguiplus.shops.dekorace"),
     GANDALF(14, "Gandalf", 2000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.GOLD_ORE), "", ""),
-    ASTRONAUT(15, "Astronaut", 3000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.CONCRETE, 1,(short)14), "Automaticky FLY v dolech", "craftprison.mine.fly"),
+    ASTRONAUT(15, "Astronaut", 3000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.CONCRETE, 1, (short) 14), "Automaticky FLY v dolech", "craftprison.mine.fly"),
     MUMMY(16, "Mummy", 5000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.GOLD_BLOCK), "", ""),
-    CRASH(17, "Crash", 10000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STAINED_CLAY, 1,(short)15), "Odemknuti vsech sekci v /shop", "shopguiplus.shops.*"),
+    CRASH(17, "Crash", 10000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STAINED_CLAY, 1, (short) 15), "Odemknuti vsech sekci v /shop", "shopguiplus.shops.*"),
     OBELIX(18, "Obelix", 20000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.BONE_BLOCK), "", ""),
-    ELSA(19, "Elsa", 30000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.CONCRETE, 1,(short)3), "Moznost vytvaret 2x Aukce", ""), //TODO: Aukce
+    ELSA(19, "Elsa", 30000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.CONCRETE, 1, (short) 3), "Moznost vytvaret 2x Aukce", ""), //TODO: Aukce
     ANGEL(20, "Angel", 50000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.WHITE_GLAZED_TERRACOTTA), "", ""),
     CARL(21, "Carl", 100000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.REDSTONE_BLOCK), "Moznost menit biom na ostrove", ""),
-    THANOS(22, "Thanos", 250000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STAINED_CLAY, 1,(short)9), "", ""),
-    GROOT(23, "Groot", 500000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.SMOOTH_BRICK, 1, (short)3), "Moznost pridat 4 hrace na ostrov (+2)", "askyblock.team.maxsize.4");
+    THANOS(22, "Thanos", 250000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STAINED_CLAY, 1, (short) 9), "", ""),
+    GROOT(23, "Groot", 500000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.SMOOTH_BRICK, 1, (short) 3), "Moznost pridat 4 hrace na ostrov (+2)", "askyblock.team.maxsize.4");
 
     private int weight;
     private String name;

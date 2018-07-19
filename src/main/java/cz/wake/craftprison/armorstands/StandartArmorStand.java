@@ -59,7 +59,7 @@ public class StandartArmorStand {
         return this;
     }
 
-    public StandartArmorStand setHeadPosition(EulerAngle ea){
+    public StandartArmorStand setHeadPosition(EulerAngle ea) {
         this.mainArmorStand.setHeadPose(ea);
         return this;
     }

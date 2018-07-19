@@ -1,6 +1,5 @@
 package cz.wake.craftprison.listener;
 
-import cz.wake.craftcore.utils.books.UtilBook;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.armorstands.ArmorStandManager;
 import cz.wake.craftprison.modules.PrisonManager;
@@ -13,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.metadata.Metadatable;
 import org.bukkit.plugin.Plugin;
@@ -47,14 +45,14 @@ public class ArmorStandInteract implements Listener {
                 if (clickedAs.hasMetadata("standart") || clickedAs.getLocation().equals(ArmorStandManager.getStandartArmorStandByLocation(clickedAs.getLocation()))) {
                     Object obj = getMetadata(clickedAs, "standart", Main.getInstance());
                     String name = (String) obj;
-                    if(name == null) {
+                    if (name == null) {
                         return;
                     }
-                    if(name.equalsIgnoreCase("Tutorial")) {
+                    if (name.equalsIgnoreCase("Tutorial")) {
                         PrisonManager.TutorialMenu.TUTORIAL.open(p);
                     }
-                    if(name.equalsIgnoreCase("pvp")){
-                        if(Bukkit.getOnlinePlayers().size() < 10) {
+                    if (name.equalsIgnoreCase("pvp")) {
+                        if (Bukkit.getOnlinePlayers().size() < 10) {
                             p.sendMessage("§c§l(!) §cNelze prodavat pokud je na serveru mene jak 10 hracu.");
                             return;
                         }
@@ -85,11 +83,11 @@ public class ArmorStandInteract implements Listener {
                     if (clickedAs.hasMetadata("standart") || clickedAs.getLocation().equals(ArmorStandManager.getStandartArmorStandByLocation(clickedAs.getLocation()))) {
                         Object obj = getMetadata(clickedAs, "standart", Main.getInstance());
                         String name = (String) obj;
-                        if(name == null) {
+                        if (name == null) {
                             return;
                         }
-                        if(name.equalsIgnoreCase("pvp")){
-                            if(Bukkit.getOnlinePlayers().size() < 10) {
+                        if (name.equalsIgnoreCase("pvp")) {
+                            if (Bukkit.getOnlinePlayers().size() < 10) {
                                 p.sendMessage("§c§l(!) §cNelze prodavat pokud je na serveru mene jak 10 hracu.");
                                 return;
                             }

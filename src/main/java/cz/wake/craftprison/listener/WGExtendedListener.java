@@ -32,7 +32,7 @@ public class WGExtendedListener implements Listener {
 
         if (PrisonManager.getWgRegions().contains(e.getRegion().getId().toLowerCase())) {
             if (p.hasPermission("craftprison.mine.fly")) {
-                if(!p.hasPermission("essentials.fly")){
+                if (!p.hasPermission("essentials.fly")) {
                     p.setFlying(false);
                     p.setAllowFlight(false);
                 }

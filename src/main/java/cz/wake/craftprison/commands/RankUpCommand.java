@@ -1,9 +1,7 @@
 package cz.wake.craftprison.commands;
 
 import cz.wake.craftprison.Main;
-import cz.wake.craftprison.exceptions.PlayerNotInCacheException;
 import cz.wake.craftprison.modules.PrisonManager;
-import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -21,7 +19,7 @@ public class RankUpCommand implements CommandExecutor {
             Player player = (Player) sender;
             if ((command.getName().equalsIgnoreCase("rankup"))) {
                 try {
-                    if(pm.getPlayers().containsKey(player)) {
+                    if (pm.getPlayers().containsKey(player)) {
                         double playerMoney = Main.getEconomy().getBalance(player);
                         Rank actualRank = pm.getPlayerRank(player);
                         if (!(actualRank == Rank.getLast())) {

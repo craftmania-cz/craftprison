@@ -10,7 +10,6 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
-import java.text.DecimalFormat;
 import java.util.HashMap;
 
 public class Board {

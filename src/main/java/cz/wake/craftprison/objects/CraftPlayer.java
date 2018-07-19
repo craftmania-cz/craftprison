@@ -11,7 +11,8 @@ public class CraftPlayer implements IMiner {
     private int kills;
     private int deaths;
 
-    public CraftPlayer(){}
+    public CraftPlayer() {
+    }
 
     public CraftPlayer(Player p) {
         this.p = p;
