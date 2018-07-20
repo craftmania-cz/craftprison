@@ -15,7 +15,8 @@ public class StatsCommand implements CommandExecutor {
                 StatisticsMenu.open(p);
                 return true;
             } else if (args.length == 1) {
-                StatisticsMenu.openOffline(p, args[0]);
+                p.sendMessage("§c§l(!) §cTato funkce je docasne odebrana!");
+                //StatisticsMenu.openOffline(p, args[0]);
                 return true;
             } else {
                 p.sendMessage("Spatne argumenty: /stats <nick>");
