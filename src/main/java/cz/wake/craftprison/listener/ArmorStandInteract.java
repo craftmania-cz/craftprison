@@ -33,16 +33,16 @@ public class ArmorStandInteract implements Listener {
         if (e.getRightClicked() instanceof ArmorStand) {
             ArmorStand clickedAs = (ArmorStand) e.getRightClicked();
             if (ArmorStandManager.isRankedArmorStand(clickedAs)) {
-                e.setCancelled(true);
                 if (clickedAs.hasMetadata("rank") || clickedAs.getLocation().equals(ArmorStandManager.getArmorStandByLocation(clickedAs.getLocation()))) {
+                    e.setCancelled(true);
                     Object obj = getMetadata(clickedAs, "rank", Main.getInstance());
                     String rank = (String) obj;
                     p.performCommand("sellall " + rank);
                 }
             }
             if (ArmorStandManager.isStandartArmorStand(clickedAs)) {
-                e.setCancelled(true);
                 if (clickedAs.hasMetadata("standart") || clickedAs.getLocation().equals(ArmorStandManager.getStandartArmorStandByLocation(clickedAs.getLocation()))) {
+                    e.setCancelled(true);
                     Object obj = getMetadata(clickedAs, "standart", Main.getInstance());
                     String name = (String) obj;
                     if (name == null) {
