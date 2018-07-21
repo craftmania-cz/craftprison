@@ -1,6 +1,7 @@
 package cz.wake.craftprison;
 
 import com.wasteofplastic.askyblock.ASkyBlockAPI;
+import cz.wake.craftcore.inventory.InventoryManager;
 import cz.wake.craftprison.armorstands.ArmorStandManager;
 import cz.wake.craftprison.commands.*;
 import cz.wake.craftprison.hooks.PlaceholderRegister;
@@ -89,8 +90,8 @@ public class Main extends JavaPlugin {
         }
 
         // ArmorStandy
-        //ArmorStandManager.initRankedArmorStands();
-        //ArmorStandManager.initStandartArmorStand();
+        ArmorStandManager.initRankedArmorStands();
+        ArmorStandManager.initStandartArmorStand();
 
         // WG regions
         PrisonManager.registerWgMines();

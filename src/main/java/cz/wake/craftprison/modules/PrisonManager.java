@@ -89,11 +89,11 @@ public class PrisonManager {
         return getPlayerRank(p).getNext();
     }
 
-    public int getNextRankPrice(Player p) {
+    public long getNextRankPrice(Player p) {
         return getPlayerNextRank(p).getPrice();
     }
 
-    public int getActualRankPrice(Player p) {
+    public long getActualRankPrice(Player p) {
         return getPlayerRank(p).getPrice();
     }
 

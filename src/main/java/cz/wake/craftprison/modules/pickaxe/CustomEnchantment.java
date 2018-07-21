@@ -6,7 +6,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public enum CustomEnchantment {
 
-    EFFICIENCY("Efficiency", "§eEfficiency", Material.FEATHER, Enchantment.DIG_SPEED, false, 2, 20, "§7Kopej jako blesk", "§7protoze cim rychlejsi", "§7kopani, tim lepsi Prison."),
+    EFFICIENCY("Efficiency", "§eEfficiency", Material.FEATHER, Enchantment.DIG_SPEED, false, 3, 20, "§7Kopej jako blesk", "§7protoze cim rychlejsi", "§7kopani, tim lepsi Prison."),
     UNBREAKING("Unbreaking", "§cUnbreaking", Material.BEDROCK, Enchantment.DURABILITY, true, 1, 3, "§7Neznicitelny krumpac", "§7je zaklad kazdeho kopani."),
     HASTE("Haste", "§aHaste", Material.BEACON, PotionEffectType.FAST_DIGGING, false, 10, 2, "§7Rychlejsi nez blesk", "§7tak to budes ty."),
     FORTUNE("Fortune", "§dFortune", Material.DIAMOND, Enchantment.LOOT_BONUS_BLOCKS, false, 3, 30, "§7S kazdou urovni dostanes", "§7vic a vic itemu", "§7z vykopanych bloku."),

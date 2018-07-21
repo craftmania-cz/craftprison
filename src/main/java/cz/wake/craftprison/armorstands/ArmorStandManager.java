@@ -237,6 +237,27 @@ public class ArmorStandManager {
         groot.setColor(139, 90, 0);
         groot.setHologramTexts("§7Zde prodavej bloky!", "§6§lGroot Mine");
         groot.spawn();
+
+        // Rank Jones
+        RankedArmorStand jones = new RankedArmorStand("Jones", new Location(Bukkit.getWorld("doly"), 1026.5, 102, -1292.5, 155, 0));
+        jones.setHead("c4bbf2cd-1feb-42ae-b87d-c1032ff475ad", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTJiMmI2NzBkYTFlMWRiNDZkMmE5YjMyYTFmZTZjNzhiZDdlYjEzNTA3ZGQwYjg5OGYyZTdkOTFiZThmMTFkIn19fQ==");
+        jones.setColor(139, 90, 0);
+        jones.setHologramTexts("§7Zde prodavej bloky!", "§6§lIndian Jones Mine");
+        jones.spawn();
+
+        // Rank Captain Toad
+        RankedArmorStand captain = new RankedArmorStand("Captain", new Location(Bukkit.getWorld("doly"), 1348.5, 108, -1484.5, -105, 0));
+        captain.setHead("4e7d94b5-f604-4aa6-982d-afc74a90385b", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWYzYzE0ZDJjZjE2NDA1ZGFmODMyOTJlYTRlOThlNzUxOTNiNjQyNTc2MjM0MTMxMmZhYTg4OTMzNTk5ZTMwIn19fQ==");
+        captain.setColor(255, 48, 48);
+        captain.setHologramTexts("§7Zde prodavej bloky!", "§c§lCaptain Toad Mine");
+        captain.spawn();
+
+        // Rank Optimus Prime
+        RankedArmorStand optimus = new RankedArmorStand("Optimus", new Location(Bukkit.getWorld("doly"), 1735.5, 111, -1204.5, -9, 0));
+        optimus.setHead("29591afa-76e4-4078-8845-102ba227f9b1", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzlkNTIzNjcyODNmOWZhOGJkMGI4MTBmN2RmOTYzODRiNDIzY2Q4ZDZiZmFhMzBiNmEwNWQ5MzFkZjNjZDkifX19");
+        optimus.setColor(0, 0, 205);
+        optimus.setHologramTexts("§7Zde prodavej bloky!", "§2§lOptimus Prime Mine");
+        optimus.spawn();
     }
 
     public static void initStandartArmorStand() {

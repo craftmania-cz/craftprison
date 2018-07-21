@@ -27,18 +27,21 @@ public enum Rank {
     ANGEL(20, "Angel", 50000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.WHITE_GLAZED_TERRACOTTA), "", ""),
     CARL(21, "Carl", 100000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.REDSTONE_BLOCK), "Moznost menit biom na ostrove", ""),
     THANOS(22, "Thanos", 250000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STAINED_CLAY, 1, (short) 9), "", ""),
-    GROOT(23, "Groot", 500000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.SMOOTH_BRICK, 1, (short) 3), "Moznost pridat 4 hrace na ostrov (+2)", "askyblock.team.maxsize.4");
+    GROOT(23, "Groot", 500000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.SMOOTH_BRICK, 1, (short) 3), "Moznost pridat 4 hrace na ostrov (+2)", "askyblock.team.maxsize.4"),
+    JONES(24, "Jones", 1000000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.COAL_BLOCK), "", ""),
+    CAPTAIN(25, "Captain", 2000000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.RED_GLAZED_TERRACOTTA), "", ""),
+    OPTIMUS(26, "Optimus", 4000000000L, MineDifficulty.STANDARD, 2, new ItemStack(Material.CONCRETE, 1, (short)11), "", "");
 
     private int weight;
     private String name;
-    private int price;
+    private long price;
     private MineDifficulty difficulty;
     private int prisCoins;
     private String reward;
     private String[] array;
     private ItemStack item;
 
-    Rank(int weight, String name, int price, MineDifficulty difficulty, int prisCoins, ItemStack item, String reward, String... array) {
+    Rank(int weight, String name, long price, MineDifficulty difficulty, int prisCoins, ItemStack item, String reward, String... array) {
         this.name = name;
         this.price = price;
         this.weight = weight;
@@ -57,7 +60,7 @@ public enum Rank {
         return name;
     }
 
-    public int getPrice() {
+    public long getPrice() {
         return this.price;
     }
 
