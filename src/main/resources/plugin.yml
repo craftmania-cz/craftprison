@@ -26,3 +26,5 @@ commands:
       description: Prikaz na primy teleport do dolu
     ranks:
       description: Prikaz na zobrazeni ranku
+    pshop:
+      description: Exp shop za PrisCoiny

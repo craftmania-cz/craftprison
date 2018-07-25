@@ -148,6 +148,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new PlayerStatsListener(this), this);
         pm.registerEvents(new PickaxeUpgradeListener(), this);
         pm.registerEvents(new EnchantmentListener(), this);
+        pm.registerEvents(new PShopCommand(), this);
 
         if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
             Bukkit.getServer().getPluginManager().registerEvents(new AutoSellListener(this), this);
@@ -166,6 +167,7 @@ public class Main extends JavaPlugin {
         getCommand("pvp").setExecutor(new PVPCommand());
         getCommand("mine").setExecutor(new MineCommand());
         getCommand("ranks").setExecutor(new RanksCommand());
+        getCommand("pshop").setExecutor(new PShopCommand());
     }
 
     public static Main getInstance() {
