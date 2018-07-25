@@ -24,6 +24,7 @@ commands:
       description: Teleport do pvp
     mine:
       description: Prikaz na primy teleport do dolu
+      aliases: [dul]
     ranks:
       description: Prikaz na zobrazeni ranku
     pshop:
