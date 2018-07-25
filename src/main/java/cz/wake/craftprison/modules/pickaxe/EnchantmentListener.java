@@ -90,17 +90,18 @@ public class EnchantmentListener implements Listener {
                 for (int z = minZ; z <= maxZ; z++) {
                     Location loc = new Location(w, x, y, z);
                     if (!canBreak(p, loc)) continue;
-                    /*if (loc.getBlock().getType() == Material.AIR) {
-                        continue;
-                    }*/
+                    if (loc.getBlock().getType() == Material.BEDROCK
+                            || loc.getBlock().getType() == Material.BARRIER) {
+                        return;
+                    }
 
-                    if (!getChance(35)) continue;
+                    if (!getChance(30)) continue;
 
                     //TODO Presunuti itemu do inventara + kontrola plneho inventare
 
                     loc.getBlock().setType(Material.AIR);
-                    loc.getWorld().playSound(loc, Sound.ENTITY_GENERIC_EXPLODE, 0.5F, 0.5F);
-                    ParticleEffect.LAVA.display(1.0f, 1.0f, 1.0f, 0.1f, 2, loc, p);
+                    loc.getWorld().playSound(loc, Sound.ENTITY_GENERIC_EXPLODE, 0.3F, 0.3F);
+                    ParticleEffect.EXPLOSION_NORMAL.display(1.0f, 1.0f, 1.0f, 0.1f, 2, loc, p);
                 }
             }
         }
