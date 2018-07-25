@@ -93,7 +93,7 @@ public class RankedArmorStand {
 
         // Nazvy
         this.hologramTexts.forEach(text -> {
-            this.location.add(0, 0.3, 0);
+            this.location.add(0, 0.5, 0);
             ArmorStand as = (ArmorStand) Bukkit.getWorld(this.world).spawnEntity(this.location, EntityType.ARMOR_STAND);
             as.setGravity(false);
             as.setCanPickupItems(false);
