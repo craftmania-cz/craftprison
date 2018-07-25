@@ -170,6 +170,7 @@ public class Main extends JavaPlugin {
         getCommand("mine").setExecutor(new MineCommand());
         getCommand("ranks").setExecutor(new RanksCommand());
         getCommand("pshop").setExecutor(new PShopCommand());
+        getCommand("prodat").setExecutor(new SellCommand());
     }
 
     public static Main getInstance() {

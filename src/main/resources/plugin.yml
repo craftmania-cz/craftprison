@@ -29,3 +29,6 @@ commands:
       description: Prikaz na zobrazeni ranku
     pshop:
       description: Exp shop za PrisCoiny
+    prodat:
+      description: Proda vsechny bloky v danem ranku
+      aliases: [prodej, vykup]
