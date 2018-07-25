@@ -21,7 +21,11 @@ public class ItemDropListener implements Listener {
     public void onDropItem(final PlayerDropItemEvent e) {
         final Player p = e.getPlayer();
         final ItemStack item = e.getItemDrop().getItemStack();
-        if(Main.getInstance().getConfig().getStringList("protect-drops").contains(item.getType().toString())) {
+        if(Main.getInstance().getConfig().getStringList("protect-drop").contains(item.getType().toString())) {
+            if(!isSoulbound(item, p)){
+                e.setCancelled(false);
+                return;
+            }
             if(!pickaxeDrop_request.containsValue(item)) {
                 e.setCancelled(true);
                 pickaxeDrop_request.put(p, item);
@@ -46,6 +50,13 @@ public class ItemDropListener implements Listener {
             pickaxeDrop_request.remove(p);
             p.sendMessage("§c§l(!) §cVyhodil jsi chraneny item na zem!");
         }
+    }
 
+    private boolean isSoulbound(ItemStack pickaxe, Player p) {
+        if (!pickaxe.getItemMeta().hasLore()) return false;
+        for (String line : pickaxe.getItemMeta().getLore()) {
+            if (line.contains(p.getName())) return true;
+        }
+        return false;
     }
 }

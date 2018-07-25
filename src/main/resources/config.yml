@@ -20,5 +20,5 @@ fix-armorstands: false
 player-count: 0
 
 # Drop protector
-protect-drops:
+protect-drop:
  - DIAMOND_PICKAXE
