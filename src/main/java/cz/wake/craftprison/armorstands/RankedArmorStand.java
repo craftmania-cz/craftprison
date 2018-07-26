@@ -23,7 +23,7 @@ public class RankedArmorStand {
     private String textureDataHead;
     private ArrayList<String> hologramTexts;
     private ArrayList<ArmorStand> hologramArmorStands;
-    private Material itemInHand;
+    private ItemStack itemInHand;
     private int red, green, blue;
     private ArmorStand mainArmorStand;
 
@@ -46,7 +46,7 @@ public class RankedArmorStand {
         return this;
     }
 
-    public RankedArmorStand setItemInHand(Material item) {
+    public RankedArmorStand setItemInHand(ItemStack item) {
         this.itemInHand = item;
         return this;
     }

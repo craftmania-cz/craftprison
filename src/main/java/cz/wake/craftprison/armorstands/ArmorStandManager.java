@@ -1,11 +1,13 @@
 package cz.wake.craftprison.armorstands;
 
+import cz.wake.craftcore.utils.items.ItemBuilder;
 import cz.wake.craftprison.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.HashSet;
@@ -73,7 +75,7 @@ public class ArmorStandManager {
         rankA.setColor(67, 67, 108);
         rankA.setHead("bafc75ac-236f-46d3-8eda-8ea20db4319e", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUyNTc1ZmRlZWMxY2JjZjVjZmU3ZjZhMTkzOGRkYTM4YTZiOWFmMmE0MDVkNWYyNTQxNDk5N2I5MTY4MzEifX19");
         rankA.setHologramTexts("§8Pravym - prodej | Levym - ceny", "§7Zde prodej bloky!", "§e§lMine Tutorial (A)");
-        rankA.setItemInHand(Material.WOOD_PICKAXE);
+        rankA.setItemInHand(new ItemStack(Material.WOOD_PICKAXE));
         rankA.spawn();
 
         // Rank B
@@ -81,7 +83,7 @@ public class ArmorStandManager {
         rankB.setColor(176, 23, 31);
         rankB.setHead("c22ccc77-09b1-4c59-985b-fd76e056262b", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjFlNDY1ZjNiYjk4NWQwYjdjOTc1ODIzN2YzYWVjZjJlNTE4OTgwNGU4OTU1ODUzYTVkNjQyOTQ0M2VkNyJ9fX0=");
         rankB.setHologramTexts("§7Zde prodej bloky!", "§c§lMine Tutorial (B)");
-        rankB.setItemInHand(Material.IRON_PICKAXE);
+        rankB.setItemInHand(new ItemStack(Material.IRON_PICKAXE));
         rankB.spawn();
 
         // Rank C
@@ -89,7 +91,7 @@ public class ArmorStandManager {
         rankC.setColor(0, 199, 140);
         rankC.setHead("f0ca1d57-6be4-4d86-b4ca-fd1288dac5bb", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjRjZmQzOTYxNTY4MjJlYWFkNzhjOWMzZmFkYjM0M2I3ZjE1MzM4MTI1NTc2ZmVmZmJlMTVkNGJlOWYifX19");
         rankC.setHologramTexts("§8Pravym - prodej | Levym - ceny", "§7Zde prodej bloky!", "§a§lMine Tutorial (C)");
-        rankC.setItemInHand(Material.SEEDS);
+        rankC.setItemInHand(new ItemStack(Material.SEEDS));
         rankC.spawn();
 
         // Rank D
@@ -97,7 +99,7 @@ public class ArmorStandManager {
         rankD.setColor(16, 78, 139);
         rankD.setHead("173dbcb5-4410-4106-9ab7-00c1a9b04892", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTBlNDFmMzg2ZWE4MTNkYWU3MWE0M2U3YTRhOTE0NTIzYzJjNzNmZjk4NjFlMjYwYWE4OGFlNzY3NzVlIn19fQ==");
         rankD.setHologramTexts("§8Pravym - prodej | Levym - ceny", "§7Zde prodej bloky!", "§9§lMine Tutorial (D)");
-        rankD.setItemInHand(Material.LAPIS_ORE);
+        rankD.setItemInHand(new ItemStack(Material.LAPIS_ORE));
         rankD.spawn();
 
         // Rank Goofy
@@ -105,7 +107,7 @@ public class ArmorStandManager {
         goofy.setColor(41, 36, 33);
         goofy.setHead("9d59f402-196e-491c-8eef-b5b7c0efd782", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjVlMDQ0NDQyYmZkNTk1NmUzNTQxZTIzM2YyNTFhOGE3NTIyYmFmNjE4M2ZlNTZjZGI3NzNhMzViMWZhODYwIn19fQ==");
         goofy.setHologramTexts("§7Zde prodej bloky!", "§a§lGoofy Mine");
-        goofy.setItemInHand(Material.IRON_INGOT);
+        goofy.setItemInHand(new ItemStack(Material.IRON_INGOT));
         goofy.spawn();
 
         // Rank Bender
@@ -113,7 +115,7 @@ public class ArmorStandManager {
         bender.setColor(173, 216, 230);
         bender.setHead("e5f8b552-18cf-4e19-837d-0ebfc17e7ad3", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjE1ZmUyNDdkOWM2MWE2YzEzNzU0NGRlN2U2MjIwZjg0NzU5ZTMzMzM1YjBiNTUxODMyZmExZjhhMjYyYzIzYSJ9fX0=");
         bender.setHologramTexts("§7Zde prodej bloky!", "§8§lBender Mine");
-        bender.setItemInHand(Material.FLINT);
+        bender.setItemInHand(new ItemStack(Material.FLINT));
         bender.spawn();
 
         // Rank Magikarp
@@ -121,7 +123,7 @@ public class ArmorStandManager {
         magikarp.setColor(255, 69, 0);
         magikarp.setHead("41dac880-eb6f-422e-9dc0-f7dec0e12933", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmY1OGZiN2NiZjlmOGRjZmMzYmM5ZDYxYzdjYjViMjI5YmY0OWRiMTEwMTMzNmZmZGMyZDA4N2MwYjk0MTYyIn19fQ==");
         magikarp.setHologramTexts("§7Zde prodej bloky!", "§c§lMagikarp Mine");
-        magikarp.setItemInHand(Material.RED_ROSE);
+        magikarp.setItemInHand(new ItemStack(Material.RED_ROSE));
         magikarp.spawn();
 
         // Rank Zoidberg
@@ -129,7 +131,7 @@ public class ArmorStandManager {
         zoidberg.setColor(220, 20, 60);
         zoidberg.setHead("9e052b46-699a-40ed-9444-cb312ca2b1d3", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODIzOGMxMTRiMjdjYTlmZmQ2ZTc3NTRmZWM1ODJjN2UzNjk5MjgyODNiMmQ3ZmNlMTQ5ZWFhMzEyYmQyIn19fQ==");
         zoidberg.setHologramTexts("§7Zde prodej bloky!", "§4§lZoidberg Mine");
-        zoidberg.setItemInHand(Material.RAW_FISH);
+        zoidberg.setItemInHand(new ItemStack(Material.RAW_FISH));
         zoidberg.spawn();
 
         // Rank Maxwell
@@ -137,7 +139,7 @@ public class ArmorStandManager {
         maxwell.setColor(231, 99, 34);
         maxwell.setHead("1335bd82-9c2f-471c-aa00-26c78d9a78e2", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjg1NjJjM2FhMzRmNzdmZDBiZTUxOWJmOWM5NjAzZTliZTVhYjg4N2VmODMxZDlmOGQ1YjNkMzk3Y2I3Yjg4In19fQ==");
         maxwell.setHologramTexts("§7Zde prodavej bloky!", "§c§lMaxwell Mine");
-        maxwell.setItemInHand(Material.BOOK_AND_QUILL);
+        maxwell.setItemInHand(new ItemStack(Material.BOOK_AND_QUILL));
         maxwell.spawn();
 
         // Rank Dr.Strange
@@ -258,6 +260,36 @@ public class ArmorStandManager {
         optimus.setColor(0, 0, 205);
         optimus.setHologramTexts("§7Zde prodavej bloky!", "§2§lOptimus Prime Mine");
         optimus.spawn();
+
+        // Rank Pink Panther
+        RankedArmorStand panther = new RankedArmorStand("Panther", new Location(Bukkit.getWorld("doly"), 2003.5, 109, -1130.5, 166, 0));
+        panther.setHead("9186d07a-a8ef-4c8f-94a2-694363f10d6d", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2Q5MWQ5ZThjMDk1NmU0M2FmZmFmMWU1NmQ5NTUzNzU1NjQ0Y2ZmMDVlM2FlZDhiYjU4NjhhOTBhYjNjYTUifX19");
+        panther.setColor(255, 130, 171);
+        panther.setHologramTexts("§7Zde prodavej bloky!", "§d§lPink Panther Mine");
+        panther.spawn();
+
+        // Rank Doctor Who
+        RankedArmorStand who = new RankedArmorStand("Doctor", new Location(Bukkit.getWorld("doly"), 2001.5, 123, -743.5, 142, 0));
+        who.setHead("70901fe2-90b9-4f6a-a462-44b19199425b", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTkxZTg2YzdlNDM4YjhmMjUyYzlkYzFkNDIzYjliMmZiZjc3ZmRjY2JiMmU4YzRiZTMzMzQwYmNhYWIxZiJ9fX0=");
+        who.setColor(46, 139, 87);
+        who.setHologramTexts("§7Zde prodavej bloky!", "§2§lDoctor Who Mine");
+        who.spawn();
+
+        // Rank Kratos
+        RankedArmorStand kratos = new RankedArmorStand("Kratos", new Location(Bukkit.getWorld("doly"), 1568.5, 112, -746.5, -17, 0));
+        kratos.setHead("17ffb09e-8d4b-42a9-96ab-54c9bc51e8f5", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDIwODczNDIyYTFhNjhkNGRjZjAzOGJhZjY2MDAzMTUyY2UzNTgzNzBhMzM2YjdlMTY2OGY3NDg5YTcxMjVkZiJ9fX0=");
+        kratos.setColor(139, 69, 0);
+        ItemStack leviathan = new ItemBuilder(Material.IRON_AXE).setGlowing().build();
+        kratos.setItemInHand(leviathan);
+        kratos.setHologramTexts("§7Zde prodavej bloky!", "§c§lKratos Mine");
+        kratos.spawn();
+
+        // Rank Link
+        RankedArmorStand link = new RankedArmorStand("Link", new Location(Bukkit.getWorld("doly"), 1092.5, 120, -686.5, 77, 0));
+        link.setHead("8ab3681c-a8e1-4293-9d02-eb6bde81f64c", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTI0ZWYyNjBiYTJlMDhhZWM0ODA3M2JkZDg5YTJhYjdjNGJlN2E0Y2YwY2ZkYTMzNTExMjU4NWNlYWMwODJlYiJ9fX0=");
+        link.setColor(84, 139, 84);
+        link.setHologramTexts("§7Zde prodavej bloky!", "§a§lLink Mine");
+        link.spawn();
     }
 
     public static void initStandartArmorStand() {

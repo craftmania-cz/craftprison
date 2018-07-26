@@ -30,7 +30,11 @@ public enum Rank {
     GROOT(23, "Groot", 500000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.SMOOTH_BRICK, 1, (short) 3), "Moznost pridat 4 hrace na ostrov (+2)", "askyblock.team.maxsize.4"),
     JONES(24, "Jones", 1000000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.COAL_BLOCK), "", ""),
     CAPTAIN(25, "Captain", 2000000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.RED_GLAZED_TERRACOTTA), "", ""),
-    OPTIMUS(26, "Optimus", 4000000000L, MineDifficulty.STANDARD, 2, new ItemStack(Material.CONCRETE, 1, (short)11), "", "");
+    OPTIMUS(26, "Optimus", 4000000000L, MineDifficulty.STANDARD, 2, new ItemStack(Material.CONCRETE, 1, (short)11), "", ""),
+    PANTHER(27, "Panther", 10000000000L, MineDifficulty.STANDARD, 2, new ItemStack(Material.QUARTZ, 1, (short)1), "", ""),
+    DOCTOR(28, "Doctor", 20000000000L, MineDifficulty.STANDARD, 2, new ItemStack(Material.DIAMOND_BLOCK), "Moznost pridat 6 hrace na ostrov (+4)", "askyblock.team.maxsize.6"),
+    KRATOS(29, "Kratos", 30000000000L, MineDifficulty.STANDARD, 2, new ItemStack(Material.MAGMA), "", ""),
+    LINK(30, "Link", 75000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.GREEN_GLAZED_TERRACOTTA), "", "");
 
     private int weight;
     private String name;
