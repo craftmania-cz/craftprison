@@ -150,7 +150,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new EnchantmentListener(), this);
         pm.registerEvents(new PShopCommand(), this);
         pm.registerEvents(new ItemDropListener(), this);
-        pm.registerEvents(new PlayerDeathListener(), this);
+        //m.registerEvents(new PlayerDeathListener(), this); //TODO: fix duplikace pri smrti
 
         if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
             Bukkit.getServer().getPluginManager().registerEvents(new AutoSellListener(this), this);

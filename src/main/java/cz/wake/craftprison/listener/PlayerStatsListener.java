@@ -25,7 +25,7 @@ public class PlayerStatsListener implements Listener {
 
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onBlockBreak(BlockBreakEvent event) {
+    public void onBlockBreak(BlockBreakEvent event) { //TODO: Free duplikace (pridat kontrolu zniceni)
         Player p = event.getPlayer();
         CraftPlayer cp = pm.getCraftPlayer(p);
         cp.addMinedBlock();

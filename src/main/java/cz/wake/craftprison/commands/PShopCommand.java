@@ -21,7 +21,8 @@ public class PShopCommand implements CommandExecutor, Listener {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if ((command.getName().equalsIgnoreCase("pshop"))) {
-                openPshop(player);
+                //openPshop(player);
+                player.sendMessage("§c§l(!) §cBrzo spustime....");
             }
         }
         return false;
@@ -43,7 +44,7 @@ public class PShopCommand implements CommandExecutor, Listener {
     public void openExpShop(final Player p) {
         Inventory inv = Bukkit.createInventory(null, 45, "§0Smena Exp -> PC");
 
-        if(p.getExp() >= 560) { // 25 LVL = 1 PC
+        if(p.getLevel() >= 25) { // 25 LVL = 1 PC
             ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§625 LVL -> 1 PC").build();
             inv.setItem(11, item);
         } else {
@@ -51,7 +52,7 @@ public class PShopCommand implements CommandExecutor, Listener {
                     .setLore("§725 LVL -> 1 PC").build();
             inv.setItem(11, no);
         }
-        if(p.getExp() >= 3965) { // 50 LVL = 2 PC
+        if(p.getLevel() >= 50) { // 50 LVL = 2 PC
             ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§650 LVL -> 2 PC").build();
             inv.setItem(12, item);
         } else {
@@ -59,7 +60,7 @@ public class PShopCommand implements CommandExecutor, Listener {
                     .setLore("§750 LVL -> 2 PC").build();
             inv.setItem(12, no);
         }
-        if(p.getExp() >= 29315) { // 100 LVL = 6 PC
+        if(p.getLevel() >= 100) { // 100 LVL = 6 PC
             ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§6100 LVL -> 6 PC").build();
             inv.setItem(13, item);
         } else {
@@ -67,7 +68,7 @@ public class PShopCommand implements CommandExecutor, Listener {
                     .setLore("§7100 LVL -> 6 PC").build();
             inv.setItem(13, no);
         }
-        if(p.getExp() >= 155015) { // 200 LVL = 15 PC
+        if(p.getLevel() >= 200) { // 200 LVL = 15 PC
             ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§6200 LVL -> 15 PC").build();
             inv.setItem(14, item);
         } else {
@@ -75,6 +76,8 @@ public class PShopCommand implements CommandExecutor, Listener {
                     .setLore("§7200 LVL -> 15 PC").build();
             inv.setItem(14, no);
         }
+
+        p.openInventory(inv);
     }
 
     @EventHandler
@@ -101,40 +104,44 @@ public class PShopCommand implements CommandExecutor, Listener {
                 return;
             }
             if(e.getSlot() == 11) {
-                if(p.getExp() >= 560) { // 25 LVL = 1 PC
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"exp take " + p.getName() + " 25l");
+                if(p.getLevel() >= 25) { // 25 LVL = 1 PC
+                    p.setExhaustion(p.getTotalExperience() - 560);
                     PrisCoins.giveCoins(p, 1);
                     p.sendMessage("§eVymenil jsi §a25LVL §eza §61 PC.");
+                    p.closeInventory();
                 } else {
                     p.sendMessage("§c§l(!) §cNemas dostatek LVL k prevodu!");
                 }
             }
 
             if(e.getSlot() == 12) {
-                if(p.getExp() >= 3965) { // 50 LVL = 2 PC
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"exp take " + p.getName() + " 50l");
+                if(p.getLevel() >= 50) { // 50 LVL = 2 PC
+                    p.setExp(p.getLevel() - 3965);
                     PrisCoins.giveCoins(p, 2);
                     p.sendMessage("§eVymenil jsi §a50LVL §eza §62 PC.");
+                    p.closeInventory();
                 } else {
                     p.sendMessage("§c§l(!) §cNemas dostatek LVL k prevodu!");
                 }
             }
 
             if(e.getSlot() == 13) {
-                if(p.getExp() >= 29315) { // 100 LVL = 6 PC
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"exp take " + p.getName() + " 100l");
+                if(p.getLevel() >= 100) { // 100 LVL = 6 PC
+                    p.setExhaustion(p.getTotalExperience() - 29315);
                     PrisCoins.giveCoins(p, 5);
                     p.sendMessage("§eVymenil jsi §a100LVL §eza §66 PC.");
+                    p.closeInventory();
                 } else {
                     p.sendMessage("§c§l(!) §cNemas dostatek LVL k prevodu!");
                 }
             }
 
             if(e.getSlot() == 14) {
-                if(p.getExp() >= 155015) { // 200 LVL = 15 PC
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"exp take " + p.getName() + " 200l");
+                if(p.getLevel() >= 200) { // 200 LVL = 15 PC
+                    p.setExhaustion(p.getTotalExperience() - 155015);
                     PrisCoins.giveCoins(p, 15);
                     p.sendMessage("§eVymenil jsi §a200LVL §eza §615 PC.");
+                    p.closeInventory();
                 } else {
                     p.sendMessage("§c§l(!) §cNemas dostatek LVL k prevodu!");
                 }
