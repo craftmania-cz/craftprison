@@ -21,8 +21,8 @@ public class PShopCommand implements CommandExecutor, Listener {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if ((command.getName().equalsIgnoreCase("pshop"))) {
-                //openPshop(player);
-                player.sendMessage("§c§l(!) §cBrzo spustime....");
+                openPshop(player);
+                //player.sendMessage("§c§l(!) §cBrzo spustime....");
             }
         }
         return false;
@@ -44,7 +44,7 @@ public class PShopCommand implements CommandExecutor, Listener {
     public void openExpShop(final Player p) {
         Inventory inv = Bukkit.createInventory(null, 45, "§0Smena Exp -> PC");
 
-        if(p.getLevel() >= 25) { // 25 LVL = 1 PC
+        if(this.getExp(p) >= 910) { // 25 LVL = 1 PC
             ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§625 LVL -> 1 PC").build();
             inv.setItem(11, item);
         } else {
@@ -52,30 +52,33 @@ public class PShopCommand implements CommandExecutor, Listener {
                     .setLore("§725 LVL -> 1 PC").build();
             inv.setItem(11, no);
         }
-        if(p.getLevel() >= 50) { // 50 LVL = 2 PC
-            ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§650 LVL -> 2 PC").build();
+        if(this.getExp(p) >= 15345) { // 75 LVL = 3 PC
+            ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§675 LVL -> 3 PC").build();
             inv.setItem(12, item);
         } else {
             ItemStack no = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)14).setName("§cNemas dostatek LVL")
-                    .setLore("§750 LVL -> 2 PC").build();
+                    .setLore("§775 LVL -> 3 PC").build();
             inv.setItem(12, no);
         }
-        if(p.getLevel() >= 100) { // 100 LVL = 6 PC
-            ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§6100 LVL -> 6 PC").build();
+        if(this.getExp(p) >= 79095) { // 150 LVL = 7 PC
+            ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§6150 LVL -> 7 PC").build();
             inv.setItem(13, item);
         } else {
             ItemStack no = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)14).setName("§cNemas dostatek LVL")
-                    .setLore("§7100 LVL -> 6 PC").build();
+                    .setLore("§7150 LVL -> 7 PC").build();
             inv.setItem(13, no);
         }
-        if(p.getLevel() >= 200) { // 200 LVL = 15 PC
-            ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§6200 LVL -> 15 PC").build();
+        if(this.getExp(p) >= 358470) { // 300 LVL = 15 PC
+            ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§6300 LVL -> 15 PC").build();
             inv.setItem(14, item);
         } else {
             ItemStack no = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)14).setName("§cNemas dostatek LVL")
-                    .setLore("§7200 LVL -> 15 PC").build();
+                    .setLore("§7300 LVL -> 15 PC").build();
             inv.setItem(14, no);
         }
+
+        ItemStack zpet = new ItemBuilder(Material.ARROW).setName("§cZpet").build();
+        inv.setItem(40,zpet);
 
         p.openInventory(inv);
     }
@@ -104,8 +107,8 @@ public class PShopCommand implements CommandExecutor, Listener {
                 return;
             }
             if(e.getSlot() == 11) {
-                if(p.getLevel() >= 25) { // 25 LVL = 1 PC
-                    p.setExhaustion(p.getTotalExperience() - 560);
+                if(this.getExp(p) >= 910) { // 25 LVL = 1 PC
+                    this.takeExp(p, 910);
                     PrisCoins.giveCoins(p, 1);
                     p.sendMessage("§eVymenil jsi §a25LVL §eza §61 PC.");
                     p.closeInventory();
@@ -115,8 +118,8 @@ public class PShopCommand implements CommandExecutor, Listener {
             }
 
             if(e.getSlot() == 12) {
-                if(p.getLevel() >= 50) { // 50 LVL = 2 PC
-                    p.setExp(p.getLevel() - 3965);
+                if(this.getExp(p) >= 15345) { // 75 LVL = 3 PC
+                    this.takeExp(p, 15345);
                     PrisCoins.giveCoins(p, 2);
                     p.sendMessage("§eVymenil jsi §a50LVL §eza §62 PC.");
                     p.closeInventory();
@@ -126,8 +129,8 @@ public class PShopCommand implements CommandExecutor, Listener {
             }
 
             if(e.getSlot() == 13) {
-                if(p.getLevel() >= 100) { // 100 LVL = 6 PC
-                    p.setExhaustion(p.getTotalExperience() - 29315);
+                if(this.getExp(p) >= 79095) { // 150 LVL = 7 PC
+                    this.takeExp(p, 79095);
                     PrisCoins.giveCoins(p, 5);
                     p.sendMessage("§eVymenil jsi §a100LVL §eza §66 PC.");
                     p.closeInventory();
@@ -137,15 +140,63 @@ public class PShopCommand implements CommandExecutor, Listener {
             }
 
             if(e.getSlot() == 14) {
-                if(p.getLevel() >= 200) { // 200 LVL = 15 PC
-                    p.setExhaustion(p.getTotalExperience() - 155015);
+                if(this.getExp(p) >= 358470) { // 300 LVL = 15 PC
+                    this.takeExp(p,358470);
                     PrisCoins.giveCoins(p, 15);
-                    p.sendMessage("§eVymenil jsi §a200LVL §eza §615 PC.");
+                    p.sendMessage("§eVymenil jsi §a300LVL §eza §615 PC.");
                     p.closeInventory();
                 } else {
                     p.sendMessage("§c§l(!) §cNemas dostatek LVL k prevodu!");
                 }
             }
+            if(e.getSlot() == 40){
+                this.openPshop(p);
+            }
         }
+    }
+
+
+    public void setExp(final Player player, int n) {
+        n = ((n < 0) ? 0 : n);
+        player.setLevel(0);
+        player.setExp(0.0f);
+        player.setTotalExperience(0);
+        player.giveExp(n);
+    }
+
+    public void addExp(final Player player, final int n) {
+        this.setExp(player, this.getExp(player) + n);
+    }
+
+    public void takeExp(final Player player, final int n) {
+        this.setExp(player, this.getExp(player) - n);
+    }
+
+    public int getExpForCurrentLevel(final Player player) {
+        return getExp(player) - getExpToLevel(player.getLevel());
+    }
+
+    public int getExp(final Player player) {
+        return this.getExpToLevel(player.getLevel()) + Math.round(this.deltaLevelToExp(player.getLevel()) * player.getExp());
+    }
+
+    public int getExpToLevel(final int n) {
+        if (n <= 16) {
+            return n * n + 6 * n;
+        }
+        if (n <= 31) {
+            return (int)(2.5 * n * n - 40.5 * n + 360.0);
+        }
+        return (int)(4.5 * n * n - 162.5 * n + 2220.0);
+    }
+
+    public int deltaLevelToExp(final int n) {
+        if (n <= 16) {
+            return 2 * n + 7;
+        }
+        if (n <= 31) {
+            return 5 * n - 38;
+        }
+        return 9 * n - 158;
     }
 }
