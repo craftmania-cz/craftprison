@@ -44,6 +44,7 @@ public class Main extends JavaPlugin {
     private Statistics statistics;
     private ASkyBlockAPI aSkyBlockAPI;
     private PlayerStatsListener playerStatsListener;
+    private boolean debug = false;
 
     static {
         Main.active = new HashMap<>();
@@ -81,8 +82,9 @@ public class Main extends JavaPlugin {
         }
 
         // Config hodnoty
-        fixArmorstands = getConfig().getBoolean("fix-armorstands");
-        statistics = new Statistics(this);
+        this.fixArmorstands = getConfig().getBoolean("fix-armorstands");
+        this.statistics = new Statistics(this);
+        this.debug = getConfig().getBoolean("debug");
 
         // Preventivni smazani armorstandu
         if (fixArmorstands) {
@@ -90,8 +92,10 @@ public class Main extends JavaPlugin {
         }
 
         // ArmorStandy
-        ArmorStandManager.initRankedArmorStands();
-        ArmorStandManager.initStandartArmorStand();
+        if (!debug) {
+            ArmorStandManager.initRankedArmorStands();
+            ArmorStandManager.initStandartArmorStand();
+        }
 
         // WG regions
         PrisonManager.registerWgMines();

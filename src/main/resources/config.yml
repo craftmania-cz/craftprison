@@ -19,6 +19,9 @@ fix-armorstands: false
 # Player counter
 player-count: 0
 
+# Debug
+debug: false
+
 # Drop protector
 protect-drop:
  - DIAMOND_PICKAXE
