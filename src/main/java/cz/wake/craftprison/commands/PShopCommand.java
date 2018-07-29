@@ -36,7 +36,7 @@ public class PShopCommand implements CommandExecutor, Listener {
         ItemStack expShop = new ItemBuilder(Material.EXP_BOTTLE).setName("§bSmena expu")
                 .setLore("§7Zde si muzes vymenit svoje", "§7expy za PrisCoiny.", "", "§eKliknutim zobrazis menu").build();
 
-        inv.setItem(11, expShop);
+        inv.setItem(13, expShop);
 
         p.openInventory(inv);
     }
@@ -94,7 +94,7 @@ public class PShopCommand implements CommandExecutor, Listener {
             if (e.getCurrentItem().getType() == Material.AIR) {
                 return;
             }
-            if(e.getSlot() == 11) {
+            if(e.getSlot() == 13) {
                 openExpShop(p);
             }
         }
