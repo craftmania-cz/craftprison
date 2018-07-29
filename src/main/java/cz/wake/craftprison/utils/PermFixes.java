@@ -29,5 +29,12 @@ public class PermFixes {
             }
         }
 
+        // Oprava chybejicich prav na Chestshop 29.7.2018
+        if(pm.getPlayerRank(p).getWeight() >= 26 && !p.hasPermission("shop.create")) { // Optimus
+            PlayerUtils.addPermission(p, "shop.create");
+            PlayerUtils.addPermission(p, "shop.create.buy");
+            PlayerUtils.addPermission(p, "shop.create.sell");
+        }
+
     }
 }
