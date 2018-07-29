@@ -23,18 +23,21 @@ public enum Rank {
     MUMMY(16, "Mummy", 5000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.GOLD_BLOCK), "", ""),
     CRASH(17, "Crash", 10000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STAINED_CLAY, 1, (short) 15), "Odemknuti vsech sekci v /shop", "shopguiplus.shops.*"),
     OBELIX(18, "Obelix", 20000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.BONE_BLOCK), "", ""),
-    ELSA(19, "Elsa", 30000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.CONCRETE, 1, (short) 3), "Moznost vytvaret 2x Aukce", ""), //TODO: Aukce
+    ELSA(19, "Elsa", 30000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.CONCRETE, 1, (short) 3), "Moznost vytvaret 2x Aukce", ""),
     ANGEL(20, "Angel", 50000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.WHITE_GLAZED_TERRACOTTA), "", ""),
     CARL(21, "Carl", 100000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.REDSTONE_BLOCK), "Moznost menit biom na ostrove", ""),
     THANOS(22, "Thanos", 250000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STAINED_CLAY, 1, (short) 9), "", ""),
     GROOT(23, "Groot", 500000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.SMOOTH_BRICK, 1, (short) 3), "Moznost pridat 4 hrace na ostrov (+2)", "askyblock.team.maxsize.4"),
     JONES(24, "Jones", 1000000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.COAL_BLOCK), "", ""),
     CAPTAIN(25, "Captain", 2000000000, MineDifficulty.STANDARD, 2, new ItemStack(Material.RED_GLAZED_TERRACOTTA), "", ""),
-    OPTIMUS(26, "Optimus", 4000000000L, MineDifficulty.STANDARD, 2, new ItemStack(Material.CONCRETE, 1, (short)11), "", ""),
+    OPTIMUS(26, "Optimus", 4000000000L, MineDifficulty.STANDARD, 2, new ItemStack(Material.CONCRETE, 1, (short)11), "Vytvareni shopu pomoci Chestshop", ""), //TODO: Chestshop
     PANTHER(27, "Panther", 10000000000L, MineDifficulty.STANDARD, 2, new ItemStack(Material.QUARTZ, 1, (short)1), "", ""),
     DOCTOR(28, "Doctor", 20000000000L, MineDifficulty.STANDARD, 2, new ItemStack(Material.DIAMOND_BLOCK), "Moznost pridat 6 hrace na ostrov (+4)", "askyblock.team.maxsize.6"),
     KRATOS(29, "Kratos", 30000000000L, MineDifficulty.STANDARD, 2, new ItemStack(Material.MAGMA), "", ""),
-    LINK(30, "Link", 75000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.GREEN_GLAZED_TERRACOTTA), "", "");
+    LINK(30, "Link", 75000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.GREEN_GLAZED_TERRACOTTA), "", ""),
+    KENNY(31, "Kenny", 200000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.ENDER_STONE), "Prodej v dolech pravym kliknutim s krumpacem", ""), //TODO: Krumpac
+    WITHER(31, "Wither", 400000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.BEDROCK), "", ""),
+    EGGMAN(32, "Eggman", 600000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.BROWN_GLAZED_TERRACOTTA), "", "");
 
     private int weight;
     private String name;

@@ -290,6 +290,27 @@ public class ArmorStandManager {
         link.setColor(84, 139, 84);
         link.setHologramTexts("§7Zde prodavej bloky!", "§a§lLink Mine");
         link.spawn();
+
+        // Rank Kenny
+        RankedArmorStand kenny = new RankedArmorStand("Kenny", new Location(Bukkit.getWorld("doly"), 369.5, 111, -1418.5, -108, 0));
+        kenny.setHead("ecc58244-d73c-439f-90b7-f53a051e5ce6", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTJkZWJmNDdkN2IxOWQzODc2OWU4MDhjOTJiZDNkNDdiMjY2MDM2MjM1NTEwOTA1ODRjYTUxMDcwMjc4NTllIn19fQ==");
+        kenny.setColor(255, 128, 0);
+        kenny.setHologramTexts("§7Zde prodavej bloky!", "§6§lKenny Mine");
+        kenny.spawn();
+
+        // Rank Wither
+        RankedArmorStand wither = new RankedArmorStand("Wither", new Location(Bukkit.getWorld("doly"), 1189.5, 110, -2333.5, 79, 0));
+        wither.setHead("94237405-9567-48ce-ae0d-30a744f47ddc", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjhjMDE2NWU5YjJkYmQ3OGRhYzkxMjc3ZTk3ZDlhMDI2NDhmMzA1OWUxMjZhNTk0MWE4NGQwNTQyOWNlIn19fQ==");
+        wither.setColor(94, 94, 94);
+        wither.setHologramTexts("§7Zde prodavej bloky!", "§8§lWither Mine");
+        wither.spawn(); // xD
+
+        // Rank Eggman
+        RankedArmorStand eggman = new RankedArmorStand("Eggman", new Location(Bukkit.getWorld("doly"), 1153.5, 128, -2737.5, -22, 0));
+        eggman.setHead("242c895b-79be-4e1e-a08b-ff542cd2bf48", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmZjYzhjNTY1NjJhNzE4NTIwMDU2ZDNiYzRhZTEzYTliM2MxN2JiY2ViOGFiNTc2ZTc0YWZhYWU3MmZkMTIwOSJ9fX0=");
+        eggman.setColor(113, 113, 198);
+        eggman.setHologramTexts("§7Zde prodavej bloky!", "§9§lEggman Mine");
+        eggman.spawn();
     }
 
     public static void initStandartArmorStand() {
