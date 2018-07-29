@@ -155,6 +155,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new PShopCommand(), this);
         pm.registerEvents(new ItemDropListener(), this);
         //m.registerEvents(new PlayerDeathListener(), this); //TODO: fix duplikace pri smrti
+        pm.registerEvents(new PickaxeInteractListener(), this);
 
         if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
             Bukkit.getServer().getPluginManager().registerEvents(new AutoSellListener(this), this);
