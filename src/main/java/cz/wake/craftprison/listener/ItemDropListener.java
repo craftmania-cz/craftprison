@@ -34,12 +34,16 @@ public class ItemDropListener implements Listener {
                 this._cdRunnable.put(p, new BukkitRunnable() {
                     @Override
                     public void run() {
-                        ItemDropListener.this._time.put(p, ItemDropListener.this._time.get(p) - 0.1D);
-                        if (ItemDropListener.this._time.get(p) < 0.01D) {
-                            ItemDropListener.this._time.remove(p);
-                            ItemDropListener.this._cdRunnable.remove(p);
-                            pickaxeDrop_request.remove(p);
-                            cancel();
+                        ItemDropListener.this._time.put(p, ItemDropListener.this._time.get(p).doubleValue() - 0.1D);
+                        try {
+                            if (ItemDropListener.this._time.get(p).doubleValue() < 0.01D) {
+                                ItemDropListener.this._time.remove(p);
+                                ItemDropListener.this._cdRunnable.remove(p);
+                                pickaxeDrop_request.remove(p);
+                                cancel();
+                            }
+                        } catch (NullPointerException e){
+                            //e.printStackTrace(); - ignore
                         }
                     }
                 });
