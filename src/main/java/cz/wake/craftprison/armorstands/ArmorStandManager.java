@@ -311,6 +311,20 @@ public class ArmorStandManager {
         eggman.setColor(113, 113, 198);
         eggman.setHologramTexts("§7Zde prodavej bloky!", "§9§lEggman Mine");
         eggman.spawn();
+
+        // Rank Doomfist
+        RankedArmorStand doomfist = new RankedArmorStand("Doomfist", new Location(Bukkit.getWorld("doly"), 753.5, 111, -2692.5, -180, 0));
+        doomfist.setHead("7a32e11b-3e93-495d-aa8d-0aefffdcff22", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTJmZWNlNGZmNWI3OTRjMDA0YTM1NTA1NGEwMzNlNzFiNjI1NTQwYWQyYTQ2YmJkM2M4NGQ5NzFhM2E3MTI0MiJ9fX0=");
+        doomfist.setColor(139, 90, 44);
+        doomfist.setHologramTexts("§7Zde prodavej bloky!", "§6§lDoomfist Mine");
+        doomfist.spawn();
+
+        // Rank Orc
+        RankedArmorStand orc = new RankedArmorStand("Orc", new Location(Bukkit.getWorld("doly"), 280.5, 111, -2739.5, -89, 0));
+        orc.setHead("7f1b7808-ecdc-4ef0-b8a9-09849c5f9380", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzY2MGU4ZmM5N2NiYTU2NjE2ZTllMTQ0NTRmNjhiYWNkMzJkYzQ1MWZiOWIyMmYzZmJmNzc3ZDc3NGVkZDkwMCJ9fX0=");
+        orc.setColor(48, 128, 20);
+        orc.setHologramTexts("§7Zde prodavej bloky!", "§a§lOrc Mine");
+        orc.spawn();
     }
 
     public static void initStandartArmorStand() {

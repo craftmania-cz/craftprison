@@ -36,8 +36,10 @@ public enum Rank {
     KRATOS(29, "Kratos", 30000000000L, MineDifficulty.STANDARD, 2, new ItemStack(Material.MAGMA), "", ""),
     LINK(30, "Link", 75000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.GREEN_GLAZED_TERRACOTTA), "", ""),
     KENNY(31, "Kenny", 200000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.ENDER_STONE), "Prodej v dolech pravym kliknutim s krumpacem", "craftprison.pickaxe.rightclick.sell"),
-    WITHER(31, "Wither", 400000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.BEDROCK), "", ""),
-    EGGMAN(32, "Eggman", 600000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.BROWN_GLAZED_TERRACOTTA), "", "");
+    WITHER(32, "Wither", 400000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.BEDROCK), "", ""),
+    EGGMAN(33, "Eggman", 600000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.BROWN_GLAZED_TERRACOTTA), "", ""),
+    DOOMFIST(34, "Doomfist", 1200000000000L, MineDifficulty.HARD, 4, new ItemStack(Material.ORANGE_GLAZED_TERRACOTTA), "", ""),
+    ORC(35, "Orc", 2000000000000L, MineDifficulty.HARD, 4, new ItemStack(Material.DIAMOND_BLOCK), "", "");
 
     private int weight;
     private String name;
