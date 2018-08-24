@@ -325,6 +325,41 @@ public class ArmorStandManager {
         orc.setColor(48, 128, 20);
         orc.setHologramTexts("§7Zde prodavej bloky!", "§a§lOrc Mine");
         orc.spawn();
+
+        // Rank Stormtrooper
+        RankedArmorStand trooper = new RankedArmorStand("Stormtrooper", new Location(Bukkit.getWorld("doly"), -264.5, 88, -2818.5, 168, 0));
+        trooper.setHead("25ab49e9-3692-4753-b64f-b4ffce60df81", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzYzN2Y4ZGNhNjlhNjRiZWYxZTZjYThmN2ZlM2ZhYmRiNWI4ZTFhZjMzNzJhZWViY2Y3MGM2ZmNiYmY5In19fQ==");
+        trooper.setColor(248, 248, 255);
+        trooper.setHologramTexts("§7Zde prodavej bloky!", "§c§lStormtrooper Mine");
+        trooper.spawn();
+
+        // Rank Dwarf
+        RankedArmorStand dwarf = new RankedArmorStand("Dwarf", new Location(Bukkit.getWorld("doly"), -244.5, 55, -3464.5, -90, 0));
+        dwarf.setHead("eb88fea2-01a2-4f01-939d-699ef6fc7e98", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjA0ODFlNTJkYWYwYjUzNjM0NjljMGYyY2M5YzhiYTIyYzZiYjgyNWUxMjYxNzhlOTkyNGI0Mjg0OTk3NTYifX19");
+        dwarf.setColor(13, 96, 3);
+        dwarf.setHologramTexts("§7Zde prodavej bloky!", "§2§lDwarf Mine");
+        dwarf.spawn();
+
+        // Rank Prismariner
+        RankedArmorStand prismariner = new RankedArmorStand("Prismariner", new Location(Bukkit.getWorld("doly"), -276.5, 113, -3977.5, -11, 0));
+        prismariner.setHead("d5dd68ba-a997-4109-a54a-11ce224b425c", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWFlY2NjODE0MTUzZWM3ZWZmMjY2Nzc2YzU2MjNlZDNjMGUwNGVkNTMyNTQ0MjE5ZmU4ZTA4MTkwYjIxNTk2ZSJ9fX0=");
+        prismariner.setColor(38, 147, 128);
+        prismariner.setHologramTexts("§7Zde prodavej bloky!", "§a§lPrismariner Mine");
+        prismariner.spawn();
+
+        // Rank Mr.Pig
+        RankedArmorStand mrpig = new RankedArmorStand("MrPig", new Location(Bukkit.getWorld("doly"), -669.5, 116, -3930, -155, 0));
+        mrpig.setHead("5afbc945-142e-4d97-a8e2-83a7dd87291b", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTdmNDg2ODYyNWQ1NjIxYzRhYTNhOTRjYjRlOTlhNmI2MmE5NjhjZDczMGE0ZjJmMTQ3OTM0ZWNmN2UyNjViIn19fQ==");
+        mrpig.setColor(249, 160, 160);
+        mrpig.setHologramTexts("§7Zde prodavej bloky!", "§d§lMr.Pig Mine");
+        mrpig.spawn();
+
+        // Rank Wizard
+        RankedArmorStand wizard = new RankedArmorStand("Wizard", new Location(Bukkit.getWorld("doly"), -654.5, 122, -4441.5, -127, 0));
+        wizard.setHead("b862f3c8-774b-4e91-96f3-22e833ab742e", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjE2NjI0ZDIwZjc1MGE3NWYxOGIxZTM3YWE2MDJiOTIwMjcwMTBkNjYxZTAzMTRkNDJiY2YyZDVhYzg4YmRmOCJ9fX0=");
+        wizard.setColor(153, 132, 80);
+        wizard.setHologramTexts("§7Zde prodavej bloky!", "§a§lWizzard Mine");
+        wizard.spawn();
     }
 
     public static void initStandartArmorStand() {

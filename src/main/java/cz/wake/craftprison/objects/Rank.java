@@ -1,5 +1,6 @@
 package cz.wake.craftprison.objects;
 
+import org.bukkit.Difficulty;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -39,7 +40,12 @@ public enum Rank {
     WITHER(32, "Wither", 400000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.BEDROCK), "", ""),
     EGGMAN(33, "Eggman", 600000000000L, MineDifficulty.HARD, 3, new ItemStack(Material.BROWN_GLAZED_TERRACOTTA), "", ""),
     DOOMFIST(34, "Doomfist", 1200000000000L, MineDifficulty.HARD, 4, new ItemStack(Material.ORANGE_GLAZED_TERRACOTTA), "", ""),
-    ORC(35, "Orc", 2000000000000L, MineDifficulty.HARD, 4, new ItemStack(Material.DIAMOND_BLOCK), "", "");
+    ORC(35, "Orc", 2000000000000L, MineDifficulty.HARD, 4, new ItemStack(Material.DIAMOND_BLOCK), "", ""),
+    STORMTROOPER(36, "Stormtrooper", 4500000000000L, MineDifficulty.HARD, 4, new ItemStack(Material.QUARTZ_BLOCK), "", ""),
+    DWARF(37, "Dwarf", 8000000000000L, MineDifficulty.HARD, 4, new ItemStack(Material.BLUE_GLAZED_TERRACOTTA), "", ""),
+    PRISMARINER(38, "Prismariner", 15000000000000L, MineDifficulty.HARD, 5, new ItemStack(Material.PRISMARINE, 1, (short)2), "", ""),
+    MRPIG(39, "MrPig", 25000000000000L, MineDifficulty.HARD, 5, new ItemStack(Material.YELLOW_GLAZED_TERRACOTTA), "", ""),
+    WIZARD(40, "Wizard", 50000000000000L, MineDifficulty.HARD, 5, new ItemStack(Material.PINK_GLAZED_TERRACOTTA), "", "");
 
     private int weight;
     private String name;

@@ -182,7 +182,7 @@ public class PrisonManager {
 
         public static final SmartInventory RANKS = SmartInventory.builder()
                 .id("ranks").provider(new RanksMenu())
-                .size(4, 9).title("Prehled ranku").build();
+                .size(5, 9).title("Prehled ranku").build();
 
         @Override
         public void init(Player p, InventoryContents contents) {
