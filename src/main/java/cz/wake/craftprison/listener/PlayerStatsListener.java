@@ -37,15 +37,15 @@ public class PlayerStatsListener implements Listener {
         }
         // 5,000 bloku = 2 PrisCoins
         if(cp.getMinedBlocks() >= 5000 && !p.hasPermission("craftprison.pickaxe.milestone.2")){
-            milestonePickaxe(p, "5,000", "craftprison.pickaxe.milestone.2", 2);
+            milestonePickaxe(p, "5,000", "craftprison.pickaxe.milestone.2", 3);
         }
         // 10,000 bloku = 4 PrisCoins
         if(cp.getMinedBlocks() >= 10000 && !p.hasPermission("craftprison.pickaxe.milestone.3")){
-            milestonePickaxe(p, "10,000", "craftprison.pickaxe.milestone.3", 4);
+            milestonePickaxe(p, "10,000", "craftprison.pickaxe.milestone.3", 7);
         }
         // 20,000 bloku = 7 PrisCoins
         if(cp.getMinedBlocks() >= 20000 && !p.hasPermission("craftprison.pickaxe.milestone.4")){
-            milestonePickaxe(p, "20,000", "craftprison.pickaxe.milestone.4", 7);
+            milestonePickaxe(p, "20,000", "craftprison.pickaxe.milestone.4", 10);
         }
         // 50,000 bloku = 15 PrisCoinu
         if(cp.getMinedBlocks() >= 50000 && !p.hasPermission("craftprison.pickaxe.milestone.5")){
@@ -66,6 +66,14 @@ public class PlayerStatsListener implements Listener {
         // 1,000,000 blocku = 1,000 PrisCoinu
         if(cp.getMinedBlocks() >= 1000000 && !p.hasPermission("craftprison.pickaxe.milestone.9")){
             milestonePickaxe(p, "1,000,000", "craftprison.pickaxe.milestone.9", 1000);
+        }
+        // 2,000,000 blocku = 1,500 PrisCoinu
+        if(cp.getMinedBlocks() >= 2000000 && !p.hasPermission("craftprison.pickaxe.milestone.10")){
+            milestonePickaxe(p, "2,000,000", "craftprison.pickaxe.milestone.10", 1500);
+        }
+        // 5,000,000 blocku = 3,000 PrisCoinu // WTF
+        if(cp.getMinedBlocks() >= 5000000 && !p.hasPermission("craftprison.pickaxe.milestone.11")){
+            milestonePickaxe(p, "5,000,000", "craftprison.pickaxe.milestone.11", 3000);
         }
     }
 
