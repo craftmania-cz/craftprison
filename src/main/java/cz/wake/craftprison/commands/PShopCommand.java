@@ -44,7 +44,7 @@ public class PShopCommand implements CommandExecutor, Listener {
     public void openExpShop(final Player p) {
         Inventory inv = Bukkit.createInventory(null, 45, "§0Smena Exp -> PC");
 
-        if(this.getExp(p) >= 910) { // 25 LVL = 1 PC
+        if(this.getLevel(p) >= 25) { // 25 LVL = 1 PC
             ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§625 LVL -> 1 PC").build();
             inv.setItem(11, item);
         } else {
@@ -52,7 +52,7 @@ public class PShopCommand implements CommandExecutor, Listener {
                     .setLore("§725 LVL -> 1 PC").build();
             inv.setItem(11, no);
         }
-        if(this.getExp(p) >= 15345) { // 75 LVL = 3 PC
+        if(this.getLevel(p) >= 75) { // 75 LVL = 3 PC
             ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§675 LVL -> 3 PC").build();
             inv.setItem(12, item);
         } else {
@@ -60,7 +60,7 @@ public class PShopCommand implements CommandExecutor, Listener {
                     .setLore("§775 LVL -> 3 PC").build();
             inv.setItem(12, no);
         }
-        if(this.getExp(p) >= 79095) { // 150 LVL = 7 PC
+        if(this.getLevel(p) >= 150) { // 150 LVL = 7 PC
             ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§6150 LVL -> 7 PC").build();
             inv.setItem(13, item);
         } else {
@@ -68,7 +68,7 @@ public class PShopCommand implements CommandExecutor, Listener {
                     .setLore("§7150 LVL -> 7 PC").build();
             inv.setItem(13, no);
         }
-        if(this.getExp(p) >= 358470) { // 300 LVL = 15 PC
+        if(this.getLevel(p) >= 300) { // 300 LVL = 15 PC
             ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§6300 LVL -> 15 PC").build();
             inv.setItem(14, item);
         } else {
@@ -107,8 +107,8 @@ public class PShopCommand implements CommandExecutor, Listener {
                 return;
             }
             if(e.getSlot() == 11) {
-                if(this.getExp(p) >= 910) { // 25 LVL = 1 PC
-                    this.takeExp(p, 910);
+                if(p.getLevel() >= 25) { // 25 LVL = 1 PC
+                    this.takeLevel(p, 25);
                     PrisCoins.giveCoins(p, 1);
                     p.sendMessage("§eVymenil jsi §a25LVL §eza §61 PC.");
                     p.closeInventory();
@@ -118,8 +118,8 @@ public class PShopCommand implements CommandExecutor, Listener {
             }
 
             if(e.getSlot() == 12) {
-                if(this.getExp(p) >= 15345) { // 75 LVL = 3 PC
-                    this.takeExp(p, 15345);
+                if(this.getLevel(p) >= 75) { // 75 LVL = 3 PC
+                    this.takeLevel(p, 75);
                     PrisCoins.giveCoins(p, 2);
                     p.sendMessage("§eVymenil jsi §a50LVL §eza §62 PC.");
                     p.closeInventory();
@@ -129,10 +129,10 @@ public class PShopCommand implements CommandExecutor, Listener {
             }
 
             if(e.getSlot() == 13) {
-                if(this.getExp(p) >= 79095) { // 150 LVL = 7 PC
-                    this.takeExp(p, 79095);
+                if(this.getLevel(p) >= 150) { // 150 LVL = 7 PC
+                    this.takeLevel(p, 150);
                     PrisCoins.giveCoins(p, 5);
-                    p.sendMessage("§eVymenil jsi §a100LVL §eza §66 PC.");
+                    p.sendMessage("§eVymenil jsi §a150LVL §eza §65 PC.");
                     p.closeInventory();
                 } else {
                     p.sendMessage("§c§l(!) §cNemas dostatek LVL k prevodu!");
@@ -140,8 +140,8 @@ public class PShopCommand implements CommandExecutor, Listener {
             }
 
             if(e.getSlot() == 14) {
-                if(this.getExp(p) >= 358470) { // 300 LVL = 15 PC
-                    this.takeExp(p,358470);
+                if(this.getLevel(p) >= 300) { // 300 LVL = 15 PC
+                    this.takeLevel(p,300);
                     PrisCoins.giveCoins(p, 15);
                     p.sendMessage("§eVymenil jsi §a300LVL §eza §615 PC.");
                     p.closeInventory();
@@ -155,29 +155,20 @@ public class PShopCommand implements CommandExecutor, Listener {
         }
     }
 
-
-    public void setExp(final Player player, int n) {
-        n = ((n < 0) ? 0 : n);
-        player.setLevel(0);
-        player.setExp(0.0f);
-        player.setTotalExperience(0);
-        player.giveExp(n);
+    public int getLevel(final Player player) {
+        return player.getLevel();
     }
 
-    public void addExp(final Player player, final int n) {
-        this.setExp(player, this.getExp(player) + n);
+    public void setLevel(final Player player, int n) {
+        player.setLevel(n);
     }
 
-    public void takeExp(final Player player, final int n) {
-        this.setExp(player, this.getExp(player) - n);
+    public void addLevel(final Player player, final int n) {
+        this.setLevel(player, this.getLevel(player) + n);
     }
 
-    public int getExpForCurrentLevel(final Player player) {
-        return getExp(player) - getExpToLevel(player.getLevel());
-    }
-
-    public int getExp(final Player player) {
-        return this.getExpToLevel(player.getLevel()) + Math.round(this.deltaLevelToExp(player.getLevel()) * player.getExp());
+    public void takeLevel(final Player player, final int n) {
+        this.setLevel(player, this.getLevel(player) - n);
     }
 
     public int getExpToLevel(final int n) {
