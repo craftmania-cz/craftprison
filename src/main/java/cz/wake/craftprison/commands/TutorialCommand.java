@@ -12,7 +12,7 @@ public class TutorialCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            if ((command.getName().equalsIgnoreCase("tutorial"))) {
+            if ((command.getName().equalsIgnoreCase("tutorial")) || command.getName().equalsIgnoreCase("help")) {
                 PrisonManager.TutorialMenu.TUTORIAL.open(player);
             }
         }
