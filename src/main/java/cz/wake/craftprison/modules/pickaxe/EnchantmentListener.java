@@ -69,6 +69,14 @@ public class EnchantmentListener implements Listener {
             return;
         }
 
+        if (p.isOp()) {
+            return;
+        }
+
+        if (p.hasPermission("craftprison.pickaxe.disable-effects")) {
+            return;
+        }
+
         if (!getChance(20)) {
             return;
         }
