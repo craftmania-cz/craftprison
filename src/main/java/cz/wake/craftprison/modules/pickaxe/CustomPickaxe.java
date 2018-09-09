@@ -112,6 +112,12 @@ public class CustomPickaxe {
     }
 
     public void setSoulbound(String name) {
+        ItemBuilder builder = new ItemBuilder(this.pickaxe);
+        for (String s : builder.getLore()) {
+            if (s.contains("Patri hraci")) {
+                builder.removeLoreLine(s);
+            }
+        }
         this.pickaxe = new ItemBuilder(pickaxe).addLoreLine("§0").addLoreLine("§7Patri hraci §b" + name).addEnchant(Enchantment.DURABILITY, 3).build();
     }
 }
