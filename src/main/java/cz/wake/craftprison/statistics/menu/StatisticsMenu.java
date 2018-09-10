@@ -41,7 +41,7 @@ public class StatisticsMenu implements Listener {
     //TODO: Podpora offline UUID
     public static void openOffline(Player player, String offlinePlayer) {
         if (!Main.getInstance().getMySQL().hasDataByName(offlinePlayer)) {
-            player.sendMessage("Není u nás veden tento účet! blázne ...");
+            player.sendMessage("Tento ucet neni u nas veden, blazne...");
             return;
         }
 
