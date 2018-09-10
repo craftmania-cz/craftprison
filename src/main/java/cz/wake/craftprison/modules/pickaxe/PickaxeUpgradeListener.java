@@ -133,13 +133,17 @@ public class PickaxeUpgradeListener implements Listener {
         String m = e.getMessage();
         if (editor.contains(p)) {
             e.setCancelled(true);
-            if (m.equalsIgnoreCase("exit")) {
+            if (m.equalsIgnoreCase("exit") || m.equalsIgnoreCase("cancel") || m.equalsIgnoreCase("zrusit")) {
                 editor.remove(p);
                 p.sendMessage("§cZmena nazvu krumpace zrusena!");
                 return;
             }
+            if (!m.matches("[a-zA-Z0-9\\&]+")){
+                p.sendMessage("§cNazev krumpace nesmi obsahovat specialni znaky!");
+                return;
+            }
             if (m.length() > 16) {
-                p.sendMessage("§cMaximalne jde nastavit 16 znaku! Pokud chces zrusit editaci napis - exit");
+                p.sendMessage("§cMaximalne jde nastavit 16 znaku! Pokud chces zrusit editaci napis - exit, zrusit nebo cancel");
                 return;
             }
             if (!p.hasPermission("craftprison.pickaxe.rename.color")){
