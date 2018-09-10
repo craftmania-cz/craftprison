@@ -66,7 +66,7 @@ public class StatisticsMenu implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent e) {
-        if (!e.getInventory().getTitle().equals("§0Statistiky")) {
+        if (!e.getInventory().getTitle().startsWith("§0Statistiky")) {
             return;
         }
         e.setCancelled(true);

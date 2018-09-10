@@ -36,8 +36,8 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SELECT * FROM players_data WHERE uuid = ?;");
-            ps.setString(1, p.getUniqueId().toString());
+            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ?;");
+            ps.setString(1, p.getName());
             ps.executeQuery();
             return ps.getResultSet().next();
         } catch (Exception e) {
@@ -70,8 +70,8 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SELECT * FROM players_data WHERE uuid = ?;");
-            ps.setString(1, p.getUniqueId().toString());
+            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ?;");
+            ps.setString(1, p.getName());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
                 return new CraftPlayer(p, Rank.getByName(ps.getResultSet().getString("rank")),
@@ -94,7 +94,7 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SELECT minedblocks FROM players_data WHERE uuid = ?;");
+            ps = conn.prepareStatement("SELECT minedblocks FROM players_data WHERE nick = ?;");
             ps.setString(1, player);
             ResultSet result = ps.executeQuery();
             if (result.next()) {
@@ -175,11 +175,11 @@ public class SQLManager {
         PreparedStatement preparedStatement = null;
         try {
             connection = pool.getConnection();
-            preparedStatement = connection.prepareStatement("UPDATE players_data SET minedblocks = ?, deaths = ?, kills = ? WHERE uuid = ?;");
+            preparedStatement = connection.prepareStatement("UPDATE players_data SET minedblocks = ?, deaths = ?, kills = ? WHERE nick = ?;");
             preparedStatement.setInt(1, craftPlayer.getMinedBlocks());
             preparedStatement.setInt(2, craftPlayer.getDeaths());
             preparedStatement.setInt(3, craftPlayer.getKills());
-            preparedStatement.setString(4, player.getUniqueId().toString());
+            preparedStatement.setString(4, player.getName());
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -193,8 +193,8 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SELECT priscoins FROM players_data WHERE uuid = ?;");
-            ps.setString(1, p.getUniqueId().toString());
+            ps = conn.prepareStatement("SELECT priscoins FROM players_data WHERE nick = ?;");
+            ps.setString(1, p.getName());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
                 return ps.getResultSet().getInt("priscoins");
@@ -212,9 +212,9 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("UPDATE players_data SET priscoins = ? WHERE uuid = ?");
+            ps = conn.prepareStatement("UPDATE players_data SET priscoins = ? WHERE nick = ?");
             ps.setInt(1, value);
-            ps.setString(2, p.getUniqueId().toString());
+            ps.setString(2, p.getName());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -228,9 +228,9 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("UPDATE players_data SET rank = ? WHERE uuid = ?");
+            ps = conn.prepareStatement("UPDATE players_data SET rank = ? WHERE nick = ?");
             ps.setString(1, rank.getName());
-            ps.setString(2, p.getUniqueId().toString());
+            ps.setString(2, p.getName());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
