@@ -5,6 +5,7 @@ import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
+import cz.wake.craftprison.objects.StatsPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -267,17 +268,16 @@ public class SQLManager {
         return lb;
     }
 
-    public List<CraftPlayer> getTopMinedBlocks(final int limit) {
-        List<CraftPlayer> lb = new ArrayList<>();
+    public List<StatsPlayer> getTopMinedBlocks(final int limit) {
+        List<StatsPlayer> lb = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ? ORDER BY minedblocks DESC;");
+            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ? ORDER BY minedblocks DESC LIMIT 0, " + limit + ";");
             ps.executeQuery();
             while (ps.getResultSet().next()) {
-                lb.add(new CraftPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
-                        Rank.getByName(ps.getResultSet().getString("rank")),
+                lb.add(new StatsPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
                         ps.getResultSet().getInt("priscoins"),
                         ps.getResultSet().getInt("minedblocks"),
                         ps.getResultSet().getInt("kills"),
@@ -292,8 +292,8 @@ public class SQLManager {
         return lb;
     }
 
-    public List<CraftPlayer> getTopKills(final int limit) {
-        List<CraftPlayer> lb = new ArrayList<>();
+    public List<StatsPlayer> getTopKills(final int limit) {
+        List<StatsPlayer> lb = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -301,8 +301,7 @@ public class SQLManager {
             ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ? ORDER BY kills DESC;");
             ps.executeQuery();
             while (ps.getResultSet().next()) {
-                lb.add(new CraftPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
-                        Rank.getByName(ps.getResultSet().getString("rank")),
+                lb.add(new StatsPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
                         ps.getResultSet().getInt("priscoins"),
                         ps.getResultSet().getInt("minedblocks"),
                         ps.getResultSet().getInt("kills"),
@@ -317,8 +316,8 @@ public class SQLManager {
         return lb;
     }
 
-    public List<CraftPlayer> getTopDeaths(final int limit) {
-        List<CraftPlayer> lb = new ArrayList<>();
+    public List<StatsPlayer> getTopDeaths(final int limit) {
+        List<StatsPlayer> lb = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -326,8 +325,7 @@ public class SQLManager {
             ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ? ORDER BY deaths DESC;");
             ps.executeQuery();
             while (ps.getResultSet().next()) {
-                lb.add(new CraftPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
-                        Rank.getByName(ps.getResultSet().getString("rank")),
+                lb.add(new StatsPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
                         ps.getResultSet().getInt("priscoins"),
                         ps.getResultSet().getInt("minedblocks"),
                         ps.getResultSet().getInt("kills"),
@@ -408,7 +406,7 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `deaths` FROM `players_data` ORDER BY `deaths` DESC ;");
+            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `deaths` FROM `players_data` ORDER BY `deaths` DESC;");
             ps.setString(1, p.getName());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
