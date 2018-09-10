@@ -5,12 +5,15 @@ import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLManager {
 
@@ -237,5 +240,185 @@ public class SQLManager {
         } finally {
             pool.close(conn, ps, null);
         }
+    }
+
+    public List<CraftPlayer> getTopPCoins(final int limit) {
+        List<CraftPlayer> lb = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ? ORDER BY priscoins DESC;");
+            ps.executeQuery();
+            while (ps.getResultSet().next()) {
+                lb.add(new CraftPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
+                        Rank.getByName(ps.getResultSet().getString("rank")),
+                        ps.getResultSet().getInt("priscoins"),
+                        ps.getResultSet().getInt("minedblocks"),
+                        ps.getResultSet().getInt("kills"),
+                        ps.getResultSet().getInt("deaths")));
+            }
+            return lb;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+        return lb;
+    }
+
+    public List<CraftPlayer> getTopMinedBlocks(final int limit) {
+        List<CraftPlayer> lb = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ? ORDER BY minedblocks DESC;");
+            ps.executeQuery();
+            while (ps.getResultSet().next()) {
+                lb.add(new CraftPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
+                        Rank.getByName(ps.getResultSet().getString("rank")),
+                        ps.getResultSet().getInt("priscoins"),
+                        ps.getResultSet().getInt("minedblocks"),
+                        ps.getResultSet().getInt("kills"),
+                        ps.getResultSet().getInt("deaths")));
+            }
+            return lb;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+        return lb;
+    }
+
+    public List<CraftPlayer> getTopKills(final int limit) {
+        List<CraftPlayer> lb = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ? ORDER BY kills DESC;");
+            ps.executeQuery();
+            while (ps.getResultSet().next()) {
+                lb.add(new CraftPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
+                        Rank.getByName(ps.getResultSet().getString("rank")),
+                        ps.getResultSet().getInt("priscoins"),
+                        ps.getResultSet().getInt("minedblocks"),
+                        ps.getResultSet().getInt("kills"),
+                        ps.getResultSet().getInt("deaths")));
+            }
+            return lb;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+        return lb;
+    }
+
+    public List<CraftPlayer> getTopDeaths(final int limit) {
+        List<CraftPlayer> lb = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ? ORDER BY deaths DESC;");
+            ps.executeQuery();
+            while (ps.getResultSet().next()) {
+                lb.add(new CraftPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
+                        Rank.getByName(ps.getResultSet().getString("rank")),
+                        ps.getResultSet().getInt("priscoins"),
+                        ps.getResultSet().getInt("minedblocks"),
+                        ps.getResultSet().getInt("kills"),
+                        ps.getResultSet().getInt("deaths")));
+            }
+            return lb;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+        return lb;
+    }
+
+    //SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number`, `serverNick`, `pocetHlasovani`
+    //FROM `Hlasovani`
+    //ORDER BY `pocetHlasovani` DESC
+
+    public int getTopPCoinsPosition(final Player p) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `priscoins` FROM `players_data` ORDER BY `priscoins` DESC ;");
+            ps.setString(1, p.getName());
+            ps.executeQuery();
+            if (ps.getResultSet().next()) {
+                return ps.getResultSet().getInt("row_number");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+        return -1;
+    }
+
+    public int getTopMinedBlocksPosition(final Player p) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `minedblocks` FROM `players_data` ORDER BY `minedblocks` DESC ;");
+            ps.setString(1, p.getName());
+            ps.executeQuery();
+            if (ps.getResultSet().next()) {
+                return ps.getResultSet().getInt("row_number");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+        return -1;
+    }
+
+    public int getTopKillsPosition(final Player p) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `kills` FROM `players_data` ORDER BY `kills` DESC ;");
+            ps.setString(1, p.getName());
+            ps.executeQuery();
+            if (ps.getResultSet().next()) {
+                return ps.getResultSet().getInt("row_number");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+        return -1;
+    }
+
+    public int getTopDeathsPosition(final Player p) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `deaths` FROM `players_data` ORDER BY `deaths` DESC ;");
+            ps.setString(1, p.getName());
+            ps.executeQuery();
+            if (ps.getResultSet().next()) {
+                return ps.getResultSet().getInt("row_number");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+        return -1;
     }
 }
