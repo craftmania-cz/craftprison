@@ -249,7 +249,7 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ? ORDER BY priscoins DESC;");
+            ps = conn.prepareStatement("SELECT * FROM players_data ORDER BY priscoins DESC LIMIT 0, " + limit + ";");
             ps.executeQuery();
             while (ps.getResultSet().next()) {
                 lb.add(new CraftPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
@@ -274,7 +274,7 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ? ORDER BY minedblocks DESC LIMIT 0, " + limit + ";");
+            ps = conn.prepareStatement("SELECT * FROM players_data ORDER BY minedblocks DESC LIMIT 0, " + limit + ";");
             ps.executeQuery();
             while (ps.getResultSet().next()) {
                 lb.add(new StatsPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
@@ -298,7 +298,7 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ? ORDER BY kills DESC;");
+            ps = conn.prepareStatement("SELECT * FROM players_data ORDER BY kills DESC LIMIT 0, " + limit + ";");
             ps.executeQuery();
             while (ps.getResultSet().next()) {
                 lb.add(new StatsPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
@@ -322,7 +322,7 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ? ORDER BY deaths DESC;");
+            ps = conn.prepareStatement("SELECT * FROM players_data ORDER BY deaths DESC LIMIT 0, " + limit + ";");
             ps.executeQuery();
             while (ps.getResultSet().next()) {
                 lb.add(new StatsPlayer(Bukkit.getPlayer(ps.getResultSet().getString("nick")),
@@ -349,7 +349,7 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `priscoins` FROM `players_data` ORDER BY `priscoins` DESC ;");
+            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `priscoins` FROM `players_data` WHERE nick = ? ORDER BY `priscoins` DESC ;");
             ps.setString(1, p.getName());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
@@ -368,7 +368,7 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `minedblocks` FROM `players_data` ORDER BY `minedblocks` DESC ;");
+            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `minedblocks` FROM `players_data` WHERE nick = ? ORDER BY `minedblocks` DESC ;");
             ps.setString(1, p.getName());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
@@ -387,7 +387,7 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `kills` FROM `players_data` ORDER BY `kills` DESC ;");
+            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `kills` FROM `players_data` WHERE nick = ? ORDER BY `kills` DESC ;");
             ps.setString(1, p.getName());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
@@ -406,7 +406,7 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `deaths` FROM `players_data` ORDER BY `deaths` DESC;");
+            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `deaths` FROM `players_data` WHERE nick = ? ORDER BY `deaths` DESC;");
             ps.setString(1, p.getName());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
