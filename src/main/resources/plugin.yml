@@ -12,6 +12,9 @@ commands:
       description: No..
     stats:
       description: Statistiky
+    statstop:
+      description: Top statistiky
+      aliases: [ptop]
     pcoins:
       description: PrisCoiny
       aliases: [pc, pcoin]

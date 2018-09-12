@@ -35,7 +35,7 @@ public class StatsPlayer {
         return this.priscoins;
     }
 
-    public int getminedblocks() {
+    public int getMineblocks() {
         return this.minedblocks;
     }
 
