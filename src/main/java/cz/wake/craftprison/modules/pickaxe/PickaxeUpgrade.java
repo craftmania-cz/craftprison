@@ -41,8 +41,7 @@ public class PickaxeUpgrade {
         inv.setItem(22, glass);
         inv.setItem(23, glass);
 
-        //ItemStack anvil = new ItemBuilder(Material.ANVIL).setName("§a§lPrejmenovat").setLore("", "§7Klikni pro prejmenovani").hideAllFlags().build();
-        ItemStack anvil = new ItemBuilder(Material.BARRIER).setName("§cNedostupne").setLore("§7Kvuli kriticke chybe docasne off.").hideAllFlags().build();
+        ItemStack anvil = new ItemBuilder(Material.ANVIL).setName("§a§lPrejmenovat").setLore("", "§7Klikni pro prejmenovani").hideAllFlags().build();
         inv.setItem(16, anvil);
 
         ItemStack barrier = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)14).setName("§0").hideAllFlags().build();

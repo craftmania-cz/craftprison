@@ -4,24 +4,22 @@ import cz.wake.craftcore.utils.items.ItemBuilder;
 import cz.wake.craftprison.modules.PrisCoins;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
-import cz.wake.craftprison.utils.AnvilContainer;
-import net.minecraft.server.v1_12_R1.EntityPlayer;
 import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.inventory.AnvilInventory;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.HashSet;
 
 public class PickaxeUpgradeListener implements Listener {
+    private static ItemStack pickaxe;
+    private static HashSet<Player> editor = new HashSet<>();
 
     @EventHandler
     public void onInventoryClickEvent(final InventoryClickEvent e) {
@@ -44,15 +42,20 @@ public class PickaxeUpgradeListener implements Listener {
             return;
         }
         Player p = (Player) e.getWhoClicked();
+        pickaxe = e.getInventory().getItem(13);
         e.setCancelled(true);
 
         ItemStack item = e.getCurrentItem();
         if (e.getSlot() == 16) {
-            //AnvilContainer.openAnvil(p, e.getInventory().getItem(13));
-            p.sendMessage("§c§l(!) §cTato funkce je kvuli kriticke chybe zjistenou pred spustenim vypnuta.");
-            return;
+            if (!editor.contains(p)) {
+                editor.add(p);
+                p.closeInventory();
+                p.sendMessage("");
+                p.sendMessage("§eNyni napis do chatu novy nazev pro tvuj krumpac!");
+                p.sendMessage("§7Editaci zrusis napsanim -> exit");
+                p.sendMessage("");
+            }
         }
-        ItemStack pickaxe = e.getInventory().getItem(13);
         CustomPickaxe cpick = new CustomPickaxe(pickaxe);
 
         for (CustomEnchantment ce : CustomEnchantment.values()) {
@@ -125,54 +128,30 @@ public class PickaxeUpgradeListener implements Listener {
 
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
-    public void closeAnvil(InventoryCloseEvent e) {
-        HumanEntity p = e.getPlayer();
-        Inventory inv = e.getInventory();
-        if (inv instanceof AnvilInventory) {
-            EntityPlayer entityPlayer = ((org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer) p).getHandle();
-            if ((!entityPlayer.activeContainer.checkReachable)) {
-                ItemStack pick = inv.getItem(0);
-
-                pick = new ItemBuilder(pick).setName(ChatColor.translateAlternateColorCodes('&', pick.getItemMeta().getDisplayName())).build();
-                p.getInventory().addItem(pick);
-                inv.clear();
+    public void onChat(AsyncPlayerChatEvent e) {
+        Player p = e.getPlayer();
+        String m = e.getMessage();
+        if (editor.contains(p)) {
+            e.setCancelled(true);
+            if (m.equalsIgnoreCase("exit") || m.equalsIgnoreCase("cancel") || m.equalsIgnoreCase("zrusit")) {
+                editor.remove(p);
+                p.sendMessage("§cZmena nazvu krumpace zrusena!");
+                return;
             }
+            if (!m.matches("[a-zA-Z0-9\\&]+")){
+                p.sendMessage("§cNazev krumpace nesmi obsahovat specialni znaky!");
+                return;
+            }
+            if (m.length() > 16) {
+                p.sendMessage("§cMaximalne jde nastavit 16 znaku! Pokud chces zrusit editaci napis - exit, zrusit nebo cancel");
+                return;
+            }
+            if (!p.hasPermission("craftprison.pickaxe.rename.color")){
+                m = ChatColor.stripColor(m);
+            }
+            pickaxe.getItemMeta().setDisplayName(m);
+            editor.remove(p);
+            p.sendMessage("§eNazev krumpace nastaven na: §f" + m);
         }
     }
-
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onInventoryClick(InventoryClickEvent e) {
-        HumanEntity entity = e.getWhoClicked();
-        if ((entity instanceof Player)) {
-            Player player = (Player) entity;
-            Inventory inv = e.getInventory();
-            if (inv instanceof AnvilInventory) {
-                InventoryView inventoryView = e.getView();
-                net.minecraft.server.v1_12_R1.EntityPlayer localEntityPlayer = ((org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer) player).getHandle();
-                if ((!localEntityPlayer.activeContainer.checkReachable)) {
-                    int i = e.getRawSlot();
-                    if ((e.getClickedInventory() != null) &&
-                            (e.getClickedInventory().equals(player.getInventory()))) {
-                        return;
-                    }
-                    e.setCancelled(true);
-                    if ((i == inventoryView.convertSlot(i)) && (i == 2)) {
-                        ItemStack currentItem = e.getCurrentItem();
-                        if (currentItem != null) {
-                            ItemMeta itemMeta = currentItem.getItemMeta();
-                            if ((itemMeta != null) && (itemMeta.hasDisplayName())) {
-                                String name = ChatColor.translateAlternateColorCodes('&', itemMeta.getDisplayName());
-                                player.sendMessage("§aUspesne jsi prejmenoval svuj krumpac");
-                                ItemStack newPick = new ItemBuilder(currentItem).setName(name).build();
-                                inv.setItem(2, newPick);
-                                inv.setItem(0, newPick);
-                                player.closeInventory();
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
 }
