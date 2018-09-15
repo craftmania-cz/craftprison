@@ -292,18 +292,18 @@ public class PrisonManager {
             }));
 
             contents.set(4, 2, ClickableItem.of(new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§eTvuj krumpac")
-                    .setLore("§7Krumpac si muzes i", "§7vylepsit abys mohl tezit", "§7rychleji a vice efektivne.", "", "§eUpgrade: §b/krump")
+                    .setLore("§7Krumpac si muzes i", "§7vylepsit abys mohl tezit", "§7rychleji a vice efektivne.", "", "§eUpgrade: §b/pickaxe §7nebo §b/krump")
                     .addEnchant(Enchantment.DURABILITY, 1)
                     .hideAllFlags().build(), e-> {
             }));
 
             contents.set(4, 4, ClickableItem.of(new ItemBuilder(Material.WATCH).setName("§3Tagy")
-                    .setLore("§7Kazdym dosazenym minem", "§7ziskavas specialni tagy.", "§7Muzes si je nastavit", "§7podle aktualniho minu", "§7nebo zcela nahodne.")
+                    .setLore("§7Kazdym dosazenym dolem", "§7ziskavas specialni tagy.", "§7Muzes si je nastavit", "§7podle aktualniho dolu", "§7nebo zcela nahodne.")
                     .hideAllFlags().build(), e -> {
             }));
 
             contents.set(4, 6, ClickableItem.of(new ItemBuilder(Material.GHAST_TEAR).setName("§6PrisCoiny")
-                    .setLore("§7PrisCoiny jsou specialni", "§7virtualni Prison mena", "pomoci, ktere muzes upgradnout", "§7svuj krumpac.", "",
+                    .setLore("§7PrisCoiny jsou specialni", "§7virtualni Prison mena", "§7pomoci, ktere muzes upgradnout", "§7svuj krumpac.", "",
                             "§7PrisCoiny ziskavas za", "§7rankupovani, reseni hadanek", "§7nebo promenou za XP.", "",
                             "§eStav PrisCoinu: §b/pcoins", "§eVymena za XP: §b/pshop")
                     .hideAllFlags().build(), e -> { 
