@@ -16,6 +16,6 @@ public class TutorialCommand implements CommandExecutor {
                 PrisonManager.TutorialMenu.TUTORIAL.open(player);
             }
         }
-        return false;
+        return true;
     }
 }
