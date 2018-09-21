@@ -25,6 +25,29 @@ public class PickaxeCommand implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (args.length != 0) {
+            if (args.length > 2) {
+                if (args[0].equalsIgnoreCase("rename")) {
+                    if (!args[1].matches("([Aa-zZ])\\w+")) {
+                        p.sendMessage("§c§l(!) §cPouzivas nepovolene znaky pro prejmenovani krumpace!");
+                        return true;
+                    }
+                    if (!CustomPickaxe.isPickaxe(p.getInventory().getItemInMainHand().getType())) {
+                        p.sendMessage("§c§l(!) §cMusis drzet v ruce krumpac!");
+                        return true;
+                    }
+                    StringBuilder str = new StringBuilder();
+                    for (int j = 0; j < args.length; j++) {
+                        str.append(args[2] + " ");
+                    }
+                    String name = str.toString();
+                    if (str.toString().replace("&", "").length() > 16) {
+                        p.sendMessage("§c§l(!) §cTvuj krumpac muze obsahovat maximalne 16 znaku!");
+                        return true;
+                    }
+                    p.getInventory().getItemInMainHand().getItemMeta().setDisplayName(name);
+                    return true;
+                }
+            }
             if (args[0].equalsIgnoreCase("get")) {
                 if (this._time.containsKey(p)) {
                     p.sendMessage("§c§l(!) §cMusis pockat jeste " + String.valueOf(arrondi(this._time.get(p), 1)) + " vterin.");
@@ -52,6 +75,10 @@ public class PickaxeCommand implements CommandExecutor {
                     p.getInventory().addItem(PickaxeUpgrade.getDebugPickaxe(p.getName()));
                     return true;
                 }
+            }
+            if (args[0].equalsIgnoreCase("rename")) {
+                p.sendMessage("§c§l(!) §cNa co chces prejmenovat svuj krumpac?");
+                return true;
             }
         }
 
