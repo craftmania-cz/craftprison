@@ -14,7 +14,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class StatisticsMenu implements Listener {
 
@@ -66,34 +68,34 @@ public class StatisticsMenu implements Listener {
 
     }
 
-    public static void openTop(Player p) {
+    public static void  openTop(Player p) {
         Inventory inv = Bukkit.createInventory(null, 27, "§0Statistiky: TOP 5");
 
         List<StatsPlayer> blocksbroken = Main.getInstance().getMySQL().getTopMinedBlocks(5);
         ItemStack blocksBroken = new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§eZnicene blocky").addLore("§7Tvoje pozice: §f#" + Main.getInstance().getMySQL().getTopMinedBlocksPosition(p), "§f",
-                "§e#1: §f" + blocksbroken.get(0).getMineblocks(),
-                "§e#2: §f" + blocksbroken.get(1).getMineblocks(),
-                "§e#3: §f" + blocksbroken.get(2).getMineblocks(),
-                "§e#4: §f" + blocksbroken.get(3).getMineblocks(),
-                "§e#5: §f" + blocksbroken.get(4).getMineblocks()).
+                "§e#1: §f" + blocksbroken.get(0).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(blocksbroken.get(0).getMineblocks()) + "§7)",
+                "§e#2: §f" + blocksbroken.get(1).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(blocksbroken.get(1).getMineblocks()) + "§7)",
+                "§e#3: §f" + blocksbroken.get(2).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(blocksbroken.get(2).getMineblocks()) + "§7)",
+                "§e#4: §f" + blocksbroken.get(3).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(blocksbroken.get(3).getMineblocks()) + "§7)",
+                "§e#5: §f" + blocksbroken.get(4).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(blocksbroken.get(4).getMineblocks()) + "§7)").
                 hideAllFlags().build();
 
         List<StatsPlayer> deathss = Main.getInstance().getMySQL().getTopDeaths(5);
         ItemStack deaths = new ItemBuilder(Material.SKULL_ITEM).setName("§eSmrti").addLore("§7Tvoje pozice: §f#" + Main.getInstance().getMySQL().getTopDeathsPosition(p), "§f",
-                "§e#1: §f" + deathss.get(0).getDeaths(),
-                "§e#2: §f" + deathss.get(1).getDeaths(),
-                "§e#3: §f" + deathss.get(2).getDeaths(),
-                "§e#4: §f" + deathss.get(3).getDeaths(),
-                "§e#5: §f" + deathss.get(4).getDeaths()).
+                "§e#1: §f" + deathss.get(0).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(deathss.get(0).getDeaths()) + "§7)",
+                "§e#2: §f" + deathss.get(1).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(deathss.get(1).getDeaths()) + "§7)",
+                "§e#3: §f" + deathss.get(2).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(deathss.get(2).getDeaths()) + "§7)",
+                "§e#4: §f" + deathss.get(3).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(deathss.get(3).getDeaths()) + "§7)",
+                "§e#5: §f" + deathss.get(4).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(deathss.get(4).getDeaths()) + "§7)").
                 hideAllFlags().build();
 
         List<StatsPlayer> kilss = Main.getInstance().getMySQL().getTopKills(5);
         ItemStack kills = new ItemBuilder(Material.WOOD_SWORD).setName("§eZabiti").addLore("§7Tvoje pozice: §f#" + Main.getInstance().getMySQL().getTopKillsPosition(p), "§f",
-                "§e#1: §f" + kilss.get(0).getKills(),
-                "§e#2: §f" + kilss.get(1).getKills(),
-                "§e#3: §f" + kilss.get(2).getKills(),
-                "§e#4: §f" + kilss.get(3).getKills(),
-                "§e#5: §f" + kilss.get(4).getKills()).
+                "§e#1: §f" + kilss.get(0).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(kilss.get(0).getKills()) + "§7)",
+                "§e#2: §f" + kilss.get(1).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(kilss.get(1).getKills()) + "§7)",
+                "§e#3: §f" + kilss.get(2).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(kilss.get(2).getKills()) + "§7)",
+                "§e#4: §f" + kilss.get(3).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(kilss.get(3).getKills()) + "§7)",
+                "§e#5: §f" + kilss.get(4).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(kilss.get(4).getKills()) + "§7)").
                 hideAllFlags().build();
 
         inv.setItem(12, blocksBroken);
