@@ -28,6 +28,7 @@ public class PlayerStatsListener implements Listener {
     public void onBlockBreak(BlockBreakEvent event) { //TODO: Free duplikace (pridat kontrolu zniceni)
         Player p = event.getPlayer();
         CraftPlayer cp = pm.getCraftPlayer(p);
+        if (event.isCancelled()) return; //Zamedzenie pridávanie stats pre protected blocky
         cp.addMinedBlock();
 
         // Milniky pro hrace (global na profil)
