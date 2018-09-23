@@ -340,20 +340,25 @@ public class SQLManager {
         return lb;
     }
 
-    //SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number`, `serverNick`, `pocetHlasovani`
-    //FROM `Hlasovani`
-    //ORDER BY `pocetHlasovani` DESC
+    /*
+    SELECT count( * ) AS number
+    FROM `Hlasovani` t1
+    WHERE t1.pocethlasovani >= (
+    SELECT t2.pocethlasovani
+    FROM `Hlasovani` t2
+    WHERE t2.servernick = 'KontraTeror' )
+     */
 
     public int getTopPCoinsPosition(final Player p) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `priscoins` FROM `players_data` WHERE nick = ? ORDER BY `priscoins` DESC ;");
+            ps = conn.prepareStatement("SELECT count( * ) AS number FROM `players_data` WHERE t1.priscoins >= ( SELECT t2.priscoins FROM `players_data` t2 WHERE t2.serverNick = ?);");
             ps.setString(1, p.getName());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
-                return ps.getResultSet().getInt("row_number");
+                return ps.getResultSet().getInt("number");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -368,11 +373,11 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `minedblocks` FROM `players_data` WHERE nick = ? ORDER BY `minedblocks` DESC ;");
+            ps = conn.prepareStatement("SELECT count( * ) AS number FROM `players_data` WHERE t1.minedblocks >= ( SELECT t2.minedblocks FROM `players_data` t2 WHERE t2.serverNick = ?);");
             ps.setString(1, p.getName());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
-                return ps.getResultSet().getInt("row_number");
+                return ps.getResultSet().getInt("number");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -387,11 +392,11 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `kills` FROM `players_data` WHERE nick = ? ORDER BY `kills` DESC ;");
+            ps = conn.prepareStatement("SELECT count( * ) AS number FROM `players_data` WHERE t1.kills >= ( SELECT t2.kills FROM `players_data` t2 WHERE t2.serverNick = ?);");
             ps.setString(1, p.getName());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
-                return ps.getResultSet().getInt("row_number");
+                return ps.getResultSet().getInt("number");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -406,11 +411,11 @@ public class SQLManager {
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SET @row_num = 0; SELECT @row_num := @row_num +1 AS `row_number` , `serverNick` , `deaths` FROM `players_data` WHERE nick = ? ORDER BY `deaths` DESC;");
+            ps = conn.prepareStatement("SELECT count( * ) AS number FROM `players_data` WHERE t1.deaths >= ( SELECT t2.deaths FROM `players_data` t2 WHERE t2.serverNick = ?);");
             ps.setString(1, p.getName());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
-                return ps.getResultSet().getInt("row_number");
+                return ps.getResultSet().getInt("number");
             }
         } catch (Exception e) {
             e.printStackTrace();
