@@ -60,10 +60,12 @@ public class PickaxeUpgrade {
             }
             int price = ce.getPrice() * (ce.getEffect() instanceof Enchantment ?
                     pickaxe.getEnchantmentLevel((Enchantment) ce.getEffect()) : cp.getCustomEnchantLevel(ce.getName()));
+            price = (price == 0 ? ce.getPrice() : price);
+
             int level = ce.getEffect() instanceof Enchantment ? pickaxe.getEnchantmentLevel((Enchantment) ce.getEffect()) : cp.getCustomEnchantLevel(ce.getName());
             inv.setItem(slot, new ItemBuilder(ce.getMaterial()).setName(ce.getColoredName()).setLore(ce.getLore()).addLoreLine("").addLoreLine("§7Aktualni level: §a" + level)
                     .addLoreLine("§7Maximalni level: §c" + ce.getMaxLevel()).addLoreLine(level >= ce.getMaxLevel() ? "§cDosahl jsi maximalniho levelu" :
-                                    "§7Cena upgradu: §e" + (price == 0 ? ce.getPrice() : price)).hideAllFlags().build());
+                                    "§7Cena upgradu: §e" + price).hideAllFlags().build());
         }
 
         ItemStack sign = new ItemBuilder(Material.SIGN).setName("§b§lPocet PrisCoinu: §7" + new PrisonManager().getCraftPlayer(p).getPrisCoins()).hideAllFlags().build();

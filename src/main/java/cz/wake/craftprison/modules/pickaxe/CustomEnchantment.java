@@ -15,7 +15,7 @@ public enum CustomEnchantment {
     SPEED("Speed", "§bSpeed", Material.POTION, PotionEffectType.SPEED, false, 5, 2, "§7Rychle a zbesile", "§7na Prisonu."),
     NIGHT("Night Vision", "§8Night Vision", Material.GLOWSTONE_DUST, PotionEffectType.NIGHT_VISION, false, 5, 1, "§7Nevidis v noci?", "§7Co si rozsvitit?"),
     //LASER("Laser", "§cLaser", Material.GLASS, null, false, "§7...", 10, 3),
-    EXPLOSIVE("Explosive", "§4Explosive", Material.TNT, null, false, 50, 1, "§7Efekt, se kterym ti", "§7bude krumpac explodovat.", "", "§cPouze kosmeticky efekt!");
+    EXPLOSIVE("Explosive", "§4Explosive", Material.TNT, null, false, 50, 5, "§7Efekt, se kterym ti", "§7bude krumpac explodovat.", "", "§cPouze kosmeticky efekt!");
 
     private String name;
     private String coloredName;
