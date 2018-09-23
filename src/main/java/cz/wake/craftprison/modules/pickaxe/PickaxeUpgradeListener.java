@@ -46,16 +46,6 @@ public class PickaxeUpgradeListener implements Listener {
         e.setCancelled(true);
 
         ItemStack item = e.getCurrentItem();
-        if (e.getSlot() == 16) {
-            if (!editor.contains(p)) {
-                editor.add(p);
-                p.closeInventory();
-                p.sendMessage("");
-                p.sendMessage("§eNyni napis do chatu novy nazev pro tvuj krumpac!");
-                p.sendMessage("§7Editaci zrusis napsanim -> exit");
-                p.sendMessage("");
-            }
-        }
         CustomPickaxe cpick = new CustomPickaxe(pickaxe);
 
         for (CustomEnchantment ce : CustomEnchantment.values()) {
