@@ -25,9 +25,9 @@ public class PickaxeCommand implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (args.length != 0) {
-            if (args.length > 2) {
+            if (args.length >= 2) {
                 if (args[0].equalsIgnoreCase("rename")) {
-                    if (!args[1].matches("([Aa-zZ])\\w+")) {
+                    if (!args[1].matches("([Aa-zZ]&)\\w+")) {
                         p.sendMessage("§c§l(!) §cPouzivas nepovolene znaky pro prejmenovani krumpace!");
                         return true;
                     }
