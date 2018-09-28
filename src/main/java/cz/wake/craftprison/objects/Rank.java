@@ -1,6 +1,5 @@
 package cz.wake.craftprison.objects;
 
-import org.bukkit.Difficulty;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 

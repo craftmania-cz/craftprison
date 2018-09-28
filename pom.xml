@@ -118,7 +118,7 @@
         <dependency>
             <groupId>com.github.craftmania-cz</groupId>
             <artifactId>CraftCore</artifactId>
-            <version>07f5881249</version>
+            <version>v2.0.0</version>
             <scope>provided</scope>
         </dependency>
         <!-- Vault API -->

@@ -1,6 +1,6 @@
 package cz.wake.craftprison.armorstands;
 
-import cz.wake.craftcore.utils.items.ItemBuilder;
+import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
 import cz.wake.craftprison.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

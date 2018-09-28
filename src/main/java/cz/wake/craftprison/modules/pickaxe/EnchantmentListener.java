@@ -2,7 +2,7 @@ package cz.wake.craftprison.modules.pickaxe;
 
 import com.sk89q.worldguard.bukkit.WGBukkit;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import cz.wake.craftcore.utils.effects.ParticleEffect;
+import cz.craftmania.craftcore.spigot.utils.effects.ParticleEffect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;

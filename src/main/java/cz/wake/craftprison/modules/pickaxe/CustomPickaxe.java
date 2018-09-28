@@ -1,6 +1,6 @@
 package cz.wake.craftprison.modules.pickaxe;
 
-import cz.wake.craftcore.utils.items.ItemBuilder;
+import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
 import cz.wake.craftprison.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
