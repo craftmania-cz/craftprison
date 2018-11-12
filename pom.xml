@@ -72,10 +72,6 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-        <repository>
             <id>bintray-tastybento-maven-repo</id>
             <name>bintray</name>
             <url>http://dl.bintray.com/tastybento/maven-repo</url>
@@ -88,6 +84,10 @@
             <id>mvdw-software</id>
             <name>MVdW Public Repositories</name>
             <url>http://repo.mvdw-software.be/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>craftmania-release</id>
+            <url>https://packages.craftmania.cz/nexus/repository/public/</url>
         </repository>
     </repositories>
 
@@ -116,9 +116,9 @@
         </dependency>
         <!-- CraftMania.cz Core -->
         <dependency>
-            <groupId>com.github.craftmania-cz</groupId>
-            <artifactId>CraftCore</artifactId>
-            <version>v2.0.0</version>
+            <groupId>cz.craftmania.craftcore</groupId>
+            <artifactId>craftcore</artifactId>
+            <version>2.0.10</version>
             <scope>provided</scope>
         </dependency>
         <!-- Vault API -->
