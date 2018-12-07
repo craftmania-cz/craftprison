@@ -1,12 +1,11 @@
 package cz.wake.craftprison.modules.pickaxe;
 
-import cz.wake.craftcore.utils.items.ItemBuilder;
+import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
 import cz.wake.craftprison.modules.PrisonManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -41,8 +40,7 @@ public class PickaxeUpgrade {
         inv.setItem(22, glass);
         inv.setItem(23, glass);
 
-        //ItemStack anvil = new ItemBuilder(Material.ANVIL).setName("§a§lPrejmenovat").setLore("", "§7Klikni pro prejmenovani").hideAllFlags().build();
-        ItemStack anvil = new ItemBuilder(Material.BARRIER).setName("§cNedostupne").setLore("§7Kvuli kriticke chybe docasne off.").hideAllFlags().build();
+        ItemStack anvil = new ItemBuilder(Material.ANVIL).setName("§a§lPrejmenovat").setLore("", "§7Pro prejmenovani zadej", "§7prikaz /pickaxe rename.").hideAllFlags().build();
         inv.setItem(16, anvil);
 
         ItemStack barrier = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)14).setName("§0").hideAllFlags().build();

@@ -1,6 +1,6 @@
 package cz.wake.craftprison.statistics.menu;
 
-import cz.wake.craftcore.utils.items.ItemBuilder;
+import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;

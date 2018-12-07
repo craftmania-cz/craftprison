@@ -1,12 +1,12 @@
 package cz.wake.craftprison.modules;
 
-import cz.wake.craftcore.inventory.ClickableItem;
-import cz.wake.craftcore.inventory.SmartInventory;
-import cz.wake.craftcore.inventory.content.InventoryContents;
-import cz.wake.craftcore.inventory.content.InventoryProvider;
-import cz.wake.craftcore.messages.Advancement;
-import cz.wake.craftcore.messages.handler.AdvancementManager;
-import cz.wake.craftcore.utils.items.ItemBuilder;
+import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
+import cz.craftmania.craftcore.spigot.inventory.ClickableItem;
+import cz.craftmania.craftcore.spigot.inventory.SmartInventory;
+import cz.craftmania.craftcore.spigot.inventory.content.InventoryContents;
+import cz.craftmania.craftcore.spigot.inventory.content.InventoryProvider;
+import cz.craftmania.craftcore.spigot.messages.Advancement;
+import cz.craftmania.craftcore.spigot.messages.handler.AdvancementManager;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
 import cz.wake.craftprison.objects.CraftPlayer;
@@ -151,10 +151,10 @@ public class PrisonManager {
                         cp.setRank(nextRank);
                         PlayerUtils.randomFireworks(p.getLocation());
                         PlayerUtils.sendRankUpMessage(p);
-                        Advancement.builder(new NamespacedKey(Main.getInstance(), "craftprison"))
+                        /*Advancement.builder(new NamespacedKey(Main.getInstance(), "craftprison"))
                                 .title("Novy rank: " + pm.getColoredPlayerRank(p)).description("_").icon("minecraft:diamond")
                                 .announce(false).hidden(false).toast(true).frame(AdvancementManager.FrameType.GOAL).build()
-                                .show(Main.getInstance(), p);
+                                .show(Main.getInstance(), p);*/
                         for (String perm : nextRank.getCommands()) {
                             if (perm.length() > 1) {
                                 PlayerUtils.addPermission(p, perm);
@@ -292,18 +292,18 @@ public class PrisonManager {
             }));
 
             contents.set(4, 2, ClickableItem.of(new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§eTvuj krumpac")
-                    .setLore("§7Krumpac si muzes i", "§7vylepsit abys mohl tezit", "§7rychleji a vice efektivne.", "", "§eUpgrade: §b/krump")
+                    .setLore("§7Krumpac si muzes i", "§7vylepsit abys mohl tezit", "§7rychleji a vice efektivne.", "", "§eUpgrade: §b/pickaxe §7nebo §b/krump")
                     .addEnchant(Enchantment.DURABILITY, 1)
                     .hideAllFlags().build(), e-> {
             }));
 
             contents.set(4, 4, ClickableItem.of(new ItemBuilder(Material.WATCH).setName("§3Tagy")
-                    .setLore("§7Kazdym dosazenym minem", "§7ziskavas specialni tagy.", "§7Muzes si je nastavit", "§7podle aktualniho minu", "§7nebo zcela nahodne.")
+                    .setLore("§7Kazdym dosazenym dolem", "§7ziskavas specialni tagy.", "§7Muzes si je nastavit", "§7podle aktualniho dolu", "§7nebo zcela nahodne.")
                     .hideAllFlags().build(), e -> {
             }));
 
             contents.set(4, 6, ClickableItem.of(new ItemBuilder(Material.GHAST_TEAR).setName("§6PrisCoiny")
-                    .setLore("§7PrisCoiny jsou specialni", "§7virtualni Prison mena", "pomoci, ktere muzes upgradnout", "§7svuj krumpac.", "",
+                    .setLore("§7PrisCoiny jsou specialni", "§7virtualni Prison mena", "§7pomoci, ktere muzes upgradnout", "§7svuj krumpac.", "",
                             "§7PrisCoiny ziskavas za", "§7rankupovani, reseni hadanek", "§7nebo promenou za XP.", "",
                             "§eStav PrisCoinu: §b/pcoins", "§eVymena za XP: §b/pshop")
                     .hideAllFlags().build(), e -> { 

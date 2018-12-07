@@ -1,6 +1,6 @@
 package cz.wake.craftprison.listener;
 
-import cz.wake.craftcore.messages.Title;
+import cz.craftmania.craftcore.spigot.messages.Title;
 import cz.wake.craftprison.events.InventoryFullEvent;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

@@ -1,6 +1,6 @@
 package cz.wake.craftprison.modules.pickaxe;
 
-import cz.wake.craftcore.utils.items.ItemBuilder;
+import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
 import cz.wake.craftprison.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -112,6 +112,12 @@ public class CustomPickaxe {
     }
 
     public void setSoulbound(String name) {
+        ItemBuilder builder = new ItemBuilder(this.pickaxe);
+        for (String s : builder.getLore()) {
+            if (s.contains("Patri hraci")) {
+                builder.removeLoreLine(s);
+            }
+        }
         this.pickaxe = new ItemBuilder(pickaxe).addLoreLine("§0").addLoreLine("§7Patri hraci §b" + name).addEnchant(Enchantment.DURABILITY, 3).build();
     }
 }
