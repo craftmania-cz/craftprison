@@ -1,7 +1,7 @@
 package cz.wake.craftprison.listener;
 
-import cz.wake.craftcore.events.worldguard.RegionEnterEvent;
-import cz.wake.craftcore.events.worldguard.RegionLeaveEvent;
+import cz.craftmania.craftcore.spigot.events.worldguard.RegionEnterEvent;
+import cz.craftmania.craftcore.spigot.events.worldguard.RegionLeaveEvent;
 import cz.wake.craftprison.modules.PrisonManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

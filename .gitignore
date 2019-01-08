@@ -15,5 +15,8 @@ CraftPrison\.iml
 dependency-reduced-pom\.xml
 
 target/
+build/
 
 .idea/*
+
+.gradle

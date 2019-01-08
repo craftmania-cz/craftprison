@@ -1,6 +1,6 @@
 package cz.wake.craftprison.commands;
 
-import cz.wake.craftcore.utils.items.ItemBuilder;
+import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
 import cz.wake.craftprison.modules.PrisCoins;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

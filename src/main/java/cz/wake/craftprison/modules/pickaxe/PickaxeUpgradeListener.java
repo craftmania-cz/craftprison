@@ -1,6 +1,6 @@
 package cz.wake.craftprison.modules.pickaxe;
 
-import cz.wake.craftcore.utils.items.ItemBuilder;
+import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
 import cz.wake.craftprison.modules.PrisCoins;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
@@ -46,16 +46,6 @@ public class PickaxeUpgradeListener implements Listener {
         e.setCancelled(true);
 
         ItemStack item = e.getCurrentItem();
-        if (e.getSlot() == 16) {
-            if (!editor.contains(p)) {
-                editor.add(p);
-                p.closeInventory();
-                p.sendMessage("");
-                p.sendMessage("§eNyni napis do chatu novy nazev pro tvuj krumpac!");
-                p.sendMessage("§7Editaci zrusis napsanim -> exit");
-                p.sendMessage("");
-            }
-        }
         CustomPickaxe cpick = new CustomPickaxe(pickaxe);
 
         for (CustomEnchantment ce : CustomEnchantment.values()) {

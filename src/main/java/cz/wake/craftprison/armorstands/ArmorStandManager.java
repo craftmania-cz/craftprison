@@ -1,6 +1,6 @@
 package cz.wake.craftprison.armorstands;
 
-import cz.wake.craftcore.utils.items.ItemBuilder;
+import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
 import cz.wake.craftprison.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -360,6 +360,21 @@ public class ArmorStandManager {
         wizard.setColor(153, 132, 80);
         wizard.setHologramTexts("§7Zde prodavej bloky!", "§a§lWizzard Mine");
         wizard.spawn();
+
+        // Rank Cleopatra
+        RankedArmorStand cleopatra = new RankedArmorStand("Cleopatra", new Location(Bukkit.getWorld("doly"), -312.5, 110, -4176.5, -160, 0));
+        cleopatra.setHead("33bede2d-2686-4b4d-b8c3-86c14b629e56", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWUxYjZhNDAxMjA2MDg0MjEyNjMyYWYxYzU1YTA4Y2QwMzY5NjU1OGI1YzI3Y2RhNDEzMjU5YTczZTk5NCJ9fX0=");
+        cleopatra.setColor(238, 230, 133);
+        cleopatra.setHologramTexts("§7Zde prodavej bloky!", "§e§lCleopatra Mine");
+        cleopatra.spawn();
+
+        // Rank Indian
+        RankedArmorStand indian = new RankedArmorStand("Indian", new Location(Bukkit.getWorld("doly"), -835.5, 112, -4188.5, -62, 0));
+        indian.setHead("b90754fe-f7a0-45d4-a566-9af322b1575c", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmU4ZmMyMmViOGE5OTRmNjY5ZmI2NGZmOGM1YmIxNTM4NzRmNDcxYTE1OWMzNGY4OTE2YzdhZGVhOTk4ZmYifX19");
+        indian.setColor(238, 238, 224);
+        indian.setHologramTexts("§7Zde prodavej bloky!", "§f§lIndian Mine");
+        indian.setItemInHand(new ItemStack(Material.STICK));
+        indian.spawn();
     }
 
     public static void initStandartArmorStand() {

@@ -1,12 +1,12 @@
 package cz.wake.craftprison.modules;
 
-import cz.wake.craftcore.inventory.ClickableItem;
-import cz.wake.craftcore.inventory.SmartInventory;
-import cz.wake.craftcore.inventory.content.InventoryContents;
-import cz.wake.craftcore.inventory.content.InventoryProvider;
-import cz.wake.craftcore.messages.Advancement;
-import cz.wake.craftcore.messages.handler.AdvancementManager;
-import cz.wake.craftcore.utils.items.ItemBuilder;
+import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
+import cz.craftmania.craftcore.spigot.inventory.ClickableItem;
+import cz.craftmania.craftcore.spigot.inventory.SmartInventory;
+import cz.craftmania.craftcore.spigot.inventory.content.InventoryContents;
+import cz.craftmania.craftcore.spigot.inventory.content.InventoryProvider;
+import cz.craftmania.craftcore.spigot.messages.Advancement;
+import cz.craftmania.craftcore.spigot.messages.handler.AdvancementManager;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
 import cz.wake.craftprison.objects.CraftPlayer;
@@ -151,10 +151,10 @@ public class PrisonManager {
                         cp.setRank(nextRank);
                         PlayerUtils.randomFireworks(p.getLocation());
                         PlayerUtils.sendRankUpMessage(p);
-                        Advancement.builder(new NamespacedKey(Main.getInstance(), "craftprison"))
+                        /*Advancement.builder(new NamespacedKey(Main.getInstance(), "craftprison"))
                                 .title("Novy rank: " + pm.getColoredPlayerRank(p)).description("_").icon("minecraft:diamond")
                                 .announce(false).hidden(false).toast(true).frame(AdvancementManager.FrameType.GOAL).build()
-                                .show(Main.getInstance(), p);
+                                .show(Main.getInstance(), p);*/
                         for (String perm : nextRank.getCommands()) {
                             if (perm.length() > 1) {
                                 PlayerUtils.addPermission(p, perm);
