@@ -1,6 +1,6 @@
 package cz.wake.craftprison;
 
-import com.wasteofplastic.askyblock.ASkyBlockAPI;
+
 import cz.wake.craftprison.armorstands.ArmorStandManager;
 import cz.wake.craftprison.commands.*;
 import cz.wake.craftprison.hooks.PlaceholderRegister;
@@ -14,14 +14,12 @@ import cz.wake.craftprison.modules.pickaxe.PickaxeUpgradeListener;
 import cz.wake.craftprison.sql.SQLManager;
 import cz.wake.craftprison.statistics.Statistics;
 import cz.wake.craftprison.statistics.menu.StatisticsMenu;
-import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
@@ -33,7 +31,6 @@ public class Main extends JavaPlugin {
 
     private static Main instance;
     private ArmorStandManager asm = new ArmorStandManager();
-    private static Economy economy = null;
     private static Map<String, Integer> active;
     private VKBackPackHook backpack;
     private final List<Material> tools;
@@ -41,7 +38,6 @@ public class Main extends JavaPlugin {
     private SQLManager sql;
     private boolean fixArmorstands = false;
     private Statistics statistics;
-    private ASkyBlockAPI aSkyBlockAPI;
     private PlayerStatsListener playerStatsListener;
     private boolean debug = false;
 
@@ -51,8 +47,8 @@ public class Main extends JavaPlugin {
 
     public Main() {
         this.backpack = null;
-        this.tools = Arrays.asList(Material.STONE_AXE, Material.STONE_HOE, Material.STONE_PICKAXE, Material.STONE_SPADE, Material.WOOD_AXE, Material.WOOD_HOE, Material.WOOD_PICKAXE, Material.WOOD_SPADE, Material.IRON_AXE, Material.IRON_HOE, Material.IRON_PICKAXE, Material.IRON_SPADE, Material.GOLD_AXE, Material.GOLD_HOE, Material.GOLD_PICKAXE, Material.GOLD_SPADE, Material.DIAMOND_AXE, Material.DIAMOND_HOE, Material.DIAMOND_PICKAXE, Material.DIAMOND_SPADE);
-        this.ignored = Arrays.asList(Material.LONG_GRASS, Material.GRASS, Material.WHEAT, Material.SUGAR_CANE_BLOCK, Material.SUGAR_CANE, Material.BED_BLOCK, Material.BED, Material.BOAT, Material.BOOKSHELF, Material.BREWING_STAND, Material.BREWING_STAND_ITEM, Material.CACTUS, Material.CAKE, Material.CAKE_BLOCK, Material.CARPET, Material.CARROT, Material.CARROT_ITEM, Material.CAULDRON, Material.CAULDRON_ITEM, Material.CROPS, Material.COMMAND, Material.COMMAND_MINECART, Material.DAYLIGHT_DETECTOR, Material.DEAD_BUSH, Material.DETECTOR_RAIL, Material.DIODE, Material.DIODE_BLOCK_OFF, Material.DIODE_BLOCK_ON, Material.DOUBLE_PLANT, Material.DISPENSER, Material.DROPPER, Material.ENCHANTMENT_TABLE, Material.ENDER_CHEST, Material.ENDER_PORTAL_FRAME, Material.EXPLOSIVE_MINECART, Material.FLOWER_POT, Material.FLOWER_POT_ITEM, Material.HOPPER, Material.HOPPER_MINECART, Material.ICE, Material.IRON_DOOR_BLOCK, Material.IRON_DOOR, Material.ITEM_FRAME, Material.JUKEBOX, Material.LEAVES, Material.LEAVES_2, Material.LEVER, Material.MELON_BLOCK, Material.MELON_STEM, Material.MINECART, Material.NOTE_BLOCK, Material.PACKED_ICE, Material.PAINTING, Material.PISTON_BASE, Material.PISTON_EXTENSION, Material.PISTON_STICKY_BASE, Material.PISTON_MOVING_PIECE, Material.POISONOUS_POTATO, Material.POTATO, Material.PORTAL, Material.POWERED_MINECART, Material.POWERED_RAIL, Material.RAILS, Material.RED_ROSE, Material.YELLOW_FLOWER, Material.REDSTONE, Material.REDSTONE_COMPARATOR, Material.REDSTONE_WIRE, Material.SAPLING, Material.SEEDS, Material.SIGN, Material.SIGN_POST, Material.SNOW, Material.SNOW_BLOCK, Material.STAINED_GLASS, Material.STAINED_GLASS_PANE, Material.STORAGE_MINECART, Material.TNT, Material.TRAP_DOOR, Material.TORCH, Material.TRAPPED_CHEST, Material.TRIPWIRE, Material.TRIPWIRE_HOOK, Material.VINE, Material.WALL_SIGN, Material.WATER_LILY, Material.WEB, Material.BLACK_SHULKER_BOX, Material.BLUE_SHULKER_BOX, Material.BROWN_SHULKER_BOX, Material.CYAN_SHULKER_BOX, Material.GRAY_SHULKER_BOX, Material.GREEN_SHULKER_BOX, Material.LIGHT_BLUE_SHULKER_BOX, Material.LIME_SHULKER_BOX, Material.LIME_SHULKER_BOX, Material.MAGENTA_SHULKER_BOX, Material.ORANGE_SHULKER_BOX, Material.PINK_SHULKER_BOX, Material.PURPLE_SHULKER_BOX, Material.RED_SHULKER_BOX, Material.SILVER_SHULKER_BOX, Material.WHITE_SHULKER_BOX);
+        this.tools = Arrays.asList(Material.STONE_AXE, Material.STONE_HOE, Material.STONE_PICKAXE, Material.STONE_SHOVEL, Material.WOODEN_AXE, Material.WOODEN_HOE, Material.WOODEN_PICKAXE, Material.WOODEN_SHOVEL, Material.IRON_AXE, Material.IRON_HOE, Material.IRON_PICKAXE, Material.IRON_SHOVEL, Material.GOLDEN_AXE, Material.GOLDEN_HOE, Material.GOLDEN_PICKAXE, Material.GOLDEN_SHOVEL, Material.DIAMOND_AXE, Material.DIAMOND_HOE, Material.DIAMOND_PICKAXE, Material.DIAMOND_SHOVEL);
+        this.ignored = Arrays.asList(Material.BEDROCK, Material.MINECART); //TODO: ?
     }
 
     @Override
@@ -68,17 +64,9 @@ public class Main extends JavaPlugin {
         // HikariCP
         initDatabase();
 
-        // Vault Economy
-        this.setupEconomy();
-
         // Listeners
         loadListeners();
         loadCommands();
-
-        // Dodatecne pluginy
-        if (Bukkit.getPluginManager().isPluginEnabled("VKBackPack")) {
-            this.backpack = new VKBackPackHook();
-        }
 
         // Config hodnoty
         this.fixArmorstands = getConfig().getBoolean("fix-armorstands");
@@ -98,13 +86,6 @@ public class Main extends JavaPlugin {
 
         // WG regions
         PrisonManager.registerWgMines();
-
-        //ASkyBlock hook
-        if (Bukkit.getPluginManager().isPluginEnabled("aSkyBlock")) {
-            this.aSkyBlockAPI = (ASkyBlockAPI) Bukkit.getPluginManager().getPlugin("aSkyBlock");
-        } else {
-            this.aSkyBlockAPI = null;
-        }
 
         //Statistiky
         statistics = new Statistics(this);
@@ -186,18 +167,6 @@ public class Main extends JavaPlugin {
         return asm;
     }
 
-    public static Economy getEconomy() {
-        return economy;
-    }
-
-    private boolean setupEconomy() {
-        final RegisteredServiceProvider<Economy> economyProvider = (RegisteredServiceProvider<Economy>) this.getServer().getServicesManager().getRegistration((Class) Economy.class);
-        if (economyProvider != null) {
-            economy = economyProvider.getProvider();
-        }
-        return economy != null;
-    }
-
     public VKBackPackHook getBackpackHook() {
         return this.backpack;
     }
@@ -254,9 +223,5 @@ public class Main extends JavaPlugin {
 
     public Statistics getStatistics() {
         return statistics;
-    }
-
-    public ASkyBlockAPI getSkyBlockAPI() {
-        return aSkyBlockAPI;
     }
 }
