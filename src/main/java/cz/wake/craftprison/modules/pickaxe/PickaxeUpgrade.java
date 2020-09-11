@@ -27,7 +27,7 @@ public class PickaxeUpgrade {
     private void openMenu() {
         Inventory inv = Bukkit.createInventory(null, 54, "Pickaxe upgrade");
 
-        ItemStack glass = new ItemBuilder(Material.STAINED_GLASS_PANE, (byte) 5).setName("§0").hideAllFlags().build();
+        ItemStack glass = new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE, (byte) 5).setName("§0").hideAllFlags().build();
         inv.setItem(3, glass);
         inv.setItem(4, glass);
         inv.setItem(5, glass);
@@ -43,7 +43,7 @@ public class PickaxeUpgrade {
         ItemStack anvil = new ItemBuilder(Material.ANVIL).setName("§a§lPrejmenovat").setLore("", "§7Pro prejmenovani zadej", "§7prikaz /pickaxe rename.").hideAllFlags().build();
         inv.setItem(16, anvil);
 
-        ItemStack barrier = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)14).setName("§0").hideAllFlags().build();
+        ItemStack barrier = new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDurability((short)14).setName("§0").hideAllFlags().build();
         for (int i = 27; i <= 44; i++) {
             inv.setItem(i, barrier);
         }
@@ -67,7 +67,7 @@ public class PickaxeUpgrade {
                                     "§7Cena upgradu: §e" + price).hideAllFlags().build());
         }
 
-        ItemStack sign = new ItemBuilder(Material.SIGN).setName("§b§lPocet PrisCoinu: §7" + new PrisonManager().getCraftPlayer(p).getPrisCoins()).hideAllFlags().build();
+        ItemStack sign = new ItemBuilder(Material.OAK_SIGN).setName("§b§lPocet PrisCoinu: §7" + new PrisonManager().getCraftPlayer(p).getPrisCoins()).hideAllFlags().build();
         inv.setItem(49, sign);
 
         p.openInventory(inv);

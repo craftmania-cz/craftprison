@@ -23,13 +23,7 @@ public class PickaxeUpgradeListener implements Listener {
 
     @EventHandler
     public void onInventoryClickEvent(final InventoryClickEvent e) {
-        if (e.getInventory() == null) {
-            return;
-        }
-        if (e.getInventory().getName() == null) {
-            return;
-        }
-        if (!e.getInventory().getName().equals("Pickaxe upgrade")) {
+        if (!e.getView().getTitle().equals("Pickaxe upgrade")) {
             return;
         }
         if (!(e.getWhoClicked() instanceof Player)) {
@@ -100,13 +94,7 @@ public class PickaxeUpgradeListener implements Listener {
 
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent e) {
-        if (e.getInventory() == null) {
-            return;
-        }
-        if (e.getInventory().getName() == null) {
-            return;
-        }
-        if (!e.getInventory().getName().equals("Pickaxe upgrade")) {
+        if (!e.getView().getTitle().equals("Pickaxe upgrade")) {
             return;
         }
         if (!(e.getPlayer() instanceof Player)) {

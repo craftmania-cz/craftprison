@@ -23,6 +23,6 @@ public class InventoryFullListener implements Listener {
         new Title("", "§cMas plny inventar!", 0, 30, 5).send(p);
 
         // Sound waring
-        p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 10.0f, 1.0f);
+        p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 10.0f, 1.0f);
     }
 }

@@ -33,7 +33,7 @@ public class PShopCommand implements CommandExecutor, Listener {
     public void openPshop(final Player p) {
         Inventory inv = Bukkit.createInventory(null, 27, "§0Prison Shop");
 
-        ItemStack expShop = new ItemBuilder(Material.EXP_BOTTLE).setName("§bSmena expu")
+        ItemStack expShop = new ItemBuilder(Material.EXPERIENCE_BOTTLE).setName("§bSmena expu")
                 .setLore("§7Zde si muzes vymenit svoje", "§7expy za PrisCoiny.", "", "§eKliknutim zobrazis menu").build();
 
         inv.setItem(13, expShop);
@@ -45,34 +45,34 @@ public class PShopCommand implements CommandExecutor, Listener {
         Inventory inv = Bukkit.createInventory(null, 45, "§0Smena Exp -> PC");
 
         if(this.getLevel(p) >= 25) { // 25 LVL = 1 PC
-            ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§625 LVL -> 1 PC").build();
+            ItemStack item = new ItemBuilder(Material.EXPERIENCE_BOTTLE).setName("§625 LVL -> 1 PC").build();
             inv.setItem(11, item);
         } else {
-            ItemStack no = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)14).setName("§cNemas dostatek LVL")
+            ItemStack no = new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDurability((short)14).setName("§cNemas dostatek LVL")
                     .setLore("§725 LVL -> 1 PC").build();
             inv.setItem(11, no);
         }
         if(this.getLevel(p) >= 75) { // 75 LVL = 3 PC
-            ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§675 LVL -> 3 PC").build();
+            ItemStack item = new ItemBuilder(Material.EXPERIENCE_BOTTLE).setName("§675 LVL -> 3 PC").build();
             inv.setItem(12, item);
         } else {
-            ItemStack no = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)14).setName("§cNemas dostatek LVL")
+            ItemStack no = new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDurability((short)14).setName("§cNemas dostatek LVL")
                     .setLore("§775 LVL -> 3 PC").build();
             inv.setItem(12, no);
         }
         if(this.getLevel(p) >= 150) { // 150 LVL = 7 PC
-            ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§6150 LVL -> 7 PC").build();
+            ItemStack item = new ItemBuilder(Material.EXPERIENCE_BOTTLE).setName("§6150 LVL -> 7 PC").build();
             inv.setItem(13, item);
         } else {
-            ItemStack no = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)14).setName("§cNemas dostatek LVL")
+            ItemStack no = new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDurability((short)14).setName("§cNemas dostatek LVL")
                     .setLore("§7150 LVL -> 7 PC").build();
             inv.setItem(13, no);
         }
         if(this.getLevel(p) >= 300) { // 300 LVL = 15 PC
-            ItemStack item = new ItemBuilder(Material.EXP_BOTTLE).setName("§6300 LVL -> 15 PC").build();
+            ItemStack item = new ItemBuilder(Material.EXPERIENCE_BOTTLE).setName("§6300 LVL -> 15 PC").build();
             inv.setItem(14, item);
         } else {
-            ItemStack no = new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short)14).setName("§cNemas dostatek LVL")
+            ItemStack no = new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDurability((short)14).setName("§cNemas dostatek LVL")
                     .setLore("§7300 LVL -> 15 PC").build();
             inv.setItem(14, no);
         }
@@ -86,7 +86,7 @@ public class PShopCommand implements CommandExecutor, Listener {
     @EventHandler
     public void onClick(InventoryClickEvent e) {
         Player p = (Player)e.getWhoClicked();
-        if (e.getInventory().getTitle().equals("§0Prison Shop")) {
+        if (e.getView().getTitle().equals("§0Prison Shop")) {
             e.setCancelled(true);
             if (e.getCurrentItem() == null) {
                 return;
@@ -98,7 +98,7 @@ public class PShopCommand implements CommandExecutor, Listener {
                 openExpShop(p);
             }
         }
-        if(e.getInventory().getTitle().equals("§0Smena Exp -> PC")){
+        if(e.getView().getTitle().equals("§0Smena Exp -> PC")){
             e.setCancelled(true);
             if (e.getCurrentItem() == null) {
                 return;

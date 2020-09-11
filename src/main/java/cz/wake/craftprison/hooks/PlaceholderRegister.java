@@ -1,6 +1,6 @@
 package cz.wake.craftprison.hooks;
 
-import be.maximvdw.placeholderapi.PlaceholderAPI;
+//import be.maximvdw.placeholderapi.PlaceholderAPI;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.PrisCoins;
 import cz.wake.craftprison.modules.PrisonManager;
@@ -19,7 +19,8 @@ public class PlaceholderRegister {
 
     public void registerPlaceholders() {
 
-        if(Bukkit.getPluginManager().isPluginEnabled("MVdWPlaceholderAPI")) {
+        //TODO: Rewrite na PlaceholderAPI
+        /*if(Bukkit.getPluginManager().isPluginEnabled("MVdWPlaceholderAPI")) {
             PlaceholderAPI.registerPlaceholder(plugin, "craftprison_rank",
                     e -> {
                         Player p = e.getPlayer();
@@ -38,6 +39,6 @@ public class PlaceholderRegister {
                     });
         } else {
             Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "[CraftPrison] " + ChatColor.RED + " Nebyl nalezen MVdWPlaceholderAPI - placeholdery nebudou fungovat.");
-        }
+        }*/
     }
 }

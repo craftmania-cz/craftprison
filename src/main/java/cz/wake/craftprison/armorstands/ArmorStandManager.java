@@ -75,7 +75,7 @@ public class ArmorStandManager {
         rankA.setColor(67, 67, 108);
         rankA.setHead("bafc75ac-236f-46d3-8eda-8ea20db4319e", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUyNTc1ZmRlZWMxY2JjZjVjZmU3ZjZhMTkzOGRkYTM4YTZiOWFmMmE0MDVkNWYyNTQxNDk5N2I5MTY4MzEifX19");
         rankA.setHologramTexts("§8Pravym - prodej | Levym - ceny", "§7Zde prodej bloky!", "§e§lMine Tutorial (A)");
-        rankA.setItemInHand(new ItemStack(Material.WOOD_PICKAXE));
+        rankA.setItemInHand(new ItemStack(Material.WOODEN_PICKAXE));
         rankA.spawn();
 
         // Rank B
@@ -91,7 +91,7 @@ public class ArmorStandManager {
         rankC.setColor(0, 199, 140);
         rankC.setHead("f0ca1d57-6be4-4d86-b4ca-fd1288dac5bb", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjRjZmQzOTYxNTY4MjJlYWFkNzhjOWMzZmFkYjM0M2I3ZjE1MzM4MTI1NTc2ZmVmZmJlMTVkNGJlOWYifX19");
         rankC.setHologramTexts("§8Pravym - prodej | Levym - ceny", "§7Zde prodej bloky!", "§a§lMine Tutorial (C)");
-        rankC.setItemInHand(new ItemStack(Material.SEEDS));
+        rankC.setItemInHand(new ItemStack(Material.WHEAT_SEEDS));
         rankC.spawn();
 
         // Rank D
@@ -123,7 +123,7 @@ public class ArmorStandManager {
         magikarp.setColor(255, 69, 0);
         magikarp.setHead("41dac880-eb6f-422e-9dc0-f7dec0e12933", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmY1OGZiN2NiZjlmOGRjZmMzYmM5ZDYxYzdjYjViMjI5YmY0OWRiMTEwMTMzNmZmZGMyZDA4N2MwYjk0MTYyIn19fQ==");
         magikarp.setHologramTexts("§7Zde prodej bloky!", "§c§lMagikarp Mine");
-        magikarp.setItemInHand(new ItemStack(Material.RED_ROSE));
+        magikarp.setItemInHand(new ItemStack(Material.RED_TULIP));
         magikarp.spawn();
 
         // Rank Zoidberg
@@ -131,7 +131,7 @@ public class ArmorStandManager {
         zoidberg.setColor(220, 20, 60);
         zoidberg.setHead("9e052b46-699a-40ed-9444-cb312ca2b1d3", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODIzOGMxMTRiMjdjYTlmZmQ2ZTc3NTRmZWM1ODJjN2UzNjk5MjgyODNiMmQ3ZmNlMTQ5ZWFhMzEyYmQyIn19fQ==");
         zoidberg.setHologramTexts("§7Zde prodej bloky!", "§4§lZoidberg Mine");
-        zoidberg.setItemInHand(new ItemStack(Material.RAW_FISH));
+        zoidberg.setItemInHand(new ItemStack(Material.TROPICAL_FISH));
         zoidberg.spawn();
 
         // Rank Maxwell
@@ -139,7 +139,7 @@ public class ArmorStandManager {
         maxwell.setColor(231, 99, 34);
         maxwell.setHead("1335bd82-9c2f-471c-aa00-26c78d9a78e2", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjg1NjJjM2FhMzRmNzdmZDBiZTUxOWJmOWM5NjAzZTliZTVhYjg4N2VmODMxZDlmOGQ1YjNkMzk3Y2I3Yjg4In19fQ==");
         maxwell.setHologramTexts("§7Zde prodavej bloky!", "§c§lMaxwell Mine");
-        maxwell.setItemInHand(new ItemStack(Material.BOOK_AND_QUILL));
+        maxwell.setItemInHand(new ItemStack(Material.WRITABLE_BOOK));
         maxwell.spawn();
 
         // Rank Dr.Strange

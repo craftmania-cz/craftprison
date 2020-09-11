@@ -65,9 +65,10 @@ public class AutoSellListener implements Listener {
         if (wont == null) {
             return;
         }
-        if (this.plugin.getBackpackHook() != null && !this.plugin.getBackpackHook().wontFit(p, wont)) {
+        //TODO: Backpack integrace
+        /*if (this.plugin.getBackpackHook() != null && !this.plugin.getBackpackHook().wontFit(p, wont)) {
             return;
-        }
+        }*/
         final String name = p.getName();
         if (this.plugin.isAlerted(name)) {
             final int current = this.plugin.getAlertAmount(name);

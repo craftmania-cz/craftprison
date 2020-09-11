@@ -8,8 +8,8 @@ public enum Rank {
     TUTORIAL_A(1, "A", 0, MineDifficulty.TUTORIAL, 0, new ItemStack(Material.COBBLESTONE), "", ""),
     TUTORIAL_B(2, "B", 1000, MineDifficulty.TUTORIAL, 1, new ItemStack(Material.STONE, 1, (short) 4), "NightVision v dolech", "craftprison.mine.nightvision"),
     TUTORIAL_C(3, "C", 4000, MineDifficulty.TUTORIAL, 1, new ItemStack(Material.STONE, 1, (short) 1), "", ""),
-    TUTORIAL_D(4, "D", 10000, MineDifficulty.TUTORIAL, 1, new ItemStack(Material.LAPIS_ORE), "Odemknuti vytvareni ostrova /is", "askyblock.island.create"),
-    GOOFY(5, "Goofy", 20000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STONE, 1, (short) 2), "Odemknuti pouzivani Aukce /au (Max 1 aukce)", "auctionguiplus.auction", "auctionguiplus.auction.bid", "auctionguiplus.auction.start", "auctionguiplus.auction.bid"),
+    TUTORIAL_D(4, "D", 10000, MineDifficulty.TUTORIAL, 1, new ItemStack(Material.LAPIS_ORE), "Odemknuti vytvareni ostrova /is", "askyblock.island.create");
+/*    GOOFY(5, "Goofy", 20000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STONE, 1, (short) 2), "Odemknuti pouzivani Aukce /au (Max 1 aukce)", "auctionguiplus.auction", "auctionguiplus.auction.bid", "auctionguiplus.auction.start", "auctionguiplus.auction.bid"),
     BENDER(6, "Bender", 40000, MineDifficulty.STANDARD, 2, new ItemStack(Material.COAL_ORE), "Odemknuti prikazu /pvp", "craftprison.pvp", "quicksell.shop.pvp"),
     MAGIKARP(7, "Magikarp", 80000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STONE, 1, (short) 6), "Odemknuti /shop + sekce Blocks", "shopguiplus.shop", "shopguiplus.shops.blocks"),
     ZOIDBERG(8, "Zoidberg", 150000, MineDifficulty.STANDARD, 2, new ItemStack(Material.MOSSY_COBBLESTONE, 1, (short) 1), "", ""),
@@ -46,7 +46,7 @@ public enum Rank {
     MRPIG(39, "MrPig", 25000000000000L, MineDifficulty.HARD, 8, new ItemStack(Material.YELLOW_GLAZED_TERRACOTTA), "", ""),
     WIZARD(40, "Wizard", 50000000000000L, MineDifficulty.HARD, 8, new ItemStack(Material.PINK_GLAZED_TERRACOTTA), "", ""),
     CLEOPATRA(41, "Cleopatra", 75000000000000L, MineDifficulty.HARD, 8, new ItemStack(Material.HARD_CLAY), "", "" ),
-    INDIAN(42, "Indian", 150000000000000L, MineDifficulty.HARD, 8, new ItemStack(Material.RED_SANDSTONE), "", "");
+    INDIAN(42, "Indian", 150000000000000L, MineDifficulty.HARD, 8, new ItemStack(Material.RED_SANDSTONE), "", "");*/
 
     private int weight;
     private String name;

@@ -31,6 +31,7 @@ repositories {
     maven { url "https://plugins.gradle.org/m2/" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
+
 dependencies {
     // Spigot
     compileOnly name: 'spigot-1.16.2'

@@ -4,7 +4,7 @@ package cz.wake.craftprison;
 import cz.wake.craftprison.armorstands.ArmorStandManager;
 import cz.wake.craftprison.commands.*;
 import cz.wake.craftprison.hooks.PlaceholderRegister;
-import cz.wake.craftprison.hooks.VKBackPackHook;
+//import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
 import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.Board;
@@ -32,7 +32,7 @@ public class Main extends JavaPlugin {
     private static Main instance;
     private ArmorStandManager asm = new ArmorStandManager();
     private static Map<String, Integer> active;
-    private VKBackPackHook backpack;
+    //private VKBackPackHook backpack;
     private final List<Material> tools;
     private final List<Material> ignored;
     private SQLManager sql;
@@ -46,7 +46,7 @@ public class Main extends JavaPlugin {
     }
 
     public Main() {
-        this.backpack = null;
+        //this.backpack = null;
         this.tools = Arrays.asList(Material.STONE_AXE, Material.STONE_HOE, Material.STONE_PICKAXE, Material.STONE_SHOVEL, Material.WOODEN_AXE, Material.WOODEN_HOE, Material.WOODEN_PICKAXE, Material.WOODEN_SHOVEL, Material.IRON_AXE, Material.IRON_HOE, Material.IRON_PICKAXE, Material.IRON_SHOVEL, Material.GOLDEN_AXE, Material.GOLDEN_HOE, Material.GOLDEN_PICKAXE, Material.GOLDEN_SHOVEL, Material.DIAMOND_AXE, Material.DIAMOND_HOE, Material.DIAMOND_PICKAXE, Material.DIAMOND_SHOVEL);
         this.ignored = Arrays.asList(Material.BEDROCK, Material.MINECART); //TODO: ?
     }
@@ -167,9 +167,9 @@ public class Main extends JavaPlugin {
         return asm;
     }
 
-    public VKBackPackHook getBackpackHook() {
+    /*public VKBackPackHook getBackpackHook() {
         return this.backpack;
-    }
+    }*/
 
     public List<Material> getIgnored() {
         return this.ignored;

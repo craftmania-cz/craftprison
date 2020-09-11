@@ -63,7 +63,7 @@ public class Board {
     private void update() {
         t1.setSuffix("§f" + cp.getRank().getName());
 
-        t2.setSuffix("§f" + PlayerUtils.formatMoney(Main.getEconomy().getBalance(p)) + "§a$");
+        //t2.setSuffix("§f" + PlayerUtils.formatMoney(Main.getEconomy().getBalance(p)) + "§a$");
 
         t3.setSuffix("§f" + cp.getPrisCoins());
     }

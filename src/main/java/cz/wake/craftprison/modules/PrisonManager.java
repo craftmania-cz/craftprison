@@ -133,7 +133,7 @@ public class PrisonManager {
         public void init(Player p, InventoryContents contents) {
 
             contents.set(1, 2, ClickableItem.of(
-                    new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short) 5).setName("§a§lANO")
+                    new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setName("§a§lANO")
                             .addLore("§7Kliknutim provedes rankup", "§7na rank: " + pm.getColoredNextPlayerRank(p), "", "§cTato akce je nevratna!").build(), e -> {
                         Rank actualRank = pm.getPlayerRank(p);
                         if (!(actualRank == Rank.TUTORIAL_A)) { // V zakladu hrac nema zadny rank pravo
@@ -145,7 +145,7 @@ public class PrisonManager {
                         PlayerUtils.addPermission(p, "deluxetags.tag." + nextRank.getName().toLowerCase());
                         PlayerUtils.addPermission(p, "essentials.warps." + nextRank.getName().toLowerCase());
                         CraftPlayer cp = pm.getPlayers().get(p);
-                        Main.getEconomy().withdrawPlayer(p, (double) nextRank.getPrice());
+                        //Main.getEconomy().withdrawPlayer(p, (double) nextRank.getPrice()); //TODO: Nefunkční vault - přidat CraftEconomy
                         Main.getInstance().getMySQL().rankupPlayerSQL(p, nextRank);
                         PrisCoins.giveCoins(p, nextRank.getPrisCoins());
                         cp.setRank(nextRank);
@@ -165,7 +165,7 @@ public class PrisonManager {
             ));
 
             contents.set(1, 6, ClickableItem.of(
-                    new ItemBuilder(Material.STAINED_GLASS_PANE).setDurability((short) 14).setName("§c§lNE")
+                    new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setName("§c§lNE")
                             .addLore("§7Kliknutim zrusis rankup.").build(), e -> p.closeInventory()
             ));
 
@@ -219,7 +219,7 @@ public class PrisonManager {
 
                         ArrayList<String> lore = new ArrayList<>();
                         lore.add("§7Cena: §f" + PlayerUtils.formatMoney((double) rank.getPrice()) + "§a$");
-                        lore.add("§7Dokonceno: §f" + ActionBarProgress.getPercent(Main.getEconomy().getBalance(p), (double) rank.getPrice()) + "%");
+                        //lore.add("§7Dokonceno: §f" + ActionBarProgress.getPercent(Main.getEconomy().getBalance(p), (double) rank.getPrice()) + "%");
                         lore.add("");
                         lore.add("§bZiskas:");
                         if (!rank.getReward().equals("")) {
@@ -231,12 +231,12 @@ public class PrisonManager {
                             lore.add(" §f- Nic..."); // Rank A
                         }
 
-                        contents.set(row, columm, ClickableItem.of(new ItemBuilder(Material.STAINED_GLASS_PANE)
-                                .setDurability((short) 4).setName("§e" + rank.getName()).setLore(lore).build(), e -> {
+                        contents.set(row, columm, ClickableItem.of(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE)
+                                .setName("§e" + rank.getName()).setLore(lore).build(), e -> {
                         }));
                     } else {
-                        contents.set(row, columm, ClickableItem.of(new ItemBuilder(Material.STAINED_GLASS_PANE)
-                                .setDurability((short) 15).setName("§8§k" + rank.getName())
+                        contents.set(row, columm, ClickableItem.of(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE)
+                                .setName("§8§k" + rank.getName())
                                 .setLore("§7Musis dokoncit rank", "§7pred timto k odemknuti.").build(), e -> {
                         }));
                     }
@@ -286,7 +286,7 @@ public class PrisonManager {
             }));
 
 
-            contents.set(2, 7, ClickableItem.of(new ItemBuilder(Material.LOG).setName("§bOstrovy")
+            contents.set(2, 7, ClickableItem.of(new ItemBuilder(Material.OAK_LOG).setName("§bOstrovy")
                     .setLore("§7Kazdy hrac si muze vytvorit", "§71x vlastni ostrov o", "§7rozloze 400x400 blocku.",
                             "", "§cOdemknuti od ranku: §fD", "", "§eVytvoreni ostrova: §b/is").build(), e -> {
             }));
@@ -297,7 +297,7 @@ public class PrisonManager {
                     .hideAllFlags().build(), e-> {
             }));
 
-            contents.set(4, 4, ClickableItem.of(new ItemBuilder(Material.WATCH).setName("§3Tagy")
+            contents.set(4, 4, ClickableItem.of(new ItemBuilder(Material.CLOCK).setName("§3Tagy")
                     .setLore("§7Kazdym dosazenym dolem", "§7ziskavas specialni tagy.", "§7Muzes si je nastavit", "§7podle aktualniho dolu", "§7nebo zcela nahodne.")
                     .hideAllFlags().build(), e -> {
             }));

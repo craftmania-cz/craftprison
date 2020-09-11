@@ -17,7 +17,7 @@ public class RankUpCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            if ((command.getName().equalsIgnoreCase("rankup"))) {
+            /*if ((command.getName().equalsIgnoreCase("rankup"))) {
                 try {
                     if (pm.getPlayers().containsKey(player)) {
                         double playerMoney = Main.getEconomy().getBalance(player);
@@ -36,7 +36,7 @@ public class RankUpCommand implements CommandExecutor {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
         } else {
             sender.sendMessage(ChatColor.RED + "Wejku, ty papriko! Console nema rank, console ma vse! :herold:");
         }

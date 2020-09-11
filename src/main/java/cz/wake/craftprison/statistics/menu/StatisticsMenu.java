@@ -29,10 +29,10 @@ public class StatisticsMenu implements Listener {
         ItemStack blocksBroken = new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§eZnicene blocky").addLore("§7" + cp.getMinedBlocks()).
                 hideAllFlags().build();
 
-        ItemStack deaths = new ItemBuilder(Material.SKULL_ITEM).setName("§eSmrti").addLore("§7" + cp.getDeaths()).
+        ItemStack deaths = new ItemBuilder(Material.PLAYER_HEAD).setName("§eSmrti").addLore("§7" + cp.getDeaths()).
                 hideAllFlags().build();
 
-        ItemStack kills = new ItemBuilder(Material.WOOD_SWORD).setName("§eZabiti").addLore("§7" + cp.getKills()).
+        ItemStack kills = new ItemBuilder(Material.WOODEN_SWORD).setName("§eZabiti").addLore("§7" + cp.getKills()).
                 hideAllFlags().build();
 
         inv.setItem(12, blocksBroken);
@@ -54,10 +54,10 @@ public class StatisticsMenu implements Listener {
         ItemStack blocksBroken = new ItemBuilder(Material.DIAMOND_PICKAXE).setName("§eZnicene blocky").addLore("§7" + Main.getInstance().getMySQL().getMinedBlocks(offlinePlayer)).
                 hideAllFlags().build();
 
-        ItemStack deaths = new ItemBuilder(Material.SKULL_ITEM).setName("§eSmrti").addLore("§7" + Main.getInstance().getMySQL().getDeaths(offlinePlayer)).
+        ItemStack deaths = new ItemBuilder(Material.PLAYER_HEAD).setName("§eSmrti").addLore("§7" + Main.getInstance().getMySQL().getDeaths(offlinePlayer)).
                 hideAllFlags().build();
 
-        ItemStack kills = new ItemBuilder(Material.WOOD_SWORD).setName("§eZabiti").addLore("§7" + Main.getInstance().getMySQL().getKills(offlinePlayer)).
+        ItemStack kills = new ItemBuilder(Material.WOODEN_SWORD).setName("§eZabiti").addLore("§7" + Main.getInstance().getMySQL().getKills(offlinePlayer)).
                 hideAllFlags().build();
 
         inv.setItem(12, blocksBroken);
@@ -81,7 +81,7 @@ public class StatisticsMenu implements Listener {
                 hideAllFlags().build();
 
         List<StatsPlayer> deathss = Main.getInstance().getMySQL().getTopDeaths(5);
-        ItemStack deaths = new ItemBuilder(Material.SKULL_ITEM).setName("§eSmrti").addLore("§7Tvoje pozice: §f#" + Main.getInstance().getMySQL().getTopDeathsPosition(p), "§f",
+        ItemStack deaths = new ItemBuilder(Material.PLAYER_HEAD).setName("§eSmrti").addLore("§7Tvoje pozice: §f#" + Main.getInstance().getMySQL().getTopDeathsPosition(p), "§f",
                 "§e#1: §f" + deathss.get(0).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(deathss.get(0).getDeaths()) + "§7)",
                 "§e#2: §f" + deathss.get(1).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(deathss.get(1).getDeaths()) + "§7)",
                 "§e#3: §f" + deathss.get(2).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(deathss.get(2).getDeaths()) + "§7)",
@@ -90,7 +90,7 @@ public class StatisticsMenu implements Listener {
                 hideAllFlags().build();
 
         List<StatsPlayer> kilss = Main.getInstance().getMySQL().getTopKills(5);
-        ItemStack kills = new ItemBuilder(Material.WOOD_SWORD).setName("§eZabiti").addLore("§7Tvoje pozice: §f#" + Main.getInstance().getMySQL().getTopKillsPosition(p), "§f",
+        ItemStack kills = new ItemBuilder(Material.WOODEN_SWORD).setName("§eZabiti").addLore("§7Tvoje pozice: §f#" + Main.getInstance().getMySQL().getTopKillsPosition(p), "§f",
                 "§e#1: §f" + kilss.get(0).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(kilss.get(0).getKills()) + "§7)",
                 "§e#2: §f" + kilss.get(1).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(kilss.get(1).getKills()) + "§7)",
                 "§e#3: §f" + kilss.get(2).getPlayer().getName() + " §7(" + NumberFormat.getNumberInstance(Locale.US).format(kilss.get(2).getKills()) + "§7)",
@@ -107,7 +107,7 @@ public class StatisticsMenu implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent e) {
-        if (!e.getInventory().getTitle().startsWith("§0Statistiky")) {
+        if (!e.getView().getTitle().startsWith("§0Statistiky")) {
             return;
         }
         e.setCancelled(true);
