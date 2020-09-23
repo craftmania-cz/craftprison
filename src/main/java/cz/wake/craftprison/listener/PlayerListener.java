@@ -1,7 +1,6 @@
 package cz.wake.craftprison.listener;
 
 import cz.wake.craftprison.Main;
-import cz.wake.craftprison.modules.Board;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.utils.PermFixes;
 import org.bukkit.entity.Player;
@@ -30,9 +29,6 @@ public class PlayerListener implements Listener {
         // Nacteni dat z SQL
         PrisonManager.loadPlayer(p);
 
-        // Scoreboard
-        new Board(p);
-
         // Opravy chyb a chybejicich prav
         pf.fixFor(p);
     }
@@ -44,12 +40,6 @@ public class PlayerListener implements Listener {
 
         // Preventivni vypnuti leave zprav
         e.setQuitMessage(null);
-
-        if (Board.boards.containsKey(p)) {
-            Board b = Board.boards.get(p);
-            b.unregister();
-            Board.boards.remove(p);
-        }
     }
 
     @EventHandler(ignoreCancelled = true)
@@ -59,11 +49,5 @@ public class PlayerListener implements Listener {
 
         // Preventivni vypnuti leave zprav
         e.setLeaveMessage(null);
-
-        if (Board.boards.containsKey(p)) {
-            Board b = Board.boards.get(p);
-            b.unregister();
-            Board.boards.remove(p);
-        }
     }
 }

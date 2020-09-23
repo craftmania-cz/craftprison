@@ -7,7 +7,6 @@ import cz.wake.craftprison.hooks.PlaceholderRegister;
 //import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
 import cz.wake.craftprison.modules.ActionBarProgress;
-import cz.wake.craftprison.modules.Board;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.modules.pickaxe.EnchantmentListener;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgradeListener;
@@ -97,9 +96,6 @@ public class Main extends JavaPlugin {
                 Main.getInstance().getMySQL().setAllFromCache(player);
             }
         }, 1, 2400);
-
-        // Scoreboard
-        Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, Board::updateAll, 1L, 100L);
 
         // Tasks
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, ActionBarProgress::send, 1L, 40L);
