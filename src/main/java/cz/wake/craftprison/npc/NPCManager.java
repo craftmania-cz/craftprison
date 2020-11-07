@@ -7,6 +7,7 @@ import net.citizensnpcs.api.npc.NPCRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Villager;
 
 import java.util.HashSet;
 
@@ -31,17 +32,12 @@ public class NPCManager {
     public void initNPCs() {
 
         // Test NPC
-        InteractiveNPC npc_test = new InteractiveNPC(this.registry, "Waked_", EntityType.PLAYER);
-        npc_test.setLocation(new Location(Bukkit.getWorld("spawn"), -109.5, 45, 208.5));
-        npc_test.setSkinUUID("1e314ad9-f38e-49fc-b5e2-552d1a8e4dca");
-        npc_test.setHologramTexts("§bTestovací hologram", "§7Druhý řádek");
-        npc_test.setRightClickAction(ClickAction.run((clickEvent) -> {
-            clickEvent.getClicker().sendMessage("RIGHT");
-        }));
-        npc_test.setLeftClickAction(ClickAction.run((npcClickEvent -> {
-            npcClickEvent.getClicker().sendMessage("LEFT");
-        })));
-        npc_test.spawn();
+        InteractiveNPC rank_a = new InteractiveNPC(this.registry, "Rank A", EntityType.VILLAGER);
+        rank_a.setLocation(new Location(Bukkit.getWorld("spawn"), -119.5, 41, 135.5, -162, 0));
+        rank_a.setHologramTexts("§a§lMine A", "§7Klikni pravým k prodeji");
+        rank_a.spawn();
+        rank_a.setVillagerProfession(Villager.Profession.CARTOGRAPHER);
+        rank_a.setVillagerType(Villager.Type.JUNGLE);
     }
 
     public void destroyNPCs() {

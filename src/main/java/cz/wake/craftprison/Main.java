@@ -9,9 +9,12 @@ import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgradeListener;
 import cz.wake.craftprison.npc.NPCManager;
+import cz.wake.craftprison.npc.VillagerTypeTrait;
 import cz.wake.craftprison.sql.SQLManager;
 import cz.wake.craftprison.statistics.Statistics;
 import cz.wake.craftprison.statistics.menu.StatisticsMenu;
+import net.citizensnpcs.api.CitizensAPI;
+import net.citizensnpcs.api.trait.TraitInfo;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -87,6 +90,8 @@ public class Main extends JavaPlugin {
         // Placeholders
         PlaceholderRegister pr = new PlaceholderRegister(this);
         pr.registerPlaceholders();
+
+        CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(VillagerTypeTrait.class).withName("villagertype"));
 
         this.npcManager = new NPCManager();
         this.npcManager.initNPCs();

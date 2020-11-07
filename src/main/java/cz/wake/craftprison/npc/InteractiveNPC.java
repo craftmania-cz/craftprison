@@ -4,12 +4,14 @@ import cz.wake.craftprison.Main;
 import net.citizensnpcs.api.event.SpawnReason;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.npc.NPCRegistry;
+import net.citizensnpcs.trait.VillagerProfession;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -54,6 +56,14 @@ public class InteractiveNPC {
     public InteractiveNPC setHologramTexts(String... lines) {
         Collections.addAll(this.hologramTexts, lines);
         return this;
+    }
+
+    public void setVillagerProfession(Villager.Profession profession) {
+        this.npc.getOrAddTrait(VillagerProfession.class).setProfession(profession);
+    }
+
+    public void setVillagerType(Villager.Type type) {
+        this.npc.getOrAddTrait(VillagerTypeTrait.class).setVillagerType(type);
     }
 
     public InteractiveNPC setRightClickAction(ClickAction action) {
