@@ -30,6 +30,7 @@ repositories {
     maven { url 'https://jitpack.io' }
     maven { url "https://plugins.gradle.org/m2/" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "https://repo.citizensnpcs.co/" }
 }
 
 dependencies {
@@ -43,6 +44,8 @@ dependencies {
     compile group: 'com.zaxxer', name: 'HikariCP', version:'2.7.4'
     compileOnly name: 'AutoSell-1.8.1'
     compileOnly name: 'worldguard-6.2.1'
+    compileOnly name: 'Citizens-2.0.27-b2120'
+    compile 'org.jetbrains:annotations:16.0.2'
 
     // CM Plugins
     compileOnly group: 'cz.craftmania.craftcore', name: 'craftcore', version:'2.0.10'

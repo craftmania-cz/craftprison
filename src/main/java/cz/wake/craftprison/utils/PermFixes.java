@@ -11,12 +11,12 @@ public class PermFixes {
     public void fixFor(final Player p) {
 
         // Oprava chybejiciho prava na prodej v PVP # 16.7.2018
-        if(p.hasPermission("craftprison.pvp") && !p.hasPermission("quicksell.shop.pvp")) {
+        /*if(p.hasPermission("craftprison.pvp") && !p.hasPermission("quicksell.shop.pvp")) {
             PlayerUtils.addPermission(p, "quicksell.shop.pvp");
         }
 
         // Oprava chybejiciho NightVision pro hrace, kteri byli na serveru v pripade bugu s rankupy A -> B # 16.7.2018
-        if(pm.getPlayerRank(p) != Rank.TUTORIAL_A && !p.hasPermission("craftprison.mine.nightvision")) {
+        if(pm.getPlayerRank(p) != Rank.A && !p.hasPermission("craftprison.mine.nightvision")) {
             PlayerUtils.addPermission(p, "craftprison.mine.nightvision");
         }
 
@@ -34,7 +34,7 @@ public class PermFixes {
             PlayerUtils.addPermission(p, "shop.create");
             PlayerUtils.addPermission(p, "shop.create.buy");
             PlayerUtils.addPermission(p, "shop.create.sell");
-        }
+        }*/
 
     }
 }

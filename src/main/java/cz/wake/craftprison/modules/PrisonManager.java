@@ -39,7 +39,7 @@ public class PrisonManager {
         if (!Main.getInstance().getMySQL().hasData(p)) {
             // Vytvoreni default dat
             Main.getInstance().getMySQL().insertDefaultData(p);
-            cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0, 0, 0);
+            cp = new CraftPlayer(p, Rank.A, 0, 0, 0, 0);
 
             //Player counter
             int count = Main.getInstance().getConfig().getInt("player-counter") + 1;
@@ -55,7 +55,7 @@ public class PrisonManager {
 
         // Prevence proti NPE z SQL
         if (cp == null) {
-            cp = new CraftPlayer(p, Rank.TUTORIAL_A, 0, 0, 0, 0);
+            cp = new CraftPlayer(p, Rank.A, 0, 0, 0, 0);
         }
 
         players.put(p, cp);
@@ -136,7 +136,7 @@ public class PrisonManager {
                     new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setName("§a§lANO")
                             .addLore("§7Kliknutim provedes rankup", "§7na rank: " + pm.getColoredNextPlayerRank(p), "", "§cTato akce je nevratna!").build(), e -> {
                         Rank actualRank = pm.getPlayerRank(p);
-                        if (!(actualRank == Rank.TUTORIAL_A)) { // V zakladu hrac nema zadny rank pravo
+                        if (!(actualRank == Rank.A)) { // V zakladu hrac nema zadny rank pravo
                             PlayerUtils.removePermission(p, actualRank.getPermission());
                         }
                         Rank nextRank = actualRank.getNext();

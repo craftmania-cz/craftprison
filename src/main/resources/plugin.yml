@@ -1,7 +1,7 @@
 name: CraftPrison
 main: cz.wake.craftprison.Main
 authors: [MrWakeCZ]
-depend: [Multiverse-Core,CraftCore,Vault]
+depend: [Multiverse-Core,CraftCore,Vault,Citizens]
 softdepend: [AutoSell,VKBackPack,MVdWPlaceholderAPI]
 version: 1.0
 api-version: "1.15"

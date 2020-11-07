@@ -8,8 +8,8 @@ import cz.wake.craftprison.hooks.PlaceholderRegister;
 import cz.wake.craftprison.listener.*;
 import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.PrisonManager;
-import cz.wake.craftprison.modules.pickaxe.EnchantmentListener;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgradeListener;
+import cz.wake.craftprison.npc.NPCManager;
 import cz.wake.craftprison.sql.SQLManager;
 import cz.wake.craftprison.statistics.Statistics;
 import cz.wake.craftprison.statistics.menu.StatisticsMenu;
@@ -38,6 +38,7 @@ public class Main extends JavaPlugin {
     private boolean fixArmorstands = false;
     private Statistics statistics;
     private PlayerStatsListener playerStatsListener;
+    private NPCManager npcManager;
     private boolean debug = false;
 
     static {
@@ -79,8 +80,8 @@ public class Main extends JavaPlugin {
 
         // ArmorStandy
         if (!debug) {
-            ArmorStandManager.initRankedArmorStands();
-            ArmorStandManager.initStandartArmorStand();
+            //ArmorStandManager.initRankedArmorStands();
+            //ArmorStandManager.initStandartArmorStand();
         }
 
         // WG regions
@@ -103,13 +104,16 @@ public class Main extends JavaPlugin {
         // Placeholders
         PlaceholderRegister pr = new PlaceholderRegister(this);
         pr.registerPlaceholders();
+
+        this.npcManager = new NPCManager();
+        this.npcManager.initNPCs();
     }
 
     @Override
     public void onDisable() {
 
-        // Despawn armorstandu
-        ArmorStandManager.removeArmorStands(fixArmorstands);
+        // Despawn NPC
+        this.getNpcManager().destroyNPCs();
 
         // Deaktivace MySQL
         sql.onDisable();
@@ -127,11 +131,12 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new StatisticsMenu(), this);
         pm.registerEvents(new PlayerStatsListener(this), this);
         pm.registerEvents(new PickaxeUpgradeListener(), this);
-        pm.registerEvents(new EnchantmentListener(), this);
+        //pm.registerEvents(new EnchantmentListener(), this);
         pm.registerEvents(new PShopCommand(), this);
         pm.registerEvents(new ItemDropListener(), this);
         //m.registerEvents(new PlayerDeathListener(), this); //TODO: fix duplikace pri smrti
         pm.registerEvents(new PickaxeInteractListener(), this);
+        pm.registerEvents(new NPCInteractListener(), this);
 
         if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
             Bukkit.getServer().getPluginManager().registerEvents(new AutoSellListener(this), this);
@@ -177,6 +182,10 @@ public class Main extends JavaPlugin {
 
     public boolean isAlerted(final String name) {
         return Main.active != null && !Main.active.isEmpty() && Main.active.containsKey(name);
+    }
+
+    public NPCManager getNpcManager() {
+        return this.npcManager;
     }
 
     public int getAlertAmount(final String name) {
