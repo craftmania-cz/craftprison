@@ -1,7 +1,6 @@
 package cz.wake.craftprison;
 
 
-import cz.wake.craftprison.armorstands.ArmorStandManager;
 import cz.wake.craftprison.commands.*;
 import cz.wake.craftprison.hooks.PlaceholderRegister;
 //import cz.wake.craftprison.hooks.VKBackPackHook;
@@ -15,8 +14,6 @@ import cz.wake.craftprison.statistics.Statistics;
 import cz.wake.craftprison.statistics.menu.StatisticsMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,13 +26,11 @@ import java.util.Map;
 public class Main extends JavaPlugin {
 
     private static Main instance;
-    private ArmorStandManager asm = new ArmorStandManager();
     private static Map<String, Integer> active;
     //private VKBackPackHook backpack;
     private final List<Material> tools;
     private final List<Material> ignored;
     private SQLManager sql;
-    private boolean fixArmorstands = false;
     private Statistics statistics;
     private PlayerStatsListener playerStatsListener;
     private NPCManager npcManager;
@@ -69,20 +64,8 @@ public class Main extends JavaPlugin {
         loadCommands();
 
         // Config hodnoty
-        this.fixArmorstands = getConfig().getBoolean("fix-armorstands");
         this.statistics = new Statistics(this);
         this.debug = getConfig().getBoolean("debug");
-
-        // Preventivni smazani armorstandu
-        if (fixArmorstands) {
-            Bukkit.getWorlds().stream().filter(w -> w.getName().equalsIgnoreCase("doly") || w.getName().equalsIgnoreCase("spawn")).flatMap(w -> w.getEntities().stream()).filter(e -> e instanceof ArmorStand).forEach(Entity::remove);
-        }
-
-        // ArmorStandy
-        if (!debug) {
-            //ArmorStandManager.initRankedArmorStands();
-            //ArmorStandManager.initStandartArmorStand();
-        }
 
         // WG regions
         PrisonManager.registerWgMines();
@@ -123,7 +106,6 @@ public class Main extends JavaPlugin {
 
     private void loadListeners() {
         PluginManager pm = getServer().getPluginManager();
-        pm.registerEvents(new ArmorStandInteract(), this);
         pm.registerEvents(new MiningListener(), this);
         pm.registerEvents(new WGExtendedListener(), this);
         pm.registerEvents(new PlayerListener(this), this);
@@ -162,10 +144,6 @@ public class Main extends JavaPlugin {
 
     public static Main getInstance() {
         return instance;
-    }
-
-    public ArmorStandManager getArmorStandManager() {
-        return asm;
     }
 
     /*public VKBackPackHook getBackpackHook() {
