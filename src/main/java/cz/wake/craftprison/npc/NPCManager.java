@@ -70,6 +70,26 @@ public class NPCManager {
         rank_d.spawn();
         rank_d.setVillagerProfession(Villager.Profession.CARTOGRAPHER);
         rank_d.setVillagerType(Villager.Type.DESERT);
+
+        // Rank E
+        InteractiveNPC rank_e = new InteractiveNPC(this.registry, "Rank E", EntityType.VILLAGER);
+        rank_e.setLocation(new Location(Bukkit.getWorld("mines"), 69.5, 107, -130, 17, 0));
+        rank_e.setHologramTexts("§e§lMine E", "§7Klikni pravým k prodeji");
+        rank_e.setLeftClickAction(new ClickAction((action) -> action.getClicker().performCommand("sellall info e")));
+        rank_e.setRightClickAction(new ClickAction((action) -> action.getClicker().performCommand("sellall e")));
+        rank_e.spawn();
+        rank_e.setVillagerProfession(Villager.Profession.ARMORER);
+        rank_e.setVillagerType(Villager.Type.PLAINS);
+
+        // Rank F
+        InteractiveNPC rank_f = new InteractiveNPC(this.registry, "Rank F", EntityType.VILLAGER);
+        rank_f.setLocation(new Location(Bukkit.getWorld("mines"), -148.5, 105, -33.5, -90, 0));
+        rank_f.setHologramTexts("§e§lMine F", "§7Klikni pravým k prodeji");
+        rank_f.setLeftClickAction(new ClickAction((action) -> action.getClicker().performCommand("sellall info f")));
+        rank_f.setRightClickAction(new ClickAction((action) -> action.getClicker().performCommand("sellall f")));
+        rank_f.spawn();
+        rank_f.setVillagerProfession(Villager.Profession.CLERIC);
+        rank_f.setVillagerType(Villager.Type.PLAINS);
     }
 
     public void destroyNPCs() {
