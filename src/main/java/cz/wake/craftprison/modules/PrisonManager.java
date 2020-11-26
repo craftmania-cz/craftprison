@@ -36,7 +36,7 @@ public class PrisonManager {
         if (!Main.getInstance().getMySQL().hasData(p)) {
             // Vytvoreni default dat
             Main.getInstance().getMySQL().insertDefaultData(p);
-            cp = new CraftPlayer(p, Rank.A, 0, 0, 0, 0);
+            cp = new CraftPlayer(p, Rank.A);
 
             //Player counter
             int count = Main.getInstance().getConfig().getInt("player-counter") + 1;
@@ -52,7 +52,7 @@ public class PrisonManager {
 
         // Prevence proti NPE z SQL
         if (cp == null) {
-            cp = new CraftPlayer(p, Rank.A, 0, 0, 0, 0);
+            cp = new CraftPlayer(p, Rank.A);
         }
 
         players.put(p, cp);
@@ -144,7 +144,6 @@ public class PrisonManager {
                         CraftPlayer cp = pm.getPlayers().get(p);
                         //Main.getEconomy().withdrawPlayer(p, (double) nextRank.getPrice()); //TODO: Nefunkční vault - přidat CraftEconomy
                         Main.getInstance().getMySQL().rankupPlayerSQL(p, nextRank);
-                        PrisCoins.giveCoins(p, nextRank.getPrisCoins());
                         cp.setRank(nextRank);
                         PlayerUtils.randomFireworks(p.getLocation());
                         PlayerUtils.sendRankUpMessage(p);

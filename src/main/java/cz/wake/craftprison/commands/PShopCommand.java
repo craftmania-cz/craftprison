@@ -1,7 +1,6 @@
 package cz.wake.craftprison.commands;
 
 import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
-import cz.wake.craftprison.modules.PrisCoins;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -109,7 +108,7 @@ public class PShopCommand implements CommandExecutor, Listener {
             if(e.getSlot() == 11) {
                 if(p.getLevel() >= 25) { // 25 LVL = 1 PC
                     this.takeLevel(p, 25);
-                    PrisCoins.giveCoins(p, 1);
+                    //PrisCoins.giveCoins(p, 1);
                     p.sendMessage("§eVymenil jsi §a25LVL §eza §61 PC.");
                     p.closeInventory();
                 } else {
@@ -120,7 +119,7 @@ public class PShopCommand implements CommandExecutor, Listener {
             if(e.getSlot() == 12) {
                 if(this.getLevel(p) >= 75) { // 75 LVL = 3 PC
                     this.takeLevel(p, 75);
-                    PrisCoins.giveCoins(p, 2);
+                    //PrisCoins.giveCoins(p, 2);
                     p.sendMessage("§eVymenil jsi §a50LVL §eza §62 PC.");
                     p.closeInventory();
                 } else {
@@ -131,7 +130,7 @@ public class PShopCommand implements CommandExecutor, Listener {
             if(e.getSlot() == 13) {
                 if(this.getLevel(p) >= 150) { // 150 LVL = 7 PC
                     this.takeLevel(p, 150);
-                    PrisCoins.giveCoins(p, 5);
+                    //PrisCoins.giveCoins(p, 5);
                     p.sendMessage("§eVymenil jsi §a150LVL §eza §65 PC.");
                     p.closeInventory();
                 } else {
@@ -142,7 +141,7 @@ public class PShopCommand implements CommandExecutor, Listener {
             if(e.getSlot() == 14) {
                 if(this.getLevel(p) >= 300) { // 300 LVL = 15 PC
                     this.takeLevel(p,300);
-                    PrisCoins.giveCoins(p, 15);
+                    //PrisCoins.giveCoins(p, 15);
                     p.sendMessage("§eVymenil jsi §a300LVL §eza §615 PC.");
                     p.closeInventory();
                 } else {

@@ -36,7 +36,6 @@ public class PlayerListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();
-        Main.getInstance().getMySQL().setAllFromCache(p);
 
         // Preventivni vypnuti leave zprav
         e.setQuitMessage(null);
@@ -45,7 +44,6 @@ public class PlayerListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onKick(PlayerKickEvent e) {
         Player p = e.getPlayer();
-        Main.getInstance().getMySQL().setAllFromCache(p);
 
         // Preventivni vypnuti leave zprav
         e.setLeaveMessage(null);

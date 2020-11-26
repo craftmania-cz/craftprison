@@ -1,17 +1,11 @@
 package cz.wake.craftprison.listener;
 
 import cz.wake.craftprison.Main;
-import cz.wake.craftprison.modules.PrisCoins;
 import cz.wake.craftprison.modules.PrisonManager;
-import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.utils.PlayerUtils;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class PlayerStatsListener implements Listener {
 
@@ -24,7 +18,7 @@ public class PlayerStatsListener implements Listener {
     }
 
 
-    @EventHandler(priority = EventPriority.HIGH)
+    /*@EventHandler(priority = EventPriority.HIGH)
     public void onBlockBreak(BlockBreakEvent event) { //TODO: Free duplikace (pridat kontrolu zniceni)
         Player p = event.getPlayer();
         CraftPlayer cp = pm.getCraftPlayer(p);
@@ -76,23 +70,10 @@ public class PlayerStatsListener implements Listener {
         if(cp.getMinedBlocks() >= 5000000 && !p.hasPermission("craftprison.pickaxe.milestone.11")){
             milestonePickaxe(p, "5,000,000", "craftprison.pickaxe.milestone.11", 3000);
         }
-    }
-
-    @EventHandler
-    public void onDeath(PlayerDeathEvent event) {
-        CraftPlayer victim = pm.getCraftPlayer(event.getEntity().getPlayer());
-        CraftPlayer killer = pm.getCraftPlayer(event.getEntity().getKiller());
-        if (victim != null) {
-            victim.addDeath();
-            if (killer != null) {
-                killer.addKill();
-            }
-        }
-    }
+    }*/
 
     private void milestonePickaxe(Player p, String blocks, String permission, int prisCoins){
         PlayerUtils.addPermission(p, permission);
-        PrisCoins.giveCoins(p, prisCoins);
         p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
         p.sendMessage("");
         p.sendMessage("§eVykopal jsi §b" + blocks + " §ebloku a dostal jsi §f" + prisCoins + " PrisCoins§e.");

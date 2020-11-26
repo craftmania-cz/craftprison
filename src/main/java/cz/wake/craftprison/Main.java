@@ -1,9 +1,7 @@
 package cz.wake.craftprison;
 
-
 import cz.wake.craftprison.commands.*;
 import cz.wake.craftprison.hooks.PlaceholderRegister;
-//import cz.wake.craftprison.hooks.VKBackPackHook;
 import cz.wake.craftprison.listener.*;
 import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.PrisonManager;
@@ -11,8 +9,6 @@ import cz.wake.craftprison.modules.pickaxe.PickaxeUpgradeListener;
 import cz.wake.craftprison.npc.NPCManager;
 import cz.wake.craftprison.npc.VillagerTypeTrait;
 import cz.wake.craftprison.sql.SQLManager;
-import cz.wake.craftprison.statistics.Statistics;
-import cz.wake.craftprison.statistics.menu.StatisticsMenu;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
 import org.bukkit.Bukkit;
@@ -34,7 +30,6 @@ public class Main extends JavaPlugin {
     private final List<Material> tools;
     private final List<Material> ignored;
     private SQLManager sql;
-    private Statistics statistics;
     private PlayerStatsListener playerStatsListener;
     private NPCManager npcManager;
     private boolean debug = false;
@@ -67,20 +62,15 @@ public class Main extends JavaPlugin {
         loadCommands();
 
         // Config hodnoty
-        this.statistics = new Statistics(this);
         this.debug = getConfig().getBoolean("debug");
 
         // WG regions
         PrisonManager.registerWgMines();
 
-        //Statistiky
-        statistics = new Statistics(this);
-        playerStatsListener = new PlayerStatsListener(this);
-
         // Update statistik
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, () -> {
             for (Player player : Bukkit.getOnlinePlayers()) {
-                Main.getInstance().getMySQL().setAllFromCache(player);
+                //Main.getInstance().getMySQL().setAllFromCache(player);
             }
         }, 1, 2400);
 
@@ -115,8 +105,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new WGExtendedListener(), this);
         pm.registerEvents(new PlayerListener(this), this);
         pm.registerEvents(new InventoryFullListener(), this);
-        pm.registerEvents(new StatisticsMenu(), this);
-        pm.registerEvents(new PlayerStatsListener(this), this);
+        //pm.registerEvents(new PlayerStatsListener(this), this);
         pm.registerEvents(new PickaxeUpgradeListener(), this);
         //pm.registerEvents(new EnchantmentListener(), this);
         pm.registerEvents(new PShopCommand(), this);
@@ -135,9 +124,6 @@ public class Main extends JavaPlugin {
     private void loadCommands() {
         getCommand("rank").setExecutor(new RankCommand());
         getCommand("rankup").setExecutor(new RankUpCommand());
-        getCommand("stats").setExecutor(new StatsCommand());
-        getCommand("statstop").setExecutor(new StatsTopCommand());
-        getCommand("pcoins").setExecutor(new PCoinsCommand());
         getCommand("pickaxe").setExecutor(new PickaxeCommand());
         getCommand("tutorial").setExecutor(new TutorialCommand());
         getCommand("pvp").setExecutor(new PVPCommand());
@@ -207,9 +193,5 @@ public class Main extends JavaPlugin {
 
     private void initDatabase() {
         sql = new SQLManager(this);
-    }
-
-    public Statistics getStatistics() {
-        return statistics;
     }
 }

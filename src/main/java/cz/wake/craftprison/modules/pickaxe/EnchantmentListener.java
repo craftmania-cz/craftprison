@@ -141,7 +141,7 @@ public class EnchantmentListener implements Listener {
 
                     PrisonManager pm = new PrisonManager();
                     CraftPlayer cpl = pm.getCraftPlayer(p);
-                    cpl.addMinedBlock();
+                    //cpl.addMinedBlock();
 
                     ArrayList<ItemStack> blocks = new ArrayList<>();
                     blocks.add(block);

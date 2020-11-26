@@ -1,7 +1,6 @@
 package cz.wake.craftprison.modules.pickaxe;
 
 import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
-import cz.wake.craftprison.modules.PrisCoins;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
 import org.bukkit.ChatColor;
@@ -58,11 +57,6 @@ public class PickaxeUpgradeListener implements Listener {
                 int price = ce.getPrice() * (ce.getEffect() instanceof Enchantment ?
                         pickaxe.getEnchantmentLevel((Enchantment) ce.getEffect()) : cpick.getCustomEnchantLevel(ce.getName()));
                 price = price == 0 ? ce.getPrice() : price;
-                if (cp.getPrisCoins() < price) {
-                    p.closeInventory();
-                    p.sendMessage("§c§l(!) §cNemas dostatek PrisCoinu §7(" + price + ")");
-                    return;
-                }
 
                 if (ce.getEffect() instanceof Enchantment) {
                     if (ce == CustomEnchantment.UNBREAKING) {
@@ -85,7 +79,6 @@ public class PickaxeUpgradeListener implements Listener {
                 }
                 p.updateInventory();
                 p.closeInventory();
-                PrisCoins.takeCoins(p, price);
                 p.sendMessage("§aUpgradoval jsi svuj krumpac za §c" + price + " §aPrisCoinu");
             }
         }

@@ -2,11 +2,7 @@ package cz.wake.craftprison.hooks;
 
 //import be.maximvdw.placeholderapi.PlaceholderAPI;
 import cz.wake.craftprison.Main;
-import cz.wake.craftprison.modules.PrisCoins;
 import cz.wake.craftprison.modules.PrisonManager;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 
 public class PlaceholderRegister {
 

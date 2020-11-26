@@ -7,8 +7,4 @@ public interface IMiner {
     Player getPlayer();
 
     Rank getRank();
-
-    int getPrisCoins();
-
-    int getMinedBlocks();
 }

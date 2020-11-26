@@ -67,7 +67,7 @@ public class PickaxeUpgrade {
                                     "§7Cena upgradu: §e" + price).hideAllFlags().build());
         }
 
-        ItemStack sign = new ItemBuilder(Material.OAK_SIGN).setName("§b§lPocet PrisCoinu: §7" + new PrisonManager().getCraftPlayer(p).getPrisCoins()).hideAllFlags().build();
+        ItemStack sign = new ItemBuilder(Material.OAK_SIGN).setName("§b§lPocet PrisCoinu: §70").hideAllFlags().build();
         inv.setItem(49, sign);
 
         p.openInventory(inv);
