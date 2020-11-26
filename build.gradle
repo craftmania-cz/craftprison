@@ -48,5 +48,5 @@ dependencies {
     compile 'org.jetbrains:annotations:16.0.2'
 
     // CM Plugins
-    compileOnly group: 'cz.craftmania.craftcore', name: 'craftcore', version:'2.0.10'
+    compileOnly group: 'cz.craftmania.craftcore', name: 'craftcore', version:'2.3.1'
 }

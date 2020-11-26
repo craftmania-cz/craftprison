@@ -1,6 +1,6 @@
 package cz.wake.craftprison.listener;
 
-import cz.craftmania.craftcore.spigot.messages.Title;
+import cz.craftmania.craftcore.spigot.xseries.messages.Titles;
 import cz.wake.craftprison.events.InventoryFullEvent;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -17,10 +17,10 @@ public class InventoryFullListener implements Listener {
         }
 
         // Chat message
-        p.sendMessage("§cMas plny inventar! Ztracis bloky!");
+        p.sendMessage("§cMáš plný inventář, ztrácíš bloky!");
 
         // Title warning
-        new Title("", "§cMas plny inventar!", 0, 30, 5).send(p);
+        Titles.sendTitle(p, "", "§cMáš plný inventář!");
 
         // Sound waring
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 10.0f, 1.0f);

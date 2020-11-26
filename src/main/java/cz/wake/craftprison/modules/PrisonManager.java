@@ -1,12 +1,10 @@
 package cz.wake.craftprison.modules;
 
 import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
-import cz.craftmania.craftcore.spigot.inventory.ClickableItem;
-import cz.craftmania.craftcore.spigot.inventory.SmartInventory;
-import cz.craftmania.craftcore.spigot.inventory.content.InventoryContents;
-import cz.craftmania.craftcore.spigot.inventory.content.InventoryProvider;
-import cz.craftmania.craftcore.spigot.messages.Advancement;
-import cz.craftmania.craftcore.spigot.messages.handler.AdvancementManager;
+import cz.craftmania.craftcore.spigot.inventory.builder.ClickableItem;
+import cz.craftmania.craftcore.spigot.inventory.builder.SmartInventory;
+import cz.craftmania.craftcore.spigot.inventory.builder.content.InventoryContents;
+import cz.craftmania.craftcore.spigot.inventory.builder.content.InventoryProvider;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
 import cz.wake.craftprison.objects.CraftPlayer;
@@ -15,7 +13,6 @@ import cz.wake.craftprison.utils.PlayerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 

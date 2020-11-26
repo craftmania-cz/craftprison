@@ -1,7 +1,5 @@
 package cz.wake.craftprison.modules;
 
-import cz.craftmania.craftcore.spigot.messages.ActionBar;
-import cz.wake.craftprison.Main;
 import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
 import org.bukkit.Bukkit;
