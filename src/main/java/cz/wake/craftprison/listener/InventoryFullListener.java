@@ -12,7 +12,7 @@ public class InventoryFullListener implements Listener {
     @EventHandler
     public void onFull(final InventoryFullEvent e) {
         final Player p = e.getPlayer();
-        if (p == null || e.getItem() == null) {
+        if (p == null) {
             return;
         }
 

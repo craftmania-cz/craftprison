@@ -10,15 +10,13 @@ public class InventoryFullEvent extends Event {
 
     private static final HandlerList handlers;
     private String pname;
-    private ItemStack wontFit;
 
     static {
         handlers = new HandlerList();
     }
 
-    public InventoryFullEvent(final Player p, final ItemStack wontFit) {
+    public InventoryFullEvent(final Player p) {
         this.pname = p.getName();
-        this.wontFit = wontFit;
     }
 
     public String getName() {
@@ -35,9 +33,5 @@ public class InventoryFullEvent extends Event {
 
     public static HandlerList getHandlerList() {
         return InventoryFullEvent.handlers;
-    }
-
-    public ItemStack getItem() {
-        return this.wontFit;
     }
 }

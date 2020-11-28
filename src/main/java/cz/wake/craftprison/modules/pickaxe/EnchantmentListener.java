@@ -135,7 +135,7 @@ public class EnchantmentListener implements Listener {
                     ItemStack block = new ItemStack(loc.getBlock().getType());
 
                     if (p.getInventory().firstEmpty() == -1) {
-                        Bukkit.getPluginManager().callEvent(new InventoryFullEvent(p, block));
+                        Bukkit.getPluginManager().callEvent(new InventoryFullEvent(p));
                         return;
                     }
 

@@ -1,86 +1,43 @@
 package cz.wake.craftprison.listener;
 
-import cz.wake.craftprison.Main;
 import cz.wake.craftprison.events.InventoryFullEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockBreakListener implements Listener {
 
-    private Main plugin;
-
-    public BlockBreakListener(final Main i) {
-        this.plugin = i;
-    }
-
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onBlockBreak(final BlockBreakEvent e) {
-        if (e.isCancelled()) {
-            return;
-        }
-        final Player p = e.getPlayer();
-        if (!p.getGameMode().equals(GameMode.SURVIVAL)) {
-            return;
-        }
-        if (!p.hasPermission("craftprison.fullinventory")) {
-            return;
-        }
-        final Block b = e.getBlock();
-        final PlayerInventory i = p.getInventory();
-        if (!this.plugin.getTools().contains(i.getItemInMainHand().getType())) {
-            return;
-        }
-        if (this.plugin.getIgnored().contains(b.getType())) {
-            return;
-        }
-        if (b.getDrops(i.getItemInMainHand()) == null || b.getDrops(i.getItemInOffHand()).isEmpty()) {
-            return;
-        }
-        ItemStack wont = null;
-        final Iterator<ItemStack> iterator = b.getDrops(i.getItemInMainHand()).iterator();
-        if (iterator.hasNext()) {
-            final ItemStack drop = iterator.next();
-            ItemStack[] arrayOfItemStack;
-            for (int j = (arrayOfItemStack = i.getContents()).length, k = 0; k < j; ++k) {
-                final ItemStack is = arrayOfItemStack[k];
-                if (is == null) {
-                    return;
-                }
-                if (is.getType() == drop.getType() && is.getAmount() + drop.getAmount() <= is.getMaxStackSize()) {
-                    return;
-                }
+    public void onBlockBreak(final BlockBreakEvent event) {
+        if (event.isCancelled()) return;
+        Player player = event.getPlayer();
+        if (player.getInventory().firstEmpty() >= 0) return;
+
+        List<ItemStack> blockDrops = new ArrayList<>(event.getBlock().getDrops());
+        if (blockDrops.isEmpty()) return;
+
+        List<ItemStack> items = new ArrayList<>();
+        blockDrops.forEach(drop -> {
+            for (ItemStack item : player.getInventory().getContents()) {
+                if(item != null && item.getType().equals(drop.getType()) && item.getAmount() + drop.getAmount() <= item.getMaxStackSize()) return;
             }
-            wont = drop;
-        }
-        if (wont == null) {
-            return;
-        }
+            items.add(drop);
+        });
+
+        if (items.isEmpty()) return;
         //TODO: Backpack integrace
         /*if (this.plugin.getBackpackHook() != null && !this.plugin.getBackpackHook().wontFit(p, wont)) {
             return;
         }*/
-        final String name = p.getName();
-        if (this.plugin.isAlerted(name)) {
-            final int current = this.plugin.getAlertAmount(name);
-            if (current >= 5) {
-                return;
-            }
-            this.plugin.setAlertAmount(name, current + 1);
-        } else {
-            this.plugin.setAlertAmount(name, 1);
-        }
-        this.plugin.decreaseAlertAmount(name);
-        final InventoryFullEvent event = new InventoryFullEvent(p, wont);
-        Bukkit.getPluginManager().callEvent(event);
+        final InventoryFullEvent inventoryFullEvent = new InventoryFullEvent(player);
+        Bukkit.getPluginManager().callEvent(inventoryFullEvent);
+
     }
 }

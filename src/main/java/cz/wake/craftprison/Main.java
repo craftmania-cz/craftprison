@@ -27,12 +27,14 @@ public class Main extends JavaPlugin {
     private static Main instance;
     private static Map<String, Integer> active;
     //private VKBackPackHook backpack;
-    private final List<Material> tools;
-    private final List<Material> ignored;
     private SQLManager sql;
     private PlayerStatsListener playerStatsListener;
     private NPCManager npcManager;
     private boolean debug = false;
+
+    // Listy, které slouží jako list, se kterými itemy je detekován plný inventář při kopání
+    private final List<Material> fullInvMineItems;
+    private final List<Material> ignored;
 
     static {
         Main.active = new HashMap<>();
@@ -40,8 +42,14 @@ public class Main extends JavaPlugin {
 
     public Main() {
         //this.backpack = null;
-        this.tools = Arrays.asList(Material.STONE_AXE, Material.STONE_HOE, Material.STONE_PICKAXE, Material.STONE_SHOVEL, Material.WOODEN_AXE, Material.WOODEN_HOE, Material.WOODEN_PICKAXE, Material.WOODEN_SHOVEL, Material.IRON_AXE, Material.IRON_HOE, Material.IRON_PICKAXE, Material.IRON_SHOVEL, Material.GOLDEN_AXE, Material.GOLDEN_HOE, Material.GOLDEN_PICKAXE, Material.GOLDEN_SHOVEL, Material.DIAMOND_AXE, Material.DIAMOND_HOE, Material.DIAMOND_PICKAXE, Material.DIAMOND_SHOVEL);
-        this.ignored = Arrays.asList(Material.BEDROCK, Material.MINECART); //TODO: ?
+        this.fullInvMineItems = Arrays.asList(
+                Material.STONE_AXE, Material.STONE_HOE, Material.STONE_PICKAXE, Material.STONE_SHOVEL,
+                Material.WOODEN_AXE, Material.WOODEN_HOE, Material.WOODEN_PICKAXE, Material.WOODEN_SHOVEL,
+                Material.IRON_AXE, Material.IRON_HOE, Material.IRON_PICKAXE, Material.IRON_SHOVEL,
+                Material.GOLDEN_AXE, Material.GOLDEN_HOE, Material.GOLDEN_PICKAXE, Material.GOLDEN_SHOVEL,
+                Material.DIAMOND_AXE, Material.DIAMOND_HOE, Material.DIAMOND_PICKAXE, Material.DIAMOND_SHOVEL,
+                Material.NETHERITE_PICKAXE, Material.NETHERITE_AXE, Material.NETHERITE_HOE, Material.NETHERITE_SHOVEL);
+        this.ignored = Arrays.asList(Material.BEDROCK); //TODO: ?
     }
 
     @Override
@@ -101,24 +109,19 @@ public class Main extends JavaPlugin {
 
     private void loadListeners() {
         PluginManager pm = getServer().getPluginManager();
-        pm.registerEvents(new MiningListener(), this);
+        //pm.registerEvents(new MiningListener(), this);
         pm.registerEvents(new WGExtendedListener(), this);
         pm.registerEvents(new PlayerListener(this), this);
-        pm.registerEvents(new InventoryFullListener(), this);
         //pm.registerEvents(new PlayerStatsListener(this), this);
-        pm.registerEvents(new PickaxeUpgradeListener(), this);
+        //pm.registerEvents(new PickaxeUpgradeListener(), this);
         //pm.registerEvents(new EnchantmentListener(), this);
-        pm.registerEvents(new PShopCommand(), this);
+        //pm.registerEvents(new PShopCommand(), this);
         pm.registerEvents(new ItemDropListener(), this);
         //m.registerEvents(new PlayerDeathListener(), this); //TODO: fix duplikace pri smrti
-        pm.registerEvents(new PickaxeInteractListener(), this);
+        //pm.registerEvents(new PickaxeInteractListener(), this);
         pm.registerEvents(new NPCInteractListener(), this);
-
-        if (Bukkit.getPluginManager().isPluginEnabled("AutoSell")) {
-            Bukkit.getServer().getPluginManager().registerEvents(new AutoSellListener(this), this);
-        } else {
-            Bukkit.getServer().getPluginManager().registerEvents(new BlockBreakListener(this), this);
-        }
+        pm.registerEvents(new InventoryFullListener(), this);
+        pm.registerEvents(new BlockBreakListener(), this);
     }
 
     private void loadCommands() {
@@ -145,8 +148,8 @@ public class Main extends JavaPlugin {
         return this.ignored;
     }
 
-    public List<Material> getTools() {
-        return this.tools;
+    public List<Material> getFullInvMineItems() {
+        return this.fullInvMineItems;
     }
 
     public boolean isAlerted(final String name) {
