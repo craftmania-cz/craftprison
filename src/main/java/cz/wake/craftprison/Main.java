@@ -1,5 +1,6 @@
 package cz.wake.craftprison;
 
+import co.aikar.commands.PaperCommandManager;
 import cz.wake.craftprison.commands.*;
 import cz.wake.craftprison.hooks.PlaceholderRegister;
 import cz.wake.craftprison.listener.*;
@@ -9,6 +10,7 @@ import cz.wake.craftprison.modules.pickaxe.PickaxeUpgradeListener;
 import cz.wake.craftprison.npc.NPCManager;
 import cz.wake.craftprison.npc.VillagerTypeTrait;
 import cz.wake.craftprison.sql.SQLManager;
+import cz.wake.craftprison.utils.Logger;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
 import org.bukkit.Bukkit;
@@ -31,6 +33,9 @@ public class Main extends JavaPlugin {
     private PlayerStatsListener playerStatsListener;
     private NPCManager npcManager;
     private boolean debug = false;
+
+    // Commands manager
+    private PaperCommandManager manager;
 
     // Listy, které slouží jako list, se kterými itemy je detekován plný inventář při kopání
     private final List<Material> fullInvMineItems;
@@ -65,9 +70,16 @@ public class Main extends JavaPlugin {
         // HikariCP
         initDatabase();
 
-        // Listeners
+        // Aikar command manager
+        manager = new PaperCommandManager(this);
+        manager.enableUnstableAPI("help");
+
+        // Register příkazů
+        Logger.info("Probíhá registrace příkazů pomocí Aikar commands!");
+        loadCommands(manager);
+
+        // Plugin listeners
         loadListeners();
-        loadCommands();
 
         // Config hodnoty
         this.debug = getConfig().getBoolean("debug");
@@ -89,8 +101,10 @@ public class Main extends JavaPlugin {
         PlaceholderRegister pr = new PlaceholderRegister(this);
         pr.registerPlaceholders();
 
+        // Citizens traits
         CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(VillagerTypeTrait.class).withName("villagertype"));
 
+        // NPCs prepare & spawn
         this.npcManager = new NPCManager();
         this.npcManager.initNPCs();
     }
@@ -124,13 +138,16 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new BlockBreakListener(), this);
     }
 
+    private void loadCommands(PaperCommandManager manager) {
+        manager.registerCommand(new MineCommand());
+    }
+
     private void loadCommands() {
         getCommand("rank").setExecutor(new RankCommand());
         getCommand("rankup").setExecutor(new RankUpCommand());
         getCommand("pickaxe").setExecutor(new PickaxeCommand());
         getCommand("tutorial").setExecutor(new TutorialCommand());
         getCommand("pvp").setExecutor(new PVPCommand());
-        getCommand("mine").setExecutor(new MineCommand());
         getCommand("ranks").setExecutor(new RanksCommand());
         getCommand("pshop").setExecutor(new PShopCommand());
         getCommand("prodat").setExecutor(new SellCommand());

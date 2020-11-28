@@ -2,7 +2,7 @@ name: CraftPrison
 main: cz.wake.craftprison.Main
 authors: [MrWakeCZ]
 depend: [Multiverse-Core,CraftCore,Vault,Citizens]
-softdepend: [AutoSell,VKBackPack,MVdWPlaceholderAPI]
+softdepend: [VKBackPack]
 version: 1.0
 api-version: "1.15"
 
@@ -27,9 +27,6 @@ commands:
       aliases: [help]
     pvp:
       description: Teleport do pvp
-    mine:
-      description: Prikaz na primy teleport do dolu
-      aliases: [dul]
     ranks:
       description: Prikaz na zobrazeni ranku
     pshop:
