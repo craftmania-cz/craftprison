@@ -7,7 +7,6 @@ import cz.wake.craftprison.events.InventoryFullEvent;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.utils.Utils;
-import me.clip.autosell.events.DropsToInventoryEvent;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -148,7 +147,6 @@ public class EnchantmentListener implements Listener {
                     bl = loc.getBlock();
 
                     p.getInventory().addItem(block);
-                    Bukkit.getPluginManager().callEvent(new DropsToInventoryEvent(p, blocks, bl));
 
                     loc.getBlock().setType(Material.AIR);
 
