@@ -1,9 +1,8 @@
 plugins {
     id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id 'maven'
+    id 'java'
 }
-
-apply plugin: 'java'
-apply plugin: 'maven'
 
 group = 'cz.wake.craftprison'
 version = '1.0'
@@ -30,7 +29,7 @@ repositories {
     mavenCentral()
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
     maven { url "https://packages.craftmania.cz/repository/craftmania/" }
-    maven { url "http://repo.maven.apache.org/maven2" }
+    maven { url "https://repo.maven.apache.org/maven2" }
     maven { url 'https://jitpack.io' }
     maven { url "https://plugins.gradle.org/m2/" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
@@ -59,6 +58,10 @@ dependencies {
 }
 
 shadowJar {
+    baseName = 'craftprison'
+    classifier = null
+    version = this.version
+
     relocate 'co.aikar.commands', 'cz.wake.craftprison.acf'
     relocate 'co.aikar.locales', 'cz.wake.craftprison.locales'
 }
