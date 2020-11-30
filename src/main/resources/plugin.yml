@@ -5,32 +5,3 @@ depend: [Multiverse-Core,CraftCore,Vault,Citizens]
 softdepend: [VKBackPack]
 version: 1.0
 api-version: "1.15"
-
-commands:
-    rank:
-      description: Zakladni prikaz
-    rankup:
-      description: No..
-    stats:
-      description: Statistiky
-    statstop:
-      description: Top statistiky
-      aliases: [ptop]
-    pcoins:
-      description: PrisCoiny
-      aliases: [pc, pcoin]
-    pickaxe:
-      description: Pickaxe upgrade system
-      aliases: [krumpac, krump]
-    tutorial:
-      description: Napoveda k Prisonu
-      aliases: [help]
-    pvp:
-      description: Teleport do pvp
-    ranks:
-      description: Prikaz na zobrazeni ranku
-    pshop:
-      description: Exp shop za PrisCoiny
-    prodat:
-      description: Proda vsechny bloky v danem ranku
-      aliases: [prodej, vykup]
