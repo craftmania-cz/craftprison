@@ -1,5 +1,7 @@
 package cz.wake.craftprison.modules;
 
+import cz.craftmania.craftcore.spigot.xseries.messages.ActionBar;
+import cz.wake.craftprison.Main;
 import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
 import org.bukkit.Bukkit;
@@ -10,11 +12,11 @@ public class ActionBarProgress {
     static PrisonManager pm = new PrisonManager();
 
     public static void send() {
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            if (p.getLocation().getWorld().getName().equals("doly") || p.getLocation().getWorld().getName().equals("prison_spawn")) {
-                CraftPlayer cp = pm.getCraftPlayer(p);
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (player.getLocation().getWorld().getName().equals("mines") || player.getLocation().getWorld().getName().equals("spawn")) {
+                CraftPlayer cp = pm.getCraftPlayer(player);
                 if (cp.getRank() != Rank.getLast()) {
-                    //new ActionBar(getText(Main.getEconomy().getBalance(p), cp.getRank().getNext().getPrice()), -1).send(p);
+                    ActionBar.sendActionBar(Main.getInstance(), player, getText(1200, cp.getRank().getNext().getPrice()), 1000);
                 }
             }
         }
@@ -29,9 +31,13 @@ public class ActionBarProgress {
         int parts = 10;
         double percent = getPercent(currentMoney, neededMoney);
 
+        if (percent >= 100) {
+            return "§a\u2588\u2588\u2588\u2588 §f/rankup §a\u2588\u2588\u2588\u2588";
+        }
+
         int part = (int) (parts / 100.0 * percent);
         StringBuilder sb = new StringBuilder();
-        sb.append("§a§l").append(percent).append("%").append(" ");
+        sb.append("§a").append(percent).append("%").append(" ");
         for (int i = 0; i < part; ++i) {
             sb.append("§a\u2588");
         }
