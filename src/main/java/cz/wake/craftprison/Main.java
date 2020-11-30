@@ -140,17 +140,16 @@ public class Main extends JavaPlugin {
 
     private void loadCommands(PaperCommandManager manager) {
         manager.registerCommand(new MineCommand());
+        manager.registerCommand(new RanksCommand());
+        manager.registerCommand(new RankCommand());
     }
 
     private void loadCommands() {
-        getCommand("rank").setExecutor(new RankCommand());
-        getCommand("rankup").setExecutor(new RankUpCommand());
-        getCommand("pickaxe").setExecutor(new PickaxeCommand());
-        getCommand("tutorial").setExecutor(new TutorialCommand());
-        getCommand("pvp").setExecutor(new PVPCommand());
-        getCommand("ranks").setExecutor(new RanksCommand());
-        getCommand("pshop").setExecutor(new PShopCommand());
-        getCommand("prodat").setExecutor(new SellCommand());
+        //getCommand("rankup").setExecutor(new RankUpCommand());
+        //getCommand("pickaxe").setExecutor(new PickaxeCommand());
+        //getCommand("pvp").setExecutor(new PVPCommand());
+        //getCommand("pshop").setExecutor(new PShopCommand());
+        //getCommand("prodat").setExecutor(new SellCommand());
     }
 
     public static Main getInstance() {

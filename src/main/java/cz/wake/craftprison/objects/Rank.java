@@ -95,7 +95,7 @@ public enum Rank {
                 return r;
             }
         }
-        return null;
+        return Rank.A;
     }
 
     public static Rank getByWeight(int weight) {

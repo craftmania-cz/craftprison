@@ -68,16 +68,19 @@ public class SQLManager {
         }
     }
 
-    public final CraftPlayer getCraftPlayerFromSQL(final Player p) {
+    public final CraftPlayer getCraftPlayerFromSQL(final Player player) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("SELECT * FROM players_data WHERE nick = ?;");
-            ps.setString(1, p.getName());
+            ps = conn.prepareStatement("SELECT * FROM players_data WHERE uuid = ?;");
+            ps.setString(1, player.getUniqueId().toString());
             ps.executeQuery();
             if (ps.getResultSet().next()) {
-                return new CraftPlayer(p, Rank.getByName(ps.getResultSet().getString("rank")));
+                return new CraftPlayer(player,
+                        Rank.getByName(ps.getResultSet().getString("rank")),
+                        ps.getResultSet().getInt("prestige")
+                );
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,14 +111,33 @@ public class SQLManager {
         }.runTaskAsynchronously(Main.getInstance());
     }
 
-    public void rankupPlayerSQL(final Player p, final Rank rank) {
+    public void playerSaveRank(final Player p, final Rank rank) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = pool.getConnection();
-            ps = conn.prepareStatement("UPDATE players_data SET rank = ? WHERE nick = ?");
+            ps = conn.prepareStatement("UPDATE players_data SET rank = ? WHERE uuid = ?");
             ps.setString(1, rank.getName());
-            ps.setString(2, p.getName());
+            ps.setString(2, p.getUniqueId().toString());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            pool.close(conn, ps, null);
+        }
+    }
+
+    public void playerSavePrestige(final Player p, final int prestige) {
+        if (prestige <= 0) { // HUH? To se někdy může stát?
+            return;
+        }
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = pool.getConnection();
+            ps = conn.prepareStatement("UPDATE players_data SET prestige = ? WHERE uuid = ?");
+            ps.setInt(1, prestige);
+            ps.setString(2, p.getUniqueId().toString());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

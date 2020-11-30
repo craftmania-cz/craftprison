@@ -18,7 +18,7 @@ import static co.aikar.commands.ACFBukkitUtil.sendMsg;
 @Description("Teleport na aktuální důl pro tvůj rank nebo teleport na jiný důl")
 public class MineCommand extends BaseCommand {
 
-    PrisonManager pm = new PrisonManager();
+    final PrisonManager pm = new PrisonManager();
 
     @HelpCommand
     public void helpCommand(CommandSender sender, CommandHelp help) {
