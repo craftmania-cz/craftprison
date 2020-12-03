@@ -2,6 +2,7 @@ package cz.wake.craftprison.objects;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public enum Rank {
 

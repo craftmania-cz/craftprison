@@ -4,6 +4,7 @@ import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
 import cz.craftmania.craftcore.spigot.inventory.builder.ClickableItem;
 import cz.craftmania.craftcore.spigot.inventory.builder.content.InventoryContents;
 import cz.craftmania.craftcore.spigot.inventory.builder.content.InventoryProvider;
+import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
@@ -16,41 +17,37 @@ public class RankupVerifyMenu implements InventoryProvider {
     final PrisonManager pm = new PrisonManager();
 
     @Override
-    public void init(Player p, InventoryContents contents) {
+    public void init(Player player, InventoryContents contents) {
 
-        contents.set(1, 2, ClickableItem.of(
-                new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setName("§a§lANO")
-                        .addLore("§7Kliknutim provedes rankup", "§7na rank: " + pm.getColoredNextPlayerRank(p), "", "§cTato akce je nevratna!").build(), e -> {
-                    Rank actualRank = pm.getPlayerRank(p);
+        contents.fillRow(0, ClickableItem.empty(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build()));
+        contents.fillRow(4, ClickableItem.empty(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build()));
+
+        contents.set(2, 2, ClickableItem.of(
+                new ItemBuilder(Material.GREEN_CONCRETE_POWDER).setName("§a§lANO")
+                        .addLore("§7Kliknutím provedeš rank up", "§7na rank: " + pm.getColoredNextPlayerRank(player), "", "§7Bude ti odečteno: §6" + pm.getNextRankPrice(player) + "$", "", "§cTato akce je nevratná!").build(), e -> {
+                    Rank actualRank = pm.getPlayerRank(player);
                     if (!(actualRank == Rank.A)) { // V zakladu hrac nema zadny rank pravo
-                        PlayerUtils.removePermission(p, actualRank.getPermission());
+                        PlayerUtils.removePermission(player, actualRank.getPermission());
                     }
                     Rank nextRank = actualRank.getNext();
-                    PlayerUtils.addPermission(p, nextRank.getPermission());
-                    PlayerUtils.addPermission(p, "quicksell.shop." + nextRank.getName());
-                    PlayerUtils.addPermission(p, "deluxetags.tag." + nextRank.getName().toLowerCase());
-                    PlayerUtils.addPermission(p, "essentials.warps." + nextRank.getName().toLowerCase());
-                    CraftPlayer cp = pm.getPlayers().get(p);
-                    //Main.getEconomy().withdrawPlayer(p, (double) nextRank.getPrice()); //TODO: Nefunkční vault - přidat CraftEconomy
+                    PlayerUtils.addPermission(player, nextRank.getPermission());
+                    CraftPlayer cp = pm.getPlayers().get(player);
+                    Main.getInstance().getEconomy().withdrawPlayer(player, (double) nextRank.getPrice());
                     cp.setRank(nextRank);
-                    PlayerUtils.randomFireworks(p.getLocation());
-                    PlayerUtils.sendRankUpMessage(p);
-                        /*Advancement.builder(new NamespacedKey(Main.getInstance(), "craftprison"))
-                                .title("Novy rank: " + pm.getColoredPlayerRank(p)).description("_").icon("minecraft:diamond")
-                                .announce(false).hidden(false).toast(true).frame(AdvancementManager.FrameType.GOAL).build()
-                                .show(Main.getInstance(), p);*/
+                    PlayerUtils.randomFireworks(player.getLocation());
+                    PlayerUtils.sendRankUpMessage(player);
                     for (String perm : nextRank.getCommands()) {
                         if (perm.length() > 1) {
-                            PlayerUtils.addPermission(p, perm);
+                            PlayerUtils.addPermission(player, perm);
                         }
                     }
-                    p.closeInventory();
+                    player.closeInventory();
                 }
         ));
 
-        contents.set(1, 6, ClickableItem.of(
-                new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setName("§c§lNE")
-                        .addLore("§7Kliknutim zrusis rankup.").build(), e -> p.closeInventory()
+        contents.set(2, 6, ClickableItem.of(
+                new ItemBuilder(Material.RED_CONCRETE_POWDER).setName("§c§lNE")
+                        .addLore("§7Kliknutím zrušíš rank up!").build(), e -> player.closeInventory()
         ));
 
     }

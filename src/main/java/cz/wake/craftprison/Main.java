@@ -148,10 +148,10 @@ public class Main extends JavaPlugin {
         manager.registerCommand(new MineCommand());
         manager.registerCommand(new RanksCommand());
         manager.registerCommand(new RankCommand());
+        manager.registerCommand(new RankUpCommand());
     }
 
     private void loadCommands() {
-        //getCommand("rankup").setExecutor(new RankUpCommand());
         //getCommand("pickaxe").setExecutor(new PickaxeCommand());
         //getCommand("pvp").setExecutor(new PVPCommand());
         //getCommand("pshop").setExecutor(new PShopCommand());
