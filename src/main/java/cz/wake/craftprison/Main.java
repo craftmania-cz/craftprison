@@ -1,6 +1,7 @@
 package cz.wake.craftprison;
 
 import co.aikar.commands.PaperCommandManager;
+import cz.craftmania.crafteconomy.utils.VaultUtils;
 import cz.wake.craftprison.commands.*;
 import cz.wake.craftprison.hooks.PlaceholderRegister;
 import cz.wake.craftprison.listener.*;
@@ -13,6 +14,7 @@ import cz.wake.craftprison.sql.SQLManager;
 import cz.wake.craftprison.utils.Logger;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -32,6 +34,7 @@ public class Main extends JavaPlugin {
     private SQLManager sql;
     private PlayerStatsListener playerStatsListener;
     private NPCManager npcManager;
+    private Economy vaultUtils;
     private boolean debug = false;
 
     // Commands manager
@@ -69,6 +72,9 @@ public class Main extends JavaPlugin {
 
         // HikariCP
         initDatabase();
+
+        // CraftEconomy - Vault
+        this.vaultUtils = new VaultUtils();
 
         // Aikar command manager
         manager = new PaperCommandManager(this);
@@ -212,5 +218,9 @@ public class Main extends JavaPlugin {
 
     private void initDatabase() {
         sql = new SQLManager(this);
+    }
+
+    public Economy getEconomy() {
+        return vaultUtils;
     }
 }
