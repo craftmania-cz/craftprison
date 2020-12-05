@@ -62,7 +62,7 @@ public class PrisonManager {
     }
 
     public static void registerWgMines() {
-        for (Rank r : Rank.getTypes()) {
+        for (Rank r : Rank.getRankList()) {
             // Register
             wgRegions.add(r.getName().toLowerCase());
 

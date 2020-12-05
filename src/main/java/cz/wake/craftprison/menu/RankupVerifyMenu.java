@@ -38,7 +38,7 @@ public class RankupVerifyMenu implements InventoryProvider {
                     PlayerUtils.randomFireworks(player.getLocation());
                     XSound.BLOCK_NOTE_BLOCK_BASS.play(player, 1.0f, 1.0f);
                     PlayerUtils.sendRankUpMessage(player);
-                    for (String perm : nextRank.getCommands()) {
+                    for (String perm : nextRank.getRewardPermissions()) {
                         if (perm.length() > 1) {
                             PlayerUtils.addPermission(player, perm);
                         }

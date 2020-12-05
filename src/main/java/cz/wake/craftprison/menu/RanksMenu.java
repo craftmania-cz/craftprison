@@ -32,8 +32,8 @@ public class RanksMenu implements InventoryProvider {
                 if (!rank.getReward().equals("")) {
                     lore.add(" §f- " + rank.getReward());
                 }
-                if (rank.getPrisCoins() != 0) {
-                    lore.add(" §f- " + rank.getPrisCoins() + " PrisCoins");
+                if (rank.getEnchantToken() != 0) {
+                    lore.add(" §f- " + rank.getEnchantToken() + " PrisCoins");
                 } else {
                     lore.add(" §f- Nic..."); // Rank A
                 }
@@ -56,8 +56,8 @@ public class RanksMenu implements InventoryProvider {
                     if (!rank.getReward().equals("")) {
                         lore.add(" §f- " + rank.getReward());
                     }
-                    if (rank.getPrisCoins() != 0) {
-                        lore.add(" §f- " + rank.getPrisCoins() + " PrisCoins");
+                    if (rank.getEnchantToken() != 0) {
+                        lore.add(" §f- " + rank.getEnchantToken() + " PrisCoins");
                     } else {
                         lore.add(" §f- Nic..."); // Rank A
                     }

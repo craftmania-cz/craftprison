@@ -1,39 +1,43 @@
 package cz.wake.craftprison.objects;
 
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+/**
+ * Seznam ranků pro Prestiges
+ * Tento seznam je stejný napříč všemi Prestiges
+ */
 public enum Rank {
 
-    A(1, "A", 0, MineDifficulty.TUTORIAL, 0, new ItemStack(Material.COBBLESTONE), "", ""),
-    B(2, "B", 1000, MineDifficulty.TUTORIAL, 1, new ItemStack(Material.STONE), "", ""), // craftprison.mine.nightvision
-    C(3, "C", 4000, MineDifficulty.TUTORIAL, 1, new ItemStack(Material.STONE), "", ""),
-    D(4, "D", 10000, MineDifficulty.TUTORIAL, 1, new ItemStack(Material.LAPIS_ORE), "", ""); // "Odemknuti vytvareni ostrova /is", "askyblock.island.create"
+    A(1, "A", 0, 0, Material.BEDROCK),
+    B(2, "B", 1000, 1, Material.BEDROCK), // craftprison.mine.nightvision
+    C(3, "C", 4000, 1, Material.BEDROCK),
+    D(4, "D", 10000, 1, Material.BEDROCK), // "Odemknuti vytvareni ostrova /is", "askyblock.island.create"
+    E(5, "E", 20000, 2, Material.BEDROCK), // "Odemknuti pouzivani Aukce /au (Max 1 aukce)", "auctionguiplus.auction", "auctionguiplus.auction.bid", "auctionguiplus.auction.start", "auctionguiplus.auction.bid"
+    F(6, "F", 40000, 2, Material.BEDROCK), // "Odemknuti prikazu /pvp", "craftprison.pvp", "quicksell.shop.pvp"),
+    G(7, "G", 80000, 2, Material.BEDROCK), // "Odemknuti /shop + sekce Blocks", "shopguiplus.shop", "shopguiplus.shops.blocks"),
+    H(8, "H", 150000, 2, Material.BEDROCK), // "", ""),
+    I(9, "I", 300000, 2, Material.BEDROCK), // "Odemknuti prikazu /heads", "headdb.allow.buy", "headdb.category.*", "headdb.open"),
+    J(10, "J", 500000, 2, Material.BEDROCK), // "", ""),
+    K(11, "K", 800000, 3, Material.BEDROCK), // "Moznost pridat 3 hrace na ostrov (+1)", "askyblock.team.maxsize.3"),
+    L(12, "L", 1200000, 3, Material.BEDROCK),
+    M(13, "M", 1500000, 3, Material.BEDROCK), //, "Odemknuti sekce Decorations & Foods v /shop", "shopguiplus.shops.food", "shopguiplus.shops.dekorace"),
+    N(14, "N", 2000000, 3, Material.BEDROCK), //, "", ""),
+    O(15, "O", 3000000, 3, Material.BEDROCK), // "Automaticky FLY v dolech", "craftprison.mine.fly"),
+    P(16, "P", 5000000, 4, Material.BEDROCK), //, "", ""),
+    Q(17, "Q", 10000000, 4, Material.BEDROCK), //, 1, (short) 15), "Odemknuti vsech sekci v /shop", "shopguiplus.shops.*"),
+    R(18, "R", 20000000, 4, Material.BEDROCK), // "", ""),
+    S(19, "S", 30000000, 4, Material.BEDROCK), //, "Moznost vytvaret 2x Aukce", ""),
+    T(20, "T", 50000000, 4, Material.BEDROCK),
+    U(21, "U", 100000000, 5, Material.BEDROCK), //, "Moznost menit biom na ostrove", ""),
+    V(22, "V", 250000000, 5, Material.BEDROCK), //, 1, (short) 9), "", ""),
+    W(23, "W", 500000000, 5, Material.BEDROCK), //, 1, (short) 3), "Moznost pridat 4 hrace na ostrov (+2)", "askyblock.team.maxsize.4"),
+    X(24, "X", 1000000000, 5, Material.BEDROCK), //, "", ""),
+    Y(25, "Y", 2000000000, 5, Material.BEDROCK), //, "", ""),
+    Z(26, "Z", 4000000000L, 6, Material.BEDROCK); //, 1, (short)11), "Vytvareni shopu pomoci Chestshop", "shop.create", "shop.create.buy", "shop.create.sell");
 
-    /*    GOOFY(5, "Goofy", 20000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STONE, 1, (short) 2), "Odemknuti pouzivani Aukce /au (Max 1 aukce)", "auctionguiplus.auction", "auctionguiplus.auction.bid", "auctionguiplus.auction.start", "auctionguiplus.auction.bid"),
-    BENDER(6, "Bender", 40000, MineDifficulty.STANDARD, 2, new ItemStack(Material.COAL_ORE), "Odemknuti prikazu /pvp", "craftprison.pvp", "quicksell.shop.pvp"),
-    MAGIKARP(7, "Magikarp", 80000, MineDifficulty.STANDARD, 2, new ItemStack(Material.STONE, 1, (short) 6), "Odemknuti /shop + sekce Blocks", "shopguiplus.shop", "shopguiplus.shops.blocks"),
-    ZOIDBERG(8, "Zoidberg", 150000, MineDifficulty.STANDARD, 2, new ItemStack(Material.MOSSY_COBBLESTONE, 1, (short) 1), "", ""),
-    MAXWELL(9, "Maxwell", 300000, MineDifficulty.STANDARD, 2, new ItemStack(Material.SANDSTONE), "Odemknuti prikazu /heads", "headdb.allow.buy", "headdb.category.*", "headdb.open"),
-    STRANGE(10, "Strange", 500000, MineDifficulty.STANDARD, 2, new ItemStack(Material.PRISMARINE, 1, (short) 2), "", ""),
-    SHREK(11, "Shrek", 800000, MineDifficulty.STANDARD, 3, new ItemStack(Material.STAINED_CLAY, 1, (short) 5), "Moznost pridat 3 hrace na ostrov (+1)", "askyblock.team.maxsize.3"),
-    FIONA(12, "Fiona", 1200000, MineDifficulty.STANDARD, 3, new ItemStack(Material.STAINED_CLAY, 1, (short) 11), "", ""),
-    DEADPOOL(13, "Deadpool", 1500000, MineDifficulty.STANDARD, 3, new ItemStack(Material.IRON_BLOCK), "Odemknuti sekce Decorations & Foods v /shop", "shopguiplus.shops.food", "shopguiplus.shops.dekorace"),
-    GANDALF(14, "Gandalf", 2000000, MineDifficulty.STANDARD, 3, new ItemStack(Material.GOLD_ORE), "", ""),
-    ASTRONAUT(15, "Astronaut", 3000000, MineDifficulty.STANDARD, 3, new ItemStack(Material.CONCRETE, 1, (short) 14), "Automaticky FLY v dolech", "craftprison.mine.fly"),
-    MUMMY(16, "Mummy", 5000000, MineDifficulty.STANDARD, 4, new ItemStack(Material.GOLD_BLOCK), "", ""),
-    CRASH(17, "Crash", 10000000, MineDifficulty.STANDARD, 4, new ItemStack(Material.STAINED_CLAY, 1, (short) 15), "Odemknuti vsech sekci v /shop", "shopguiplus.shops.*"),
-    OBELIX(18, "Obelix", 20000000, MineDifficulty.STANDARD, 4, new ItemStack(Material.BONE_BLOCK), "", ""),
-    ELSA(19, "Elsa", 30000000, MineDifficulty.STANDARD, 4, new ItemStack(Material.CONCRETE, 1, (short) 3), "Moznost vytvaret 2x Aukce", ""),
-    ANGEL(20, "Angel", 50000000, MineDifficulty.STANDARD, 4, new ItemStack(Material.WHITE_GLAZED_TERRACOTTA), "", ""),
-    CARL(21, "Carl", 100000000, MineDifficulty.STANDARD, 5, new ItemStack(Material.REDSTONE_BLOCK), "Moznost menit biom na ostrove", ""),
-    THANOS(22, "Thanos", 250000000, MineDifficulty.STANDARD, 5, new ItemStack(Material.STAINED_CLAY, 1, (short) 9), "", ""),
-    GROOT(23, "Groot", 500000000, MineDifficulty.STANDARD, 5, new ItemStack(Material.SMOOTH_BRICK, 1, (short) 3), "Moznost pridat 4 hrace na ostrov (+2)", "askyblock.team.maxsize.4"),
-    JONES(24, "Jones", 1000000000, MineDifficulty.STANDARD, 5, new ItemStack(Material.COAL_BLOCK), "", ""),
-    CAPTAIN(25, "Captain", 2000000000, MineDifficulty.STANDARD, 5, new ItemStack(Material.RED_GLAZED_TERRACOTTA), "", ""),
-    OPTIMUS(26, "Optimus", 4000000000L, MineDifficulty.STANDARD, 6, new ItemStack(Material.CONCRETE, 1, (short)11), "Vytvareni shopu pomoci Chestshop", "shop.create", "shop.create.buy", "shop.create.sell"),
-    PANTHER(27, "Panther", 10000000000L, MineDifficulty.STANDARD, 6, new ItemStack(Material.QUARTZ, 1, (short)1), "", ""),
+    /* PANTHER(27, "Panther", 10000000000L, MineDifficulty.STANDARD, 6, new ItemStack(Material.QUARTZ, 1, (short)1), "", ""),
     DOCTOR(28, "Doctor", 20000000000L, MineDifficulty.STANDARD, 6, new ItemStack(Material.DIAMOND_BLOCK), "Moznost pridat 6 hrace na ostrov (+4)", "askyblock.team.maxsize.6"),
     KRATOS(29, "Kratos", 30000000000L, MineDifficulty.STANDARD, 6, new ItemStack(Material.MAGMA), "", ""),
     LINK(30, "Link", 75000000000L, MineDifficulty.HARD, 6, new ItemStack(Material.GREEN_GLAZED_TERRACOTTA), "", ""),
@@ -54,19 +58,28 @@ public enum Rank {
     private String name;
     private long price;
     private MineDifficulty difficulty;
-    private int prisCoins;
+    private int enchantToken;
     private String reward;
-    private String[] array;
-    private ItemStack item;
+    private String[] permissions;
+    private Material item;
 
-    Rank(int weight, String name, long price, MineDifficulty difficulty, int prisCoins, ItemStack item, String reward, String... array) {
+    @Deprecated
+    Rank(int weight, String name, long price, MineDifficulty difficulty, int enchantToken, Material item, String reward, String... permissions) {
         this.name = name;
         this.price = price;
         this.weight = weight;
         this.difficulty = difficulty;
-        this.prisCoins = prisCoins;
+        this.enchantToken = enchantToken;
         this.reward = reward;
-        this.array = array;
+        this.permissions = permissions;
+        this.item = item;
+    }
+
+    Rank(int weight, String name, long price, int enchantToken, Material item) {
+        this.name = name;
+        this.price = price;
+        this.weight = weight;
+        this.enchantToken = enchantToken;
         this.item = item;
     }
 
@@ -74,24 +87,54 @@ public enum Rank {
         this.weight = weight;
     }
 
+    /**
+     * Vrací název Ranku jako String
+     *
+     * @return {@link String}
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Vrací cenu za rank up do dalšího ranku
+     *
+     * @return {@link Long}
+     */
     public long getPrice() {
         return this.price;
     }
 
+    /**
+     * Vrací ID ranku, které sloužé také jako váha pro řazení
+     *
+     * @return {@link Integer}
+     */
     public int getWeight() {
         return weight;
     }
 
+    /**
+     * Vrací název ranku s prvním písmenem vyšší.
+     * Deprecated z důvodu, že od Prisonu 3.0 jsou ranky opět A-Z.
+     *
+     * @return {@link String}
+     */
+    @Deprecated
     public String toString() {
         return name().charAt(0) + name().substring(1).toLowerCase();
     }
 
-    public static Rank getByName(String name) {
-        for (Rank r : getTypes()) {
+    /**
+     * Vrací {@link Rank} dle zadaného názvu,
+     * pokud rank neexistuje vrací první rank
+     *
+     * @param name  Název ranku
+     * @return      {@link Rank}
+     */
+    @NotNull
+    public static Rank getByName(@NotNull String name) {
+        for (Rank r : getRankList()) {
             if (r.getName().equalsIgnoreCase(name)) {
                 return r;
             }
@@ -99,56 +142,131 @@ public enum Rank {
         return Rank.A;
     }
 
+    /**
+     * Vrací {@link Rank} dle zadané váhy (ID)
+     * pokud rank neexistuje vrací první rank
+     *
+     * @param weight    Váha nebo-li ID
+     * @return          {@link Rank}
+     */
+    @NotNull
     public static Rank getByWeight(int weight) {
-        for (Rank r : getTypes()) {
+        for (Rank r : getRankList()) {
             if (r.getWeight() == weight) {
                 return r;
             }
         }
-        return null;
+        return Rank.A;
     }
 
+    /**
+     * Vrací obtížnost ranku, jak moc trvá naplnit inventář.
+     * @deprecated Jelikož nový systém toto již nevyžaduje
+     *
+     * @return {@link MineDifficulty}
+     */
+    @Deprecated
     public MineDifficulty getDifficulty() {
         return difficulty;
     }
 
+    /**
+     * Vrací string práva, který se nastavuje hráči při rank upu.
+     *
+     * @return {@link String}
+     */
     public String getPermission() {
         return "craftprison.rank." + this.getName().toLowerCase(); // craftprison.rank.?
     }
 
-    public String getPermission(Rank r) {
-        return "craftprison.rank." + r.getName().toLowerCase(); // craftprison.rank.octopus
+    /**
+     * Vrací string práva pro rank, dle zadaného ranku.
+     *
+     * @param rank  {@link Rank}
+     * @return      {@link String}
+     */
+    public String getPermission(Rank rank) {
+        return "craftprison.rank." + rank.getName().toLowerCase(); // craftprison.rank.octopus
     }
 
+    /**
+     * Vrací boolean, podle toho zda je zadaný rank stejný nebo nižší
+     * než současný, co hráš má nastavený. Například:<br>
+     *
+     * Rank.A -> Rank.B: false<br>
+     * Rank.B -> Rank.B: true<br>
+     * Rank.C -> Rank.B: true<br>
+     *
+     * @param other {@link Rank}
+     * @return      {@link Boolean}
+     */
     public boolean isAtLeast(Rank other) {
         return getWeight() >= other.getWeight();
     }
 
-    public static Rank[] getTypes() {
+    /**
+     * Vrací list všech ranků.
+     *
+     * @return Array of {@link Rank}
+     */
+    public static Rank[] getRankList() {
         return Rank.values();
     }
 
+    /**
+     * Vrací další rank, dle aktuálně zadaného.
+     * Pokud další rank neexistuje, třeba pro rank Z
+     * vrací metoda hodnotu null.
+     *
+     * @return {@link Rank}
+     */
+    @Nullable
     public Rank getNext() {
         return this.ordinal() < Rank.values().length - 1 ? Rank.values()[this.ordinal() + 1] : null;
     }
 
+    /**
+     * Poslední rank z všech Prestiges
+     *
+     * @return {@link Rank}
+     */
     public static Rank getLast() {
-        return Rank.values()[getTypes().length - 1];
+        return Rank.values()[getRankList().length - 1];
     }
 
-    public int getPrisCoins() {
-        return prisCoins;
+    /**
+     * Vrací hodnotu EnchantTokenu, kterou dostane hráč při rank upu
+     *
+     * @return {@link Integer} - Hodnota EnchantTokenů
+     */
+    public int getEnchantToken() {
+        return enchantToken;
     }
 
+    /**
+     * Vrací název odměny pro daný rank
+     *
+     * @return Název odměny
+     */
     public String getReward() {
         return reward;
     }
 
-    public String[] getCommands() {
-        return array;
+    /**
+     * Vrací list práv, které hráč dostane při rank upu.
+     *
+     * @return {@link String[]}
+     */
+    public String[] getRewardPermissions() {
+        return permissions;
     }
 
-    public ItemStack getItem() {
+    /**
+     * Vrací item zobrazovaný v menu - /ranks
+     *
+     * @return {@link Material}
+     */
+    public Material getItem() {
         return item;
     }
 }
