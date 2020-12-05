@@ -1,13 +1,9 @@
 package cz.wake.craftprison.utils;
 
-import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.Rank;
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
-import org.bukkit.Location;
+import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -18,6 +14,8 @@ import java.util.Random;
 
 public class PlayerUtils {
 
+    public static String TEXT_BOXES = "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬";
+
     public static void addPermission(final Player p, String permission) {
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set " + permission + " prison");
     }
@@ -26,37 +24,36 @@ public class PlayerUtils {
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission unset " + permission + " prison");
     }
 
-    public static void sendRankMessage(final Player p) {
+    public static void sendRankMessage(final Player player) {
         PrisonManager pm = new PrisonManager();
-        if(pm.getPlayerRank(p) == Rank.getLast()) {
-            p.sendMessage("§a\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac");
-            p.sendMessage("");
-            p.sendMessage("§6Uspesne jsi dokoncil Prison!");
-            p.sendMessage("§7Nyni si muzes cele zopakovat s tezsi obtiznosti §b/rank restart");
-            p.sendMessage("§7Nebo pockat na dalsi update, mozna pridame nove doly!");
-            p.sendMessage("");
-            p.sendMessage("§a\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac");
+        if(pm.getPlayerRank(player) == Rank.getLast()) {
+            player.sendMessage("§a" + TEXT_BOXES);
+            player.sendMessage("");
+            player.sendMessage("§6Úspěšně jsi dokončil ranky v aktuální Prestige.");
+            player.sendMessage("§7Nyní můžeš pokračovat navýšením Prestige pomocí §f/prestige");
+            player.sendMessage("");
+            player.sendMessage("§a" + TEXT_BOXES);
             return;
         }
-        p.sendMessage("§6\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac");
-        p.sendMessage("");
-        p.sendMessage("§7Aktualni rank: " + pm.getColoredPlayerRank(p) + " (" + pm.getPlayerRank(p).getWeight() + ") " + "§8| §7Dalsi rank: " + pm.getColoredNextPlayerRank(p) + " (" + pm.getPlayerNextRank(p).getWeight() + ") ");
-        //p.sendMessage("§7Dokonceni ranku: §f" + ActionBarProgress.getPercent(Main.getEconomy().getBalance(p), pm.getPlayerRank(p).getNext().getPrice()) + "% §8| §7Rankup castka: §f" + formatMoney(pm.getPlayerRank(p).getNext().getPrice()) +"§a$");
-        p.sendMessage("§7Celkove dokonceni: §f" + String.valueOf(ActionBarProgress.getPercent(pm.getPlayerRank(p).getWeight(), Rank.getLast().getWeight())) + "% §8| §7Obtiznost: §eEasy");
-        p.sendMessage("");
-        p.sendMessage("§7Pri rankupu obdrzis: \n§f - " + pm.getPlayerNextRank(p).getPrisCoins() + " PrisCoins\n - " + pm.getPlayerNextRank(p).getReward());
-        p.sendMessage("");
-        p.sendMessage("§6\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac");
+        player.sendMessage("§6" + TEXT_BOXES);
+        player.sendMessage("");
+        player.sendMessage("§7Aktuální rank: §f" + pm.getColoredPlayerRank(player) + " (" + pm.getPlayerRank(player).getWeight() + ") " + "§8| §fDalší rank: " + pm.getColoredNextPlayerRank(player) + " (" + pm.getPlayerNextRank(player).getWeight() + ") ");
+        //player.sendMessage("§7Dokonceni ranku: §f" + ActionBarProgress.getPercent(Main.getEconomy().getBalance(player), pm.getPlayerRank(player).getNext().getPrice()) + "% §8| §7Rankup castka: §f" + formatMoney(pm.getPlayerRank(player).getNext().getPrice()) +"§a$");
+        player.sendMessage("§7Dokončení prestige: §f" + ActionBarProgress.getPercent(pm.getPlayerRank(player).getWeight(), Rank.getLast().getWeight()) + "%");
+        player.sendMessage("");
+        player.sendMessage("§eNa další ranku obdržíš: \n§f - " + pm.getPlayerNextRank(player).getPrisCoins() + "x EnchantToken\n - " + pm.getPlayerNextRank(player).getReward());
+        player.sendMessage("");
+        player.sendMessage("§6" + TEXT_BOXES);
     }
 
-    public static void sendRankUpMessage(final Player p) {
+    public static void sendRankUpMessage(final Player player) {
         PrisonManager pm = new PrisonManager();
-        p.sendMessage("§d\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac");
-        p.sendMessage("");
-        p.sendMessage("§e§lGratulujeme k rankupu do dalsiho ranku!");
-        p.sendMessage("§7Aktualni rank: " + pm.getColoredPlayerRank(p) + " §8| §7Dalsi rank: " + pm.getColoredNextPlayerRank(p));
-        p.sendMessage("");
-        p.sendMessage("§d\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac\u25ac");
+        player.sendMessage("§d" + TEXT_BOXES);
+        player.sendMessage("");
+        player.sendMessage("§e§lNavýšil jsi svůj rank!");
+        player.sendMessage("§6Aktuální rank: §f" + pm.getColoredPlayerRank(player));
+        player.sendMessage("");
+        player.sendMessage("§d" + TEXT_BOXES);
     }
 
     public static String formatMoney(double d) {

@@ -4,6 +4,7 @@ import cz.craftmania.craftcore.spigot.builders.items.ItemBuilder;
 import cz.craftmania.craftcore.spigot.inventory.builder.ClickableItem;
 import cz.craftmania.craftcore.spigot.inventory.builder.content.InventoryContents;
 import cz.craftmania.craftcore.spigot.inventory.builder.content.InventoryProvider;
+import cz.craftmania.craftcore.spigot.xseries.XSound;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
@@ -24,7 +25,7 @@ public class RankupVerifyMenu implements InventoryProvider {
 
         contents.set(2, 2, ClickableItem.of(
                 new ItemBuilder(Material.GREEN_CONCRETE_POWDER).setName("§a§lANO")
-                        .addLore("§7Kliknutím provedeš rank up", "§7na rank: " + pm.getColoredNextPlayerRank(player), "", "§7Bude ti odečteno: §6" + pm.getNextRankPrice(player) + "$", "", "§cTato akce je nevratná!").build(), e -> {
+                        .addLore("§7Kliknutím provedeš rank up", "§7na rank: " + pm.getColoredNextPlayerRank(player), "", "§7Bude ti odečteno: §6" + PlayerUtils.formatMoney(pm.getNextRankPrice(player)) + "$", "", "§cTato akce je nevratná!").build(), e -> {
                     Rank actualRank = pm.getPlayerRank(player);
                     if (!(actualRank == Rank.A)) { // V zakladu hrac nema zadny rank pravo
                         PlayerUtils.removePermission(player, actualRank.getPermission());
@@ -35,6 +36,7 @@ public class RankupVerifyMenu implements InventoryProvider {
                     Main.getInstance().getEconomy().withdrawPlayer(player, (double) nextRank.getPrice());
                     cp.setRank(nextRank);
                     PlayerUtils.randomFireworks(player.getLocation());
+                    XSound.BLOCK_NOTE_BLOCK_BASS.play(player, 1.0f, 1.0f);
                     PlayerUtils.sendRankUpMessage(player);
                     for (String perm : nextRank.getCommands()) {
                         if (perm.length() > 1) {
