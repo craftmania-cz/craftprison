@@ -21,50 +21,53 @@ public class RanksMenu implements InventoryProvider {
     @Override
     public void init(Player p, InventoryContents contents) {
 
-        int row = 0;
+        int row = 1;
         int columm = 0;
+
+        contents.fillRow(0, ClickableItem.empty(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build()));
+        contents.fillRow(4, ClickableItem.empty(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build()));
 
         for (Rank rank : Rank.values()) {
             if (pm.getPlayerRank(p).isAtLeast(rank)) {
 
                 ArrayList<String> lore = new ArrayList<>();
-                lore.add("§7Rank dokoncen.");
+                lore.add("§7Rank dokončen!");
                 lore.add("");
-                lore.add("§bZiskas:");
+                lore.add("§bZískal jsi:");
                 if (rank.getEnchantToken() != 0) {
-                    lore.add(" §f- " + rank.getEnchantToken() + " PrisCoins");
+                    lore.add(" §f- " + rank.getEnchantToken() + "x EnchantToken");
                 } else {
                     lore.add(" §f- Nic..."); // Rank A
                 }
                 lore.add("");
-                lore.add("§eKliknutim te portnu na dul");
+                lore.add("§eKliknutím se portneš na důl");
 
-                contents.set(row, columm, ClickableItem.of(new ItemBuilder(rank.getItem()).setName("§a" + rank.getName())
+                contents.set(row, columm, ClickableItem.of(new ItemBuilder(rank.getItem()).setName("§a§l" + rank.getName())
                         .setLore(lore).build(), e -> {
-                    p.performCommand("warp " + rank.getName().toLowerCase());
+                    p.performCommand("mine " + rank.getName().toLowerCase());
                     p.closeInventory();
                 }));
             } else {
                 if (pm.getPlayerRank(p).getNext() == rank) {
 
                     ArrayList<String> lore = new ArrayList<>();
-                    lore.add("§7Cena: §f" + PlayerUtils.formatMoney((double) rank.getPrice()) + "§a$");
-                    lore.add("§7Dokonceno: §f" + ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(p), (double) rank.getPrice()) + "%");
+                    lore.add("§7Cena: §f" + PlayerUtils.formatMoney((double) rank.getPrice()) + "§6$");
+                    lore.add("§7Dokončeno: §f" + ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(p), (double) rank.getPrice()) + "%");
                     lore.add("");
-                    lore.add("§bZiskas:");
+                    lore.add("§bZískáš:");
                     if (rank.getEnchantToken() != 0) {
-                        lore.add(" §f- " + rank.getEnchantToken() + " PrisCoins");
+                        lore.add(" §f- " + rank.getEnchantToken() + "x EnchantToken");
                     } else {
                         lore.add(" §f- Nic..."); // Rank A
                     }
 
-                    contents.set(row, columm, ClickableItem.of(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE)
-                            .setName("§e" + rank.getName()).setLore(lore).build(), e -> {
+                    contents.set(row, columm, ClickableItem.of(new ItemBuilder(rank.getItem()).setGlowing()
+                            .setName("§e§l" + rank.getName()).setLore(lore).build(), e -> {
                     }));
                 } else {
                     contents.set(row, columm, ClickableItem.of(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE)
                             .setName("§8§k" + rank.getName())
-                            .setLore("§7Musis dokoncit rank", "§7pred timto k odemknuti.").build(), e -> {
+                            .setLore("§7Musíš dokončit rank", "§7před tímto k odemknutí.").build(), e -> {
                     }));
                 }
             }
