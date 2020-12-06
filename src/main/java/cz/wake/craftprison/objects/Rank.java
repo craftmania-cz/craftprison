@@ -257,6 +257,7 @@ public enum Rank {
      *
      * @return {@link String[]}
      */
+    @Deprecated
     public String[] getRewardPermissions() {
         return permissions;
     }

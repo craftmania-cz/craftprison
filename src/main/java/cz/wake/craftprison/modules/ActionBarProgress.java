@@ -16,7 +16,7 @@ public class ActionBarProgress {
             if (player.getLocation().getWorld().getName().equals("mines") || player.getLocation().getWorld().getName().equals("spawn")) {
                 CraftPlayer cp = pm.getCraftPlayer(player);
                 if (cp.getRank() != Rank.getLast()) {
-                    ActionBar.sendActionBar(Main.getInstance(), player, getText(Main.getInstance().getEconomy().getBalance(player), cp.getRank().getNext().getPrice()), 1000);
+                    ActionBar.sendActionBar(player, getText(Main.getInstance().getEconomy().getBalance(player), cp.getRank().getNext().getPrice()));
                 }
             }
         }

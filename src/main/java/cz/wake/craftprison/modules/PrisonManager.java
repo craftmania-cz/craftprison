@@ -84,14 +84,6 @@ public class PrisonManager {
         return players.get(p).getRank();
     }
 
-    public String getColoredPlayerRank(Player p) {
-        return getPlayerRank(p).getDifficulty().getColor().toString() + getPlayerRank(p).getName();
-    }
-
-    public String getColoredNextPlayerRank(Player p) {
-        return getPlayerNextRank(p).getDifficulty().getColor().toString() + getPlayerNextRank(p).getName();
-    }
-
     public Rank getPlayerNextRank(Player p) throws NullPointerException {
         return getPlayerRank(p).getNext();
     }

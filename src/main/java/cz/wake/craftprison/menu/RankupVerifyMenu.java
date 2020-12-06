@@ -25,7 +25,7 @@ public class RankupVerifyMenu implements InventoryProvider {
 
         contents.set(2, 2, ClickableItem.of(
                 new ItemBuilder(Material.GREEN_CONCRETE_POWDER).setName("§a§lANO")
-                        .addLore("§7Kliknutím provedeš rank up", "§7na rank: " + pm.getColoredNextPlayerRank(player), "", "§7Bude ti odečteno: §6" + PlayerUtils.formatMoney(pm.getNextRankPrice(player)) + "$", "", "§cTato akce je nevratná!").build(), e -> {
+                        .addLore("§7Kliknutím provedeš", "§7rank up na rank: §f" + pm.getPlayerNextRank(player).getName(), "", "§7Bude ti odečteno: §6" + PlayerUtils.formatMoney(pm.getNextRankPrice(player)) + "$", "", "§cTato akce je nevratná!").build(), e -> {
                     Rank actualRank = pm.getPlayerRank(player);
                     if (!(actualRank == Rank.A)) { // V zakladu hrac nema zadny rank pravo
                         PlayerUtils.removePermission(player, actualRank.getPermission());
@@ -38,11 +38,6 @@ public class RankupVerifyMenu implements InventoryProvider {
                     PlayerUtils.randomFireworks(player.getLocation());
                     XSound.BLOCK_NOTE_BLOCK_BASS.play(player, 1.0f, 1.0f);
                     PlayerUtils.sendRankUpMessage(player);
-                    for (String perm : nextRank.getRewardPermissions()) {
-                        if (perm.length() > 1) {
-                            PlayerUtils.addPermission(player, perm);
-                        }
-                    }
                     player.closeInventory();
                 }
         ));
