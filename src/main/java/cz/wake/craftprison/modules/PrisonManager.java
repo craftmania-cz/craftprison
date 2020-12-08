@@ -80,20 +80,24 @@ public class PrisonManager {
         return null;
     }
 
-    public Rank getPlayerRank(Player p) {
+    public Rank getPlayerRank(final Player p) {
         return players.get(p).getRank();
     }
 
-    public Rank getPlayerNextRank(Player p) throws NullPointerException {
+    public Rank getNextRank(final Player p) throws NullPointerException {
         return getPlayerRank(p).getNext();
     }
 
-    public long getNextRankPrice(Player p) {
-        return getPlayerNextRank(p).getPrice();
+    public long getNextRankPrice(final Player p) {
+        return getNextRank(p).getBasePrice();
     }
 
-    public long getActualRankPrice(Player p) {
-        return getPlayerRank(p).getPrice();
+    public long getNextRankPriceBasedPrestige(final Player p) {
+        return getNextRank(p).getBasePrice();
+    }
+
+    public long getActualRankPrice(final Player p) {
+        return getPlayerRank(p).getBasePrice();
     }
 
     public Rank getRankObject() {

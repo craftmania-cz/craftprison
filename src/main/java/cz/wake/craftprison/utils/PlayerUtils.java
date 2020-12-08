@@ -37,11 +37,11 @@ public class PlayerUtils {
         }
         player.sendMessage("§6" + TEXT_BOXES);
         player.sendMessage("");
-        player.sendMessage("§7Aktuální rank: §f" + pm.getPlayerRank(player).getName() + " (" + pm.getPlayerRank(player).getWeight() + ") " + "§8| §fDalší rank: " + pm.getPlayerNextRank(player).getName() + " (" + pm.getPlayerNextRank(player).getWeight() + ") ");
+        player.sendMessage("§7Aktuální rank: §f" + pm.getPlayerRank(player).getName() + " (" + pm.getPlayerRank(player).getWeight() + ") " + "§8| §fDalší rank: " + pm.getNextRank(player).getName() + " (" + pm.getNextRank(player).getWeight() + ") ");
         //player.sendMessage("§7Dokonceni ranku: §f" + ActionBarProgress.getPercent(Main.getEconomy().getBalance(player), pm.getPlayerRank(player).getNext().getPrice()) + "% §8| §7Rankup castka: §f" + formatMoney(pm.getPlayerRank(player).getNext().getPrice()) +"§a$");
         player.sendMessage("§7Dokončení prestige: §f" + ActionBarProgress.getPercent(pm.getPlayerRank(player).getWeight(), Rank.getLast().getWeight()) + "%");
         player.sendMessage("");
-        player.sendMessage("§eNa další ranku obdržíš: \n§f - " + pm.getPlayerNextRank(player).getEnchantToken() + "x EnchantToken");
+        player.sendMessage("§eNa další ranku obdržíš: \n§f - " + pm.getNextRank(player).getEnchantToken() + "x EnchantToken");
         player.sendMessage("");
         player.sendMessage("§6" + TEXT_BOXES);
     }

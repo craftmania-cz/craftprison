@@ -10,10 +10,9 @@ import cz.craftmania.craftcore.spigot.inventory.builder.SmartInventory;
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.menu.RankupVerifyMenu;
 import cz.wake.craftprison.modules.PrisonManager;
+import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -38,10 +37,11 @@ public class RankUpCommand extends BaseCommand {
             try {
                 if (pm.getPlayers().containsKey(player)) {
                     double playerMoney = Main.getInstance().getEconomy().getBalance(player);
-                    final Rank actualRank = pm.getPlayerRank(player);
+                    final CraftPlayer craftPlayer = pm.getCraftPlayer(player);
+                    final Rank actualRank = craftPlayer.getRank();
                     if (!(actualRank == Rank.getLast())) {
                         Rank nextRank = actualRank.getNext();
-                        if (nextRank.getPrice() < playerMoney) {
+                        if (nextRank.getPriceByPrestige(craftPlayer.getPrestige()) < playerMoney) {
                             SmartInventory.builder().id("rankup-menu").provider(new RankupVerifyMenu())
                                     .size(5, 9).title("Rank up").build().open(player);
                         } else {

@@ -104,8 +104,25 @@ public enum Rank {
      *
      * @return {@link Long}
      */
-    public long getPrice() {
+    public long getBasePrice() {
         return this.price;
+    }
+
+    /**
+     * Vrací cenu pro rank up, dle zadané Prestige.<br>
+     * Základní navyšování pro Prestiges > 1 = 15%.<br>
+     * Příklad: Prestige 3 -> cena + 15%
+     *
+     * @param prestige Číslo prestige
+     * @return {@link Long}
+     */
+    @NotNull
+    public long getPriceByPrestige(int prestige) {
+        if (prestige == 1) {
+            return this.price; // Prestige 1 je startovací, základní ceny
+        }
+        int percentage = 15 * (prestige - 1); // 15 base navýšení
+        return this.price + (this.price * percentage / 100);
     }
 
     /**

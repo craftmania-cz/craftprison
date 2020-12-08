@@ -14,9 +14,11 @@ public class ActionBarProgress {
     public static void send() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (player.getLocation().getWorld().getName().equals("mines") || player.getLocation().getWorld().getName().equals("spawn")) {
-                CraftPlayer cp = pm.getCraftPlayer(player);
-                if (cp.getRank() != Rank.getLast()) {
-                    ActionBar.sendActionBar(player, getText(Main.getInstance().getEconomy().getBalance(player), cp.getRank().getNext().getPrice()));
+                CraftPlayer craftPlayer = pm.getCraftPlayer(player);
+                if (craftPlayer.getRank() != Rank.getLast()) {
+                    ActionBar.sendActionBar(player, getText(Main.getInstance().getEconomy().getBalance(player), craftPlayer.getRank().getNext().getPriceByPrestige(craftPlayer.getPrestige())));
+                } else { //TODO: Počítat peníze pro prestige up
+                    ActionBar.sendActionBar(player, "§b§lPrestige dokončena! §f/prestige");
                 }
             }
         }

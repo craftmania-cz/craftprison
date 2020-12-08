@@ -7,6 +7,7 @@ import cz.craftmania.craftcore.spigot.inventory.builder.content.InventoryProvide
 import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.PrisonManager;
+import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
 import cz.wake.craftprison.utils.PlayerUtils;
 import org.bukkit.Material;
@@ -50,9 +51,11 @@ public class RanksMenu implements InventoryProvider {
             } else {
                 if (pm.getPlayerRank(p).getNext() == rank) {
 
+                    CraftPlayer craftPlayer = pm.getCraftPlayer(p); // 4k, 0.03%
+
                     ArrayList<String> lore = new ArrayList<>();
-                    lore.add("§7Cena: §f" + PlayerUtils.formatMoney((double) rank.getPrice()) + "§6$");
-                    lore.add("§7Dokončeno: §f" + ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(p), (double) rank.getPrice()) + "%");
+                    lore.add("§7Cena: §f" + PlayerUtils.formatMoney((double) craftPlayer.getRank().getNext().getPriceByPrestige(craftPlayer.getPrestige())) + "§6$");
+                    lore.add("§7Dokončeno: §f" + ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(p), (double) craftPlayer.getRank().getNext().getPriceByPrestige(craftPlayer.getPrestige())) + "%");
                     lore.add("");
                     lore.add("§bZískáš:");
                     if (rank.getEnchantToken() != 0) {

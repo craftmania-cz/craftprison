@@ -23,18 +23,19 @@ public class RankupVerifyMenu implements InventoryProvider {
         contents.fillRow(0, ClickableItem.empty(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build()));
         contents.fillRow(4, ClickableItem.empty(new ItemBuilder(Material.BLUE_STAINED_GLASS_PANE).setName("§f ").build()));
 
+        CraftPlayer craftPlayer = pm.getPlayers().get(player);
+
         contents.set(2, 2, ClickableItem.of(
                 new ItemBuilder(Material.GREEN_CONCRETE_POWDER).setName("§a§lANO")
-                        .addLore("§7Kliknutím provedeš", "§7rank up na rank: §f" + pm.getPlayerNextRank(player).getName(), "", "§7Bude ti odečteno: §6" + PlayerUtils.formatMoney(pm.getNextRankPrice(player)) + "$", "", "§cTato akce je nevratná!").build(), e -> {
+                        .addLore("§7Kliknutím provedeš", "§7rank up na rank: §f" + pm.getNextRank(player).getName(), "", "§7Bude ti odečteno: §6" + PlayerUtils.formatMoney(craftPlayer.getRank().getNext().getPriceByPrestige(craftPlayer.getPrestige())) + "$", "", "§cTato akce je nevratná!").build(), e -> {
                     Rank actualRank = pm.getPlayerRank(player);
                     if (!(actualRank == Rank.A)) { // V zakladu hrac nema zadny rank pravo
                         PlayerUtils.removePermission(player, actualRank.getPermission());
                     }
                     Rank nextRank = actualRank.getNext();
                     PlayerUtils.addPermission(player, nextRank.getPermission());
-                    CraftPlayer cp = pm.getPlayers().get(player);
-                    Main.getInstance().getEconomy().withdrawPlayer(player, (double) nextRank.getPrice());
-                    cp.setRank(nextRank);
+                    Main.getInstance().getEconomy().withdrawPlayer(player, (double) nextRank.getPriceByPrestige(craftPlayer.getPrestige()));
+                    craftPlayer.setRank(nextRank);
                     PlayerUtils.randomFireworks(player.getLocation());
                     XSound.BLOCK_NOTE_BLOCK_BASS.play(player, 1.0f, 1.0f);
                     PlayerUtils.sendRankUpMessage(player);
