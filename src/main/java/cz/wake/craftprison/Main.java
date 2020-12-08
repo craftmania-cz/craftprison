@@ -1,6 +1,7 @@
 package cz.wake.craftprison;
 
 import co.aikar.commands.PaperCommandManager;
+import com.google.common.collect.ImmutableList;
 import cz.craftmania.crafteconomy.utils.VaultUtils;
 import cz.wake.craftprison.commands.*;
 import cz.wake.craftprison.hooks.PlaceholderRegister;
@@ -10,6 +11,7 @@ import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgradeListener;
 import cz.wake.craftprison.npc.NPCManager;
 import cz.wake.craftprison.npc.VillagerTypeTrait;
+import cz.wake.craftprison.objects.Rank;
 import cz.wake.craftprison.sql.SQLManager;
 import cz.wake.craftprison.utils.Logger;
 import net.citizensnpcs.api.CitizensAPI;
@@ -21,10 +23,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main extends JavaPlugin {
 
@@ -79,6 +78,8 @@ public class Main extends JavaPlugin {
         // Aikar command manager
         manager = new PaperCommandManager(this);
         manager.enableUnstableAPI("help");
+
+        manager.getCommandCompletions().registerCompletion("ranks", c -> Rank.getRanksAsList());
 
         // Register příkazů
         Logger.info("Probíhá registrace příkazů pomocí Aikar commands!");

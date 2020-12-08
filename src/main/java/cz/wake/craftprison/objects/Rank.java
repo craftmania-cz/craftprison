@@ -1,8 +1,16 @@
 package cz.wake.craftprison.objects;
 
+import com.google.common.collect.ImmutableList;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Seznam ranků pro Prestiges
@@ -10,17 +18,17 @@ import org.jetbrains.annotations.Nullable;
  */
 public enum Rank {
 
-    A(1, "A", 0, 0, Material.BEDROCK),
-    B(2, "B", 1000, 1, Material.BEDROCK), // craftprison.mine.nightvision
-    C(3, "C", 4000, 1, Material.BEDROCK),
-    D(4, "D", 10000, 1, Material.BEDROCK), // "Odemknuti vytvareni ostrova /is", "askyblock.island.create"
-    E(5, "E", 20000, 2, Material.BEDROCK), // "Odemknuti pouzivani Aukce /au (Max 1 aukce)", "auctionguiplus.auction", "auctionguiplus.auction.bid", "auctionguiplus.auction.start", "auctionguiplus.auction.bid"
-    F(6, "F", 40000, 2, Material.BEDROCK), // "Odemknuti prikazu /pvp", "craftprison.pvp", "quicksell.shop.pvp"),
+    A(1, "A", 0, 0, Material.BEDROCK, new Location(Bukkit.getWorld("spawn"), -110.5, 42, 137.5, 180, 0)),
+    B(2, "B", 1000, 1, Material.BEDROCK, new Location(Bukkit.getWorld("spawn"), -41.5, 42, 206.5, -90, 0)), // craftprison.mine.nightvision
+    C(3, "C", 4000, 1, Material.BEDROCK, new Location(Bukkit.getWorld("spawn"), -110.5, 42, 275.5, 0, 0)),
+    D(4, "D", 10000, 1, Material.BEDROCK, new Location(Bukkit.getWorld("spawn"), -179.5, 42, 206.5, 90, 0)), // "Odemknuti vytvareni ostrova /is", "askyblock.island.create"
+    E(5, "E", 20000, 2, Material.BEDROCK, new Location(Bukkit.getWorld("mines"), 62.5, 108, -133.5, 0, 0)), // "Odemknuti pouzivani Aukce /au (Max 1 aukce)", "auctionguiplus.auction", "auctionguiplus.auction.bid", "auctionguiplus.auction.start", "auctionguiplus.auction.bid"
+    F(6, "F", 40000, 2, Material.BEDROCK, new Location(Bukkit.getWorld("mines"), -161.5, 109, -49.5, -89, 0)), // "Odemknuti prikazu /pvp", "craftprison.pvp", "quicksell.shop.pvp"),
     G(7, "G", 80000, 2, Material.BEDROCK), // "Odemknuti /shop + sekce Blocks", "shopguiplus.shop", "shopguiplus.shops.blocks"),
     H(8, "H", 150000, 2, Material.BEDROCK), // "", ""),
     I(9, "I", 300000, 2, Material.BEDROCK), // "Odemknuti prikazu /heads", "headdb.allow.buy", "headdb.category.*", "headdb.open"),
     J(10, "J", 500000, 2, Material.BEDROCK), // "", ""),
-    K(11, "K", 800000, 3, Material.BEDROCK), // "Moznost pridat 3 hrace na ostrov (+1)", "askyblock.team.maxsize.3"),
+    K(11, "K", 800000, 3, Material.BEDROCK, new Location(Bukkit.getWorld("mines"), -763.5, 77, 9.5, -90, 0)), // "Moznost pridat 3 hrace na ostrov (+1)", "askyblock.team.maxsize.3"),
     L(12, "L", 1200000, 3, Material.BEDROCK),
     M(13, "M", 1500000, 3, Material.BEDROCK), //, "Odemknuti sekce Decorations & Foods v /shop", "shopguiplus.shops.food", "shopguiplus.shops.dekorace"),
     N(14, "N", 2000000, 3, Material.BEDROCK), //, "", ""),
@@ -57,23 +65,9 @@ public enum Rank {
     private int weight;
     private String name;
     private long price;
-    private MineDifficulty difficulty;
     private int enchantToken;
-    private String reward;
-    private String[] permissions;
     private Material item;
-
-    @Deprecated
-    Rank(int weight, String name, long price, MineDifficulty difficulty, int enchantToken, Material item, String reward, String... permissions) {
-        this.name = name;
-        this.price = price;
-        this.weight = weight;
-        this.difficulty = difficulty;
-        this.enchantToken = enchantToken;
-        this.reward = reward;
-        this.permissions = permissions;
-        this.item = item;
-    }
+    private Location location;
 
     Rank(int weight, String name, long price, int enchantToken, Material item) {
         this.name = name;
@@ -81,6 +75,15 @@ public enum Rank {
         this.weight = weight;
         this.enchantToken = enchantToken;
         this.item = item;
+    }
+
+    Rank(int weight, String name, long price, int enchantToken, Material item, Location location) {
+        this.name = name;
+        this.price = price;
+        this.weight = weight;
+        this.enchantToken = enchantToken;
+        this.item = item;
+        this.location = location;
     }
 
     Rank(int weight) {
@@ -160,17 +163,6 @@ public enum Rank {
     }
 
     /**
-     * Vrací obtížnost ranku, jak moc trvá naplnit inventář.
-     * @deprecated Jelikož nový systém toto již nevyžaduje
-     *
-     * @return {@link MineDifficulty}
-     */
-    @Deprecated
-    public MineDifficulty getDifficulty() {
-        return difficulty;
-    }
-
-    /**
      * Vrací string práva, který se nastavuje hráči při rank upu.
      *
      * @return {@link String}
@@ -214,6 +206,15 @@ public enum Rank {
     }
 
     /**
+     * Vrací list všech ranků jako list stringů.
+     *
+     * @return {@link List}
+     */
+    public static List<String> getRanksAsList() {
+        return Stream.of(Rank.values()).map(Rank::getName).collect(Collectors.toList());
+    }
+
+    /**
      * Vrací další rank, dle aktuálně zadaného.
      * Pokud další rank neexistuje, třeba pro rank Z
      * vrací metoda hodnotu null.
@@ -244,30 +245,20 @@ public enum Rank {
     }
 
     /**
-     * Vrací název odměny pro daný rank
-     *
-     * @return Název odměny
-     */
-    public String getReward() {
-        return reward;
-    }
-
-    /**
-     * Vrací list práv, které hráč dostane při rank upu.
-     *
-     * @return {@link String[]}
-     */
-    @Deprecated
-    public String[] getRewardPermissions() {
-        return permissions;
-    }
-
-    /**
      * Vrací item zobrazovaný v menu - /ranks
      *
      * @return {@link Material}
      */
     public Material getItem() {
         return item;
+    }
+
+    /**
+     * Vrací pozici pro teleport na důl pro rank.
+     *
+     * @return {@link Location}
+     */
+    public Location getLocation() {
+        return location;
     }
 }
