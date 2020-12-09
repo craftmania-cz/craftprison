@@ -1,7 +1,9 @@
 package cz.wake.craftprison.objects;
 
+import at.pcgamingfreaks.Minepacks.Bukkit.API.Backpack;
 import cz.wake.craftprison.Main;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 public class CraftPlayer implements IMiner {
@@ -64,5 +66,17 @@ public class CraftPlayer implements IMiner {
     public void setPrestige(int prestige) {
         this.prestige = prestige;
         Main.getInstance().getMySQL().playerSavePrestige(player, prestige);
+    }
+
+    /**
+     * Vrací vlastní backpack hráče, tedy jeho inventář, do kterého lze ukládat, brát nebo lontrolovat itemy.
+     *
+     * @param player Požadovaný hráč
+     * @return {@link Inventory}
+     */
+    public Backpack getPlayerBackpackInventory(Player player) {
+        Backpack bp = Main.getInstance().getMinepacksPlugin().getBackpackCachedOnly(player);
+        if (bp == null) return null;
+        return bp;
     }
 }

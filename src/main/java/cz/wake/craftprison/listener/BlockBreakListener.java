@@ -1,5 +1,7 @@
 package cz.wake.craftprison.listener;
 
+import at.pcgamingfreaks.Minepacks.Bukkit.API.Backpack;
+import cz.wake.craftprison.Main;
 import cz.wake.craftprison.events.InventoryFullEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -28,14 +30,14 @@ public class BlockBreakListener implements Listener {
             for (ItemStack item : player.getInventory().getContents()) {
                 if(item != null && item.getType().equals(drop.getType()) && item.getAmount() + drop.getAmount() <= item.getMaxStackSize()) return;
             }
+            if (Main.getInstance().getPlayerBackpackInventory(player).addItem(drop) == null) { //TODO: Vyžaduje hard test!!!!
+                return;
+            }
             items.add(drop);
         });
 
         if (items.isEmpty()) return;
-        //TODO: Backpack integrace
-        /*if (this.plugin.getBackpackHook() != null && !this.plugin.getBackpackHook().wontFit(p, wont)) {
-            return;
-        }*/
+
         final InventoryFullEvent inventoryFullEvent = new InventoryFullEvent(player);
         Bukkit.getPluginManager().callEvent(inventoryFullEvent);
 

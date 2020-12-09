@@ -1,5 +1,7 @@
 package cz.wake.craftprison;
 
+import at.pcgamingfreaks.Minepacks.Bukkit.API.Backpack;
+import at.pcgamingfreaks.Minepacks.Bukkit.API.MinepacksPlugin;
 import co.aikar.commands.PaperCommandManager;
 import com.google.common.collect.ImmutableList;
 import cz.craftmania.crafteconomy.utils.VaultUtils;
@@ -20,6 +22,8 @@ import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -34,6 +38,7 @@ public class Main extends JavaPlugin {
     private PlayerStatsListener playerStatsListener;
     private NPCManager npcManager;
     private Economy vaultUtils;
+    private MinepacksPlugin minepacksPlugin;
     private boolean debug = false;
 
     // Commands manager
@@ -98,6 +103,11 @@ public class Main extends JavaPlugin {
         // NPCs prepare & spawn
         this.npcManager = new NPCManager();
         this.npcManager.initNPCs();
+
+        // Backpack Integrace
+        if (getServer().getPluginManager().isPluginEnabled("Minepacks")) {
+            this.minepacksPlugin = (MinepacksPlugin)Bukkit.getPluginManager().getPlugin("Minepacks");
+        }
     }
 
     @Override
@@ -161,5 +171,15 @@ public class Main extends JavaPlugin {
 
     public Economy getEconomy() {
         return vaultUtils;
+    }
+
+    public MinepacksPlugin getMinepacksPlugin() {
+        return minepacksPlugin;
+    }
+
+    public Backpack getPlayerBackpackInventory(Player player) {
+        Backpack bp = Main.getInstance().getMinepacksPlugin().getBackpackCachedOnly(player);
+        if (bp == null) return null;
+        return bp;
     }
 }
