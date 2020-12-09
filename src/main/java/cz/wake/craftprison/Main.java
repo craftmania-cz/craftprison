@@ -39,24 +39,8 @@ public class Main extends JavaPlugin {
     // Commands manager
     private PaperCommandManager manager;
 
-    // Listy, které slouží jako list, se kterými itemy je detekován plný inventář při kopání
-    private final List<Material> fullInvMineItems;
-    private final List<Material> ignored;
-
     static {
         Main.active = new HashMap<>();
-    }
-
-    public Main() {
-        //this.backpack = null;
-        this.fullInvMineItems = Arrays.asList(
-                Material.STONE_AXE, Material.STONE_HOE, Material.STONE_PICKAXE, Material.STONE_SHOVEL,
-                Material.WOODEN_AXE, Material.WOODEN_HOE, Material.WOODEN_PICKAXE, Material.WOODEN_SHOVEL,
-                Material.IRON_AXE, Material.IRON_HOE, Material.IRON_PICKAXE, Material.IRON_SHOVEL,
-                Material.GOLDEN_AXE, Material.GOLDEN_HOE, Material.GOLDEN_PICKAXE, Material.GOLDEN_SHOVEL,
-                Material.DIAMOND_AXE, Material.DIAMOND_HOE, Material.DIAMOND_PICKAXE, Material.DIAMOND_SHOVEL,
-                Material.NETHERITE_PICKAXE, Material.NETHERITE_AXE, Material.NETHERITE_HOE, Material.NETHERITE_SHOVEL);
-        this.ignored = Arrays.asList(Material.BEDROCK); //TODO: ?
     }
 
     @Override
@@ -150,67 +134,21 @@ public class Main extends JavaPlugin {
         manager.registerCommand(new RanksCommand());
         manager.registerCommand(new RankCommand());
         manager.registerCommand(new RankUpCommand());
+        manager.registerCommand(new SellCommand());
     }
 
     private void loadCommands() {
         //getCommand("pickaxe").setExecutor(new PickaxeCommand());
         //getCommand("pvp").setExecutor(new PVPCommand());
         //getCommand("pshop").setExecutor(new PShopCommand());
-        //getCommand("prodat").setExecutor(new SellCommand());
     }
 
     public static Main getInstance() {
         return instance;
     }
 
-    /*public VKBackPackHook getBackpackHook() {
-        return this.backpack;
-    }*/
-
-    public List<Material> getIgnored() {
-        return this.ignored;
-    }
-
-    public List<Material> getFullInvMineItems() {
-        return this.fullInvMineItems;
-    }
-
-    public boolean isAlerted(final String name) {
-        return Main.active != null && !Main.active.isEmpty() && Main.active.containsKey(name);
-    }
-
     public NPCManager getNpcManager() {
         return this.npcManager;
-    }
-
-    public int getAlertAmount(final String name) {
-        if (this.isAlerted(name)) {
-            return Main.active.get(name);
-        }
-        return 0;
-    }
-
-    public void setAlertAmount(final String name, final int i) {
-        if (Main.active == null) {
-            Main.active = new HashMap<>();
-        }
-        Main.active.put(name, i);
-    }
-
-    public void decreaseAlertAmount(final String name) {
-        Bukkit.getScheduler().scheduleSyncDelayedTask(this, () -> {
-            if (Main.active == null) {
-                return;
-            }
-            if (Main.active.containsKey(name)) {
-                final int c = Main.active.get(name);
-                if (c == 1) {
-                    Main.active.remove(name);
-                } else {
-                    Main.active.put(name, c - 1);
-                }
-            }
-        }, 20L * 5);
     }
 
     public SQLManager getMySQL() {
