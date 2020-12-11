@@ -3,14 +3,12 @@ package cz.wake.craftprison;
 import at.pcgamingfreaks.Minepacks.Bukkit.API.Backpack;
 import at.pcgamingfreaks.Minepacks.Bukkit.API.MinepacksPlugin;
 import co.aikar.commands.PaperCommandManager;
-import com.google.common.collect.ImmutableList;
 import cz.craftmania.crafteconomy.utils.VaultUtils;
 import cz.wake.craftprison.commands.*;
-import cz.wake.craftprison.hooks.PlaceholderRegister;
+import cz.wake.craftprison.hooks.PlaceholderRegistry;
 import cz.wake.craftprison.listener.*;
 import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.PrisonManager;
-import cz.wake.craftprison.modules.pickaxe.PickaxeUpgradeListener;
 import cz.wake.craftprison.npc.NPCManager;
 import cz.wake.craftprison.npc.VillagerTypeTrait;
 import cz.wake.craftprison.objects.Rank;
@@ -20,10 +18,7 @@ import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.trait.TraitInfo;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -94,8 +89,7 @@ public class Main extends JavaPlugin {
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(this, ActionBarProgress::send, 1L, 40L);
 
         // Placeholders
-        PlaceholderRegister pr = new PlaceholderRegister(this);
-        pr.registerPlaceholders();
+        new PlaceholderRegistry().register();
 
         // Citizens traits
         CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(VillagerTypeTrait.class).withName("villagertype"));
