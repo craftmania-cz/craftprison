@@ -118,15 +118,10 @@ public class Main extends JavaPlugin {
 
     private void loadListeners() {
         PluginManager pm = getServer().getPluginManager();
-        //pm.registerEvents(new MiningListener(), this);
         pm.registerEvents(new WGExtendedListener(), this);
         pm.registerEvents(new PlayerListener(this), this);
         //pm.registerEvents(new PlayerStatsListener(this), this);
-        //pm.registerEvents(new PickaxeUpgradeListener(), this);
-        //pm.registerEvents(new EnchantmentListener(), this);
-        //pm.registerEvents(new PShopCommand(), this);
         pm.registerEvents(new ItemDropListener(), this);
-        //m.registerEvents(new PlayerDeathListener(), this); //TODO: fix duplikace pri smrti
         //pm.registerEvents(new PickaxeInteractListener(), this);
         pm.registerEvents(new NPCInteractListener(), this);
         pm.registerEvents(new InventoryFullListener(), this);
@@ -140,12 +135,6 @@ public class Main extends JavaPlugin {
         manager.registerCommand(new RankUpCommand());
         manager.registerCommand(new SellCommand());
         manager.registerCommand(new PickaxeCommand());
-    }
-
-    private void loadCommands() {
-        //getCommand("pickaxe").setExecutor(new PickaxeCommand());
-        //getCommand("pvp").setExecutor(new PVPCommand());
-        //getCommand("pshop").setExecutor(new PShopCommand());
     }
 
     public static Main getInstance() {

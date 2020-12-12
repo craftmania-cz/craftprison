@@ -31,10 +31,10 @@ public class PickaxeCommand extends BaseCommand {
     public void getPickaxe(CommandSender sender) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            if (player.hasPermission("craftprison.player.pickaxe.hard-cooldown")) {
+            /*if (player.hasPermission("craftprison.player.pickaxe.hard-cooldown")) {
                 player.sendMessage("§c§l[!] §cMusíš počkat déle, aby jsi mohl opět získat základní krumpáč.");
                 return;
-            }
+            }*/
             player.getInventory().addItem(PickaxeUpgrade.getDefaultPickaxe(player.getName()));
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " permission settemp craftprison.player.pickaxe.hard-cooldown 2h prison");
             player.sendMessage("§a§l[x] §aObdržel jsi základní krumpáč.");
