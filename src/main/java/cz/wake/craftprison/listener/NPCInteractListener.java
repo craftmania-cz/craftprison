@@ -14,7 +14,6 @@ public class NPCInteractListener implements Listener {
     public void onRightClickNPC(NPCRightClickEvent event) {
         NPC unknownNPC = event.getNPC();
         Main.getInstance().getNpcManager().getNpcList().forEach((interactiveNPC -> {
-            System.out.println(interactiveNPC.getNpc().getName());
             if (interactiveNPC.getNpc().getName().equals(unknownNPC.getName())) {
                 interactiveNPC.getRightClickAction().run(event);
             }
@@ -25,7 +24,6 @@ public class NPCInteractListener implements Listener {
     public void onLeftClickNPC(NPCLeftClickEvent event) {
         NPC unknownNPC = event.getNPC();
         Main.getInstance().getNpcManager().getNpcList().forEach((interactiveNPC -> {
-            System.out.println(interactiveNPC.getNpc().getName());
             if (interactiveNPC.getNpc().getName().equals(unknownNPC.getName())) {
                 interactiveNPC.getLeftClickAction().run(event);
             }
