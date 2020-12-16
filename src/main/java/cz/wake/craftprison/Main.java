@@ -133,7 +133,6 @@ public class Main extends JavaPlugin {
         manager.registerCommand(new RanksCommand());
         manager.registerCommand(new RankCommand());
         manager.registerCommand(new RankUpCommand());
-        manager.registerCommand(new SellCommand());
         manager.registerCommand(new PickaxeCommand());
     }
 
