@@ -42,8 +42,8 @@ public enum Rank {
     V(22, "V", 20000000000L, 5, Material.NETHER_BRICKS, new Location(Bukkit.getWorld("mines"), -4974.5, 104, 804.5, 0, 0)), //
     W(23, "W", 50000000000L, 5, Material.BASALT, new Location(Bukkit.getWorld("mines"), -5593.5, 111, 969.5, 90, 0)), //
     X(24, "X", 100000000000L, 5, Material.DIAMOND_ORE, new Location(Bukkit.getWorld("mines"), -6064.5, 134, 1054.5, -90, 0)), // StarWars (Bundle 1)
-    Y(25, "Y", 400000000000L, 5, Material.LAPIS_BLOCK, new Location(Bukkit.getWorld("mines"), -6619.5, 129, 1118.5, 0, 0)), //
-    Z(26, "Z", 1000000000000L, 6, Material.DIAMOND_BLOCK, new Location(Bukkit.getWorld("mines"), -6879.5, 119, 1276.5, 0, 0)); //
+    Y(25, "Y", 200000000000L, 5, Material.LAPIS_BLOCK, new Location(Bukkit.getWorld("mines"), -6619.5, 129, 1118.5, 0, 0)), //
+    Z(26, "Z", 400000000000L, 6, Material.DIAMOND_BLOCK, new Location(Bukkit.getWorld("mines"), -6879.5, 119, 1276.5, 0, 0)); //
 
     /* PANTHER(27, "Panther", 10000000000L, MineDifficulty.STANDARD, 6, new ItemStack(Material.QUARTZ, 1, (short)1), "", ""),
     DOCTOR(28, "Doctor", 20000000000L, MineDifficulty.STANDARD, 6, new ItemStack(Material.DIAMOND_BLOCK), "Moznost pridat 6 hrace na ostrov (+4)", "askyblock.team.maxsize.6"),
