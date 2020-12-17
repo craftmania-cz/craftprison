@@ -24,8 +24,9 @@ public class PickaxeInteractListener implements Listener {
         final Player p = e.getPlayer();
         final ItemStack item = e.getPlayer().getInventory().getItemInMainHand();
         if (((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)) &&
-                (item.getType() == Material.DIAMOND_PICKAXE) && (p.getLocation().getWorld().getName().equals("doly")) &&
-                (p.hasPermission("craftprison.pickaxe.rightclick.sell")) && isSoulbound(item, p)) {
+                (item.getType() == Material.DIAMOND_PICKAXE || item.getType() == Material.NETHERITE_PICKAXE)
+                && (p.getLocation().getWorld().getName().equals("spawn") || p.getLocation().getWorld().getName().equals("mines"))
+                && (p.hasPermission("craftprison.pickaxe.rightclick.sell"))) {
             if(!cooldown.contains(p.getUniqueId())){
                 p.performCommand("sellall " + pm.getPlayerRank(p).getName().toLowerCase());
                 cooldown.add(p.getUniqueId());

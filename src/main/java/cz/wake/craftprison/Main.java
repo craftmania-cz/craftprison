@@ -122,7 +122,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new PlayerListener(this), this);
         //pm.registerEvents(new PlayerStatsListener(this), this);
         pm.registerEvents(new ItemDropListener(), this);
-        //pm.registerEvents(new PickaxeInteractListener(), this);
+        pm.registerEvents(new PickaxeInteractListener(), this);
         pm.registerEvents(new NPCInteractListener(), this);
         pm.registerEvents(new InventoryFullListener(), this);
         pm.registerEvents(new BlockBreakListener(), this);
