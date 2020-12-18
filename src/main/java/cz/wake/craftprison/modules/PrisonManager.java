@@ -29,14 +29,14 @@ public class PrisonManager {
             Main.getInstance().getMySQL().insertDefaultData(p);
             cp = new CraftPlayer(p, Rank.A, 1);
 
-            //Player counter
+            /*//Player counter
             int count = Main.getInstance().getConfig().getInt("player-counter") + 1;
             Bukkit.getOnlinePlayers().forEach(op -> op.sendMessage("§e" + p.getName() + " §7se pripojil na Prison (#" + count + ")"));
             Main.getInstance().getConfig().set("player-counter", count);
-            Main.getInstance().saveConfig();
+            Main.getInstance().saveConfig();*/
 
             //Krumpac
-            p.getInventory().addItem(PickaxeUpgrade.getDefaultPickaxe(p.getName()));
+            //p.getInventory().addItem(PickaxeUpgrade.getDefaultPickaxe(p.getName()));
         } else {
             cp = Main.getInstance().getMySQL().getCraftPlayerFromSQL(p);
         }
