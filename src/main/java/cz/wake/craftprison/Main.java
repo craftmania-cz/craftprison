@@ -134,6 +134,7 @@ public class Main extends JavaPlugin {
         manager.registerCommand(new RankCommand());
         manager.registerCommand(new RankUpCommand());
         manager.registerCommand(new PickaxeCommand());
+        manager.registerCommand(new TokenGiveCommand());
     }
 
     public static Main getInstance() {
