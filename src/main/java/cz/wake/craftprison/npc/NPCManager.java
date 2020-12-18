@@ -289,6 +289,14 @@ public class NPCManager {
         rank_z.setVillagerProfession(Villager.Profession.NONE);
         rank_z.setVillagerType(Villager.Type.SNOW);
 
+        // Prestige NPC na Rank Z
+        InteractiveNPC prestige = new InteractiveNPC(this.registry, "Prestige", EntityType.ILLUSIONER);
+        prestige.setLocation(new Location(Bukkit.getWorld("mines"), -6881.5, 119, 1274.5, -33, 0));
+        prestige.setHologramTexts("§9§lPrestiges", "§7Zvyš si Prestige a rank!");
+        prestige.setLeftClickAction(new ClickAction((action) -> action.getClicker().performCommand("prestige")));
+        prestige.setRightClickAction(new ClickAction((action) -> action.getClicker().performCommand("prestige")));
+        prestige.spawn();
+
     }
 
     public void destroyNPCs() {
