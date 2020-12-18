@@ -1,5 +1,7 @@
 package cz.wake.craftprison.hooks;
 
+import cz.wake.craftprison.Main;
+import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -40,6 +42,11 @@ public class PlaceholderRegistry extends PlaceholderExpansion {
         // %craftprison_player_rank%
         if (identifier.equals("player_rank")) {
             return String.valueOf(craftPlayer.getRank().getName());
+        }
+
+        // %craftprison_player_rank_progress%
+        if (identifier.equals("players_rank_progress")) {
+            return String.valueOf(ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(player), craftPlayer.getRank().getNext().getPriceByPrestige(craftPlayer.getPrestige())));
         }
 
         // %craftprison_player_prestige%
