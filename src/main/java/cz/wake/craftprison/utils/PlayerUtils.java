@@ -59,16 +59,16 @@ public class PlayerUtils {
     public static String formatMoney(double d) {
         DecimalFormat df = new DecimalFormat("#.##");
         if (d >= 1.0E18) {
-            return df.format(d / 1.0E18) + "Q";
+            return df.format(d / 1.0E18) + "S";
         }
         if (d >= 1.0E15) {
-            return df.format(d / 1.0E15) + "T";
+            return df.format(d / 1.0E15) + "Q";
         }
         if (d >= 1.0E12) {
-            return df.format(d / 1.0E12) + "B";
+            return df.format(d / 1.0E12) + "T";
         }
         if (d >= 1000000000) {
-            return df.format(d / 1000000000) + "G";
+            return df.format(d / 1000000000) + "B";
         }
         if (d >= 1000000) {
             return df.format(d / 1000000) + "M";
