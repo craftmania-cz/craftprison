@@ -10,6 +10,7 @@ import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
 import cz.wake.craftprison.utils.PlayerUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -36,6 +37,8 @@ public class RankupVerifyMenu implements InventoryProvider {
                     PlayerUtils.addPermission(player, nextRank.getPermission());
                     Main.getInstance().getEconomy().withdrawPlayer(player, (double) nextRank.getPriceByPrestige(craftPlayer.getPrestige()));
                     craftPlayer.setRank(nextRank);
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tokens add " + player.getName() + " " + nextRank.getEnchantToken());
+                    player.sendMessage("§e§l[T] §eBylo ti přidáno " + nextRank.getEnchantToken() + " EnchantTokenů.");
                     PlayerUtils.randomFireworks(player.getLocation());
                     XSound.BLOCK_NOTE_BLOCK_BASS.play(player, 1.0f, 1.0f);
                     PlayerUtils.sendRankUpMessage(player);
