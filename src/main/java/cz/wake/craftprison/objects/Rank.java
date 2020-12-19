@@ -126,6 +126,20 @@ public enum Rank {
     }
 
     /**
+     * Vrací cenu pro rank up do další prestige.
+     * @param prestige Číslo prestige
+     * @return {@link Long}
+     */
+    @NotNull
+    public long getPrestigePriceByPrestige(int prestige) {
+        if (prestige == 1) {
+            return Z.price; // Prestige 1 je startovací, základní ceny
+        }
+        int percentage = 15 * (prestige - 1); // 15 base navýšení
+        return Z.price + (Z.price * percentage / 100);
+    }
+
+    /**
      * Vrací ID ranku, které sloužé také jako váha pro řazení
      *
      * @return {@link Integer}
