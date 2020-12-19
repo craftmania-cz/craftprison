@@ -47,8 +47,8 @@ public class PlaceholderRegistry extends PlaceholderExpansion {
 
         // %craftprison_player_rank_progress%
         if (identifier.equals("player_rank_progress")) {
-            if (craftPlayer.getRank() == Rank.getLast()) return String.valueOf(Math.round(ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(player), craftPlayer.getRank().getPriceByPrestige(craftPlayer.getPrestige()) * 1.5)));
-            else return String.valueOf(Math.round(ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(player), (double) craftPlayer.getRank().getNext().getPriceByPrestige(craftPlayer.getPrestige()))));
+            if (craftPlayer.getRank() == Rank.getLast()) return String.valueOf(Math.floor(ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(player), craftPlayer.getRank().getPriceByPrestige(craftPlayer.getPrestige()) * 1.5)));
+            else return String.valueOf(Math.floor(ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(player), (double) craftPlayer.getRank().getNext().getPriceByPrestige(craftPlayer.getPrestige()))));
         }
 
         // %craftprison_player_prestige%
