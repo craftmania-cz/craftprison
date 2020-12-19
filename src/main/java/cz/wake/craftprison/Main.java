@@ -126,6 +126,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new NPCInteractListener(), this);
         pm.registerEvents(new InventoryFullListener(), this);
         pm.registerEvents(new BlockBreakListener(), this);
+        pm.registerEvents(new PlayerPayCorrectListener(), this);
     }
 
     private void loadCommands(PaperCommandManager manager) {
