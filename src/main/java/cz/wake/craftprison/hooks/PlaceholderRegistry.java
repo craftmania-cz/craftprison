@@ -4,6 +4,7 @@ import cz.wake.craftprison.Main;
 import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.objects.CraftPlayer;
+import cz.wake.craftprison.objects.Rank;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -45,8 +46,9 @@ public class PlaceholderRegistry extends PlaceholderExpansion {
         }
 
         // %craftprison_player_rank_progress%
-        if (identifier.equals("players_rank_progress")) {
-            return String.valueOf(ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(player), craftPlayer.getRank().getNext().getPriceByPrestige(craftPlayer.getPrestige())));
+        if (identifier.equals("player_rank_progress")) {
+            if (craftPlayer.getRank() == Rank.getLast()) return String.valueOf(Math.round(ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(player), craftPlayer.getRank().getPriceByPrestige(craftPlayer.getPrestige()) * 1.5)));
+            else return String.valueOf(Math.round(ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(player), (double) craftPlayer.getRank().getNext().getPriceByPrestige(craftPlayer.getPrestige()))));
         }
 
         // %craftprison_player_prestige%
