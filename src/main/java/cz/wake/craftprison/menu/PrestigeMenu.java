@@ -61,8 +61,8 @@ public class PrestigeMenu implements InventoryProvider {
             } else if (prestige.getWeight() == (craftPlayer.getPrestige() + 1)) {
                 ArrayList<String> lore = new ArrayList<>();
                 lore.add("§cNedokončená prestige.");
-                lore.add("§7Cena: §f" + PlayerUtils.formatMoney(craftPlayer.getRank().getPriceByPrestige(craftPlayer.getPrestige()) * 1.5)); // Rank Z * 1.5
-                lore.add("§7Dokončeno: §f" + ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(player), craftPlayer.getRank().getPriceByPrestige(craftPlayer.getPrestige()) * 1.5) + "%");
+                lore.add("§7Cena: §f" + PlayerUtils.formatMoney(craftPlayer.getRank().getPrestigePriceByPrestige(craftPlayer.getPrestige()) * 1.5)); // Rank Z * 1.5
+                lore.add("§7Dokončeno: §f" + ActionBarProgress.getPercent(Main.getInstance().getEconomy().getBalance(player), craftPlayer.getRank().getPrestigePriceByPrestige(craftPlayer.getPrestige()) * 1.5) + "%");
                 if (prestige.getDescription() != null) {
                     lore.add("");
                     lore.add("§aDostaneš:");
