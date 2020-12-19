@@ -1,19 +1,18 @@
 package cz.wake.craftprison.listener;
 
 import cz.wake.craftprison.Main;
+import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 
 public class ItemDropListener implements Listener {
 
-    private static HashMap<Player, ItemStack> pickaxeDrop_request = new HashMap<>();
+    /*private static HashMap<Player, ItemStack> pickaxeDrop_request = new HashMap<>();
     private HashMap<Player, Double> _time = new HashMap<>();
     private HashMap<Player, BukkitRunnable> _cdRunnable = new HashMap<>();
 
@@ -30,9 +29,9 @@ public class ItemDropListener implements Listener {
                 this._cdRunnable.put(p, new BukkitRunnable() {
                     @Override
                     public void run() {
-                        ItemDropListener.this._time.put(p, ItemDropListener.this._time.get(p).doubleValue() - 0.1D);
+                        ItemDropListener.this._time.put(p, ItemDropListener.this._time.get(p) - 0.1D);
                         try {
-                            if (ItemDropListener.this._time.get(p).doubleValue() < 0.01D) {
+                            if (ItemDropListener.this._time.get(p) < 0.01D) {
                                 ItemDropListener.this._time.remove(p);
                                 ItemDropListener.this._cdRunnable.remove(p);
                                 pickaxeDrop_request.remove(p);
@@ -49,6 +48,32 @@ public class ItemDropListener implements Listener {
             e.setCancelled(false);
             pickaxeDrop_request.remove(p);
             p.sendMessage("§c§l[!] §cVyhodil jsi chráněný item na zem!");
+        }
+    }*/
+
+    private HashMap<Player, Pair<ItemStack, Long>> dropRequests = new HashMap<>();
+
+    @EventHandler
+    public void onDropItem(final PlayerDropItemEvent event) {
+        final Player player = event.getPlayer();
+        final ItemStack itemStack = event.getItemDrop().getItemStack();
+
+        if (Main.getInstance().getConfig().getStringList("protect-drop").contains(itemStack.getType().toString())) {
+            if (!dropRequests.containsKey(player) || dropRequests.get(player).getValue() < System.currentTimeMillis()) {
+                // New request
+                event.setCancelled(true);
+
+                player.sendMessage("§bPokud chceš vyhodit item na zem, stiskni znova Q!");
+
+                dropRequests.put(player, Pair.of(itemStack, System.currentTimeMillis() + 5000)); // 5 seconds
+            } else {
+                // Drop
+                event.setCancelled(false);
+
+                player.sendMessage("§c§l[!] §cVyhodil jsi chráněný item na zem!");
+
+                dropRequests.remove(player);
+            }
         }
     }
 }
