@@ -3,17 +3,10 @@ package cz.wake.craftprison.commands;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.CommandHelp;
 import co.aikar.commands.annotation.*;
-import cz.wake.craftprison.Main;
-import cz.wake.craftprison.modules.pickaxe.CustomPickaxe;
 import cz.wake.craftprison.modules.pickaxe.PickaxeUpgrade;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.HashMap;
 
 import static co.aikar.commands.ACFBukkitUtil.sendMsg;
 
