@@ -11,6 +11,7 @@ import cz.wake.craftprison.modules.ActionBarProgress;
 import cz.wake.craftprison.modules.PrisonManager;
 import cz.wake.craftprison.npc.NPCManager;
 import cz.wake.craftprison.npc.VillagerTypeTrait;
+import cz.wake.craftprison.objects.PrestigeMines;
 import cz.wake.craftprison.objects.Rank;
 import cz.wake.craftprison.sql.SQLManager;
 import cz.wake.craftprison.utils.Logger;
@@ -23,6 +24,8 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main extends JavaPlugin {
 
@@ -63,7 +66,8 @@ public class Main extends JavaPlugin {
         manager = new PaperCommandManager(this);
         manager.enableUnstableAPI("help");
 
-        manager.getCommandCompletions().registerCompletion("ranks", c -> Rank.getRanksAsList());
+        List<String> mineCommandPrediction = Stream.concat(Rank.getRanksAsList().stream(), PrestigeMines.getRanksAsList().stream()).collect(Collectors.toList());
+        manager.getCommandCompletions().registerCompletion("ranks", c -> mineCommandPrediction);
 
         // Register příkazů
         Logger.info("Probíhá registrace příkazů pomocí Aikar commands!");
