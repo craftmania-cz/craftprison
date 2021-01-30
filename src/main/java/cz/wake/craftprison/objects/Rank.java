@@ -45,23 +45,6 @@ public enum Rank {
     Y(25, "Y", 200000000000L, 8, Material.LAPIS_BLOCK, new Location(Bukkit.getWorld("mines"), -6619.5, 129, 1118.5, 0, 0)), //
     Z(26, "Z", 400000000000L, 10, Material.DIAMOND_BLOCK, new Location(Bukkit.getWorld("mines"), -6879.5, 119, 1276.5, 0, 0)); //
 
-    /* PANTHER(27, "Panther", 10000000000L, MineDifficulty.STANDARD, 6, new ItemStack(Material.QUARTZ, 1, (short)1), "", ""),
-    DOCTOR(28, "Doctor", 20000000000L, MineDifficulty.STANDARD, 6, new ItemStack(Material.DIAMOND_BLOCK), "Moznost pridat 6 hrace na ostrov (+4)", "askyblock.team.maxsize.6"),
-    KRATOS(29, "Kratos", 30000000000L, MineDifficulty.STANDARD, 6, new ItemStack(Material.MAGMA), "", ""),
-    LINK(30, "Link", 75000000000L, MineDifficulty.HARD, 6, new ItemStack(Material.GREEN_GLAZED_TERRACOTTA), "", ""),
-    KENNY(31, "Kenny", 200000000000L, MineDifficulty.HARD, 7, new ItemStack(Material.ENDER_STONE), "Prodej v dolech pravym kliknutim s krumpacem", "craftprison.pickaxe.rightclick.sell"),
-    WITHER(32, "Wither", 400000000000L, MineDifficulty.HARD, 7, new ItemStack(Material.BEDROCK), "", ""),
-    EGGMAN(33, "Eggman", 600000000000L, MineDifficulty.HARD, 7, new ItemStack(Material.BROWN_GLAZED_TERRACOTTA), "", ""),
-    DOOMFIST(34, "Doomfist", 1200000000000L, MineDifficulty.HARD, 7, new ItemStack(Material.ORANGE_GLAZED_TERRACOTTA), "", ""),
-    ORC(35, "Orc", 2000000000000L, MineDifficulty.HARD, 7, new ItemStack(Material.DIAMOND_BLOCK), "", ""),
-    STORMTROOPER(36, "Stormtrooper", 4500000000000L, MineDifficulty.HARD, 7, new ItemStack(Material.QUARTZ_BLOCK), "", ""),
-    DWARF(37, "Dwarf", 8000000000000L, MineDifficulty.HARD, 8, new ItemStack(Material.BLUE_GLAZED_TERRACOTTA), "", ""),
-    PRISMARINER(38, "Prismariner", 15000000000000L, MineDifficulty.HARD, 8, new ItemStack(Material.PRISMARINE, 1, (short)2), "", ""),
-    MRPIG(39, "MrPig", 25000000000000L, MineDifficulty.HARD, 8, new ItemStack(Material.YELLOW_GLAZED_TERRACOTTA), "", ""),
-    WIZARD(40, "Wizard", 50000000000000L, MineDifficulty.HARD, 8, new ItemStack(Material.PINK_GLAZED_TERRACOTTA), "", ""),
-    CLEOPATRA(41, "Cleopatra", 75000000000000L, MineDifficulty.HARD, 8, new ItemStack(Material.HARD_CLAY), "", "" ),
-    INDIAN(42, "Indian", 150000000000000L, MineDifficulty.HARD, 8, new ItemStack(Material.RED_SANDSTONE), "", "");*/
-
     private int weight;
     private String name;
     private long price;
@@ -166,14 +149,14 @@ public enum Rank {
      * @param name  Název ranku
      * @return      {@link Rank}
      */
-    @NotNull
+    @Nullable
     public static Rank getByName(@NotNull String name) {
         for (Rank r : getRankList()) {
             if (r.getName().equalsIgnoreCase(name)) {
                 return r;
             }
         }
-        return Rank.A;
+        return null;
     }
 
     /**
