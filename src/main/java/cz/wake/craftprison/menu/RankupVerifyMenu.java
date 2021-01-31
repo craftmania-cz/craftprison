@@ -37,7 +37,7 @@ public class RankupVerifyMenu implements InventoryProvider {
                     PlayerUtils.addPermission(player, nextRank.getPermission());
                     Main.getInstance().getEconomy().withdrawPlayer(player, (double) nextRank.getPriceByPrestige(craftPlayer.getPrestige()));
                     craftPlayer.setRank(nextRank);
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tokens add " + player.getName() + " " + nextRank.getEnchantToken());
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tokens add " + player.getName() + " " + (nextRank.getEnchantToken() + getTokenMultiplierByPrestige(craftPlayer.getPrestige())));
                     player.sendMessage("§e§l[T] §eBylo ti přidáno " + nextRank.getEnchantToken() + " EnchantTokenů.");
                     PlayerUtils.randomFireworks(player.getLocation());
                     XSound.BLOCK_NOTE_BLOCK_BASS.play(player, 1.0f, 1.0f);
@@ -55,5 +55,30 @@ public class RankupVerifyMenu implements InventoryProvider {
 
     @Override
     public void update(Player player, InventoryContents contents) {
+    }
+
+    private int getTokenMultiplierByPrestige(int prestige) {
+        if (prestige >= 5 && prestige < 10) {
+            return 3;
+        }
+        if (prestige >= 10 && prestige < 15) {
+            return 5;
+        }
+        if (prestige >= 15 && prestige < 20) {
+            return 8;
+        }
+        if (prestige >= 20 && prestige < 25) {
+            return 12;
+        }
+        if (prestige >= 25 && prestige < 30) {
+            return 15;
+        }
+        if (prestige >= 30 && prestige < 35) {
+            return 20;
+        }
+        if (prestige >= 35 && prestige < 40) {
+            return 25;
+        }
+        return 1;
     }
 }
