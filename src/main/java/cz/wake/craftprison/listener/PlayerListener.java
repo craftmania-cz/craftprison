@@ -38,7 +38,9 @@ public class PlayerListener implements Listener {
         p.sendMessage("§8- §fNově lze enchantovat jakoukoliv lopatu");
         p.sendMessage("§8- §fZpřístupnili jsme Netherite v dole P5");
         p.sendMessage("§8- §fNyní za každých 5 prestigí, dostáváš o +1 ET navíc za rankup.");
-        p.sendMessage("§8- §fUpraveny odměny v Vote, Basic a Legendary Crates.");
+        //p.sendMessage("§8- §fUpraveny odměny v Vote, Basic a Legendary Crates.");
+        p.sendMessage("");
+        p.sendMessage("§eDalší updaty budou nasledovat v dalších dnech bez údržby.");
         p.sendMessage("");
     }
 
