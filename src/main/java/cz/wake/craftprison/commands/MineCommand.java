@@ -4,6 +4,7 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.CommandHelp;
 import co.aikar.commands.annotation.*;
 import cz.wake.craftprison.modules.PrisonManager;
+import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.PrestigeMines;
 import cz.wake.craftprison.objects.Rank;
 import cz.wake.craftprison.utils.Logger;
@@ -60,10 +61,11 @@ public class MineCommand extends BaseCommand {
                 player.sendMessage("§c§l[!] §eNemáš dostatečně vysoký rank, aby jsi se mohl teleportovat na tento důl.");
             }
         } else if (PrestigeMines.getByName(rank.toUpperCase()) != null) { // Hráč chce prestige rank
-            int playerPrestige = this.pm.getCraftPlayer(player).getPrestige();
+            CraftPlayer craftPlayer = this.pm.getCraftPlayer(player);
+            int playerPrestige = craftPlayer.getPrestige();
             PrestigeMines prestigeMine = PrestigeMines.getByName(rank.toUpperCase());
             assert prestigeMine != null;
-            if (playerPrestige >= prestigeMine.getRequiredPrestige()) {
+            if (playerPrestige >= prestigeMine.getRequiredPrestige() && craftPlayer.getRank() == Rank.Z) {
                 player.sendMessage("§eTeleportuji tě na důl: §f" + prestigeMine.getName().toUpperCase());
                 player.teleport(prestigeMine.getLocation());
             } else {
