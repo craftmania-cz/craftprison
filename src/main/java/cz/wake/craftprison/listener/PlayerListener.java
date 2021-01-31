@@ -31,6 +31,15 @@ public class PlayerListener implements Listener {
 
         // Opravy chyb a chybejicich prav
         pf.fixFor(p);
+
+        p.sendMessage("");
+        p.sendMessage("§9§lSeznam změn:");
+        p.sendMessage("§8- §fPřidány doly: P5, P8, P12");
+        p.sendMessage("§8- §fNově lze enchantovat jakoukoliv lopatu");
+        p.sendMessage("§8- §fZpřístupnili jsme Netherite v dole P5");
+        p.sendMessage("§8- §fNyní za každých 5 prestigí, dostáváš o +1 ET navíc za rankup.");
+        p.sendMessage("§8- §fUpraveny odměny v Vote, Basic a Legendary Crates.");
+        p.sendMessage("");
     }
 
     @EventHandler(ignoreCancelled = true)

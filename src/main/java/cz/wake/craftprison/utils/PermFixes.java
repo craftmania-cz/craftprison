@@ -1,40 +1,32 @@
 package cz.wake.craftprison.utils;
 
 import cz.wake.craftprison.modules.PrisonManager;
+import cz.wake.craftprison.objects.CraftPlayer;
 import cz.wake.craftprison.objects.Rank;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class PermFixes {
 
     PrisonManager pm = new PrisonManager();
 
-    public void fixFor(final Player p) {
+    public void fixFor(final Player player) {
 
-        // Oprava chybejiciho prava na prodej v PVP # 16.7.2018
-        /*if(p.hasPermission("craftprison.pvp") && !p.hasPermission("quicksell.shop.pvp")) {
-            PlayerUtils.addPermission(p, "quicksell.shop.pvp");
+        CraftPlayer craftPlayer = pm.getCraftPlayer(player);
+        if (craftPlayer.getPrestige() >= 5 && !player.hasPermission("craftkeeper.mine.P5")) {
+            player.sendMessage("§e§l[!] §eByl ti odemknut důl P5. §f/mine P5");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " permission set craftkeeper.mine.P5 prison");
         }
 
-        // Oprava chybejiciho NightVision pro hrace, kteri byli na serveru v pripade bugu s rankupy A -> B # 16.7.2018
-        if(pm.getPlayerRank(p) != Rank.A && !p.hasPermission("craftprison.mine.nightvision")) {
-            PlayerUtils.addPermission(p, "craftprison.mine.nightvision");
+        if (craftPlayer.getPrestige() >= 8 && !player.hasPermission("craftkeeper.mine.P8")) {
+            player.sendMessage("§e§l[!] §eByl ti odemknut písečný důl P8. §f/mine P8");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " permission set craftkeeper.mine.P8 prison");
         }
 
-        // Oprava pristupu na doly # 18.7.2018
-        for (Rank r : Rank.values()){
-            if(r.getWeight() <= pm.getPlayerRank(p).getWeight()){ // A - 1, Zoidberg - 5
-                if(!p.hasPermission("essentials.warps." + r.getName().toLowerCase())){
-                    PlayerUtils.addPermission(p, "essentials.warps." + r.getName().toLowerCase());
-                }
-            }
+        if (craftPlayer.getPrestige() >= 12 && !player.hasPermission("craftkeeper.mine.P12")) {
+            player.sendMessage("§e§l[!] §eByl ti odemknut důl P12. §f/mine P12");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " permission set craftkeeper.mine.P12 prison");
         }
-
-        // Oprava chybejicich prav na Chestshop 29.7.2018
-        if(pm.getPlayerRank(p).getWeight() >= 26 && !p.hasPermission("shop.create")) { // Optimus
-            PlayerUtils.addPermission(p, "shop.create");
-            PlayerUtils.addPermission(p, "shop.create.buy");
-            PlayerUtils.addPermission(p, "shop.create.sell");
-        }*/
 
     }
 }

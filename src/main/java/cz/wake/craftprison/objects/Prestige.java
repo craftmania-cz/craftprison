@@ -6,8 +6,10 @@ public enum Prestige {
     TWO(2, "Přístup k /backpack", "backpack.user"),
     THREE(3, "Backpack velikost: 2 řádky", "backpack.size.2"),
     FOUR(4, "Backpack velikost: 4 řádky", "backpack.size.4"),
-    FIVE(5, "Backpack velikost: 6 řádků", "backpack.size.6", "craftkeeper.mine.P5"),
-    SIX(6, "Přístup k §e/fly", "cmi.command.fly");
+    FIVE(5, "Backpack velikost: 6 řádků & Důl P5", "backpack.size.6", "craftkeeper.mine.P5"),
+    SIX(6, "Přístup k §e/fly", "cmi.command.fly"),
+    EIGHT(8, "Písečný důl P8", "craftkeeper.mine.P8"),
+    TWELVE(12, "Důl P12", "craftkeeper.mine.P12");
 
     private int weight;
     private String description;

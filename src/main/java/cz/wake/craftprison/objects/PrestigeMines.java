@@ -10,7 +10,8 @@ import java.util.stream.Stream;
 
 public enum PrestigeMines {
 
-    P5(1, "P5", 5, new Location(Bukkit.getWorld("mines"), -7338.5, 92, 1249.5, -90, 0));
+    P5(1, "P5", 5, new Location(Bukkit.getWorld("mines"), -7338.5, 92, 1249.5, -90, 0)),
+    P8(2, "P8", 8, new Location(Bukkit.getWorld("mines"), -8290.5, 100, 1105.5, -87, 0));
 
     private int weight;
     private String name;

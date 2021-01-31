@@ -297,6 +297,28 @@ public class NPCManager {
         prestige.setRightClickAction(new ClickAction((action) -> action.getClicker().performCommand("prestige")));
         prestige.spawn();
 
+        // Prestige P5
+        InteractiveNPC prestige_P5 = new InteractiveNPC(this.registry, "Prestige P5", EntityType.VINDICATOR);
+        prestige_P5.setLocation(new Location(Bukkit.getWorld("mines"), -7340.5, 92.5, 1249.5, -102, 0));
+        prestige_P5.setHologramTexts("§6§lDůl P5", "§7Klikni pravým k prodeji");
+        prestige_P5.setLeftClickAction(new ClickAction((action) -> action.getClicker().performCommand("keeper mine custom P5")));
+        prestige_P5.setRightClickAction(new ClickAction((action) -> action.getClicker().performCommand("sellall mine P5")));
+        prestige_P5.spawn();
+
+        InteractiveNPC sand_mine_P8 = new InteractiveNPC(this.registry, "Prestige P8", EntityType.HUSK);
+        sand_mine_P8.setLocation(new Location(Bukkit.getWorld("mines"), -8279.5, 98.5, 1111.5, -102, 0));
+        sand_mine_P8.setHologramTexts("§e§lPísečný důl P8", "§7Klikni pravým k prodeji");
+        sand_mine_P8.setLeftClickAction(new ClickAction((action) -> action.getClicker().performCommand("keeper mine custom P8")));
+        sand_mine_P8.setRightClickAction(new ClickAction((action) -> action.getClicker().performCommand("sellall mine P8")));
+        sand_mine_P8.spawn();
+
+        InteractiveNPC mine_P12 = new InteractiveNPC(this.registry, "Prestige P12", EntityType.EVOKER);
+        mine_P12.setLocation(new Location(Bukkit.getWorld("mines"), -8876, 103.5, 1144.5, -117, 0));
+        mine_P12.setHologramTexts("§b§lDůl P12", "§7Klikni pravým k prodeji");
+        mine_P12.setLeftClickAction(new ClickAction((action) -> action.getClicker().performCommand("keeper mine custom P12")));
+        mine_P12.setRightClickAction(new ClickAction((action) -> action.getClicker().performCommand("sellall mine P12")));
+        mine_P12.spawn();
+
     }
 
     public void destroyNPCs() {
